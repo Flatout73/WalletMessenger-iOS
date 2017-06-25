@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5572CE8F1F003A3F00E0FC3E /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572CE8E1F003A3F00E0FC3E /* RequestSender.swift */; };
+		5572CE911F003A7A00E0FC3E /* ServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572CE901F003A7A00E0FC3E /* ServiceAPI.swift */; };
+		5572CE931F003ACC00E0FC3E /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572CE921F003ACC00E0FC3E /* JSONParser.swift */; };
 		711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */; };
 		711BEB211EFEF2E900907B42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB201EFEF2E900907B42 /* ViewController.swift */; };
 		711BEB241EFEF2E900907B42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 711BEB221EFEF2E900907B42 /* Main.storyboard */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5572CE8E1F003A3F00E0FC3E /* RequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
+		5572CE901F003A7A00E0FC3E /* ServiceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceAPI.swift; sourceTree = "<group>"; };
+		5572CE921F003ACC00E0FC3E /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		711BEB1B1EFEF2E900907B42 /* WalletHakathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalletHakathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		711BEB201EFEF2E900907B42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +51,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5572CE8C1F0038F700E0FC3E /* Service Layer */ = {
+			isa = PBXGroup;
+			children = (
+				5572CE901F003A7A00E0FC3E /* ServiceAPI.swift */,
+			);
+			name = "Service Layer";
+			sourceTree = "<group>";
+		};
+		5572CE8D1F00390200E0FC3E /* Core Layer */ = {
+			isa = PBXGroup;
+			children = (
+				5572CE8E1F003A3F00E0FC3E /* RequestSender.swift */,
+				5572CE921F003ACC00E0FC3E /* JSONParser.swift */,
+			);
+			name = "Core Layer";
+			sourceTree = "<group>";
+		};
 		711BEB121EFEF2E900907B42 = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +87,8 @@
 		711BEB1D1EFEF2E900907B42 /* WalletHakathon */ = {
 			isa = PBXGroup;
 			children = (
+				5572CE8D1F00390200E0FC3E /* Core Layer */,
+				5572CE8C1F0038F700E0FC3E /* Service Layer */,
 				711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */,
 				711BEB201EFEF2E900907B42 /* ViewController.swift */,
 				711BEB221EFEF2E900907B42 /* Main.storyboard */,
@@ -152,12 +177,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5572CE8F1F003A3F00E0FC3E /* RequestSender.swift in Sources */,
 				712DEECE1F002236004D5CE9 /* QiwiLoginViewController.swift in Sources */,
 				711BEB271EFEF2E900907B42 /* WalletHakathon.xcdatamodeld in Sources */,
 				711BEB211EFEF2E900907B42 /* ViewController.swift in Sources */,
 				711BEB381EFEFF0300907B42 /* DialogViewController.swift in Sources */,
 				711BEB361EFEFBB000907B42 /* ChatTableViewCell.swift in Sources */,
+				5572CE931F003ACC00E0FC3E /* JSONParser.swift in Sources */,
 				711BEB341EFEF99C00907B42 /* ChatsViewController.swift in Sources */,
+				5572CE911F003A7A00E0FC3E /* ServiceAPI.swift in Sources */,
 				711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +311,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 98A95ZRNVF;
 				INFOPLIST_FILE = WalletHakathon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.hse.WalletHakathon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -296,6 +325,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 98A95ZRNVF;
 				INFOPLIST_FILE = WalletHakathon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.hse.WalletHakathon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
