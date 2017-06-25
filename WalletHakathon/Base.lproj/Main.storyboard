@@ -157,11 +157,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Диалоги" id="407-m8-XLv">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="CrG-NH-pOI">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="CrG-NH-pOI">
                             <connections>
                                 <segue destination="Kjo-7T-Az0" kind="presentation" id="eYC-aK-Tib"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="fMf-MX-Pqx"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="JOB-uh-1Nm" id="7Am-Eo-Sml"/>

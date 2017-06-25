@@ -35,7 +35,7 @@ class QiwiLoginViewController: UIViewController {
             let postString = "client_id=qw-fintech&client_secret=Xghj!bkjv64&client-software=qw-fintech-0.0.1&response_type=code&username=\(telephoneNumberField.text!)"
             request.httpBody = postString.data(using: .utf8)
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                guard let data = data, error == nil else {
                     print("error=\(error)")
                     return
                 }
@@ -73,7 +73,7 @@ class QiwiLoginViewController: UIViewController {
             let postString = "client_id=qw-fintech&client_secret=Xghj!bkjv64&client-software=qw-fintech-0.0.1&grant_type=urn:qiwi:oauth:grant-type:vcode&code=\(code)&vcode=\(codeField.text!)"
             request.httpBody = postString.data(using: .utf8)
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                guard let data = data, error == nil else {
                     print("error=\(error)")
                     return
                 }
