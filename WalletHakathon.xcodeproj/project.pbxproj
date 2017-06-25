@@ -13,6 +13,10 @@
 		711BEB271EFEF2E900907B42 /* WalletHakathon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB251EFEF2E900907B42 /* WalletHakathon.xcdatamodeld */; };
 		711BEB291EFEF2E900907B42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 711BEB281EFEF2E900907B42 /* Assets.xcassets */; };
 		711BEB2C1EFEF2E900907B42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 711BEB2A1EFEF2E900907B42 /* LaunchScreen.storyboard */; };
+		711BEB341EFEF99C00907B42 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB331EFEF99C00907B42 /* ChatsViewController.swift */; };
+		711BEB361EFEFBB000907B42 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB351EFEFBB000907B42 /* ChatTableViewCell.swift */; };
+		711BEB381EFEFF0300907B42 /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB371EFEFF0300907B42 /* DialogViewController.swift */; };
+		712DEECE1F002236004D5CE9 /* QiwiLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEECD1F002236004D5CE9 /* QiwiLoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		711BEB281EFEF2E900907B42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		711BEB2B1EFEF2E900907B42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		711BEB2D1EFEF2E900907B42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		711BEB331EFEF99C00907B42 /* ChatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
+		711BEB351EFEFBB000907B42 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		711BEB371EFEFF0300907B42 /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
+		712DEECD1F002236004D5CE9 /* QiwiLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QiwiLoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +71,10 @@
 				711BEB2A1EFEF2E900907B42 /* LaunchScreen.storyboard */,
 				711BEB2D1EFEF2E900907B42 /* Info.plist */,
 				711BEB251EFEF2E900907B42 /* WalletHakathon.xcdatamodeld */,
+				711BEB331EFEF99C00907B42 /* ChatsViewController.swift */,
+				711BEB351EFEFBB000907B42 /* ChatTableViewCell.swift */,
+				711BEB371EFEFF0300907B42 /* DialogViewController.swift */,
+				712DEECD1F002236004D5CE9 /* QiwiLoginViewController.swift */,
 			);
 			path = WalletHakathon;
 			sourceTree = "<group>";
@@ -140,8 +152,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				712DEECE1F002236004D5CE9 /* QiwiLoginViewController.swift in Sources */,
 				711BEB271EFEF2E900907B42 /* WalletHakathon.xcdatamodeld in Sources */,
 				711BEB211EFEF2E900907B42 /* ViewController.swift in Sources */,
+				711BEB381EFEFF0300907B42 /* DialogViewController.swift in Sources */,
+				711BEB361EFEFBB000907B42 /* ChatTableViewCell.swift in Sources */,
+				711BEB341EFEF99C00907B42 /* ChatsViewController.swift in Sources */,
 				711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +322,7 @@
 				711BEB321EFEF2E900907B42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
