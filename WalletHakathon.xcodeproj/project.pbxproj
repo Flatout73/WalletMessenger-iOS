@@ -20,6 +20,7 @@
 		711BEB361EFEFBB000907B42 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB351EFEFBB000907B42 /* ChatTableViewCell.swift */; };
 		711BEB381EFEFF0300907B42 /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB371EFEFF0300907B42 /* DialogViewController.swift */; };
 		712DEECE1F002236004D5CE9 /* QiwiLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEECD1F002236004D5CE9 /* QiwiLoginViewController.swift */; };
+		712DEED01F005532004D5CE9 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEECF1F005532004D5CE9 /* MessageTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		711BEB351EFEFBB000907B42 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		711BEB371EFEFF0300907B42 /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
 		712DEECD1F002236004D5CE9 /* QiwiLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QiwiLoginViewController.swift; sourceTree = "<group>"; };
+		712DEECF1F005532004D5CE9 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				711BEB351EFEFBB000907B42 /* ChatTableViewCell.swift */,
 				711BEB371EFEFF0300907B42 /* DialogViewController.swift */,
 				712DEECD1F002236004D5CE9 /* QiwiLoginViewController.swift */,
+				712DEECF1F005532004D5CE9 /* MessageTableViewCell.swift */,
 			);
 			path = WalletHakathon;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				712DEECE1F002236004D5CE9 /* QiwiLoginViewController.swift in Sources */,
 				711BEB271EFEF2E900907B42 /* WalletHakathon.xcdatamodeld in Sources */,
 				711BEB211EFEF2E900907B42 /* ViewController.swift in Sources */,
+				712DEED01F005532004D5CE9 /* MessageTableViewCell.swift in Sources */,
 				711BEB381EFEFF0300907B42 /* DialogViewController.swift in Sources */,
 				711BEB361EFEFBB000907B42 /* ChatTableViewCell.swift in Sources */,
 				5572CE931F003ACC00E0FC3E /* JSONParser.swift in Sources */,

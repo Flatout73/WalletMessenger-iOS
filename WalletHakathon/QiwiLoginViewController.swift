@@ -92,12 +92,12 @@ class QiwiLoginViewController: UIViewController {
                     if let token = dict["access_token"] {
                         DispatchQueue.main.async { [weak self] in
                             if let this = self{
-                                UserDefaults.standard.set(token, forKey: "access_token")
+                                UserDefaults.standard.set(token, forKey: "access_token_qiwi")
                                 let alert = UIAlertController(title: "Успех!", message: "Кошелек Qiwi успешно привязан.", preferredStyle: UIAlertControllerStyle.alert)
                                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                                 this.present(alert, animated: true, completion: nil)
                                 
-                                print("token:", UserDefaults.standard.value(forKey: "access_token"))
+                                print("token:", UserDefaults.standard.value(forKey: "access_token_qiwi"))
                             }
                         }
                         
