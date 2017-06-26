@@ -21,6 +21,8 @@
 		711BEB381EFEFF0300907B42 /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB371EFEFF0300907B42 /* DialogViewController.swift */; };
 		712DEECE1F002236004D5CE9 /* QiwiLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEECD1F002236004D5CE9 /* QiwiLoginViewController.swift */; };
 		712DEED01F005532004D5CE9 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEECF1F005532004D5CE9 /* MessageTableViewCell.swift */; };
+		712DEED21F01A836004D5CE9 /* RegistrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEED11F01A836004D5CE9 /* RegistrViewController.swift */; };
+		712DEED41F01B5F0004D5CE9 /* InfoRegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEED31F01B5F0004D5CE9 /* InfoRegistViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		711BEB371EFEFF0300907B42 /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
 		712DEECD1F002236004D5CE9 /* QiwiLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QiwiLoginViewController.swift; sourceTree = "<group>"; };
 		712DEECF1F005532004D5CE9 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		712DEED11F01A836004D5CE9 /* RegistrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrViewController.swift; sourceTree = "<group>"; };
+		712DEED31F01B5F0004D5CE9 /* InfoRegistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoRegistViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				711BEB371EFEFF0300907B42 /* DialogViewController.swift */,
 				712DEECD1F002236004D5CE9 /* QiwiLoginViewController.swift */,
 				712DEECF1F005532004D5CE9 /* MessageTableViewCell.swift */,
+				712DEED11F01A836004D5CE9 /* RegistrViewController.swift */,
+				712DEED31F01B5F0004D5CE9 /* InfoRegistViewController.swift */,
 			);
 			path = WalletHakathon;
 			sourceTree = "<group>";
@@ -181,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5572CE8F1F003A3F00E0FC3E /* RequestSender.swift in Sources */,
+				712DEED21F01A836004D5CE9 /* RegistrViewController.swift in Sources */,
 				712DEECE1F002236004D5CE9 /* QiwiLoginViewController.swift in Sources */,
 				711BEB271EFEF2E900907B42 /* WalletHakathon.xcdatamodeld in Sources */,
 				711BEB211EFEF2E900907B42 /* ViewController.swift in Sources */,
@@ -189,6 +196,7 @@
 				711BEB361EFEFBB000907B42 /* ChatTableViewCell.swift in Sources */,
 				5572CE931F003ACC00E0FC3E /* JSONParser.swift in Sources */,
 				711BEB341EFEF99C00907B42 /* ChatsViewController.swift in Sources */,
+				712DEED41F01B5F0004D5CE9 /* InfoRegistViewController.swift in Sources */,
 				5572CE911F003A7A00E0FC3E /* ServiceAPI.swift in Sources */,
 				711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */,
 			);
