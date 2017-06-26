@@ -22,6 +22,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         
         messeges = messeges.reversed()
         tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi));
+        
         // Do any additional setup after loading the view.
     }
 

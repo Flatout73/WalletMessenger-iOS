@@ -47,8 +47,10 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    //Если бы сделал через performSegue было бы меньшекода, ну ладно
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DialogVC") as? DialogViewController {
+            viewController.hidesBottomBarWhenPushed = true
             if let navigator = navigationController {
                 navigator.pushViewController(viewController, animated: true)
             }
