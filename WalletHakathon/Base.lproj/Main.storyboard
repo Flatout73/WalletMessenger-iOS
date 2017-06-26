@@ -442,6 +442,9 @@
                                 <rect key="frame" x="16" y="637" width="108" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Наличные"/>
+                                <connections>
+                                    <action selector="sendMoney:" destination="hbU-V6-Vmt" eventType="touchUpInside" id="IDK-hw-Ozf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Bc-8b-vAk">
                                 <rect key="frame" x="276" y="637" width="46" height="30"/>

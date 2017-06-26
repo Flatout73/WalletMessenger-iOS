@@ -40,10 +40,13 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if(indexPath.section == 0) {
+        if(indexPath.section % 2 == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
             
-            cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
+            if(!cell.isReversed){
+                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+                cell.isReversed = true
+            }
         
             cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
             cell.sum.text = messeges[indexPath.section] + " руб."
@@ -52,7 +55,10 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "fromMe", for: indexPath) as! MessageTableViewCell
             
-            cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
+            if(!cell.isReversed){
+                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+                cell.isReversed = true
+            }
             
             cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
             cell.sum.text = messeges[indexPath.section] + " руб."
@@ -60,6 +66,12 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             return cell
         }
         
+    }
+    
+    
+    @IBAction func sendMoney(_ sender: Any) {
+        messeges.insert("678", at: 0)
+        tableView.reloadData()
     }
     /*
     // MARK: - Navigation
