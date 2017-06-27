@@ -21,7 +21,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.dataSource = self
         
         messeges = messeges.reversed()
-        tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi));
+        //tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi));
         
         // Do any additional setup after loading the view.
     }
@@ -32,11 +32,11 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return messeges.count
+        return 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return messeges.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,9 +71,17 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     @IBAction func sendMoney(_ sender: Any) {
-        messeges.insert("678", at: 0)
+        messeges.append("678")
         tableView.reloadData()
+        
+        DispatchQueue.main.async {[weak self] in
+            if let this = self {
+                let indexPath = IndexPath(row: this.messeges.count - 1, section: 0)
+                this.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }
+        }
     }
+    
     /*
     // MARK: - Navigation
 
