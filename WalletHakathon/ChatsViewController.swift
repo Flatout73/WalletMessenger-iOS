@@ -58,5 +58,4 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //        }
 //    }
     
-    
 }

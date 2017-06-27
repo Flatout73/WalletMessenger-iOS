@@ -21,7 +21,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.dataSource = self
         
         messeges = messeges.reversed()
-        //tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi));
+        tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi));
         
         // Do any additional setup after loading the view.
     }
@@ -50,7 +50,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             }
         
             cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
-            cell.sum.text = messeges[indexPath.section] + " руб."
+            cell.sum.text = messeges[indexPath.row] + " руб."
         
             return cell
         } else {
@@ -62,7 +62,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             }
             
             cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
-            cell.sum.text = messeges[indexPath.section] + " руб."
+            cell.sum.text = messeges[indexPath.row] + " руб."
             
             return cell
         }
@@ -71,15 +71,16 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     
     
     @IBAction func sendMoney(_ sender: Any) {
-        messeges.append("678")
+        
+        messeges.insert("678", at: 0)
         tableView.reloadData()
         
-        DispatchQueue.main.async {[weak self] in
-            if let this = self {
-                let indexPath = IndexPath(row: this.messeges.count - 1, section: 0)
-                this.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-            }
-        }
+//        DispatchQueue.main.async {[weak self] in
+//            if let this = self {
+//                let indexPath = IndexPath(row: this.messeges.count - 1, section: 0)
+//                this.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+//            }
+//        }
     }
     
     /*

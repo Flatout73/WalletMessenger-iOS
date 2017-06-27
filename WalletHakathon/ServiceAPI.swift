@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 let serverAddress = "http://localhost:8080"
 

@@ -23,9 +23,15 @@
 		712DEED01F005532004D5CE9 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEECF1F005532004D5CE9 /* MessageTableViewCell.swift */; };
 		712DEED21F01A836004D5CE9 /* RegistrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEED11F01A836004D5CE9 /* RegistrViewController.swift */; };
 		712DEED41F01B5F0004D5CE9 /* InfoRegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEED31F01B5F0004D5CE9 /* InfoRegistViewController.swift */; };
+		712DEEDA1F0281BE004D5CE9 /* ConversationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEED91F0281BE004D5CE9 /* ConversationExtension.swift */; };
+		712DEEDC1F028934004D5CE9 /* GroupConversationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEEDB1F028934004D5CE9 /* GroupConversationExtension.swift */; };
+		712DEEDE1F028A5F004D5CE9 /* UserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEEDD1F028A5F004D5CE9 /* UserExtension.swift */; };
+		712DEEE01F028DB9004D5CE9 /* TransactionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEEDF1F028DB9004D5CE9 /* TransactionExtension.swift */; };
+		FBD33BEC9520952B38CD0DF1 /* Pods_WalletHakathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F77F89AC65A0E9459599EF21 /* Pods_WalletHakathon.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		497B7A704D5F84A782193F8A /* Pods-WalletHakathon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletHakathon.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalletHakathon/Pods-WalletHakathon.release.xcconfig"; sourceTree = "<group>"; };
 		5572CE8E1F003A3F00E0FC3E /* RequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
 		5572CE901F003A7A00E0FC3E /* ServiceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceAPI.swift; sourceTree = "<group>"; };
 		5572CE921F003ACC00E0FC3E /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
@@ -44,6 +50,12 @@
 		712DEECF1F005532004D5CE9 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		712DEED11F01A836004D5CE9 /* RegistrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrViewController.swift; sourceTree = "<group>"; };
 		712DEED31F01B5F0004D5CE9 /* InfoRegistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoRegistViewController.swift; sourceTree = "<group>"; };
+		712DEED91F0281BE004D5CE9 /* ConversationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationExtension.swift; sourceTree = "<group>"; };
+		712DEEDB1F028934004D5CE9 /* GroupConversationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupConversationExtension.swift; sourceTree = "<group>"; };
+		712DEEDD1F028A5F004D5CE9 /* UserExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExtension.swift; sourceTree = "<group>"; };
+		712DEEDF1F028DB9004D5CE9 /* TransactionExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionExtension.swift; sourceTree = "<group>"; };
+		D9A89CC916FD2A201B258B86 /* Pods-WalletHakathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletHakathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletHakathon/Pods-WalletHakathon.debug.xcconfig"; sourceTree = "<group>"; };
+		F77F89AC65A0E9459599EF21 /* Pods_WalletHakathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletHakathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBD33BEC9520952B38CD0DF1 /* Pods_WalletHakathon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +81,7 @@
 		5572CE8D1F00390200E0FC3E /* Core Layer */ = {
 			isa = PBXGroup;
 			children = (
+				712DEED81F0281A1004D5CE9 /* Core Data */,
 				5572CE8E1F003A3F00E0FC3E /* RequestSender.swift */,
 				5572CE921F003ACC00E0FC3E /* JSONParser.swift */,
 			);
@@ -79,6 +93,8 @@
 			children = (
 				711BEB1D1EFEF2E900907B42 /* WalletHakathon */,
 				711BEB1C1EFEF2E900907B42 /* Products */,
+				F0099D0332AC4A8682A04A03 /* Pods */,
+				AA0D295161B0CEB944CFAF1D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,15 +109,23 @@
 		711BEB1D1EFEF2E900907B42 /* WalletHakathon */ = {
 			isa = PBXGroup;
 			children = (
+				712DEED71F0279FE004D5CE9 /* Presentation Layer */,
 				5572CE8D1F00390200E0FC3E /* Core Layer */,
 				5572CE8C1F0038F700E0FC3E /* Service Layer */,
 				711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */,
-				711BEB201EFEF2E900907B42 /* ViewController.swift */,
 				711BEB221EFEF2E900907B42 /* Main.storyboard */,
 				711BEB281EFEF2E900907B42 /* Assets.xcassets */,
 				711BEB2A1EFEF2E900907B42 /* LaunchScreen.storyboard */,
 				711BEB2D1EFEF2E900907B42 /* Info.plist */,
 				711BEB251EFEF2E900907B42 /* WalletHakathon.xcdatamodeld */,
+			);
+			path = WalletHakathon;
+			sourceTree = "<group>";
+		};
+		712DEED71F0279FE004D5CE9 /* Presentation Layer */ = {
+			isa = PBXGroup;
+			children = (
+				711BEB201EFEF2E900907B42 /* ViewController.swift */,
 				711BEB331EFEF99C00907B42 /* ChatsViewController.swift */,
 				711BEB351EFEFBB000907B42 /* ChatTableViewCell.swift */,
 				711BEB371EFEFF0300907B42 /* DialogViewController.swift */,
@@ -110,7 +134,35 @@
 				712DEED11F01A836004D5CE9 /* RegistrViewController.swift */,
 				712DEED31F01B5F0004D5CE9 /* InfoRegistViewController.swift */,
 			);
-			path = WalletHakathon;
+			name = "Presentation Layer";
+			sourceTree = "<group>";
+		};
+		712DEED81F0281A1004D5CE9 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				712DEED91F0281BE004D5CE9 /* ConversationExtension.swift */,
+				712DEEDB1F028934004D5CE9 /* GroupConversationExtension.swift */,
+				712DEEDD1F028A5F004D5CE9 /* UserExtension.swift */,
+				712DEEDF1F028DB9004D5CE9 /* TransactionExtension.swift */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		AA0D295161B0CEB944CFAF1D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F77F89AC65A0E9459599EF21 /* Pods_WalletHakathon.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F0099D0332AC4A8682A04A03 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D9A89CC916FD2A201B258B86 /* Pods-WalletHakathon.debug.xcconfig */,
+				497B7A704D5F84A782193F8A /* Pods-WalletHakathon.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,9 +172,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 711BEB301EFEF2E900907B42 /* Build configuration list for PBXNativeTarget "WalletHakathon" */;
 			buildPhases = (
+				84A402B6367E50641E2E7C68 /* [CP] Check Pods Manifest.lock */,
 				711BEB171EFEF2E900907B42 /* Sources */,
 				711BEB181EFEF2E900907B42 /* Frameworks */,
 				711BEB191EFEF2E900907B42 /* Resources */,
+				003EC51E4E0DFAC1AAFEBA58 /* [CP] Embed Pods Frameworks */,
+				2639C3CB1AFE53060EB7CB03 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -181,6 +236,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		003EC51E4E0DFAC1AAFEBA58 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalletHakathon/Pods-WalletHakathon-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2639C3CB1AFE53060EB7CB03 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalletHakathon/Pods-WalletHakathon-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		84A402B6367E50641E2E7C68 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		711BEB171EFEF2E900907B42 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -188,6 +291,7 @@
 			files = (
 				5572CE8F1F003A3F00E0FC3E /* RequestSender.swift in Sources */,
 				712DEED21F01A836004D5CE9 /* RegistrViewController.swift in Sources */,
+				712DEEDA1F0281BE004D5CE9 /* ConversationExtension.swift in Sources */,
 				712DEECE1F002236004D5CE9 /* QiwiLoginViewController.swift in Sources */,
 				711BEB271EFEF2E900907B42 /* WalletHakathon.xcdatamodeld in Sources */,
 				711BEB211EFEF2E900907B42 /* ViewController.swift in Sources */,
@@ -195,9 +299,12 @@
 				711BEB381EFEFF0300907B42 /* DialogViewController.swift in Sources */,
 				711BEB361EFEFBB000907B42 /* ChatTableViewCell.swift in Sources */,
 				5572CE931F003ACC00E0FC3E /* JSONParser.swift in Sources */,
+				712DEEDE1F028A5F004D5CE9 /* UserExtension.swift in Sources */,
+				712DEEDC1F028934004D5CE9 /* GroupConversationExtension.swift in Sources */,
 				711BEB341EFEF99C00907B42 /* ChatsViewController.swift in Sources */,
 				712DEED41F01B5F0004D5CE9 /* InfoRegistViewController.swift in Sources */,
 				5572CE911F003A7A00E0FC3E /* ServiceAPI.swift in Sources */,
+				712DEEE01F028DB9004D5CE9 /* TransactionExtension.swift in Sources */,
 				711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,6 +426,7 @@
 		};
 		711BEB311EFEF2E900907B42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9A89CC916FD2A201B258B86 /* Pods-WalletHakathon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 98A95ZRNVF;
@@ -333,6 +441,7 @@
 		};
 		711BEB321EFEF2E900907B42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 497B7A704D5F84A782193F8A /* Pods-WalletHakathon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 98A95ZRNVF;
