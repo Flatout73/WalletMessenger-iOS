@@ -24,7 +24,7 @@ class ServiceAPI: NSObject {
         return dictionary
     }
 
-    static func getDefaultClassResult(dictionary: Dictionary<String, String>, requestString: String, completedHandler: @escaping() -> Void, noncompletedHandler: @escaping(String) -> Void) {
+    static func getDefaultClassResult(dictionary: Dictionary<String, String>, requestString: String, noncompletedHandler: @escaping(String) -> Void, completedHandler: @escaping() -> Void) {
         
         RequestSender.sendRequest(requestString: requestString, params: dictionary) {
             (data, error) in
@@ -42,10 +42,46 @@ class ServiceAPI: NSObject {
             
             let requestStr = serverAddress + "/user/chpsd"
             
-            ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, completedHandler: completedHandler, noncompletedHandler: noncompletedHandler)
+            ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler, completedHandler: completedHandler)
         } else {
             noncompletedHandler("token error")
         }
     }
     
+    static func registerUser(phone: String, name: String, password: String, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+        var dictionary: [String: String] = [:]
+        dictionary["phone"] = phone
+        dictionary["name"] = name
+        dictionary["hashpsd"] = md5(password)
+        
+        let requestStr = serverAddress + "/user/reg"
+        
+        ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler, completedHandler: completionHandler)
+    }
+    
+    static func loginUser(phone: String, password: String, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+        var dictionary: [String: String] = [:]
+        dictionary["phone"] = phone
+        dictionary["hashpsd"] = md5(password)
+        
+        let requestStr = serverAddress + "/user/log"
+        
+        ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler, completedHandler: completionHandler)
+    }
+    
+    private static func md5(_ string: String) -> String {
+        
+        let context = UnsafeMutablePointer<CC_MD5_CTX>.allocate(capacity: 1)
+        var digest = Array<UInt8>(repeating:0, count:Int(CC_MD5_DIGEST_LENGTH))
+        CC_MD5_Init(context)
+        CC_MD5_Update(context, string, CC_LONG(string.lengthOfBytes(using: String.Encoding.utf8)))
+        CC_MD5_Final(&digest, context)
+        context.deallocate(capacity: 1)
+        var hexString = ""
+        for byte in digest {
+            hexString += String(format:"%02x", byte)
+        }
+        
+        return hexString
+    }
 }

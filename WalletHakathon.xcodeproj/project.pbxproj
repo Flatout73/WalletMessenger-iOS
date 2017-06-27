@@ -27,6 +27,9 @@
 		712DEEDC1F028934004D5CE9 /* GroupConversationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEEDB1F028934004D5CE9 /* GroupConversationExtension.swift */; };
 		712DEEDE1F028A5F004D5CE9 /* UserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEEDD1F028A5F004D5CE9 /* UserExtension.swift */; };
 		712DEEE01F028DB9004D5CE9 /* TransactionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEEDF1F028DB9004D5CE9 /* TransactionExtension.swift */; };
+		712DEEE51F02B6A1004D5CE9 /* MOCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEEE41F02B6A1004D5CE9 /* MOCExtension.swift */; };
+		712DEEE71F02BCCC004D5CE9 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEEE61F02BCCC004D5CE9 /* CoreDataService.swift */; };
+		712DEEE91F02D50A004D5CE9 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEEE81F02D50A004D5CE9 /* DataBase.swift */; };
 		FBD33BEC9520952B38CD0DF1 /* Pods_WalletHakathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F77F89AC65A0E9459599EF21 /* Pods_WalletHakathon.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +57,10 @@
 		712DEEDB1F028934004D5CE9 /* GroupConversationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupConversationExtension.swift; sourceTree = "<group>"; };
 		712DEEDD1F028A5F004D5CE9 /* UserExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserExtension.swift; sourceTree = "<group>"; };
 		712DEEDF1F028DB9004D5CE9 /* TransactionExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionExtension.swift; sourceTree = "<group>"; };
+		712DEEE11F02AE6B004D5CE9 /* WalletHakathon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WalletHakathon-Bridging-Header.h"; sourceTree = "<group>"; };
+		712DEEE41F02B6A1004D5CE9 /* MOCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOCExtension.swift; sourceTree = "<group>"; };
+		712DEEE61F02BCCC004D5CE9 /* CoreDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		712DEEE81F02D50A004D5CE9 /* DataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		D9A89CC916FD2A201B258B86 /* Pods-WalletHakathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletHakathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletHakathon/Pods-WalletHakathon.debug.xcconfig"; sourceTree = "<group>"; };
 		F77F89AC65A0E9459599EF21 /* Pods_WalletHakathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletHakathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -74,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				5572CE901F003A7A00E0FC3E /* ServiceAPI.swift */,
+				712DEEE61F02BCCC004D5CE9 /* CoreDataService.swift */,
 			);
 			name = "Service Layer";
 			sourceTree = "<group>";
@@ -113,6 +121,7 @@
 				5572CE8D1F00390200E0FC3E /* Core Layer */,
 				5572CE8C1F0038F700E0FC3E /* Service Layer */,
 				711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */,
+				712DEEE11F02AE6B004D5CE9 /* WalletHakathon-Bridging-Header.h */,
 				711BEB221EFEF2E900907B42 /* Main.storyboard */,
 				711BEB281EFEF2E900907B42 /* Assets.xcassets */,
 				711BEB2A1EFEF2E900907B42 /* LaunchScreen.storyboard */,
@@ -144,6 +153,8 @@
 				712DEEDB1F028934004D5CE9 /* GroupConversationExtension.swift */,
 				712DEEDD1F028A5F004D5CE9 /* UserExtension.swift */,
 				712DEEDF1F028DB9004D5CE9 /* TransactionExtension.swift */,
+				712DEEE41F02B6A1004D5CE9 /* MOCExtension.swift */,
+				712DEEE81F02D50A004D5CE9 /* DataBase.swift */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -201,6 +212,7 @@
 					711BEB1A1EFEF2E900907B42 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 98A95ZRNVF;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -299,11 +311,14 @@
 				711BEB381EFEFF0300907B42 /* DialogViewController.swift in Sources */,
 				711BEB361EFEFBB000907B42 /* ChatTableViewCell.swift in Sources */,
 				5572CE931F003ACC00E0FC3E /* JSONParser.swift in Sources */,
+				712DEEE91F02D50A004D5CE9 /* DataBase.swift in Sources */,
 				712DEEDE1F028A5F004D5CE9 /* UserExtension.swift in Sources */,
 				712DEEDC1F028934004D5CE9 /* GroupConversationExtension.swift in Sources */,
 				711BEB341EFEF99C00907B42 /* ChatsViewController.swift in Sources */,
+				712DEEE71F02BCCC004D5CE9 /* CoreDataService.swift in Sources */,
 				712DEED41F01B5F0004D5CE9 /* InfoRegistViewController.swift in Sources */,
 				5572CE911F003A7A00E0FC3E /* ServiceAPI.swift in Sources */,
+				712DEEE51F02B6A1004D5CE9 /* MOCExtension.swift in Sources */,
 				712DEEE01F028DB9004D5CE9 /* TransactionExtension.swift in Sources */,
 				711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */,
 			);
@@ -429,12 +444,15 @@
 			baseConfigurationReference = D9A89CC916FD2A201B258B86 /* Pods-WalletHakathon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 98A95ZRNVF;
 				INFOPLIST_FILE = WalletHakathon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.hse.WalletHakathon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WalletHakathon/WalletHakathon-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -444,12 +462,14 @@
 			baseConfigurationReference = 497B7A704D5F84A782193F8A /* Pods-WalletHakathon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 98A95ZRNVF;
 				INFOPLIST_FILE = WalletHakathon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.hse.WalletHakathon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WalletHakathon/WalletHakathon-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

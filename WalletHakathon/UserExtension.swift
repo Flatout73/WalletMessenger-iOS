@@ -10,32 +10,38 @@ import Foundation
 import CoreData
 
 extension User {
-    private class func insertUser(id: Int, name: String, mobilePhone: Int, avatar: Data, conversations: [Conversation], groups: [GroupConversation], ownerOf: [GroupConversation], inContext context: NSManagedObjectContext) -> User {
+    private class func insertUser(id: Int, name: String, mobilePhone: Int, avatar: Data?, conversations: [Conversation]?, groups: [GroupConversation]?, ownerOf: [GroupConversation]?, inContext context: NSManagedObjectContext) -> User {
         let user = User(context: context)
         user.userID = Int32(id)
         user.name = name
-        user.mobilePhone = Int16(mobilePhone)
-        user.avatar = avatar as NSData
-        for conversation in conversations {
-            conversation.addToParticipants(user)
+        user.mobilePhone = Int64(mobilePhone)
+        if let ava = avatar as? NSData {
+            user.avatar = ava
+        }
+        if let conversations = conversations{
+            for conversation in conversations {
+                conversation.addToParticipants(user)
+            }
         }
         return user
     }
     
-    class func findOrInsertUser(id: Int, name: String, mobilePhone: Int, avatar: Data, conversations: [Conversation], groups: [GroupConversation], ownerOf: [GroupConversation], inContext context: NSManagedObjectContext) -> User  {
+    class func findOrInsertUser(id: Int, name: String, mobilePhone: Int, avatar: Data?, /*conversations: [Conversation], groups: [GroupConversation], ownerOf: [GroupConversation],*/ inContext context: NSManagedObjectContext) -> User  {
         
         if let user = findUser(id: id, inContext: context) {
             user.name = name
-            user.mobilePhone = Int16(mobilePhone)
-            user.avatar = avatar as NSData
-            for conversation in conversations {
-                conversation.addToParticipants(user)
+            user.mobilePhone = Int64(mobilePhone)
+            if let ava = avatar as? NSData {
+                user.avatar = ava
             }
+//            for conversation in conversations {
+//                conversation.addToParticipants(user)
+//            }
             
             return user
         } else {
             return insertUser(id: id, name: name, mobilePhone: mobilePhone, avatar:
-                avatar, conversations: conversations, groups: groups, ownerOf: ownerOf, inContext: context)
+                avatar, conversations: nil, groups: nil, ownerOf: nil, inContext: context)
         }
         
     }
@@ -43,7 +49,7 @@ extension User {
     class func findUser(id: Int, inContext context: NSManagedObjectContext) -> User? {
         let request: NSFetchRequest<User> = User.fetchRequest()
         
-        request.predicate = NSPredicate(format: "userID=%@", id)
+        request.predicate = NSPredicate(format: "userID == %@", String(id))
         
         if let user = (try? context.fetch(request))?.first {
             return user

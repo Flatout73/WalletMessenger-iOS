@@ -27,7 +27,7 @@
     </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
         <attribute name="avatar" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="mobilePhone" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="mobilePhone" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="convesations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Conversation" inverseName="participants" inverseEntity="Conversation" syncable="YES"/>
@@ -37,9 +37,9 @@
         <relationship name="ownGroupConversations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="GroupConversation" inverseName="admin" inverseEntity="GroupConversation" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="178"/>
         <element name="Conversation" positionX="295" positionY="-81" width="128" height="103"/>
-        <element name="Transaction" positionX="223" positionY="144" width="128" height="178"/>
         <element name="GroupConversation" positionX="16" positionY="333" width="128" height="133"/>
+        <element name="Transaction" positionX="223" positionY="144" width="128" height="178"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="180"/>
     </elements>
 </model>

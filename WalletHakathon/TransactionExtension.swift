@@ -57,7 +57,7 @@ extension Transaction {
     class func findTransaction(id: Int, inContext context: NSManagedObjectContext) -> Transaction? {
         let request: NSFetchRequest<Transaction> = Transaction.fetchRequest()
         
-        request.predicate = NSPredicate(format: "transactionID=%@", id)
+        request.predicate = NSPredicate(format: "transactionID==%@", id)
         
         if let transaction = (try? context.fetch(request))?.first {
             return transaction

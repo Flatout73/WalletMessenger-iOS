@@ -46,7 +46,7 @@ extension Conversation {
     class func findConversation(id: Int, inContext context: NSManagedObjectContext) -> Conversation? {
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
         
-        request.predicate = NSPredicate(format: "conversationID=%@", id)
+        request.predicate = NSPredicate(format: "conversationID==%@", String(id))
         
         if let conversation = (try? context.fetch(request))?.first {
             return conversation
