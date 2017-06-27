@@ -13,7 +13,7 @@ class MessageTableViewCell: UITableViewCell {
     @IBOutlet weak var qiwiorNal: UIImageView!
     @IBOutlet weak var sum: UILabel!
     
-    var isReversed = false
+    var isReversed = true
     
     @IBOutlet weak var messView: UIView!
     
