@@ -10,6 +10,12 @@ import UIKit
 
 class InfoRegistViewController: UIViewController {
 
+    
+    var numberTF: Int?
+    
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,14 +31,40 @@ class InfoRegistViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func registrate(_ sender: Any) {
+        
+        guard let name = nameField.text, let psw = passwordField.text else {
+            
+                let alert = UIAlertController(title: "Ошибка!", message: "Введите имя и пароль.", preferredStyle: .alert)
+            
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+                self.present(alert, animated: true, completion: nil)
+            
+            return
+            
+        }
+        
+        
+        ServiceAPI.registerUser(phone: String(numberTF!), name: name, password: psw, noncompletedHandler: errorHandler) {
+            let alert = UIAlertController(title: "Успех!", message: "Пользователь успешно зарегистрирован", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
-    */
+    
+    func errorHandler(error: String) {
+        
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Ошибка!", message: error, preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 
 }

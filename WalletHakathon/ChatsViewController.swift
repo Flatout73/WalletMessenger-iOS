@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -38,9 +38,12 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.dataSource = self
 
         coreDataService = CoreDataService()
-        fetchedResultsController = coreDataService.getFRCForChats(tableView: tableView)
-        //fetchedResultsController.delegate = self
+        fetchedResultsController = coreDataService.getFRCForChats()
+    
+        fetchedResultsController.delegate = self
         try! fetchedResultsController.performFetch()
+    
+        //print(fetchedResultsController.delegate)
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,8 +95,17 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var k = 2
     @IBAction func createConversation(_ sender: Any) {
-        coreDataService.insertConversation(id: k)
-        k += 1
+        
+        DispatchQueue.main.async { [weak this=self] () in
+            this?.coreDataService.insertConversation(id: (this?.k)!)
+            this?.k += 1
+            
+            this?.tableView.reloadData()
+        }
+        try! fetchedResultsController.performFetch()
+        
+        //print(fetchedResultsController.fetchedObjects)
+        
     }
     
     
@@ -107,5 +119,52 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //        }
 //    }
     
+}
+
+extension ChatsViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        case .insert:
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        case .move:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        case .update:
+            if let indexPath = indexPath {
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch type {
+        case .delete:
+            tableView.deleteSections(IndexSet(integer: sectionIndex),
+                                     with: .automatic)
+        case .insert:
+            tableView.insertSections(IndexSet(integer: sectionIndex),
+                                     with: .automatic)
+        case .move, .update: break
+        }
+    }
 }
 

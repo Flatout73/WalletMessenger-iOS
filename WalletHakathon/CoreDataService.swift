@@ -23,19 +23,19 @@ class CoreDataService: NSObject {
         container = dataBase.persistentContainer
     }
     
-    func getFRCForChats(tableView: UITableView) -> NSFetchedResultsController<Conversation>{
+    func getFRCForChats() -> NSFetchedResultsController<Conversation>{
         var fetchedResultsController: NSFetchedResultsController<Conversation>
         
         let fetchRequest: NSFetchRequest<Conversation> = Conversation.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "summa", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "conversationID", ascending: true)
+        //let sortDescriptor2 = NSSortDescriptor(key: "summa", ascending: true)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.fetchBatchSize = 20
         
         fetchedResultsController = NSFetchedResultsController<Conversation>(fetchRequest:
             fetchRequest, managedObjectContext: container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         
-        self.tableView = tableView
-        fetchedResultsController.delegate = self
         return fetchedResultsController
     }
     
@@ -49,6 +49,9 @@ class CoreDataService: NSObject {
         _ = Conversation.findOrInsertConversation(id: id + 100, summa: Double(12+id), users: [user], transactions: [], inContext: context)
             
             context.saveThrows()
+            self.dataBase.saveContext()
+            try! self.container.viewContext.save()
+            
         }
         
         let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
@@ -65,50 +68,3 @@ class CoreDataService: NSObject {
     
 }
 
-extension CoreDataService: NSFetchedResultsControllerDelegate{
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-        case .delete:
-            if let indexPath = indexPath {
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            }
-        case .insert:
-            if let newIndexPath = newIndexPath {
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
-            }
-        case .move:
-            if let indexPath = indexPath {
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            }
-            
-            if let newIndexPath = newIndexPath {
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
-            }
-        case .update:
-            if let indexPath = indexPath {
-                tableView.reloadRows(at: [indexPath], with: .automatic)
-            }
-        }
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        switch type {
-        case .delete:
-            tableView.deleteSections(IndexSet(integer: sectionIndex),
-                                     with: .automatic)
-        case .insert:
-            tableView.insertSections(IndexSet(integer: sectionIndex),
-                                     with: .automatic)
-        case .move, .update: break
-        }
-    }
-}

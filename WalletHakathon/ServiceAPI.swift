@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-let serverAddress = "http://localhost:8080"
+let serverAddress = "http://walletmsg.azurewebsites.net/api"
 
 class ServiceAPI: NSObject {
 
@@ -24,13 +24,13 @@ class ServiceAPI: NSObject {
         return dictionary
     }
 
-    static func getDefaultClassResult(dictionary: Dictionary<String, String>, requestString: String, noncompletedHandler: @escaping(String) -> Void, completedHandler: @escaping() -> Void) {
+    static func getDefaultClassResult(dictionary: Dictionary<String, String>, requestString: String, noncompletedHandler: @escaping(String) -> Void, completedParser: @escaping(JSON) -> Void) {
         
         RequestSender.sendRequest(requestString: requestString, params: dictionary) {
             (data, error) in
             JSONParser.checkJSONWithDefaultClass(data: data, error: error, nonCompleteHandler: noncompletedHandler) {
                 (json) in
-                completedHandler()
+                completedParser(json)
             }
         }
     }
@@ -42,7 +42,11 @@ class ServiceAPI: NSObject {
             
             let requestStr = serverAddress + "/user/chpsd"
             
-            ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler, completedHandler: completedHandler)
+            ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler) {
+                (json) in
+                    
+                
+            }
         } else {
             noncompletedHandler("token error")
         }
@@ -56,7 +60,13 @@ class ServiceAPI: NSObject {
         
         let requestStr = serverAddress + "/user/reg"
         
-        ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler, completedHandler: completionHandler)
+        ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler) { (json) in
+            print(json)
+            if let token = json["token"].string {
+                UserDefaults.standard.set(token, forKey: "token")
+            }
+            completionHandler()
+        }
     }
     
     static func loginUser(phone: String, password: String, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
@@ -66,7 +76,13 @@ class ServiceAPI: NSObject {
         
         let requestStr = serverAddress + "/user/log"
         
-        ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler, completedHandler: completionHandler)
+        ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler) { (json) in
+            print(json)
+            if let token = json["token"].string {
+                UserDefaults.standard.set(token, forKey: "token")
+            }
+            completionHandler()
+        }
     }
     
     private static func md5(_ string: String) -> String {
@@ -83,5 +99,17 @@ class ServiceAPI: NSObject {
         }
         
         return hexString
+    }
+    
+    
+    public static func alert(viewController: UIViewController, title: String = "Ошибка!", desc: String) {
+        DispatchQueue.main.async {
+            
+            let alert = UIAlertController(title: title, message: desc, preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            viewController.present(alert, animated: true, completion: nil)
+        }
     }
 }

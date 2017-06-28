@@ -7,23 +7,26 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class JSONParser: NSObject {
     
-    static func checkJSONWithDefaultClass(data: Data?, error: Error?, nonCompleteHandler: @escaping(String) -> Void, parseHandler: @escaping(Dictionary<String, Any>) -> ()) {
+    static func checkJSONWithDefaultClass(data: Data?, error: Error?, nonCompleteHandler: @escaping(String) -> Void, parseHandler: @escaping(JSON) -> ()) {
         do {
             if (error == nil) {
-                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? Dictionary<String, String> {
+                if let jsonObject = try? JSONSerialization.jsonObject(with: data!, options: []) {
                     
-                    guard let operationOutput = json["operationOutput"] else {
-                        nonCompleteHandler("Невозможно расшифровать пришедший ответ")
+                    let json = JSON(jsonObject)
+                    
+                    guard let operationOutput = json["defaultClass"]["operationOutput"].bool else {
+                        nonCompleteHandler(json["defaultClass"]["token"].string!)
                         return
                     }
                     
-                    if (Bool(operationOutput))! {
+                    if (operationOutput) {
                         parseHandler(json)
                     } else {
-                        if let token = json["token"] {
+                        if let token = json["token"].string {
                             nonCompleteHandler(token)
                         } else {
                             nonCompleteHandler("token error")

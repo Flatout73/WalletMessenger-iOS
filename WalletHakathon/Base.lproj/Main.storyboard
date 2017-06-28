@@ -40,7 +40,7 @@
                                 <rect key="frame" x="32" y="364" width="44" height="30"/>
                                 <state key="normal" title="Войти"/>
                                 <connections>
-                                    <segue destination="kd9-iZ-yJ7" kind="show" id="cF2-Ya-YNR"/>
+                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JRN-DI-AUJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SAY-8R-khA">
@@ -74,6 +74,11 @@
                             <constraint firstItem="SAY-8R-khA" firstAttribute="trailing" secondItem="kpb-tI-E2V" secondAttribute="trailing" constant="-16" id="xWO-1m-alm"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginField" destination="ag1-fg-00K" id="wPa-yq-gr3"/>
+                        <outlet property="passwordField" destination="kpb-tI-E2V" id="1xD-FX-SQB"/>
+                        <segue destination="kd9-iZ-yJ7" kind="show" identifier="loginS" id="bsv-eZ-gzO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -206,7 +211,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xR-Zb-3Ei">
-                                <rect key="frame" x="24" y="121.5" width="327" height="30"/>
+                                <rect key="frame" x="24" y="135.5" width="327" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Получить код">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -224,7 +229,7 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xca-o1-iwm">
-                                <rect key="frame" x="24" y="167.5" width="42" height="21"/>
+                                <rect key="frame" x="24" y="181.5" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -247,6 +252,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В формате 79451234567" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wR-38-ejX">
+                                <rect key="frame" x="24" y="109.5" width="178.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -255,7 +266,6 @@
                             <constraint firstItem="9xR-Zb-3Ei" firstAttribute="leading" secondItem="9Ct-M0-R6p" secondAttribute="leading" id="3wJ-eK-nus"/>
                             <constraint firstAttribute="trailing" secondItem="tlf-tF-anu" secondAttribute="trailing" id="Co7-RR-xgW"/>
                             <constraint firstItem="9xR-Zb-3Ei" firstAttribute="trailing" secondItem="9Ct-M0-R6p" secondAttribute="trailing" id="EgG-6m-9YG"/>
-                            <constraint firstItem="9xR-Zb-3Ei" firstAttribute="top" secondItem="9Ct-M0-R6p" secondAttribute="bottom" constant="16" id="F01-Ob-wfx"/>
                             <constraint firstItem="Vx4-E9-6v8" firstAttribute="leading" secondItem="ii8-RF-8my" secondAttribute="leadingMargin" constant="8" id="HeT-9v-lBm"/>
                             <constraint firstItem="9Ct-M0-R6p" firstAttribute="top" secondItem="Vx4-E9-6v8" secondAttribute="bottom" constant="4" id="MVP-Vf-PyT"/>
                             <constraint firstItem="91y-qy-UCM" firstAttribute="centerY" secondItem="tlf-tF-anu" secondAttribute="centerY" id="MXI-oa-05i"/>
@@ -263,8 +273,11 @@
                             <constraint firstItem="Vx4-E9-6v8" firstAttribute="top" secondItem="GP9-ty-WDB" secondAttribute="bottom" constant="32" id="VgV-Ss-1KV"/>
                             <constraint firstItem="YER-wT-C3X" firstAttribute="leading" secondItem="tlf-tF-anu" secondAttribute="leading" constant="16" id="VmB-ji-ZAi"/>
                             <constraint firstItem="xca-o1-iwm" firstAttribute="leading" secondItem="9xR-Zb-3Ei" secondAttribute="leading" id="ZHb-Bz-KrF"/>
+                            <constraint firstItem="9xR-Zb-3Ei" firstAttribute="top" secondItem="1wR-38-ejX" secondAttribute="bottom" constant="8" id="Zhc-tf-lfV"/>
                             <constraint firstItem="9Ct-M0-R6p" firstAttribute="leading" secondItem="Vx4-E9-6v8" secondAttribute="leading" id="ceJ-Tw-ZDJ"/>
                             <constraint firstItem="tlf-tF-anu" firstAttribute="leading" secondItem="ii8-RF-8my" secondAttribute="leading" id="iDH-Pc-XvF"/>
+                            <constraint firstItem="1wR-38-ejX" firstAttribute="leading" secondItem="9Ct-M0-R6p" secondAttribute="leading" id="jJE-Mu-J1c"/>
+                            <constraint firstItem="1wR-38-ejX" firstAttribute="top" secondItem="9Ct-M0-R6p" secondAttribute="bottom" constant="4" id="pGC-py-5pj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9Ct-M0-R6p" secondAttribute="trailing" constant="8" id="vSE-jS-dcb"/>
                             <constraint firstItem="P1X-KJ-AoN" firstAttribute="top" secondItem="tlf-tF-anu" secondAttribute="bottom" id="wuz-mp-dkU"/>
                         </constraints>
@@ -278,7 +291,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rt4-FM-1s4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1775" y="1234"/>
+            <point key="canvasLocation" x="-2038" y="1242"/>
         </scene>
         <!--Информация-->
         <scene sceneID="1ZC-p0-UGS">
@@ -319,7 +332,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="kd9-iZ-yJ7" kind="show" id="9DZ-S2-HLA"/>
+                                    <action selector="registrate:" destination="eej-o4-eY0" eventType="touchUpInside" id="uLK-7i-O5X"/>
                                 </connections>
                             </button>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S7J-5q-c5e">
@@ -365,6 +378,10 @@
                             <constraint firstAttribute="trailing" secondItem="S7J-5q-c5e" secondAttribute="trailing" id="vwp-l7-fdQ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="nameField" destination="S7m-ye-UgS" id="l6f-qM-msH"/>
+                        <outlet property="passwordField" destination="PkM-ae-bwK" id="oOx-QJ-8kd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EDm-4T-DpT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -681,7 +698,6 @@
         <image name="setting_logo" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cF2-Ya-YNR"/>
-        <segue reference="bat-Iv-vFG"/>
+        <segue reference="kVT-bk-e3D"/>
     </inferredMetricsTieBreakers>
 </document>
