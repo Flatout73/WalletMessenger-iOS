@@ -39,31 +39,30 @@ class CoreDataService: NSObject {
         return fetchedResultsController
     }
     
-    func insertConversation(id: Int) {
+    func insertConversation(id: Int, name: String, mobilePhone: Int, avatar: Data?) {
         
         container.performBackgroundTask { (context) in
             
         
-        let user = User.findOrInsertUser(id: id, name: "Druc", mobilePhone: 234567, avatar: nil, inContext: context)
+        let user = User.findOrInsertUser(id: id, name: name, mobilePhone: mobilePhone, avatar: avatar, inContext: context)
         
-        _ = Conversation.findOrInsertConversation(id: id + 100, summa: Double(12+id), users: [user], transactions: [], inContext: context)
+        _ = Conversation.findOrInsertConversation(id: id, summa: 0.0, users: [user], transactions: [], inContext: context)
             
             context.saveThrows()
             self.dataBase.saveContext()
-            try! self.container.viewContext.save()
             
         }
         
-        let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
-        
-        container.viewContext.perform {
-            if let results = try? self.container.viewContext.fetch(request) {
-                print("\(results.count) TweetMs")
-                for result in results{
-                    print(result.conversationID, result.summa)
-                }
-            }
-        }
+//        let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
+//        
+//        container.viewContext.performAndWait {
+//            if let results = try? self.container.viewContext.fetch(request) {
+//                print("\(results.count) TweetMs")
+//                for result in results{
+//                    print(result.conversationID, result.summa)
+//                }
+//            }
+//        }
     }
     
 }

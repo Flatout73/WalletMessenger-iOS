@@ -78,7 +78,7 @@ class ServiceAPI: NSObject {
         
         ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler) { (json) in
             print(json)
-            if let token = json["token"].string {
+            if let token = json["defaultClass"]["token"].string {
                 UserDefaults.standard.set(token, forKey: "token")
             }
             completionHandler()
@@ -102,6 +102,67 @@ class ServiceAPI: NSObject {
     }
     
     
+    static func getConversations(noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+        if let dictionary = loadDictionary() {
+            let request = serverAddress + "/conv/gets"
+            
+            print("Getting conversations")
+            
+            ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
+                
+                let dialogs = json["dialogs"]
+                
+                for (index, subJSON):(String, JSON) in dialogs {
+                    print(subJSON)
+                }
+            }
+            
+            completionHandler()
+        }
+    }
+    
+    static func createDialog(coreDataService: CoreDataService, phoneNumber: String, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+        if var dicionary = loadDictionary() {
+            dicionary["phone"] = phoneNumber
+            
+            let request = serverAddress + "/dialog/create"
+            
+            let requestPhone = serverAddress + "/user/getubyphn"
+            
+            ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
+                guard let name = json["name"].string, let balance = json["balance"].double,
+                    let phoneStr = json["phone"].string, let phone = Int(phoneStr), let userID = json["userID"].int else {
+                        noncompletedHandler("Неверный формат JSON")
+                        return
+                }
+                
+                var avatar: Data? = nil
+                if let image = json["image"].string {
+                    avatar = Data(base64Encoded: image)
+                }
+                
+                coreDataService.insertConversation(id: userID, name: name, mobilePhone: phone, avatar: avatar)
+            }
+            
+            ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
+                completionHandler()
+            }
+        }
+    }
+    
+    static func getByPhone(phoneNumber: String, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+        if var dicionary = loadDictionary() {
+            dicionary["phone"] = phoneNumber
+            
+            let request = serverAddress + "/user/getubyphn"
+            
+            ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
+                completionHandler()
+            }
+        }
+    }
+    
+    
     public static func alert(viewController: UIViewController, title: String = "Ошибка!", desc: String) {
         DispatchQueue.main.async {
             
@@ -112,4 +173,5 @@ class ServiceAPI: NSObject {
             viewController.present(alert, animated: true, completion: nil)
         }
     }
+    
 }

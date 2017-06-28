@@ -15,7 +15,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="WalletHakathon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginController" id="BYZ-38-t0r" customClass="ViewController" customModule="WalletHakathon" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -24,13 +24,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ag1-fg-00K">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="79170590075" borderStyle="roundedRect" placeholder="Номер телефона" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ag1-fg-00K">
                                 <rect key="frame" x="24" y="272" width="327" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kpb-tI-E2V">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kpb-tI-E2V">
                                 <rect key="frame" x="24" y="318" width="327" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -84,6 +84,62 @@
             </objects>
             <point key="canvasLocation" x="-1450" y="170"/>
         </scene>
+        <!--Creation View Controller-->
+        <scene sceneID="cFM-1o-yzU">
+            <objects>
+                <viewController id="ota-0o-g0y" customClass="CreationViewController" customModule="WalletHakathon" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wTZ-RK-9mG"/>
+                        <viewControllerLayoutGuide type="bottom" id="dXW-mW-43Z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vUm-nt-z6f">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kqB-8U-fGH">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Создать диалог" id="hiZ-Kj-GEH">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="S5R-qP-8fR">
+                                            <connections>
+                                                <action selector="closeVIew:" destination="ota-0o-g0y" id="bww-ek-tHb"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Номер телефона собеседника" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ybo-CK-Jxo">
+                                <rect key="frame" x="24" y="111" width="327" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PvW-hD-kxN">
+                                <rect key="frame" x="157.5" y="157" width="60" height="30"/>
+                                <state key="normal" title="Создать"/>
+                                <connections>
+                                    <action selector="createDialog:" destination="ota-0o-g0y" eventType="touchUpInside" id="SRT-bs-bYZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ybo-CK-Jxo" firstAttribute="top" secondItem="wTZ-RK-9mG" secondAttribute="bottom" constant="91" id="F42-ex-Br7"/>
+                            <constraint firstItem="ybo-CK-Jxo" firstAttribute="leading" secondItem="vUm-nt-z6f" secondAttribute="leadingMargin" constant="8" id="KAh-6l-6UJ"/>
+                            <constraint firstItem="PvW-hD-kxN" firstAttribute="centerX" secondItem="vUm-nt-z6f" secondAttribute="centerX" id="OQO-Qc-90M"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ybo-CK-Jxo" secondAttribute="trailing" constant="8" id="OzR-gr-JGG"/>
+                            <constraint firstItem="PvW-hD-kxN" firstAttribute="top" secondItem="ybo-CK-Jxo" secondAttribute="bottom" constant="16" id="hWU-EC-dM1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="numberField" destination="ybo-CK-Jxo" id="Z9Q-Cd-8Q9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sg5-fb-AEE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1189.5999999999999" y="-943.17841079460277"/>
+        </scene>
         <!--Диалоги-->
         <scene sceneID="8c4-Pk-ZYl">
             <objects>
@@ -96,9 +152,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JOB-uh-1Nm">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JOB-uh-1Nm">
                                 <rect key="frame" x="0.0" y="142" width="375" height="476"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="N4E-ZG-Pby">
+                                    <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChatCell" id="RZz-w2-uKS" customClass="ChatTableViewCell" customModule="WalletHakathon" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
@@ -175,6 +236,7 @@
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="fMf-MX-Pqx">
                             <connections>
                                 <action selector="createConversation:" destination="See-Zs-9NM" id="VmB-8O-Z05"/>
+                                <segue destination="ota-0o-g0y" kind="presentation" id="YTe-14-yIV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -507,7 +569,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="wbi-4O-IeO">
             <objects>
-                <tabBarController id="kd9-iZ-yJ7" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" id="kd9-iZ-yJ7" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="2sG-RD-kbp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

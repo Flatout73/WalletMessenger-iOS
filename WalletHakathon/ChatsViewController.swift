@@ -15,6 +15,8 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     var coreDataService: CoreDataService!
     
+    var refreshControl: UIRefreshControl!
+    
     var fetchedResultsController: NSFetchedResultsController<Conversation>!// {
 //        didSet {
 //            do {
@@ -44,8 +46,44 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         try! fetchedResultsController.performFetch()
     
         //print(fetchedResultsController.delegate)
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Идет обновлени...")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        
+        tableView.addSubview(refreshControl)
     }
 
+    func refresh(sender: Any) {
+        refreshBegin { (x:Int) -> () in
+            try! self.fetchedResultsController.performFetch()
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
+    }
+    
+    func refreshBegin(refreshEnd:@escaping (Int) -> ()) {
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            if let this = self {
+                ServiceAPI.getConversations(noncompletedHandler: this.errorHandler) {
+                    DispatchQueue.main.async {
+                        refreshEnd(0)
+                    }
+                }
+            }
+        }
+    }
+    
+    func errorHandler(error: String) {
+        
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Ошибка!", message: error, preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,8 +93,11 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //return 1
         if(!fetchedResultsController.sections!.isEmpty) {
             if let sectionInfo = fetchedResultsController.sections?[section]{
+                print(sectionInfo.numberOfObjects)
                 return sectionInfo.numberOfObjects
-            } else { print("Unexpected Section") }
+            } else {
+                print("Unexpected Section")
+            }
         }
         return 0
     }
@@ -96,16 +137,19 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var k = 2
     @IBAction func createConversation(_ sender: Any) {
         
-        DispatchQueue.main.async { [weak this=self] () in
-            this?.coreDataService.insertConversation(id: (this?.k)!)
-            this?.k += 1
-            
-            this?.tableView.reloadData()
+//            coreDataService.insertConversation(id: k)
+//            k += 1
+//            try! fetchedResultsController.performFetch()
+//        tableView.reloadData()
+        
+        
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? CreationViewController {
+            vc.coreDataService = coreDataService
         }
-        try! fetchedResultsController.performFetch()
-        
-        //print(fetchedResultsController.fetchedObjects)
-        
     }
     
     
