@@ -12,13 +12,16 @@ import Contacts
 class ContactsTableViewController: UITableViewController, DialogDelegateCaller, GroupDelegateCaller {
     
     func callDialogDelegate(withDialogID: Int) {
-        
+        dialogDelegate?.openDialog(withID: withDialogID)
     }
 
     func callGroupDelegate(withGroupID: Int) {
-        
+        groupDelegate?.openDialog(withID: withGroupID)
     }
 
+    var dialogDelegate: ContactDialogDelegate?
+    var groupDelegate: ContactGroupDelegate?
+    
     var contacts = [CNContact]()
     
     override func viewDidLoad() {
@@ -71,6 +74,7 @@ class ContactsTableViewController: UITableViewController, DialogDelegateCaller, 
         _ = navigationController?.popToRootViewController(animated: false)
         navigationController?.viewControllers.first?.dismiss(animated: true, completion: nil)
     }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

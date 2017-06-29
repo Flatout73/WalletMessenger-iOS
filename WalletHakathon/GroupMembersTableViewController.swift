@@ -87,19 +87,20 @@ class GroupMembersTableViewController: UITableViewController {
             self.tableView.reloadData()
         } else {
             cellsChecked.append(indexPath.row)
-            phones.append(contacts[indexPath.row].phoneNumbers.first?.value.stringValue.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil))
+            phones.append((contacts[indexPath.row].phoneNumbers.first?.value.stringValue.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil))!)
             self.tableView.reloadData()
         }
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let vc = segue.destination as? GroupCreateTableViewController{
+            vc.phones = phones
+        }
     }
-    */
+    
 
 }
