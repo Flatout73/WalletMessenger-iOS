@@ -134,9 +134,11 @@ class ServiceAPI: NSObject {
                         noncompletedHandler("Неверный формат телефона")
                     }
                 }
+                
+                completionHandler()
             }
             
-            completionHandler()
+            
         }
     }
     
