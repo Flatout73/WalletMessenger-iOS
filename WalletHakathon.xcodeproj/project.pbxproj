@@ -13,6 +13,9 @@
 		55B4E44F1F0504D00043A0E5 /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E44E1F0504D00043A0E5 /* ContactsTableViewController.swift */; };
 		55B4E4511F0507680043A0E5 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4501F0507680043A0E5 /* ContactTableViewController.swift */; };
 		55B4E4551F0534180043A0E5 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4541F0534180043A0E5 /* UserTableViewCell.swift */; };
+		55B4E45A1F058BA10043A0E5 /* GroupMembersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4591F058BA10043A0E5 /* GroupMembersTableViewController.swift */; };
+		55B4E45D1F058BB90043A0E5 /* GroupCreateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E45C1F058BB90043A0E5 /* GroupCreateTableViewController.swift */; };
+		55B4E45F1F058BCA0043A0E5 /* WriteSomeBodyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E45E1F058BCA0043A0E5 /* WriteSomeBodyTableViewController.swift */; };
 		711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */; };
 		711BEB211EFEF2E900907B42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB201EFEF2E900907B42 /* ViewController.swift */; };
 		711BEB241EFEF2E900907B42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 711BEB221EFEF2E900907B42 /* Main.storyboard */; };
@@ -47,6 +50,9 @@
 		55B4E44E1F0504D00043A0E5 /* ContactsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
 		55B4E4501F0507680043A0E5 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		55B4E4541F0534180043A0E5 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		55B4E4591F058BA10043A0E5 /* GroupMembersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMembersTableViewController.swift; sourceTree = "<group>"; };
+		55B4E45C1F058BB90043A0E5 /* GroupCreateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCreateTableViewController.swift; sourceTree = "<group>"; };
+		55B4E45E1F058BCA0043A0E5 /* WriteSomeBodyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteSomeBodyTableViewController.swift; sourceTree = "<group>"; };
 		711BEB1B1EFEF2E900907B42 /* WalletHakathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalletHakathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		711BEB201EFEF2E900907B42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +121,9 @@
 				55B4E44E1F0504D00043A0E5 /* ContactsTableViewController.swift */,
 				55B4E4501F0507680043A0E5 /* ContactTableViewController.swift */,
 				55B4E4541F0534180043A0E5 /* UserTableViewCell.swift */,
+				55B4E4591F058BA10043A0E5 /* GroupMembersTableViewController.swift */,
+				55B4E45C1F058BB90043A0E5 /* GroupCreateTableViewController.swift */,
+				55B4E45E1F058BCA0043A0E5 /* WriteSomeBodyTableViewController.swift */,
 			);
 			name = Contacts;
 			sourceTree = "<group>";
@@ -345,10 +354,12 @@
 				55B4E44F1F0504D00043A0E5 /* ContactsTableViewController.swift in Sources */,
 				711BEB271EFEF2E900907B42 /* WalletHakathon.xcdatamodeld in Sources */,
 				711BEB211EFEF2E900907B42 /* ViewController.swift in Sources */,
+				55B4E45F1F058BCA0043A0E5 /* WriteSomeBodyTableViewController.swift in Sources */,
 				712DEED01F005532004D5CE9 /* MessageTableViewCell.swift in Sources */,
 				711BEB381EFEFF0300907B42 /* DialogViewController.swift in Sources */,
 				711BEB361EFEFBB000907B42 /* ChatTableViewCell.swift in Sources */,
 				5572CE931F003ACC00E0FC3E /* JSONParser.swift in Sources */,
+				55B4E45D1F058BB90043A0E5 /* GroupCreateTableViewController.swift in Sources */,
 				712DEEE91F02D50A004D5CE9 /* DataBase.swift in Sources */,
 				712DEEDE1F028A5F004D5CE9 /* UserExtension.swift in Sources */,
 				712DEEDC1F028934004D5CE9 /* GroupConversationExtension.swift in Sources */,
@@ -357,6 +368,7 @@
 				712DEED41F01B5F0004D5CE9 /* InfoRegistViewController.swift in Sources */,
 				5572CE911F003A7A00E0FC3E /* ServiceAPI.swift in Sources */,
 				712DEEE51F02B6A1004D5CE9 /* MOCExtension.swift in Sources */,
+				55B4E45A1F058BA10043A0E5 /* GroupMembersTableViewController.swift in Sources */,
 				712DEEE01F028DB9004D5CE9 /* TransactionExtension.swift in Sources */,
 				711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */,
 				712F62F11F043F3A004CC712 /* CreationViewController.swift in Sources */,

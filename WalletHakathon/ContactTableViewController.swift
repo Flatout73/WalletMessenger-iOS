@@ -17,6 +17,18 @@ class ContactTableViewController: UITableViewController {
     var downloaded = 0
     var IDs = [Int]()
     
+    var dialogID = 0
+    
+    func close(){
+        _ = navigationController?.popToRootViewController(animated: false)
+        
+        if let vc = navigationController?.viewControllers.first as? DialogDelegateCaller{
+            vc.callDialogDelegate(withDialogID: dialogID)
+        }
+        
+        navigationController?.viewControllers.first?.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         count = contact.phoneNumbers.count
@@ -120,3 +132,4 @@ class ContactTableViewController: UITableViewController {
     */
 
 }
+

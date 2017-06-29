@@ -9,7 +9,15 @@
 import UIKit
 import Contacts
 
-class ContactsTableViewController: UITableViewController {
+class ContactsTableViewController: UITableViewController, DialogDelegateCaller, GroupDelegateCaller {
+    
+    func callDialogDelegate(withDialogID: Int) {
+        
+    }
+
+    func callGroupDelegate(withGroupID: Int) {
+        
+    }
 
     var contacts = [CNContact]()
     
@@ -25,7 +33,6 @@ class ContactsTableViewController: UITableViewController {
         }
         
         // open it
-        
         let store = CNContactStore()
         store.requestAccess(for: .contacts) { granted, error in
             guard granted else {
@@ -64,7 +71,6 @@ class ContactsTableViewController: UITableViewController {
         _ = navigationController?.popToRootViewController(animated: false)
         navigationController?.viewControllers.first?.dismiss(animated: true, completion: nil)
     }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -79,13 +85,13 @@ class ContactsTableViewController: UITableViewController {
         if(indexPath.row == 0){
             let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
             
-            cell.textLabel?.text = "Создать контакт"
+            cell.textLabel?.text = "Создать беседу"
             
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
             
-            cell.textLabel?.text = "Создать беседу"
+            cell.textLabel?.text = "Написать человеку не из контактов"
             
             return cell
         } else {
@@ -101,9 +107,9 @@ class ContactsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(indexPath.row == 0){
-            
+            self.performSegue(withIdentifier: "makeGroup", sender: nil)
         } else if(indexPath.row == 1){
-            
+            self.performSegue(withIdentifier: "writeSmbd", sender: nil)
         } else {
             self.performSegue(withIdentifier: "showUser", sender: indexPath.row - 2)
         }
@@ -133,3 +139,20 @@ class ContactsTableViewController: UITableViewController {
  
 
 }
+
+protocol ContactDialogDelegate {
+    func openDialog(withID: Int)
+}
+
+protocol ContactGroupDelegate {
+    func openDialog(withID: Int)
+}
+
+protocol DialogDelegateCaller {
+    func callDialogDelegate(withDialogID: Int)
+}
+
+protocol GroupDelegateCaller {
+    func callGroupDelegate(withGroupID: Int)
+}
+
