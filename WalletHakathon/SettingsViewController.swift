@@ -31,6 +31,7 @@ class SettingsViewController: UIViewController {
        
         
         self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
 
     /*

@@ -91,8 +91,21 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             
             self.present(alert, animated: true, completion: nil)
+            self.refreshControl.endRefreshing()
         }
     }
+    
+    var k = 2
+    @IBAction func testCreationDialog(_ sender: Any) {
+        
+            coreDataService.insertConversation(userID: k, conversationID: k,  name: String(k), mobilePhone: k, balance: Double(k), avatar: nil)
+            k += 1
+            try! fetchedResultsController.performFetch()
+            tableView.reloadData()
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -128,7 +141,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let conversation = fetchedResultsController.object(at: indexPath)
         
-        if let participant = conversation.participant as? User {
+        if let participant = conversation.participant {
             
             conversation.managedObjectContext?.performAndWait {
 //                for user in participants{
@@ -136,6 +149,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //                    break
 //                }
                 cell.name.text = participant.name
+                cell.dialogID = Int(conversation.conversationID)
             }
         }
 
@@ -144,7 +158,6 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    var k = 2
     @IBAction func createConversation(_ sender: Any) {
         
 //            coreDataService.insertConversation(id: k)
@@ -159,8 +172,15 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? CreationViewController {
             vc.coreDataService = coreDataService
-        } else if let vc = segue.destination as? DialogViewController, dialogID != -1{
+        } else if let vc = segue.destination as? DialogViewController{
             //Тут должно быть установка значения ID диалога на dialogID
+            if let cell = sender as? ChatTableViewCell {
+                vc.dialogID = cell.dialogID
+            } else if let id = sender as? Int {
+                vc.dialogID = id
+            } else {
+                print("Какой-то неправильный у вас сендер")
+            }
         }
     }
     

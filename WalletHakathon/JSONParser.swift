@@ -34,7 +34,7 @@ class JSONParser: NSObject {
                 }
                 
             } else {
-                nonCompleteHandler("Отсутствует подключение к интернету")
+                nonCompleteHandler("Отсутствует подключение к интернету: " + error!.localizedDescription)
             }
         } catch {
             nonCompleteHandler(error.localizedDescription)

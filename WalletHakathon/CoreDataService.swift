@@ -41,6 +41,16 @@ class CoreDataService: NSObject {
         
     }
     
+    func createAppUser(phone:Int, name: String, id: Int, avatar: Data?){
+        
+        container.performBackgroundTask { (context) in
+            self.appUser = User.findOrInsertUser(id: id, name: name, mobilePhone: phone, avatar: avatar, inContext: context)
+            
+            context.saveThrows()
+            self.dataBase.saveContext()
+        }
+    }
+    
     func getFRCForChats() -> NSFetchedResultsController<Conversation>{
         var fetchedResultsController: NSFetchedResultsController<Conversation>
         
@@ -57,9 +67,11 @@ class CoreDataService: NSObject {
         return fetchedResultsController
     }
     
-    func getFRCForTransactions() -> NSFetchedResultsController<Transaction> {
+    func getFRCForTransactions(dialogID: Int) -> NSFetchedResultsController<Transaction> {
         
-        let fetchRequst: NSFetchRequest<Transaction> = Transaction.fetchRequest()
+        let fetchRequst: NSFetchRequest<Transaction> = container.managedObjectModel.fetchRequestFromTemplate(withName: "TransactionsWithConversationId", substitutionVariables: ["CONVERSATIONID": String(dialogID)]) as! NSFetchRequest<Transaction>
+        
+        
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
         
         fetchRequst.sortDescriptors = [sortDescriptor]
@@ -110,14 +122,25 @@ class CoreDataService: NSObject {
         container.performBackgroundTask { (context) in
             
             if let user = reciver{
-                Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, conversation: conversation, group: group, reciver: user, sender: self.appUser, inContext: context)
+                Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, conversation: Int((conversation?.conversationID)!), group: nil, reciver: Int(user.userID), sender: Int(self.appUser.userID), inContext: context)
             } else {
-                Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, conversation: conversation, group: group, reciver: self.appUser, sender: sender!, inContext: context)
+                Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, conversation: Int((conversation?.conversationID)!), group: nil, reciver: Int(self.appUser.userID), sender: Int(sender!.userID), inContext: context)
             }
             
             context.saveThrows()
             self.dataBase.saveContext()
         }
+        
+                let request: NSFetchRequest<Transaction> = container.managedObjectModel.fetchRequestFromTemplate(withName: "TransactionsWithConversationId", substitutionVariables: ["CONVERSATIONID": String(conversation!.conversationID)]) as! NSFetchRequest<Transaction>
+        
+                container.viewContext.performAndWait {
+                    if let results = try? self.container.viewContext.fetch(request) {
+                        print("\(results.count) TweetMs")
+                        for result in results{
+                            print(result.transactionID, result.money)
+                        }
+                    }
+                }
         
     }
     

@@ -14,6 +14,8 @@ class ChatTableViewCell: UITableViewCell {
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var balance: UILabel!
     
+    var dialogID: Int!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         avatar.layer.borderWidth = 1

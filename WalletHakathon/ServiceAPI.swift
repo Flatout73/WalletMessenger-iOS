@@ -8,8 +8,8 @@
 import UIKit
 import SwiftyJSON
 
-//let serverAddress = "http://walletmsg.azurewebsites.net/api"
-let serverAddress = "http://localhost:8080"
+let serverAddress = "http://walletmsg.azurewebsites.net/api"
+//let serverAddress = "http://localhost:8080"
 
 class ServiceAPI: NSObject {
     
@@ -65,7 +65,11 @@ class ServiceAPI: NSObject {
             if let token = json["defaultClass"]["token"].string, let userID = json["userID"].int {
                 UserDefaults.standard.set(token, forKey: "token")
                 UserDefaults.standard.set(userID, forKey: "appUserId")
+                
+                CoreDataService.sharedInstance.createAppUser(phone: Int(phone)!, name: name, id: userID, avatar: nil)
             }
+            
+            
             completionHandler()
         }
     }
@@ -79,9 +83,19 @@ class ServiceAPI: NSObject {
         
         ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler) { (json) in
             print(json)
-            if let token = json["defaultClass"]["token"].string, let userID = json["userID"].int {
+            if let token = json["defaultClass"]["token"].string, let userID = json["userID"].int, let name = json["name"].string {
                 UserDefaults.standard.set(token, forKey: "token")
                 UserDefaults.standard.set(userID, forKey: "appUserId")
+                
+                var avatar: Data?
+                if let image = json["image"].string {
+                    avatar = Data(base64Encoded: image)
+                }
+                
+                CoreDataService.sharedInstance.createAppUser(phone: Int(phone)!, name: name, id: userID, avatar: avatar)
+            } else {
+                noncompletedHandler("Неверный JSON")
+                return
             }
             completionHandler()
         }

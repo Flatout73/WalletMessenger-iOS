@@ -16,19 +16,32 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     var fetchedResultsController: NSFetchedResultsController<Transaction>!
     
     var coreDataService = CoreDataService.sharedInstance
+    
+    var conversation: Conversation!
+    var dialogID: Int!
 
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("id диалога: ", dialogID)
+        
         tableView.delegate = self
         tableView.dataSource = self
         
         messeges = messeges.reversed()
-        tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi));
+        tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi))
         
-        fetchedResultsController = coreDataService.getFRCForTransactions()
+        
+        //for tests
+        //coreDataService.insertConversation(userID: 123, conversationID: 45, name: "kek", mobilePhone: 123456, balance: 56.0, avatar: nil)
+        
+        //dialogID = 45
+        //conversation = coreDataService.findConversaionBy(id: 45)
+        
+        
+        fetchedResultsController = coreDataService.getFRCForTransactions(dialogID: dialogID)
         
         fetchedResultsController.delegate = self
         do{
@@ -46,40 +59,71 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        //return 1
+        
+        if let count = fetchedResultsController.sections?.count {
+            return count
+        } else {
+            return 0
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messeges.count
+        //return messeges.count
+        
+        if(!fetchedResultsController.sections!.isEmpty) {
+            if let sectionInfo = fetchedResultsController.sections?[section]{
+                return sectionInfo.numberOfObjects
+            } else {
+                print("Unexpected Section")
+            }
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if(indexPath.section % 2 == 0) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
-            
-            if(!cell.isReversed){
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-                cell.isReversed = true
-            }
+//        if(indexPath.section % 2 == 0) {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
+//            
+//            if(!cell.isReversed){
+//                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+//                cell.isReversed = true
+//            }
+//        
+//            cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
+//            cell.sum.text = messeges[indexPath.row] + " руб."
+//        
+//            return cell
+//        } else {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "fromMe", for: indexPath) as! MessageTableViewCell
+//            
+//            if(!cell.isReversed){
+//                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+//                cell.isReversed = true
+//            }
+//            
+//            cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
+//            cell.sum.text = messeges[indexPath.row] + " руб."
+//            
+//            return cell
+//        }
         
-            cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
-            cell.sum.text = messeges[indexPath.row] + " руб."
+        let transaction = fetchedResultsController.object(at: indexPath)
         
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "fromMe", for: indexPath) as! MessageTableViewCell
-            
-            if(!cell.isReversed){
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-                cell.isReversed = true
-            }
-            
-            cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
-            cell.sum.text = messeges[indexPath.row] + " руб."
-            
-            return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
+        
+        if(!cell.isReversed){
+            cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+            cell.isReversed = true
         }
+        
+        transaction.managedObjectContext?.performAndWait {
+            cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
+            cell.sum.text = String(transaction.money) + " руб."
+        }
+        
+        return cell
         
     }
     
@@ -98,6 +142,9 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
 //                this.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
 //            }
 //        }
+        
+        conversation = coreDataService.findConversaionBy(id: dialogID)
+        CoreDataService.sharedInstance.insertTransaction(id: 1234, money: 12, text: "", date: Date(), isCash: true, conversation: conversation, group: nil, reciver: coreDataService.appUser, sender: coreDataService.appUser)
     }
     
 
