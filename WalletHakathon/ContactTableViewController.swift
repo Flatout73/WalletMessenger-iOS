@@ -7,36 +7,108 @@
 //
 
 import UIKit
+import Contacts
 
 class ContactTableViewController: UITableViewController {
 
+    var contact = CNContact()
+    var phones:[String: Int] = [:] //0 - незагружено, -1 - отсутствует в базе, 1 - можно писать
+    var count = 0
+    var downloaded = 0
+    var IDs = [Int]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        count = contact.phoneNumbers.count
+        
+        for phone in contact.phoneNumbers {
+            phones[phone.value.stringValue] = 0
+            let phonestr = phone.value.stringValue.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil)
+            
+            ServiceAPI.getByPhone(phoneNumber:  phonestr, noncompletedHandler: {[weak self] (str) in
+                if let this = self {
+                    this.phones[phonestr] = -1
+                    this.downloaded += 1
+                    
+                    if(this.downloaded == this.count){
+                        DispatchQueue.main.async {[weak self] in
+                            self?.tableView.reloadData()
+                        }
+                    }
+                }
+
+            }, completionHandler: {[weak self] in
+                if let this = self {
+                    this.phones[phone.value.stringValue] = 11
+                    this.downloaded += 1
+                    
+                    if(this.downloaded == this.count){
+                        DispatchQueue.main.async {[weak self] in
+                            self?.tableView.reloadData()
+                        }
+                    }
+                }
+                
+            })
+        }
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        if(downloaded == count){
+            return count + 1
+        }
+        
+        return 1
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        if(indexPath.row == 0){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserTableViewCell
+            
+            if let data = contact.imageData{
+                cell.userImageView.image = UIImage(data: data)
+            } else {
+                cell.userImageView.image = UIImage(named: "no_photo")
+            }
+        
+            cell.userNameLabel.text = "\(contact.givenName) \(contact.familyName)"
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "phoneCell", for: indexPath)
+            
+            cell.textLabel?.text = contact.phoneNumbers[indexPath.row - 1].value.stringValue
+            
+            
+            if(phones[contact.phoneNumbers[indexPath.row - 1].value.stringValue] == 1){
+                cell.accessoryType = .disclosureIndicator
+            }
+            
+            return cell
+        }
 
-        // Configure the cell...
-
-        return cell
     }
     
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(phones[contact.phoneNumbers[indexPath.row - 1].value.stringValue] == 1){
+            ServiceAPI.createDialog(phoneNumber: contact.phoneNumbers[indexPath.row - 1].value.stringValue.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil), noncompletedHandler: {(str) in}, completionHandler: {
+                
+            })
+        } else {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

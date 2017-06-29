@@ -37,8 +37,7 @@ class ContactsTableViewController: UITableViewController {
             
             // get the contacts
             
-            
-            let request = CNContactFetchRequest(keysToFetch: [CNContactIdentifierKey as NSString, CNContactFormatter.descriptorForRequiredKeys(for: .fullName)])
+            let request = CNContactFetchRequest(keysToFetch: [CNContactIdentifierKey as NSString, CNContactFormatter.descriptorForRequiredKeys(for: .fullName), CNContactPhoneNumbersKey as CNKeyDescriptor, CNContactGivenNameKey as CNKeyDescriptor, CNContactFamilyNameKey as CNKeyDescriptor, CNContactImageDataKey as CNKeyDescriptor])
             do {
                 try store.enumerateContacts(with: request) {[weak self] contact, stop in
                     self?.contacts.append(contact)
@@ -62,7 +61,8 @@ class ContactsTableViewController: UITableViewController {
     }
     
     func close(){
-        self.dismiss(animated: true, completion: nil)
+        _ = navigationController?.popToRootViewController(animated: false)
+        navigationController?.viewControllers.first?.dismiss(animated: true, completion: nil)
     }
 
     // MARK: - Table view data source
@@ -100,7 +100,14 @@ class ContactsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showUser", sender: indexPath.row)
+        if(indexPath.row == 0){
+            
+        } else if(indexPath.row == 1){
+            
+        } else {
+            self.performSegue(withIdentifier: "showUser", sender: indexPath.row - 2)
+        }
+        
     }
     
     func presentSettingsActionSheet() {
@@ -114,14 +121,15 @@ class ContactsTableViewController: UITableViewController {
     }
 
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let vc = segue.destination as? ContactTableViewController, let num = sender as? Int{
+            vc.contact = contacts[num]
+        }
     }
-    */
+ 
 
 }

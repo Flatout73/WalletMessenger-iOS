@@ -13,9 +13,18 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var dialogID = -1
+    
     var coreDataService: CoreDataService!
     
     var refreshControl: UIRefreshControl!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if(dialogID != -1){
+            self.performSegue(withIdentifier: "", sender: dialogID)
+        }
+    }
     
     var fetchedResultsController: NSFetchedResultsController<Conversation>!// {
 //        didSet {
@@ -150,19 +159,12 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? CreationViewController {
             vc.coreDataService = coreDataService
+        } else if let vc = segue.destination as? DialogViewController, dialogID != -1{
+            //Тут должно быть установка значения ID диалога на dialogID
         }
     }
     
     
-//    //Если бы сделал через performSegue было бы меньшекода, ну ладно
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DialogVC") as? DialogViewController {
-//            //viewController.hidesBottomBarWhenPushed = true
-//            if let navigator = navigationController {
-//                navigator.pushViewController(viewController, animated: true)
-//            }
-//        }
-//    }
     
 }
 
