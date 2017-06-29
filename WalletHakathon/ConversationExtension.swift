@@ -14,9 +14,11 @@ extension Conversation {
         let conversation = Conversation(context: context)
         conversation.conversationID = Int32(id)
         conversation.summa = summa
-        for user in users {
-            conversation.addToParticipants(user)
-        }
+//        for user in users {
+//            conversation.addToParticipants(user)
+//        }
+        
+        conversation.participant = users.first
         
         for transaction in transactions {
             conversation.addToTransactions(transaction)
@@ -28,9 +30,11 @@ extension Conversation {
         
         if let conversation = findConversation(id: id, inContext: context) {
             conversation.summa = summa
-            for user in users {
-                conversation.addToParticipants(user)
-            }
+//            for user in users {
+//                conversation.addToParticipants(user)
+//            }
+            
+            conversation.participant = users.first
             
             for transaction in transactions {
                 conversation.addToTransactions(transaction)

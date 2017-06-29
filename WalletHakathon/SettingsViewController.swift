@@ -28,6 +28,8 @@ class SettingsViewController: UIViewController {
             UserDefaults.standard.removeObject(forKey: key)
         }
         
+       
+        
         self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }
 

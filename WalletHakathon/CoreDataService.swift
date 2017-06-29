@@ -57,6 +57,26 @@ class CoreDataService: NSObject {
         return fetchedResultsController
     }
     
+    func getFRCForTransactions() -> NSFetchedResultsController<Transaction> {
+        
+        let fetchRequst: NSFetchRequest<Transaction> = Transaction.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        
+        fetchRequst.sortDescriptors = [sortDescriptor]
+        fetchRequst.fetchBatchSize = 20
+        
+        return NSFetchedResultsController<Transaction>(fetchRequest: fetchRequst, managedObjectContext: container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+    }
+    
+    //надо протестить
+    func destroyCoreData() {
+        do {
+            try container.persistentStoreCoordinator.destroyPersistentStore(at: URL(string: "WalletHakathon")!, ofType: NSSQLiteStoreType, options: nil)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     func insertConversation(userID: Int, conversationID: Int,  name: String, mobilePhone: Int, balance: Double, avatar: Data?) {
         
         
@@ -101,8 +121,12 @@ class CoreDataService: NSObject {
         
     }
     
-    func findUserBy(id: String) -> User? {
-       return User.findUser(id: Int(id)!, inContext: container.viewContext)
+    func findUserBy(id: Int) -> User? {
+       return User.findUser(id: id, inContext: container.viewContext)
+    }
+    
+    func findConversaionBy(id: Int) -> Conversation? {
+        return Conversation.findConversation(id: id, inContext: container.viewContext)
     }
     
 }

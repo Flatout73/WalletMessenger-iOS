@@ -20,7 +20,8 @@ extension User {
         }
         if let conversations = conversations{
             for conversation in conversations {
-                conversation.addToParticipants(user)
+                //conversation.addToParticipants(user)
+                conversation.participant = user
             }
         }
         return user
@@ -31,7 +32,7 @@ extension User {
         if let user = findUser(id: id, inContext: context) {
             user.name = name
             user.mobilePhone = Int64(mobilePhone)
-            if let ava = avatar as? NSData {
+            if let ava = avatar as NSData? {
                 user.avatar = ava
             }
 //            for conversation in conversations {

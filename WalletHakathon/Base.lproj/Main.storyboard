@@ -177,7 +177,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Диалоги" id="407-m8-XLv">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="fMf-MX-Pqx">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="fMf-MX-Pqx">
                             <connections>
                                 <action selector="createConversation:" destination="See-Zs-9NM" id="VmB-8O-Z05"/>
                                 <segue destination="ljx-kM-JN1" kind="presentation" id="qml-BB-g9R"/>

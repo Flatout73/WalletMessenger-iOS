@@ -119,13 +119,14 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let conversation = fetchedResultsController.object(at: indexPath)
         
-        if let participants = conversation.participants as? Set<User> {
+        if let participant = conversation.participant as? User {
             
             conversation.managedObjectContext?.performAndWait {
-                for user in participants{
-                    cell.name.text = user.name
-                    break
-                }
+//                for user in participants{
+//                    cell.name.text = user.name
+//                    break
+//                }
+                cell.name.text = participant.name
             }
         }
 

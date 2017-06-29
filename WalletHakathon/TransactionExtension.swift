@@ -15,7 +15,7 @@ extension Transaction {
         let transaction = Transaction(context: context)
         transaction.money = money
         transaction.text = text
-        transaction.date = date as NSDate
+        transaction.date = date as NSDate?
         transaction.isCash = isCash
         
         transaction.reciever = reciver

@@ -196,30 +196,65 @@ class ServiceAPI: NSObject {
         }
     }
     
-    static func getDialogInfo(dialogID: String, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+    static func getDialogInfo(dialogID: Int, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
         
         let coreDataService = CoreDataService.sharedInstance
-     
+        
         if var dicionary = loadDictionary() {
-            dicionary["dialogID"] = dialogID
+            dicionary["dialogID"] = String(dialogID)
             
             let request = serverAddress + "/dialog/get"
             
             ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
                 
-                guard let transactionID = json["transactionID"].int, let dateString = json["date"].string,
-                    let text = json["text"].string, let money = json["money"].double, let cash = json["isCash"].bool, let userID = json["userID"].string else {
+                guard let transactionID = json["transactionID"].int, let dateLong = json["date"].int64,
+                    let text = json["text"].string, let money = json["money"].double, let cash = json["isCash"].bool, let userID = json["userID"].int else {
                         noncompletedHandler("Неверный формат JSON")
                         return
                 }
                 
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd"
-                let date = dateFormatter.date(from: dateString)
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.dateFormat = "yyyy-MM-dd"
+//                let date = dateFormatter.date(from: dateString)
                 
-                coreDataService.findUserBy(id: userID)
+                let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
                 
-                //coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cash, conversation: <#T##Conversation?#>, group: nil, reciver: <#T##User?#>, sender: <#T##User?#>)
+                let user = coreDataService.findUserBy(id: userID)
+                let conversation = coreDataService.findConversaionBy(id: dialogID)
+                
+                if(user?.userID == Int32(userID)) {
+                    coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cash, conversation: conversation, group: nil, reciver: conversation?.participant, sender: coreDataService.appUser)
+                } else {
+                    coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cash, conversation: conversation, group: nil, reciver: conversation?.participant, sender: coreDataService.appUser)
+                }
+                
+                completionHandler()
+            }
+        }
+    }
+    
+    
+    static func sendTransaction(dialogID: Int, money: Double, cash: Bool, text: String?, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+        
+        if var dicionary = loadDictionary() {
+            dicionary["dialogID"] = String(dialogID)
+            dicionary["money"] = String(money)
+            dicionary["cash"] = cash ? "1": "0"
+            dicionary["text"] = text ?? ""
+            
+            let request = serverAddress + "/user/getubyphn"
+            
+            ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
+                
+                guard let date = json["date"].int64, let transactionID = json["id"].int else {
+                    noncompletedHandler("Неверный формат JSON")
+                    return
+                }
+                
+                let conversation = CoreDataService.sharedInstance.findConversaionBy(id: dialogID)
+                let user = conversation?.participant
+                
+                CoreDataService.sharedInstance.insertTransaction(id: transactionID, money: money, text: text ?? "", date: Date(timeIntervalSince1970: TimeInterval(date)), isCash: cash, conversation: conversation, group: nil, reciver: user, sender: CoreDataService.sharedInstance.appUser)
                 
                 completionHandler()
             }

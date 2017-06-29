@@ -12,6 +12,10 @@ import CoreData
 class DialogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var messeges = ["1234", "5678"]
+    
+    var fetchedResultsController: NSFetchedResultsController<Transaction>!
+    
+    var coreDataService = CoreDataService.sharedInstance
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,6 +27,15 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         
         messeges = messeges.reversed()
         tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi));
+        
+        fetchedResultsController = coreDataService.getFRCForTransactions()
+        
+        fetchedResultsController.delegate = self
+        do{
+            try fetchedResultsController.performFetch()
+        } catch{
+            print(error.localizedDescription)
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -73,8 +86,11 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBAction func sendMoney(_ sender: Any) {
         
-        messeges.insert("678", at: 0)
-        tableView.reloadData()
+        //messeges.insert("678", at: 0)
+        //tableView.reloadData()
+        
+        
+        //ServiceAPI.sendTransaction(dialogID: <#T##Int#>, money: <#T##Double#>, cash: <#T##Bool#>, text: <#T##String?#>, noncompletedHandler: <#T##(String) -> Void#>, completionHandler: <#T##() -> Void#>)
         
 //        DispatchQueue.main.async {[weak self] in
 //            if let this = self {
