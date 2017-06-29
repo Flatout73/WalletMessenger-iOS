@@ -28,6 +28,9 @@ class RegistrViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func goBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func sendSMSForRegistration(_ sender: Any) {
         

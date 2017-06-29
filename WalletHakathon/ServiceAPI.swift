@@ -5,14 +5,13 @@
 //  Created by Андрей on 25.06.17.
 //  Copyright © 2017 HSE. All rights reserved.
 //
-
 import UIKit
 import SwiftyJSON
 
 let serverAddress = "http://walletmsg.azurewebsites.net/api"
 
 class ServiceAPI: NSObject {
-
+    
     static func loadDictionary() -> [String: String]? {
         var dictionary: [String: String] = [:]
         
@@ -23,7 +22,7 @@ class ServiceAPI: NSObject {
         }
         return dictionary
     }
-
+    
     static func getDefaultClassResult(dictionary: Dictionary<String, String>, requestString: String, noncompletedHandler: @escaping(String) -> Void, completedParser: @escaping(JSON) -> Void) {
         
         RequestSender.sendRequest(requestString: requestString, params: dictionary) {
@@ -44,7 +43,7 @@ class ServiceAPI: NSObject {
             
             ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler) {
                 (json) in
-                    
+                
                 
             }
         } else {

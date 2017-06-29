@@ -97,7 +97,7 @@ class QiwiLoginViewController: UIViewController {
                                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                                 this.present(alert, animated: true, completion: nil)
                                 
-                                print("token:", UserDefaults.standard.value(forKey: "access_token_qiwi"))
+                                print("token:", UserDefaults.standard.value(forKey: "access_token_qiwi")!)
                             }
                         }
                         

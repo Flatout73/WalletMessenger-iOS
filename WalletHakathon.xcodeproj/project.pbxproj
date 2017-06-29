@@ -10,6 +10,8 @@
 		5572CE8F1F003A3F00E0FC3E /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572CE8E1F003A3F00E0FC3E /* RequestSender.swift */; };
 		5572CE911F003A7A00E0FC3E /* ServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572CE901F003A7A00E0FC3E /* ServiceAPI.swift */; };
 		5572CE931F003ACC00E0FC3E /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572CE921F003ACC00E0FC3E /* JSONParser.swift */; };
+		55B4E44F1F0504D00043A0E5 /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E44E1F0504D00043A0E5 /* ContactsTableViewController.swift */; };
+		55B4E4511F0507680043A0E5 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4501F0507680043A0E5 /* ContactTableViewController.swift */; };
 		711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */; };
 		711BEB211EFEF2E900907B42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB201EFEF2E900907B42 /* ViewController.swift */; };
 		711BEB241EFEF2E900907B42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 711BEB221EFEF2E900907B42 /* Main.storyboard */; };
@@ -31,7 +33,6 @@
 		712DEEE71F02BCCC004D5CE9 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEEE61F02BCCC004D5CE9 /* CoreDataService.swift */; };
 		712DEEE91F02D50A004D5CE9 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEEE81F02D50A004D5CE9 /* DataBase.swift */; };
 		712F62F11F043F3A004CC712 /* CreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712F62F01F043F3A004CC712 /* CreationViewController.swift */; };
-		712F62F31F0490A1004CC712 /* CreationDialog.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 712F62F21F0490A1004CC712 /* CreationDialog.storyboard */; };
 		712F62F51F049142004CC712 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 712F62F41F049142004CC712 /* Contacts.storyboard */; };
 		FBD33BEC9520952B38CD0DF1 /* Pods_WalletHakathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F77F89AC65A0E9459599EF21 /* Pods_WalletHakathon.framework */; };
 /* End PBXBuildFile section */
@@ -41,6 +42,8 @@
 		5572CE8E1F003A3F00E0FC3E /* RequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
 		5572CE901F003A7A00E0FC3E /* ServiceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceAPI.swift; sourceTree = "<group>"; };
 		5572CE921F003ACC00E0FC3E /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
+		55B4E44E1F0504D00043A0E5 /* ContactsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
+		55B4E4501F0507680043A0E5 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		711BEB1B1EFEF2E900907B42 /* WalletHakathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalletHakathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		711BEB201EFEF2E900907B42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,7 +68,6 @@
 		712DEEE61F02BCCC004D5CE9 /* CoreDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		712DEEE81F02D50A004D5CE9 /* DataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		712F62F01F043F3A004CC712 /* CreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationViewController.swift; sourceTree = "<group>"; };
-		712F62F21F0490A1004CC712 /* CreationDialog.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreationDialog.storyboard; sourceTree = "<group>"; };
 		712F62F41F049142004CC712 /* Contacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
 		D9A89CC916FD2A201B258B86 /* Pods-WalletHakathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletHakathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletHakathon/Pods-WalletHakathon.debug.xcconfig"; sourceTree = "<group>"; };
 		F77F89AC65A0E9459599EF21 /* Pods_WalletHakathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletHakathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +104,33 @@
 			name = "Core Layer";
 			sourceTree = "<group>";
 		};
+		55B4E4521F050C920043A0E5 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				712F62F41F049142004CC712 /* Contacts.storyboard */,
+				55B4E44E1F0504D00043A0E5 /* ContactsTableViewController.swift */,
+				55B4E4501F0507680043A0E5 /* ContactTableViewController.swift */,
+			);
+			name = Contacts;
+			sourceTree = "<group>";
+		};
+		55B4E4531F050CAB0043A0E5 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				711BEB221EFEF2E900907B42 /* Main.storyboard */,
+				711BEB201EFEF2E900907B42 /* ViewController.swift */,
+				711BEB331EFEF99C00907B42 /* ChatsViewController.swift */,
+				711BEB351EFEFBB000907B42 /* ChatTableViewCell.swift */,
+				711BEB371EFEFF0300907B42 /* DialogViewController.swift */,
+				712DEECD1F002236004D5CE9 /* QiwiLoginViewController.swift */,
+				712DEECF1F005532004D5CE9 /* MessageTableViewCell.swift */,
+				712DEED11F01A836004D5CE9 /* RegistrViewController.swift */,
+				712DEED31F01B5F0004D5CE9 /* InfoRegistViewController.swift */,
+				712F62F01F043F3A004CC712 /* CreationViewController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
 		711BEB121EFEF2E900907B42 = {
 			isa = PBXGroup;
 			children = (
@@ -128,13 +157,10 @@
 				5572CE8C1F0038F700E0FC3E /* Service Layer */,
 				711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */,
 				712DEEE11F02AE6B004D5CE9 /* WalletHakathon-Bridging-Header.h */,
-				711BEB221EFEF2E900907B42 /* Main.storyboard */,
 				711BEB281EFEF2E900907B42 /* Assets.xcassets */,
 				711BEB2A1EFEF2E900907B42 /* LaunchScreen.storyboard */,
 				711BEB2D1EFEF2E900907B42 /* Info.plist */,
 				711BEB251EFEF2E900907B42 /* WalletHakathon.xcdatamodeld */,
-				712F62F21F0490A1004CC712 /* CreationDialog.storyboard */,
-				712F62F41F049142004CC712 /* Contacts.storyboard */,
 			);
 			path = WalletHakathon;
 			sourceTree = "<group>";
@@ -142,15 +168,8 @@
 		712DEED71F0279FE004D5CE9 /* Presentation Layer */ = {
 			isa = PBXGroup;
 			children = (
-				711BEB201EFEF2E900907B42 /* ViewController.swift */,
-				711BEB331EFEF99C00907B42 /* ChatsViewController.swift */,
-				711BEB351EFEFBB000907B42 /* ChatTableViewCell.swift */,
-				711BEB371EFEFF0300907B42 /* DialogViewController.swift */,
-				712DEECD1F002236004D5CE9 /* QiwiLoginViewController.swift */,
-				712DEECF1F005532004D5CE9 /* MessageTableViewCell.swift */,
-				712DEED11F01A836004D5CE9 /* RegistrViewController.swift */,
-				712DEED31F01B5F0004D5CE9 /* InfoRegistViewController.swift */,
-				712F62F01F043F3A004CC712 /* CreationViewController.swift */,
+				55B4E4531F050CAB0043A0E5 /* Main */,
+				55B4E4521F050C920043A0E5 /* Contacts */,
 			);
 			name = "Presentation Layer";
 			sourceTree = "<group>";
@@ -250,7 +269,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				711BEB2C1EFEF2E900907B42 /* LaunchScreen.storyboard in Resources */,
-				712F62F31F0490A1004CC712 /* CreationDialog.storyboard in Resources */,
 				712F62F51F049142004CC712 /* Contacts.storyboard in Resources */,
 				711BEB291EFEF2E900907B42 /* Assets.xcassets in Resources */,
 				711BEB241EFEF2E900907B42 /* Main.storyboard in Resources */,
@@ -314,8 +332,10 @@
 			files = (
 				5572CE8F1F003A3F00E0FC3E /* RequestSender.swift in Sources */,
 				712DEED21F01A836004D5CE9 /* RegistrViewController.swift in Sources */,
+				55B4E4511F0507680043A0E5 /* ContactTableViewController.swift in Sources */,
 				712DEEDA1F0281BE004D5CE9 /* ConversationExtension.swift in Sources */,
 				712DEECE1F002236004D5CE9 /* QiwiLoginViewController.swift in Sources */,
+				55B4E44F1F0504D00043A0E5 /* ContactsTableViewController.swift in Sources */,
 				711BEB271EFEF2E900907B42 /* WalletHakathon.xcdatamodeld in Sources */,
 				711BEB211EFEF2E900907B42 /* ViewController.swift in Sources */,
 				712DEED01F005532004D5CE9 /* MessageTableViewCell.swift in Sources */,

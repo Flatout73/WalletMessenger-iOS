@@ -3,4 +3,5 @@ use_frameworks!
 
 target ‘WalletHakathon’ do
 	pod 'SwiftyJSON'
+    pod 'MBProgressHUD', '~> 1.0.0'
 end
