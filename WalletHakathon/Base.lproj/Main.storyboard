@@ -84,61 +84,13 @@
             </objects>
             <point key="canvasLocation" x="-1450" y="170"/>
         </scene>
-        <!--Creation View Controller-->
-        <scene sceneID="cFM-1o-yzU">
+        <!--CreationDialog-->
+        <scene sceneID="yCS-FA-mIm">
             <objects>
-                <viewController id="ota-0o-g0y" customClass="CreationViewController" customModule="WalletHakathon" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wTZ-RK-9mG"/>
-                        <viewControllerLayoutGuide type="bottom" id="dXW-mW-43Z"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vUm-nt-z6f">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kqB-8U-fGH">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Создать диалог" id="hiZ-Kj-GEH">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="S5R-qP-8fR">
-                                            <connections>
-                                                <action selector="closeVIew:" destination="ota-0o-g0y" id="bww-ek-tHb"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Номер телефона собеседника" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ybo-CK-Jxo">
-                                <rect key="frame" x="24" y="111" width="327" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PvW-hD-kxN">
-                                <rect key="frame" x="157.5" y="157" width="60" height="30"/>
-                                <state key="normal" title="Создать"/>
-                                <connections>
-                                    <action selector="createDialog:" destination="ota-0o-g0y" eventType="touchUpInside" id="SRT-bs-bYZ"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ybo-CK-Jxo" firstAttribute="top" secondItem="wTZ-RK-9mG" secondAttribute="bottom" constant="91" id="F42-ex-Br7"/>
-                            <constraint firstItem="ybo-CK-Jxo" firstAttribute="leading" secondItem="vUm-nt-z6f" secondAttribute="leadingMargin" constant="8" id="KAh-6l-6UJ"/>
-                            <constraint firstItem="PvW-hD-kxN" firstAttribute="centerX" secondItem="vUm-nt-z6f" secondAttribute="centerX" id="OQO-Qc-90M"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ybo-CK-Jxo" secondAttribute="trailing" constant="8" id="OzR-gr-JGG"/>
-                            <constraint firstItem="PvW-hD-kxN" firstAttribute="top" secondItem="ybo-CK-Jxo" secondAttribute="bottom" constant="16" id="hWU-EC-dM1"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="numberField" destination="ybo-CK-Jxo" id="Z9Q-Cd-8Q9"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Sg5-fb-AEE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="CreationDialog" id="xkA-9K-A9R" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T2n-kd-dvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1189.5999999999999" y="-943.17841079460277"/>
+            <point key="canvasLocation" x="1164" y="-910"/>
         </scene>
         <!--Диалоги-->
         <scene sceneID="8c4-Pk-ZYl">
@@ -236,7 +188,7 @@
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="fMf-MX-Pqx">
                             <connections>
                                 <action selector="createConversation:" destination="See-Zs-9NM" id="VmB-8O-Z05"/>
-                                <segue destination="ota-0o-g0y" kind="presentation" id="YTe-14-yIV"/>
+                                <segue destination="xkA-9K-A9R" kind="presentation" id="A9r-U2-581"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -479,7 +431,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jf1-Si-4ug">
-                                <rect key="frame" x="164" y="535" width="46" height="30"/>
+                                <rect key="frame" x="164" y="257" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Qiwi"/>
                                 <connections>
@@ -577,7 +529,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="eiT-pW-9m9" kind="relationship" relationship="viewControllers" id="5Nj-8h-xCu"/>
-                        <segue destination="AUv-If-TIN" kind="relationship" relationship="viewControllers" id="aq5-qa-8SW"/>
+                        <segue destination="GwB-m0-oNP" kind="relationship" relationship="viewControllers" id="7jO-GL-Vsh"/>
                         <segue destination="Kjo-7T-Az0" kind="relationship" relationship="viewControllers" id="kX8-Vl-B3t"/>
                     </connections>
                 </tabBarController>
@@ -585,24 +537,33 @@
             </objects>
             <point key="canvasLocation" x="-527" y="170"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="3HW-cI-XzU">
+        <!--Contacts-->
+        <scene sceneID="zEo-Xb-NHE">
             <objects>
-                <viewController id="AUv-If-TIN" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="fwh-Db-yEs"/>
-                        <viewControllerLayoutGuide type="bottom" id="mqO-Gh-iyI"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2n8-9P-Ot7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="SLm-rN-rF2"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qOf-5a-zge" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Contacts" id="ljx-kM-JN1" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="9Gf-dK-MLa"/>
+                    <navigationItem key="navigationItem" id="2NN-Qr-jPq"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4N7-CJ-O3G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="679" y="468"/>
+            <point key="canvasLocation" x="1091" y="430"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0Km-1a-CZi">
+            <objects>
+                <navigationController id="GwB-m0-oNP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="u1F-Ee-jov"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aPL-RD-4UX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ljx-kM-JN1" kind="relationship" relationship="rootViewController" id="WjS-Dd-l4V"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="est-6F-Or1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="450" y="469"/>
         </scene>
         <!--Dialog View Controller-->
         <scene sceneID="z4d-W2-Myp">
