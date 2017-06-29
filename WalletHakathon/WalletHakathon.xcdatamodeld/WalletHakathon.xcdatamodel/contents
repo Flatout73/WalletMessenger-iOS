@@ -36,6 +36,8 @@
         <relationship name="outgoingTransactions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Transaction" inverseName="reciever" inverseEntity="Transaction" syncable="YES"/>
         <relationship name="ownGroupConversations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="GroupConversation" inverseName="admin" inverseEntity="GroupConversation" syncable="YES"/>
     </entity>
+    <fetchRequest name="ConversationWithId" entity="Conversation" predicateString="conversationID == $CONVERSATIONID"/>
+    <fetchRequest name="UserWithId" entity="User" predicateString="userID == $USERID"/>
     <elements>
         <element name="Conversation" positionX="295" positionY="-81" width="128" height="103"/>
         <element name="GroupConversation" positionX="16" positionY="333" width="128" height="133"/>
