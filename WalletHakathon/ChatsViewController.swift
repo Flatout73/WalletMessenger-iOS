@@ -22,7 +22,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidAppear(_ animated: Bool) {
         if(dialogID != -1){
-            self.performSegue(withIdentifier: "", sender: )
+            self.performSegue(withIdentifier: "", sender: dialogID)
         }
     }
     
