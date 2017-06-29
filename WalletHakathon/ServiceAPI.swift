@@ -121,7 +121,7 @@ class ServiceAPI: NSObject {
                 
                     let user = subJSON["userProfile"]
                     
-                    guard let conversationID = subJSON["dialogID"].int,
+                    guard let conversationID = subJSON["dialogID"].int, let balance = subJSON["balance"].double,
                     let name = user["name"].string, let phone = user["phone"].string, let image = user["image"].string, let userID = user["userID"].int else {
                         noncompletedHandler("Неверный JSON")
                         return
@@ -129,7 +129,7 @@ class ServiceAPI: NSObject {
                     
                     let avatar = Data(base64Encoded: image)
                     if let mobilePhone = Int(phone){
-                        coreDataService.insertConversation(userID: userID, conversationID: conversationID, name: name, mobilePhone: mobilePhone, avatar: avatar)
+                        coreDataService.insertConversation(userID: userID, conversationID: conversationID, name: name, mobilePhone: mobilePhone, balance: balance, avatar: avatar)
                     } else {
                         noncompletedHandler("Неверный формат телефона")
                     }
@@ -170,7 +170,7 @@ class ServiceAPI: NSObject {
                         return
                     }
                     
-                    coreDataService.insertConversation(userID: userID, conversationID: conversationID, name: name, mobilePhone: phone, avatar: avatar)
+                    coreDataService.insertConversation(userID: userID, conversationID: conversationID, name: name, mobilePhone: phone, balance: 0.0, avatar: avatar)
                     
                     
                     completionHandler()

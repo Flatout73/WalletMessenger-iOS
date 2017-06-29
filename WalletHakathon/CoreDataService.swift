@@ -57,7 +57,7 @@ class CoreDataService: NSObject {
         return fetchedResultsController
     }
     
-    func insertConversation(userID: Int, conversationID: Int,  name: String, mobilePhone: Int, avatar: Data?) {
+    func insertConversation(userID: Int, conversationID: Int,  name: String, mobilePhone: Int, balance: Double, avatar: Data?) {
         
         
         //возможно стоит это вынести вне метода
@@ -66,7 +66,7 @@ class CoreDataService: NSObject {
         
         let user = User.findOrInsertUser(id: userID, name: name, mobilePhone: mobilePhone, avatar: avatar, inContext: context)
         
-        _ = Conversation.findOrInsertConversation(id: conversationID, summa: 0.0, users: [user], transactions: [], inContext: context)
+        _ = Conversation.findOrInsertConversation(id: conversationID, summa: balance, users: [user], transactions: [], inContext: context)
             
             context.saveThrows()
             self.dataBase.saveContext()
