@@ -62,8 +62,9 @@ class ServiceAPI: NSObject {
         
         ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler) { (json) in
             print(json)
-            if let token = json["token"].string {
+            if let token = json["defaultClass"]["token"].string, let userID = json["userID"].int {
                 UserDefaults.standard.set(token, forKey: "token")
+                UserDefaults.standard.set(userID, forKey: "appUserId")
             }
             completionHandler()
         }
@@ -78,8 +79,9 @@ class ServiceAPI: NSObject {
         
         ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler) { (json) in
             print(json)
-            if let token = json["defaultClass"]["token"].string {
+            if let token = json["defaultClass"]["token"].string, let userID = json["userID"].int {
                 UserDefaults.standard.set(token, forKey: "token")
+                UserDefaults.standard.set(userID, forKey: "appUserId")
             }
             completionHandler()
         }
@@ -103,6 +105,9 @@ class ServiceAPI: NSObject {
     
     
     static func getConversations(noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+        
+        let coreDataService = CoreDataService.sharedInstance
+        
         if let dictionary = loadDictionary() {
             let request = serverAddress + "/conv/gets"
             
@@ -114,14 +119,34 @@ class ServiceAPI: NSObject {
                 
                 for (index, subJSON):(String, JSON) in dialogs {
                     print(subJSON)
+                
+                    let user = subJSON["userProfile"]
+                    
+                    guard let conversationID = subJSON["dialogID"].int, let balance = subJSON["balance"].double,
+                    let name = user["name"].string, let phone = user["phone"].string, let image = user["image"].string, let userID = user["userID"].int else {
+                        noncompletedHandler("Неверный JSON")
+                        return
+                    }
+                    
+                    let avatar = Data(base64Encoded: image)
+                    if let mobilePhone = Int(phone){
+                        coreDataService.insertConversation(userID: userID, conversationID: conversationID, name: name, mobilePhone: mobilePhone, balance: balance, avatar: avatar)
+                    } else {
+                        noncompletedHandler("Неверный формат телефона")
+                    }
                 }
+                
+                completionHandler()
             }
             
-            completionHandler()
+            
         }
     }
     
-    static func createDialog(coreDataService: CoreDataService, phoneNumber: String, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+    static func createDialog(phoneNumber: String, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+        
+        let coreDataService = CoreDataService.sharedInstance
+        
         if var dicionary = loadDictionary() {
             dicionary["phone"] = phoneNumber
             
@@ -129,7 +154,7 @@ class ServiceAPI: NSObject {
             
             let requestPhone = serverAddress + "/user/getubyphn"
             
-            ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
+            ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: requestPhone, noncompletedHandler: noncompletedHandler) { (json) in
                 guard let name = json["name"].string, let balance = json["balance"].double,
                     let phoneStr = json["phone"].string, let phone = Int(phoneStr), let userID = json["userID"].int else {
                         noncompletedHandler("Неверный формат JSON")
@@ -141,12 +166,22 @@ class ServiceAPI: NSObject {
                     avatar = Data(base64Encoded: image)
                 }
                 
-                coreDataService.insertConversation(id: userID, name: name, mobilePhone: phone, avatar: avatar)
+                ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
+                    
+                    guard let conversationID = json["ID"].int else {
+                        noncompletedHandler("Неверный формат JSON при создании диалога")
+                        return
+                    }
+                    
+                    coreDataService.insertConversation(userID: userID, conversationID: conversationID, name: name, mobilePhone: phone, balance: 0.0, avatar: avatar)
+                    
+                    
+                    completionHandler()
+                }
+                
             }
             
-            ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
-                completionHandler()
-            }
+            
         }
     }
     
@@ -162,6 +197,35 @@ class ServiceAPI: NSObject {
         }
     }
     
+    static func getDialogInfo(dialogID: String, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+        
+        let coreDataService = CoreDataService.sharedInstance
+     
+        if var dicionary = loadDictionary() {
+            dicionary["dialogID"] = dialogID
+            
+            let request = serverAddress + "/dialog/get"
+            
+            ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
+                
+                guard let transactionID = json["transactionID"].int, let dateString = json["date"].string,
+                    let text = json["text"].string, let money = json["money"].double, let cash = json["isCash"].bool, let userID = json["userID"].string else {
+                        noncompletedHandler("Неверный формат JSON")
+                        return
+                }
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                let date = dateFormatter.date(from: dateString)
+                
+                coreDataService.findUserBy(id: userID)
+                
+                //coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cash, conversation: <#T##Conversation?#>, group: nil, reciver: <#T##User?#>, sender: <#T##User?#>)
+                
+                completionHandler()
+            }
+        }
+    }
     
     public static func alert(viewController: UIViewController, title: String = "Ошибка!", desc: String) {
         DispatchQueue.main.async {

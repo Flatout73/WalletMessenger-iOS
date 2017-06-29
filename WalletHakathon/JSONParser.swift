@@ -26,7 +26,7 @@ class JSONParser: NSObject {
                     if (operationOutput) {
                         parseHandler(json)
                     } else {
-                        if let token = json["token"].string {
+                        if let token = json["defaultClass"]["token"].string {
                             nonCompleteHandler(token)
                         } else {
                             nonCompleteHandler("token error")

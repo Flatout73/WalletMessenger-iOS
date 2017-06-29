@@ -35,6 +35,7 @@
 		712DEEE91F02D50A004D5CE9 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712DEEE81F02D50A004D5CE9 /* DataBase.swift */; };
 		712F62F11F043F3A004CC712 /* CreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712F62F01F043F3A004CC712 /* CreationViewController.swift */; };
 		712F62F51F049142004CC712 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 712F62F41F049142004CC712 /* Contacts.storyboard */; };
+		712F62F71F051FFA004CC712 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712F62F61F051FFA004CC712 /* SettingsViewController.swift */; };
 		FBD33BEC9520952B38CD0DF1 /* Pods_WalletHakathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F77F89AC65A0E9459599EF21 /* Pods_WalletHakathon.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		712DEEE81F02D50A004D5CE9 /* DataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		712F62F01F043F3A004CC712 /* CreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationViewController.swift; sourceTree = "<group>"; };
 		712F62F41F049142004CC712 /* Contacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
+		712F62F61F051FFA004CC712 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D9A89CC916FD2A201B258B86 /* Pods-WalletHakathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletHakathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletHakathon/Pods-WalletHakathon.debug.xcconfig"; sourceTree = "<group>"; };
 		F77F89AC65A0E9459599EF21 /* Pods_WalletHakathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletHakathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -130,6 +132,7 @@
 				712DEED11F01A836004D5CE9 /* RegistrViewController.swift */,
 				712DEED31F01B5F0004D5CE9 /* InfoRegistViewController.swift */,
 				712F62F01F043F3A004CC712 /* CreationViewController.swift */,
+				712F62F61F051FFA004CC712 /* SettingsViewController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				712DEEE01F028DB9004D5CE9 /* TransactionExtension.swift in Sources */,
 				711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */,
 				712F62F11F043F3A004CC712 /* CreationViewController.swift in Sources */,
+				712F62F71F051FFA004CC712 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

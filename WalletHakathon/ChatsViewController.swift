@@ -39,7 +39,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.delegate = self
         tableView.dataSource = self
 
-        coreDataService = CoreDataService()
+        coreDataService = CoreDataService.sharedInstance
         fetchedResultsController = coreDataService.getFRCForChats()
     
         fetchedResultsController.delegate = self

@@ -4,25 +4,49 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Pods-WalletHakathon.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>41FA54D12162DAD51D02FC58A2CD5034</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>527C5296A2355B8A3B599697AC5B7143</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>6D279CDF2CFCD79E3F4AD00F1D16E9C4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7E173E88BBFBDA8E7A4FA83763721C30</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C4387E0D8DE312326E56F8B498B55D6B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -18,9 +18,27 @@ class CoreDataService: NSObject {
     
     var tableView: UITableView!
     
-    override init() {
+    var appUser: User!
+    
+    public static let sharedInstance = CoreDataService()
+    
+    private override init() {
         super.init()
         container = dataBase.persistentContainer
+        
+        let userID = UserDefaults.standard.integer(forKey: "appUserId")
+        
+        let request: NSFetchRequest<User> = container.managedObjectModel.fetchRequestFromTemplate(withName: "UserWithId", substitutionVariables: ["USERID": userID]) as! NSFetchRequest<User>
+        
+        
+        
+        do{
+            let result = try container.viewContext.fetch(request)
+            appUser = result.first
+        } catch{
+            print(error.localizedDescription)
+        }
+        
     }
     
     func getFRCForChats() -> NSFetchedResultsController<Conversation>{
@@ -39,14 +57,16 @@ class CoreDataService: NSObject {
         return fetchedResultsController
     }
     
-    func insertConversation(id: Int, name: String, mobilePhone: Int, avatar: Data?) {
+    func insertConversation(userID: Int, conversationID: Int,  name: String, mobilePhone: Int, balance: Double, avatar: Data?) {
         
+        
+        //возможно стоит это вынести вне метода
         container.performBackgroundTask { (context) in
             
         
-        let user = User.findOrInsertUser(id: id, name: name, mobilePhone: mobilePhone, avatar: avatar, inContext: context)
+        let user = User.findOrInsertUser(id: userID, name: name, mobilePhone: mobilePhone, avatar: avatar, inContext: context)
         
-        _ = Conversation.findOrInsertConversation(id: id, summa: 0.0, users: [user], transactions: [], inContext: context)
+        _ = Conversation.findOrInsertConversation(id: conversationID, summa: balance, users: [user], transactions: [], inContext: context)
             
             context.saveThrows()
             self.dataBase.saveContext()
@@ -63,6 +83,26 @@ class CoreDataService: NSObject {
 //                }
 //            }
 //        }
+    }
+    
+    func insertTransaction(id: Int, money: Double, text: String, date: Date, isCash: Bool, conversation: Conversation?, group: GroupConversation?, reciver: User?, sender: User?) {
+        
+        container.performBackgroundTask { (context) in
+            
+            if let user = reciver{
+                Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, conversation: conversation, group: group, reciver: user, sender: self.appUser, inContext: context)
+            } else {
+                Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, conversation: conversation, group: group, reciver: self.appUser, sender: sender!, inContext: context)
+            }
+            
+            context.saveThrows()
+            self.dataBase.saveContext()
+        }
+        
+    }
+    
+    func findUserBy(id: String) -> User? {
+       return User.findUser(id: Int(id)!, inContext: container.viewContext)
     }
     
 }

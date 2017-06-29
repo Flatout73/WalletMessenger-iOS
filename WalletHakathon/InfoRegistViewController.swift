@@ -66,5 +66,10 @@ class InfoRegistViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
+    @IBAction func goBack(_ sender: Any) {
+        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+    }
+    
 
 }
