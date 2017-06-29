@@ -62,7 +62,8 @@ class ContactsTableViewController: UITableViewController {
     }
     
     func close(){
-        self.dismiss(animated: true, completion: nil)
+        _ = navigationController?.popToRootViewController(animated: false)
+        navigationController?.viewControllers.first?.dismiss(animated: true, completion: nil)
     }
 
     // MARK: - Table view data source

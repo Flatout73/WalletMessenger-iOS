@@ -12,6 +12,7 @@
 		5572CE931F003ACC00E0FC3E /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572CE921F003ACC00E0FC3E /* JSONParser.swift */; };
 		55B4E44F1F0504D00043A0E5 /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E44E1F0504D00043A0E5 /* ContactsTableViewController.swift */; };
 		55B4E4511F0507680043A0E5 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4501F0507680043A0E5 /* ContactTableViewController.swift */; };
+		55B4E4551F0534180043A0E5 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4541F0534180043A0E5 /* UserTableViewCell.swift */; };
 		711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */; };
 		711BEB211EFEF2E900907B42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB201EFEF2E900907B42 /* ViewController.swift */; };
 		711BEB241EFEF2E900907B42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 711BEB221EFEF2E900907B42 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		5572CE921F003ACC00E0FC3E /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		55B4E44E1F0504D00043A0E5 /* ContactsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
 		55B4E4501F0507680043A0E5 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
+		55B4E4541F0534180043A0E5 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		711BEB1B1EFEF2E900907B42 /* WalletHakathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalletHakathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		711BEB201EFEF2E900907B42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				712F62F41F049142004CC712 /* Contacts.storyboard */,
 				55B4E44E1F0504D00043A0E5 /* ContactsTableViewController.swift */,
 				55B4E4501F0507680043A0E5 /* ContactTableViewController.swift */,
+				55B4E4541F0534180043A0E5 /* UserTableViewCell.swift */,
 			);
 			name = Contacts;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				712DEED21F01A836004D5CE9 /* RegistrViewController.swift in Sources */,
 				55B4E4511F0507680043A0E5 /* ContactTableViewController.swift in Sources */,
 				712DEEDA1F0281BE004D5CE9 /* ConversationExtension.swift in Sources */,
+				55B4E4551F0534180043A0E5 /* UserTableViewCell.swift in Sources */,
 				712DEECE1F002236004D5CE9 /* QiwiLoginViewController.swift in Sources */,
 				55B4E44F1F0504D00043A0E5 /* ContactsTableViewController.swift in Sources */,
 				711BEB271EFEF2E900907B42 /* WalletHakathon.xcdatamodeld in Sources */,
