@@ -8,7 +8,8 @@
 import UIKit
 import SwiftyJSON
 
-let serverAddress = "http://walletmsg.azurewebsites.net/api"
+//let serverAddress = "http://walletmsg.azurewebsites.net/api"
+let serverAddress = "http://localhost:8080"
 
 class ServiceAPI: NSObject {
     

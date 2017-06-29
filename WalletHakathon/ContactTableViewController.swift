@@ -23,9 +23,11 @@ class ContactTableViewController: UITableViewController {
         
         for phone in contact.phoneNumbers {
             phones[phone.value.stringValue] = 0
-            ServiceAPI.getByPhone(phoneNumber: phone.value.stringValue, noncompletedHandler: {[weak self] (str) in
+            let phonestr = phone.value.stringValue.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil)
+            
+            ServiceAPI.getByPhone(phoneNumber:  phonestr, noncompletedHandler: {[weak self] (str) in
                 if let this = self {
-                    this.phones[phone.value.stringValue] = -1
+                    this.phones[phonestr] = -1
                     this.downloaded += 1
                     
                     if(this.downloaded == this.count){
@@ -49,6 +51,8 @@ class ContactTableViewController: UITableViewController {
                 
             })
         }
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
 
@@ -83,8 +87,8 @@ class ContactTableViewController: UITableViewController {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "phoneCell", for: indexPath)
             
-            cell.textLabel?.text = contact.phoneNumbers[indexPath.row - 1].label
-            cell.detailTextLabel?.text = contact.phoneNumbers[indexPath.row - 1].value.stringValue
+            cell.textLabel?.text = contact.phoneNumbers[indexPath.row - 1].value.stringValue
+            
             
             if(phones[contact.phoneNumbers[indexPath.row - 1].value.stringValue] == 1){
                 cell.accessoryType = .disclosureIndicator
@@ -97,7 +101,7 @@ class ContactTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(phones[contact.phoneNumbers[indexPath.row - 1].value.stringValue] == 1){
-            ServiceAPI.createDialog(coreDataService: <#T##CoreDataService#>, phoneNumber: <#T##String#>, noncompletedHandler: <#T##(String) -> Void#>, completionHandler: <#T##() -> Void#>)
+
             
         } else {
             tableView.deselectRow(at: indexPath, animated: true)
