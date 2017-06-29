@@ -121,6 +121,9 @@ class CoreDataService: NSObject {
         
         container.performBackgroundTask { (context) in
             
+            context.automaticallyMergesChangesFromParent = true
+            self.container.viewContext.automaticallyMergesChangesFromParent = true
+            
             if let user = reciver{
                 Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, conversation: Int((conversation?.conversationID)!), group: nil, reciver: Int(user.userID), sender: Int(self.appUser.userID), inContext: context)
             } else {
