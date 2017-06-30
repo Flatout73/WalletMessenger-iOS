@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if(UserDefaults.standard.string(forKey: "token") != nil){
             initialViewController = storyboard.instantiateViewController(withIdentifier: "tabBarController")
-//            initialViewController =  walkthrought.instantiateViewController(withIdentifier: "start")
+            //initialViewController =  walkthrought.instantiateViewController(withIdentifier: "start")
         } else {
             initialViewController = storyboard.instantiateViewController(withIdentifier: "loginController")
         }

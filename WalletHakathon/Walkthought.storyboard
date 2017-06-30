@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,14 +19,14 @@
                         <viewControllerLayoutGuide type="bottom" id="tMR-e7-njc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eml-Eq-YL7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sb0-al-EEc">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y77-ng-ZMk">
-                                <rect key="frame" x="125.5" y="319" width="123" height="30"/>
+                                <rect key="frame" x="98.5" y="269" width="123" height="30"/>
                                 <state key="normal" title="Посмотреть гайд">
                                     <color key="titleColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
                                 </state>
@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Приветствуем, в нашем приложении!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGW-ox-6vo">
-                                <rect key="frame" x="16" y="228" width="343" height="21"/>
+                                <rect key="frame" x="16" y="178" width="288" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -68,7 +68,7 @@
                         <viewControllerLayoutGuide type="bottom" id="lzf-u3-dh9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OHO-UD-ifN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -86,7 +86,7 @@
                         <viewControllerLayoutGuide type="bottom" id="DC9-fw-3c2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LJv-i0-jDH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Раз" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26L-Cu-2KV">
@@ -96,13 +96,52 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="QWl-vj-scc">
+                                <rect key="frame" x="0.0" y="10" width="375" height="647"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GWY-Ge-ABc">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="QyQ-g5-Fap">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q2o-wc-ueQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="IU8-Uk-U6e">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <vibrancyEffect>
+                                                <blurEffect style="light"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oMf-qQ-PID">
+                                <rect key="frame" x="16" y="110" width="288" height="347"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GWY-Ge-ABc" firstAttribute="leading" secondItem="LJv-i0-jDH" secondAttribute="leading" id="5pc-Bd-jZf"/>
+                            <constraint firstItem="oMf-qQ-PID" firstAttribute="trailing" secondItem="LJv-i0-jDH" secondAttribute="trailingMargin" id="7E8-zu-jAg"/>
+                            <constraint firstItem="DC9-fw-3c2" firstAttribute="top" secondItem="oMf-qQ-PID" secondAttribute="bottom" constant="111" id="DiI-FV-rpv"/>
+                            <constraint firstAttribute="trailing" secondItem="GWY-Ge-ABc" secondAttribute="trailing" id="N4R-WO-XFo"/>
+                            <constraint firstItem="oMf-qQ-PID" firstAttribute="top" secondItem="NPV-Ws-s31" secondAttribute="bottom" constant="90" id="R0d-pg-ZqR"/>
+                            <constraint firstItem="GWY-Ge-ABc" firstAttribute="top" secondItem="NPV-Ws-s31" secondAttribute="bottom" id="TKm-tv-L6O"/>
+                            <constraint firstItem="DC9-fw-3c2" firstAttribute="top" secondItem="GWY-Ge-ABc" secondAttribute="bottom" id="bte-1l-gLB"/>
+                            <constraint firstItem="oMf-qQ-PID" firstAttribute="leading" secondItem="LJv-i0-jDH" secondAttribute="leadingMargin" id="hsf-Ao-O6y"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WGk-m7-ZS4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1543" y="100"/>
+            <point key="canvasLocation" x="1541.25" y="99.295774647887328"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hzw-4A-UN6">
@@ -113,23 +152,59 @@
                         <viewControllerLayoutGuide type="bottom" id="c7v-R8-5cn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="f9R-iT-eL2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Два" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sy0-bE-KZY">
-                                <rect key="frame" x="166" y="323" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="2hO-1i-310">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yiX-4u-0Ku">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CWb-kl-Lft">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7fV-uq-eyk">
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="g6h-rr-I4W">
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <vibrancyEffect>
+                                                <blurEffect style="light"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfb-Bj-UR9">
+                                <rect key="frame" x="16" y="110" width="288" height="347"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yiX-4u-0Ku" firstAttribute="top" secondItem="f9R-iT-eL2" secondAttribute="top" id="B5S-gJ-zjJ"/>
+                            <constraint firstAttribute="trailing" secondItem="yiX-4u-0Ku" secondAttribute="trailing" id="CVT-j8-FY7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pfb-Bj-UR9" secondAttribute="trailing" id="ETC-vZ-RON"/>
+                            <constraint firstItem="yiX-4u-0Ku" firstAttribute="leading" secondItem="f9R-iT-eL2" secondAttribute="leading" id="NTp-Uq-AoG"/>
+                            <constraint firstAttribute="trailing" secondItem="2hO-1i-310" secondAttribute="trailing" id="Nfu-Sy-rgZ"/>
+                            <constraint firstItem="2hO-1i-310" firstAttribute="leading" secondItem="f9R-iT-eL2" secondAttribute="leading" id="Nqw-oQ-WUe"/>
+                            <constraint firstItem="c7v-R8-5cn" firstAttribute="top" secondItem="2hO-1i-310" secondAttribute="bottom" id="Prh-lM-ZSD"/>
+                            <constraint firstItem="c7v-R8-5cn" firstAttribute="top" secondItem="yiX-4u-0Ku" secondAttribute="bottom" id="Qh6-qf-prY"/>
+                            <constraint firstItem="c7v-R8-5cn" firstAttribute="top" secondItem="pfb-Bj-UR9" secondAttribute="bottom" constant="111" id="fBR-RP-GXr"/>
+                            <constraint firstItem="2hO-1i-310" firstAttribute="top" secondItem="f9R-iT-eL2" secondAttribute="top" id="fSR-g8-Kan"/>
+                            <constraint firstItem="pfb-Bj-UR9" firstAttribute="leading" secondItem="f9R-iT-eL2" secondAttribute="leadingMargin" id="i97-aB-NpY"/>
+                            <constraint firstItem="pfb-Bj-UR9" firstAttribute="top" secondItem="pdJ-pU-JvJ" secondAttribute="bottom" constant="90" id="u2E-Tb-3Ha"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q7M-im-k8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2340" y="99"/>
+            <point key="canvasLocation" x="2340" y="98.239436619718305"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back" width="384" height="640"/>
+    </resources>
 </document>
