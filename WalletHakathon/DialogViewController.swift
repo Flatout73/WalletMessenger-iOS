@@ -227,23 +227,29 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func sendMoneyOnServer(_ sender: Any) {
         
         
-        conversation = coreDataService.findConversaionBy(id: dialogID)
+        //conversation = coreDataService.findConversaionBy(id: dialogID)
+    
+        //print(coreDataService.appUser.userID)
+        //CoreDataService.sharedInstance.insertTransaction(id: 1234, money: Double(12 + i), text: "", date: Date(), isCash: true, proof: 0, conversation: conversation, group: nil, reciver: coreDataService.appUser, sender: coreDataService.appUser)
         
-        print(coreDataService.appUser.userID)
-        CoreDataService.sharedInstance.insertTransaction(id: 1234, money: Double(12 + i), text: "", date: Date(), isCash: true, proof: 0, conversation: conversation, group: nil, reciver: coreDataService.appUser, sender: coreDataService.appUser)
-        
-        
-        try! fetchedResultsController.performFetch()
-        tableView.reloadData()
-        
-        i+=1
-        
-        tableView.contentInset = UIEdgeInsets.zero
-        tableView.scrollIndicatorInsets = tableView.contentInset
-        
-        moneyField.isHidden = true
-        stepper.isHidden = true
-        goButton.isHidden = true
+        if moneyField.text! != ""{
+            ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: true, text: "", noncompletedHandler: errorHandler) {
+                
+                try! self.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+            }
+            
+            
+            
+            i+=1
+            
+            tableView.contentInset = UIEdgeInsets.zero
+            tableView.scrollIndicatorInsets = tableView.contentInset
+            
+            moneyField.isHidden = true
+            stepper.isHidden = true
+            goButton.isHidden = true
+        }
     }
     
     
