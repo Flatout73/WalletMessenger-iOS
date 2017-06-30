@@ -11,7 +11,6 @@
 		5572CE911F003A7A00E0FC3E /* ServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572CE901F003A7A00E0FC3E /* ServiceAPI.swift */; };
 		5572CE931F003ACC00E0FC3E /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572CE921F003ACC00E0FC3E /* JSONParser.swift */; };
 		55B4E44F1F0504D00043A0E5 /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E44E1F0504D00043A0E5 /* ContactsTableViewController.swift */; };
-		55B4E4511F0507680043A0E5 /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4501F0507680043A0E5 /* ContactTableViewController.swift */; };
 		55B4E4551F0534180043A0E5 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4541F0534180043A0E5 /* UserTableViewCell.swift */; };
 		55B4E45A1F058BA10043A0E5 /* GroupMembersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4591F058BA10043A0E5 /* GroupMembersTableViewController.swift */; };
 		55B4E45D1F058BB90043A0E5 /* GroupCreateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E45C1F058BB90043A0E5 /* GroupCreateTableViewController.swift */; };
@@ -50,7 +49,6 @@
 		5572CE901F003A7A00E0FC3E /* ServiceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceAPI.swift; sourceTree = "<group>"; };
 		5572CE921F003ACC00E0FC3E /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		55B4E44E1F0504D00043A0E5 /* ContactsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
-		55B4E4501F0507680043A0E5 /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		55B4E4541F0534180043A0E5 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		55B4E4591F058BA10043A0E5 /* GroupMembersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMembersTableViewController.swift; sourceTree = "<group>"; };
 		55B4E45C1F058BB90043A0E5 /* GroupCreateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCreateTableViewController.swift; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 			children = (
 				712F62F41F049142004CC712 /* Contacts.storyboard */,
 				55B4E44E1F0504D00043A0E5 /* ContactsTableViewController.swift */,
-				55B4E4501F0507680043A0E5 /* ContactTableViewController.swift */,
 				55B4E4541F0534180043A0E5 /* UserTableViewCell.swift */,
 				55B4E4591F058BA10043A0E5 /* GroupMembersTableViewController.swift */,
 				55B4E45C1F058BB90043A0E5 /* GroupCreateTableViewController.swift */,
@@ -369,7 +366,6 @@
 				5572CE8F1F003A3F00E0FC3E /* RequestSender.swift in Sources */,
 				712DEED21F01A836004D5CE9 /* RegistrViewController.swift in Sources */,
 				55B4E4961F06E2000043A0E5 /* OnboardingViewController.m in Sources */,
-				55B4E4511F0507680043A0E5 /* ContactTableViewController.swift in Sources */,
 				712DEEDA1F0281BE004D5CE9 /* ConversationExtension.swift in Sources */,
 				55B4E4551F0534180043A0E5 /* UserTableViewCell.swift in Sources */,
 				712DEECE1F002236004D5CE9 /* QiwiLoginViewController.swift in Sources */,

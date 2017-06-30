@@ -19,40 +19,6 @@ class GroupMembersTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Далее", style: .done, target: self, action: #selector(self.createGroupVC))
-        
-        // open it
-        let store = CNContactStore()
-        store.requestAccess(for: .contacts) { granted, error in
-            guard granted else {
-                DispatchQueue.main.async {
-                    
-                }
-                return
-            }
-            
-            // get the contacts
-            
-            let request = CNContactFetchRequest(keysToFetch: [CNContactIdentifierKey as NSString, CNContactFormatter.descriptorForRequiredKeys(for: .fullName), CNContactPhoneNumbersKey as CNKeyDescriptor, CNContactGivenNameKey as CNKeyDescriptor, CNContactFamilyNameKey as CNKeyDescriptor, CNContactImageDataKey as CNKeyDescriptor])
-            do {
-                try store.enumerateContacts(with: request) {[weak self] contact, stop in
-                    self?.contacts.append(contact)
-                }
-            } catch {
-                print(error)
-            }
-            
-            // do something with the contacts array (e.g. print the names)
-            
-            let formatter = CNContactFormatter()
-            formatter.style = .fullName
-            for contact in self.contacts {
-                print(formatter.string(from: contact) ?? "???")
-            }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
 
         
     }

@@ -140,11 +140,11 @@ class ContactsTableViewController: UITableViewController, DialogDelegateCaller, 
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? ContactTableViewController, let num = sender as? Int{
-            vc.contact = contacts[num]
-        } else if let vc = segue.destination as? WriteSomeBodyTableViewController{
+        if let vc = segue.destination as? WriteSomeBodyTableViewController{
             vc.dialogDelegate = self.dialogDelegate
             vc.groupDelegate = self.groupDelegate
+        } else if let vc = segue.destination as? GroupMembersTableViewController{
+            vc.contacts = contacts
         }
     }
  
