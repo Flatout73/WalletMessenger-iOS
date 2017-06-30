@@ -132,7 +132,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="ucw-kO-ye6" kind="show" id="Enp-9L-ELn"/>
+                        <segue destination="ucw-kO-ye6" kind="show" identifier="createGroup" id="Enp-9L-ELn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTw-qA-CFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -311,11 +311,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Название " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7iX-np-58L">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Номер телефона" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="7iX-np-58L">
                                                     <rect key="frame" x="105" y="3" width="262" height="37"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjc-Av-g0o">
                                                     <rect key="frame" x="8" y="11" width="89" height="21"/>
@@ -367,6 +367,9 @@
                             <outlet property="delegate" destination="otv-f1-geE" id="qGm-3w-LEW"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="phoneNumberTextField" destination="7iX-np-58L" id="lay-e9-9Ff"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gW7-5N-MR5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

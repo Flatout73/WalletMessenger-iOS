@@ -104,6 +104,10 @@ class ContactsTableViewController: UITableViewController, DialogDelegateCaller, 
             let contact = contacts[indexPath.row - 2]
             cell.textLabel?.text = "\(contact.givenName) \(contact.familyName)"
             
+            if let data = contact.imageData{
+                cell.imageView?.image = UIImage(data: data)
+            }
+            
             return cell
         }
 
@@ -113,7 +117,7 @@ class ContactsTableViewController: UITableViewController, DialogDelegateCaller, 
         if(indexPath.row == 0){
             self.performSegue(withIdentifier: "makeGroup", sender: nil)
         } else if(indexPath.row == 1){
-            self.performSegue(withIdentifier: "writeSmbd", sender: nil)
+            self.performSegue(withIdentifier: "writeSMBD", sender: nil)
         } else {
             self.performSegue(withIdentifier: "showUser", sender: indexPath.row - 2)
         }

@@ -182,7 +182,7 @@ class ServiceAPI: NSObject {
                 
                 ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
                     
-                    guard let conversationID = json["ID"].int else {
+                    guard let conversationID = json["id"].int else {
                         noncompletedHandler("Неверный формат JSON при создании диалога")
                         return
                     }

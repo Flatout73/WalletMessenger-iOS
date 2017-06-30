@@ -18,6 +18,8 @@ class GroupMembersTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Далее", style: .done, target: self, action: #selector(self.createGroupVC))
+        
         // open it
         let store = CNContactStore()
         store.requestAccess(for: .contacts) { granted, error in
@@ -54,6 +56,13 @@ class GroupMembersTableViewController: UITableViewController {
 
         
     }
+    
+    func createGroupVC(){
+        if(phones.count > 1){
+            self.performSegue(withIdentifier: "createGroup", sender: nil)
+        }
+
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -73,6 +82,13 @@ class GroupMembersTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
 
+        let contact = contacts[indexPath.row]
+        cell.textLabel?.text = "\(contact.givenName) \(contact.familyName)"
+        
+        if let data = contact.imageData{
+            cell.imageView?.image = UIImage(data: data)
+        }
+        
         if cellsChecked.contains(indexPath.row) {
             cell.accessoryType = .checkmark
         } else {
