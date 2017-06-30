@@ -327,7 +327,7 @@ class ServiceAPI: NSObject {
     }
     
     //подгружает более старые группы в список групп (подавать меньшее значение в date1)
-    static func getGroupsHist(date1: Long, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+    static func getGroupsHist(date1: Int64, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
         if var dicionary = loadDictionary() {
             dicionary["date"] = String(date1)
             
@@ -426,6 +426,7 @@ class ServiceAPI: NSObject {
                 completionHandler()
             }
         }
+        }
         
         static func sendTransaction(dialogID: Int, money: Double, cash: Bool, text: String?, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
             
@@ -484,7 +485,7 @@ class ServiceAPI: NSObject {
                     
                     ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
                         
-                        guard let dateLong = json["date"].int64 else
+                        guard let dateLong = json["date"].int64,
                         let conversationID = json["id"].int else {
                             noncompletedHandler("РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ JSON РїСЂРё СЃРѕР·РґР°РЅРёРё РґРёР°Р»РѕРіР°")
                             return
