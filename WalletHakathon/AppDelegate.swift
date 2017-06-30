@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let walkthrought = UIStoryboard(name: "Walkthought", bundle: nil)
         
         var initialViewController: UIViewController
         
@@ -29,7 +28,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             initialViewController = storyboard.instantiateViewController(withIdentifier: "tabBarController")
             //initialViewController =  walkthrought.instantiateViewController(withIdentifier: "start")
         } else {
-            initialViewController = storyboard.instantiateViewController(withIdentifier: "loginController")
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            
+            let firstPage = OnboardingContentViewController(title: "", body: "Тут будет какая-то икнока", image: UIImage(named: "qiwi_logo"), buttonText: "Пропустить") { () -> Void in
+                let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
+                self.window?.rootViewController = viewController
+                self.window?.makeKeyAndVisible()
+            }
+            
+            let secondPage = OnboardingContentViewController(title: "", body: "Тут будет какая-то иконка", image: UIImage(named: "qiwi_logo"), buttonText: "Пропустить") { () -> Void in
+                let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
+                self.window?.rootViewController = viewController
+                self.window?.makeKeyAndVisible()
+            }
+            
+            let thirdPage = OnboardingContentViewController(title: "", body: "Тут будет какая-то иконка", image: UIImage(named: "qiwi_logo"), buttonText: "Пропустить") { () -> Void in
+                let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
+                self.window?.rootViewController = viewController
+                self.window?.makeKeyAndVisible()
+            }
+            
+            thirdPage.titleLabel.text = ""
+            thirdPage.topPadding = 100
+            
+            initialViewController = OnboardingViewController(backgroundImage: UIImage(named: "back"), contents: [firstPage, secondPage, thirdPage])
+            
+            if let vc = initialViewController as? OnboardingViewController{
+                vc.shouldMaskBackground = false // defaults to YES
+            }
+
         }
         
         self.window?.rootViewController = initialViewController
