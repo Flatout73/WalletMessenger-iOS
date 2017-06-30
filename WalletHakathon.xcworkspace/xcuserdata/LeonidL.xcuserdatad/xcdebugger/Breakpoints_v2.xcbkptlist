@@ -554,11 +554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/CoreDataService.swift"
-            timestampString = "520547675.285361"
+            timestampString = "520549115.481651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "insertTransaction(id:money:text:date:isCash:proof:conversation:group:userID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -570,11 +570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/CoreDataService.swift"
-            timestampString = "520547675.285361"
+            timestampString = "520549115.481651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "insertTransaction(id:money:text:date:isCash:proof:conversation:group:userID:)"
             landmarkType = "7">
          </BreakpointContent>

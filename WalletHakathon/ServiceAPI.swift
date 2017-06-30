@@ -426,7 +426,6 @@ class ServiceAPI: NSObject {
                     let cashb = (cash > 0)
                     let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
                     
-                    //userID не получено из JSON (его надо взять из создания диалога или получения списка диалогов)
                     let user = coreDataService.findUserBy(id: userID)
                     //let conversation = coreDataService.findConversaionBy(id: dialogID)
 

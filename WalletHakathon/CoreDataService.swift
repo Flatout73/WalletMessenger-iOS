@@ -147,9 +147,13 @@ class CoreDataService: NSObject {
                     return
                 }
                 
-                let appUser = self.getAppUser(in: context)
                 
-                print("ID пользователя приложения", appUser.userID)
+                let userID = UserDefaults.standard.integer(forKey: "appUserId")
+                
+                let user = User.findUser(id: userID, inContext: context)!
+                let appUser = user
+                
+                //print("ID пользователя приложения", appUser.userID)
                 
                 if (appUser.userID == Int32(userID)){
                     _ = Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, proof: proof, conversation: conversation, group: nil, reciver: Int(participant.userID), sender: Int(appUser.userID), inContext: context)
