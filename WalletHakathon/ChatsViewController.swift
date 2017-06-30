@@ -98,7 +98,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var k = 2
     @IBAction func testCreationDialog(_ sender: Any) {
         
-            coreDataService.insertConversation(userID: k, conversationID: k,  name: String(k), mobilePhone: k, balance: Double(k), avatar: nil)
+            coreDataService.insertConversation(userID: k, conversationID: k, date: Date(),  name: String(k), mobilePhone: Int64(k), balance: Double(k), avatar: nil)
             k += 1
             try! fetchedResultsController.performFetch()
             tableView.reloadData()

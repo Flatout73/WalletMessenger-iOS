@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 extension Transaction {
-    private class func insertTransaction(id: Int, money: Double, text: String, date: Date, isCash: Bool, conversation: Int?, group: Int?, reciver: Int, sender: Int, inContext context: NSManagedObjectContext) -> Transaction {
+    private class func insertTransaction(id: Int, money: Double, text: String, date: Date, isCash: Bool, proof: Int, conversation: Int?, group: Int?, reciver: Int, sender: Int, inContext context: NSManagedObjectContext) -> Transaction {
         
         
         let transaction = Transaction(context: context)
@@ -19,6 +19,7 @@ extension Transaction {
         transaction.text = text
         transaction.date = date as NSDate?
         transaction.isCash = isCash
+        transaction.proof = Int16(proof)
         
         guard let rec = User.findUser(id: reciver, inContext: context), let sen = User.findUser(id: sender, inContext: context) else {
             print("Что-то пошло не так при создании транзакции")
@@ -46,13 +47,14 @@ extension Transaction {
         return transaction
     }
     
-    class func findOrInsertTransaction(id: Int, money: Double, text: String, date: Date, isCash: Bool, conversation: Int?, group: Int?, reciver: Int, sender: Int, inContext context: NSManagedObjectContext) -> Transaction  {
+    class func findOrInsertTransaction(id: Int, money: Double, text: String, date: Date, isCash: Bool, proof:Int, conversation: Int?, group: Int?, reciver: Int, sender: Int, inContext context: NSManagedObjectContext) -> Transaction  {
         
         if let transaction = findTransaction(id: id, inContext: context) {
             transaction.money = money
             transaction.text = text
             transaction.date = date as NSDate
             transaction.isCash = isCash
+            transaction.proof = Int16(proof)
             
             guard let rec = User.findUser(id: reciver, inContext: context), let sen = User.findUser(id: sender, inContext: context) else {
                 print("Что-то пошло не так при создании транзакции")
@@ -78,7 +80,7 @@ extension Transaction {
             
             return transaction
         } else {
-            return insertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, conversation: conversation, group: group, reciver: reciver, sender: sender, inContext: context)
+            return insertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, proof: proof, conversation: conversation, group: group, reciver: reciver, sender: sender, inContext: context)
         }
         
     }

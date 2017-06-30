@@ -2,12 +2,14 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Conversation" representedClassName="Conversation" syncable="YES" codeGenerationType="class">
         <attribute name="conversationID" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="summa" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="participant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="convesations" inverseEntity="User" syncable="YES"/>
         <relationship name="transactions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Transaction" inverseName="conversation" inverseEntity="Transaction" syncable="YES"/>
     </entity>
     <entity name="GroupConversation" representedClassName="GroupConversation" syncable="YES" codeGenerationType="class">
         <attribute name="conversationID" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="summa" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="admin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="ownGroupConversations" inverseEntity="User" syncable="YES"/>
@@ -18,6 +20,7 @@
         <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="isCash" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="money" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="proof" optional="YES" attributeType="Integer 16" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="transactionID" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
         <relationship name="conversation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="transactions" inverseEntity="Conversation" syncable="YES"/>
@@ -40,9 +43,9 @@
     <fetchRequest name="TransactionsWithConversationId" entity="Transaction" predicateString="conversation.conversationID == $CONVERSATIONID"/>
     <fetchRequest name="UserWithId" entity="User" predicateString="userID == $USERID"/>
     <elements>
-        <element name="Conversation" positionX="295" positionY="-81" width="128" height="103"/>
-        <element name="GroupConversation" positionX="16" positionY="333" width="128" height="133"/>
-        <element name="Transaction" positionX="223" positionY="144" width="128" height="178"/>
+        <element name="Conversation" positionX="295" positionY="-81" width="128" height="120"/>
+        <element name="GroupConversation" positionX="16" positionY="333" width="128" height="150"/>
+        <element name="Transaction" positionX="223" positionY="144" width="128" height="195"/>
         <element name="User" positionX="-63" positionY="-18" width="128" height="178"/>
     </elements>
 </model>

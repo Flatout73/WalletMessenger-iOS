@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "106"
             endingLineNumber = "106"
-            landmarkName = "insertConversation(userID:conversationID:name:mobilePhone:balance:avatar:)"
+            landmarkName = "insertConversation(userID:conversationID:date:name:mobilePhone:balance:avatar:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -127,7 +127,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "117"
             endingLineNumber = "117"
-            landmarkName = "insertConversation(userID:conversationID:name:mobilePhone:balance:avatar:)"
+            landmarkName = "insertConversation(userID:conversationID:date:name:mobilePhone:balance:avatar:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -175,7 +175,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "118"
             endingLineNumber = "118"
-            landmarkName = "insertConversation(userID:conversationID:name:mobilePhone:balance:avatar:)"
+            landmarkName = "insertConversation(userID:conversationID:date:name:mobilePhone:balance:avatar:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -303,7 +303,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "111"
             endingLineNumber = "111"
-            landmarkName = "insertConversation(userID:conversationID:name:mobilePhone:balance:avatar:)"
+            landmarkName = "insertConversation(userID:conversationID:date:name:mobilePhone:balance:avatar:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/ServiceAPI.swift"
-            timestampString = "520363123.091926"
+            timestampString = "520525734.178946"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "getDefaultClassResult(dictionary:requestString:noncompletedHandler:completedParser:)"
             landmarkType = "7">
             <Locations>
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/ServiceAPI.swift"
-            timestampString = "520363135.231654"
+            timestampString = "520525734.178946"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "getDefaultClassResult(dictionary:requestString:noncompletedHandler:completedParser:)"
             landmarkType = "7">
             <Locations>
@@ -591,7 +591,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "136"
             endingLineNumber = "136"
-            landmarkName = "insertTransaction(id:money:text:date:isCash:conversation:group:reciver:sender:)"
+            landmarkName = "insertTransaction(id:money:text:date:isCash:proof:conversation:group:reciver:sender:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -634,12 +634,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/TransactionExtension.swift"
-            timestampString = "520463291.053003"
+            timestampString = "520525734.178946"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "findOrInsertTransaction(id:money:text:date:isCash:conversation:group:reciver:sender:inContext:)"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "findOrInsertTransaction(id:money:text:date:isCash:proof:conversation:group:reciver:sender:inContext:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

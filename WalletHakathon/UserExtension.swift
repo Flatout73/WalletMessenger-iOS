@@ -10,11 +10,11 @@ import Foundation
 import CoreData
 
 extension User {
-    private class func insertUser(id: Int, name: String, mobilePhone: Int, avatar: Data?, conversations: [Conversation]?, groups: [GroupConversation]?, ownerOf: [GroupConversation]?, inContext context: NSManagedObjectContext) -> User {
+    private class func insertUser(id: Int, name: String, mobilePhone: Int64, avatar: Data?, conversations: [Conversation]?, groups: [GroupConversation]?, ownerOf: [GroupConversation]?, inContext context: NSManagedObjectContext) -> User {
         let user = User(context: context)
         user.userID = Int32(id)
         user.name = name
-        user.mobilePhone = Int64(mobilePhone)
+        user.mobilePhone = mobilePhone
         if let ava = avatar as? NSData {
             user.avatar = ava
         }
@@ -27,11 +27,11 @@ extension User {
         return user
     }
     
-    class func findOrInsertUser(id: Int, name: String, mobilePhone: Int, avatar: Data?, /*conversations: [Conversation], groups: [GroupConversation], ownerOf: [GroupConversation],*/ inContext context: NSManagedObjectContext) -> User  {
+    class func findOrInsertUser(id: Int, name: String, mobilePhone: Int64, avatar: Data?, /*conversations: [Conversation], groups: [GroupConversation], ownerOf: [GroupConversation],*/ inContext context: NSManagedObjectContext) -> User  {
         
         if let user = findUser(id: id, inContext: context) {
             user.name = name
-            user.mobilePhone = Int64(mobilePhone)
+            user.mobilePhone = mobilePhone
             if let ava = avatar as NSData? {
                 user.avatar = ava
             }

@@ -47,7 +47,7 @@ class CoreDataService: NSObject {
         
     }
     
-    func createAppUser(phone:Int, name: String, id: Int, avatar: Data?){
+    func createAppUser(phone:Int64, name: String, id: Int, avatar: Data?){
         
         container.performBackgroundTask { (context) in
             self.appUser = User.findOrInsertUser(id: id, name: name, mobilePhone: phone, avatar: avatar, inContext: context)
@@ -96,7 +96,7 @@ class CoreDataService: NSObject {
         }
     }
     
-    func insertConversation(userID: Int, conversationID: Int,  name: String, mobilePhone: Int, balance: Double, avatar: Data?) {
+    func insertConversation(userID: Int, conversationID: Int, date: Date,  name: String, mobilePhone: Int64, balance: Double, avatar: Data?) {
         
         
         //возможно стоит это вынести вне метода
@@ -105,7 +105,7 @@ class CoreDataService: NSObject {
         
         let user = User.findOrInsertUser(id: userID, name: name, mobilePhone: mobilePhone, avatar: avatar, inContext: context)
         
-        _ = Conversation.findOrInsertConversation(id: conversationID, summa: balance, users: [user], transactions: [], inContext: context)
+            _ = Conversation.findOrInsertConversation(id: conversationID, summa: balance, date: date, users: [user], transactions: [], inContext: context)
             
             context.saveThrows()
             self.dataBase.saveContext()
@@ -124,7 +124,7 @@ class CoreDataService: NSObject {
 //        }
     }
     
-    func insertTransaction(id: Int, money: Double, text: String, date: Date, isCash: Bool, conversation: Conversation?, group: GroupConversation?, reciver: User?, sender: User?) {
+    func insertTransaction(id: Int, money: Double, text: String, date: Date, isCash: Bool, proof: Int, conversation: Conversation?, group: GroupConversation?, reciver: User?, sender: User?) {
         
         container.performBackgroundTask { (context) in
             
@@ -133,9 +133,9 @@ class CoreDataService: NSObject {
 //            
             if let user = reciver{
                 print(user.userID, self.appUser.userID)
-                Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, conversation: Int((conversation?.conversationID)!), group: nil, reciver: Int(user.userID), sender: Int(self.appUser.userID), inContext: context)
+                _ = Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, proof: proof, conversation: Int((conversation?.conversationID)!), group: nil, reciver: Int(user.userID), sender: Int(self.appUser.userID), inContext: context)
             } else {
-                Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, conversation: Int((conversation?.conversationID)!), group: nil, reciver: Int(self.appUser.userID), sender: Int(sender!.userID), inContext: context)
+                _ = Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, proof: proof, conversation: Int((conversation?.conversationID)!), group: nil, reciver: Int(self.appUser.userID), sender: Int(sender!.userID), inContext: context)
             }
             
             context.saveThrows()
@@ -153,6 +153,22 @@ class CoreDataService: NSObject {
                     }
                 }
         
+    }
+    
+    func changeName(name: String) {
+        container.performBackgroundTask { (context) in
+            self.appUser.name = name
+            
+            context.saveThrows()
+        }
+    }
+    
+    func changePhoto(photo: Data) {
+        container.performBackgroundTask { (context) in
+            self.appUser.avatar = photo as NSData
+            
+            context.saveThrows()
+        }
     }
     
     func findUserBy(id: Int) -> User? {

@@ -230,7 +230,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         conversation = coreDataService.findConversaionBy(id: dialogID)
         
         print(coreDataService.appUser.userID)
-        CoreDataService.sharedInstance.insertTransaction(id: 1234, money: Double(12 + i), text: "", date: Date(), isCash: true, conversation: conversation, group: nil, reciver: coreDataService.appUser, sender: coreDataService.appUser)
+        CoreDataService.sharedInstance.insertTransaction(id: 1234, money: Double(12 + i), text: "", date: Date(), isCash: true, proof: 0, conversation: conversation, group: nil, reciver: coreDataService.appUser, sender: coreDataService.appUser)
         
         
         try! fetchedResultsController.performFetch()
