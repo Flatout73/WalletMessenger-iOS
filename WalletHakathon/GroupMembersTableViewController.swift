@@ -63,11 +63,11 @@ class GroupMembersTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return contacts.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -75,6 +75,8 @@ class GroupMembersTableViewController: UITableViewController {
 
         if cellsChecked.contains(indexPath.row) {
             cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
         }
 
         return cell
