@@ -16,10 +16,8 @@
 		55B4E45A1F058BA10043A0E5 /* GroupMembersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4591F058BA10043A0E5 /* GroupMembersTableViewController.swift */; };
 		55B4E45D1F058BB90043A0E5 /* GroupCreateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E45C1F058BB90043A0E5 /* GroupCreateTableViewController.swift */; };
 		55B4E45F1F058BCA0043A0E5 /* WriteSomeBodyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E45E1F058BCA0043A0E5 /* WriteSomeBodyTableViewController.swift */; };
-		55B4E4631F0665790043A0E5 /* BWWalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4611F0665790043A0E5 /* BWWalkthroughPageViewController.swift */; };
-		55B4E4641F0665790043A0E5 /* BWWalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4621F0665790043A0E5 /* BWWalkthroughViewController.swift */; };
-		55B4E4661F0665890043A0E5 /* Walkthought.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55B4E4651F0665890043A0E5 /* Walkthought.storyboard */; };
-		55B4E4681F0666260043A0E5 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4671F0666260043A0E5 /* StartViewController.swift */; };
+		55B4E4951F06E2000043A0E5 /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4921F06E2000043A0E5 /* OnboardingContentViewController.m */; };
+		55B4E4961F06E2000043A0E5 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4941F06E2000043A0E5 /* OnboardingViewController.m */; };
 		711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */; };
 		711BEB211EFEF2E900907B42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB201EFEF2E900907B42 /* ViewController.swift */; };
 		711BEB241EFEF2E900907B42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 711BEB221EFEF2E900907B42 /* Main.storyboard */; };
@@ -57,10 +55,11 @@
 		55B4E4591F058BA10043A0E5 /* GroupMembersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMembersTableViewController.swift; sourceTree = "<group>"; };
 		55B4E45C1F058BB90043A0E5 /* GroupCreateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCreateTableViewController.swift; sourceTree = "<group>"; };
 		55B4E45E1F058BCA0043A0E5 /* WriteSomeBodyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteSomeBodyTableViewController.swift; sourceTree = "<group>"; };
-		55B4E4611F0665790043A0E5 /* BWWalkthroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWWalkthroughPageViewController.swift; sourceTree = "<group>"; };
-		55B4E4621F0665790043A0E5 /* BWWalkthroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWWalkthroughViewController.swift; sourceTree = "<group>"; };
-		55B4E4651F0665890043A0E5 /* Walkthought.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Walkthought.storyboard; sourceTree = "<group>"; };
-		55B4E4671F0666260043A0E5 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		55B4E4901F06E2000043A0E5 /* OnboardingContentViewController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingContentViewController_Private.h; sourceTree = "<group>"; };
+		55B4E4911F06E2000043A0E5 /* OnboardingContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingContentViewController.h; sourceTree = "<group>"; };
+		55B4E4921F06E2000043A0E5 /* OnboardingContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingContentViewController.m; sourceTree = "<group>"; };
+		55B4E4931F06E2000043A0E5 /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
+		55B4E4941F06E2000043A0E5 /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		711BEB1B1EFEF2E900907B42 /* WalletHakathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalletHakathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		711BEB201EFEF2E900907B42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -154,15 +153,16 @@
 			name = Main;
 			sourceTree = "<group>";
 		};
-		55B4E4601F0665490043A0E5 /* Walkthrought */ = {
+		55B4E4971F06E2050043A0E5 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				55B4E4611F0665790043A0E5 /* BWWalkthroughPageViewController.swift */,
-				55B4E4621F0665790043A0E5 /* BWWalkthroughViewController.swift */,
-				55B4E4651F0665890043A0E5 /* Walkthought.storyboard */,
-				55B4E4671F0666260043A0E5 /* StartViewController.swift */,
+				55B4E4901F06E2000043A0E5 /* OnboardingContentViewController_Private.h */,
+				55B4E4911F06E2000043A0E5 /* OnboardingContentViewController.h */,
+				55B4E4921F06E2000043A0E5 /* OnboardingContentViewController.m */,
+				55B4E4931F06E2000043A0E5 /* OnboardingViewController.h */,
+				55B4E4941F06E2000043A0E5 /* OnboardingViewController.m */,
 			);
-			name = Walkthrought;
+			name = Library;
 			sourceTree = "<group>";
 		};
 		711BEB121EFEF2E900907B42 = {
@@ -186,14 +186,15 @@
 		711BEB1D1EFEF2E900907B42 /* WalletHakathon */ = {
 			isa = PBXGroup;
 			children = (
-				712DEED71F0279FE004D5CE9 /* Presentation Layer */,
-				5572CE8D1F00390200E0FC3E /* Core Layer */,
-				5572CE8C1F0038F700E0FC3E /* Service Layer */,
 				711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */,
-				712DEEE11F02AE6B004D5CE9 /* WalletHakathon-Bridging-Header.h */,
 				711BEB281EFEF2E900907B42 /* Assets.xcassets */,
-				711BEB2A1EFEF2E900907B42 /* LaunchScreen.storyboard */,
+				5572CE8D1F00390200E0FC3E /* Core Layer */,
 				711BEB2D1EFEF2E900907B42 /* Info.plist */,
+				711BEB2A1EFEF2E900907B42 /* LaunchScreen.storyboard */,
+				55B4E4971F06E2050043A0E5 /* Library */,
+				712DEED71F0279FE004D5CE9 /* Presentation Layer */,
+				5572CE8C1F0038F700E0FC3E /* Service Layer */,
+				712DEEE11F02AE6B004D5CE9 /* WalletHakathon-Bridging-Header.h */,
 				711BEB251EFEF2E900907B42 /* WalletHakathon.xcdatamodeld */,
 			);
 			path = WalletHakathon;
@@ -202,7 +203,6 @@
 		712DEED71F0279FE004D5CE9 /* Presentation Layer */ = {
 			isa = PBXGroup;
 			children = (
-				55B4E4601F0665490043A0E5 /* Walkthrought */,
 				55B4E4531F050CAB0043A0E5 /* Main */,
 				55B4E4521F050C920043A0E5 /* Contacts */,
 			);
@@ -304,7 +304,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				711BEB2C1EFEF2E900907B42 /* LaunchScreen.storyboard in Resources */,
-				55B4E4661F0665890043A0E5 /* Walkthought.storyboard in Resources */,
 				712F62F51F049142004CC712 /* Contacts.storyboard in Resources */,
 				711BEB291EFEF2E900907B42 /* Assets.xcassets in Resources */,
 				711BEB241EFEF2E900907B42 /* Main.storyboard in Resources */,
@@ -366,10 +365,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55B4E4681F0666260043A0E5 /* StartViewController.swift in Sources */,
+				55B4E4951F06E2000043A0E5 /* OnboardingContentViewController.m in Sources */,
 				5572CE8F1F003A3F00E0FC3E /* RequestSender.swift in Sources */,
 				712DEED21F01A836004D5CE9 /* RegistrViewController.swift in Sources */,
-				55B4E4641F0665790043A0E5 /* BWWalkthroughViewController.swift in Sources */,
+				55B4E4961F06E2000043A0E5 /* OnboardingViewController.m in Sources */,
 				55B4E4511F0507680043A0E5 /* ContactTableViewController.swift in Sources */,
 				712DEEDA1F0281BE004D5CE9 /* ConversationExtension.swift in Sources */,
 				55B4E4551F0534180043A0E5 /* UserTableViewCell.swift in Sources */,
@@ -385,7 +384,6 @@
 				55B4E45D1F058BB90043A0E5 /* GroupCreateTableViewController.swift in Sources */,
 				712DEEE91F02D50A004D5CE9 /* DataBase.swift in Sources */,
 				712DEEDE1F028A5F004D5CE9 /* UserExtension.swift in Sources */,
-				55B4E4631F0665790043A0E5 /* BWWalkthroughPageViewController.swift in Sources */,
 				712DEEDC1F028934004D5CE9 /* GroupConversationExtension.swift in Sources */,
 				711BEB341EFEF99C00907B42 /* ChatsViewController.swift in Sources */,
 				712DEEE71F02BCCC004D5CE9 /* CoreDataService.swift in Sources */,
