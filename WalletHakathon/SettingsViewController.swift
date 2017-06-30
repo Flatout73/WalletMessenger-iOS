@@ -8,12 +8,23 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UITableViewController {
+    
+    
+    @IBOutlet weak var imageCell: UIView!
+    @IBOutlet weak var avatar: UIImageView!
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        self.tableView.separatorColor = self.tableView.backgroundColor
+        
+        avatar.layer.masksToBounds = false
+        avatar.layer.cornerRadius = avatar.frame.height/2
+        avatar.clipsToBounds = true
 
-        // Do any additional setup after loading the view.
+        //imageCell.backgroundColor = UIColor.init(patternImage: #imageLiteral(resourceName: "no_photo"))
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,8 +41,12 @@ class SettingsViewController: UIViewController {
         
        
         
+        //self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        //navigationController?.popToRootViewController(animated: true)
+        
+        
+        self.performSegue(withIdentifier: "exit", sender: self)
         self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
-        navigationController?.popToRootViewController(animated: true)
     }
 
     /*
