@@ -19,20 +19,14 @@ class GroupMembersTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Далее", style: .done, target: self, action: #selector(self.createGroupVC))
-
-        
     }
     
     func createGroupVC(){
         if(phones.count > 1){
             self.performSegue(withIdentifier: "createGroup", sender: nil)
+        } else {
+            
         }
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
