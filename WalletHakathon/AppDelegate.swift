@@ -21,11 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let walkthrought = UIStoryboard(name: "Walkthought", bundle: nil)
         
         var initialViewController: UIViewController
         
         if(UserDefaults.standard.string(forKey: "token") != nil){
             initialViewController = storyboard.instantiateViewController(withIdentifier: "tabBarController")
+//            initialViewController =  walkthrought.instantiateViewController(withIdentifier: "start")
         } else {
             initialViewController = storyboard.instantiateViewController(withIdentifier: "loginController")
         }
