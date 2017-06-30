@@ -16,7 +16,7 @@ class ContactsTableViewController: UITableViewController, DialogDelegateCaller, 
     }
 
     func callGroupDelegate(withGroupID: Int) {
-        groupDelegate?.openDialog(withID: withGroupID)
+        groupDelegate?.openGroup(withID: withGroupID)
     }
 
     var dialogDelegate: ContactDialogDelegate?
@@ -153,7 +153,7 @@ protocol ContactDialogDelegate {
 }
 
 protocol ContactGroupDelegate {
-    func openDialog(withID: Int)
+    func openGroup(withID: Int)
 }
 
 protocol DialogDelegateCaller {

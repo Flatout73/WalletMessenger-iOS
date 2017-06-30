@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ContactDialogDelegate, ContactGroupDelegate{
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -74,7 +74,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func refreshBegin(refreshEnd:@escaping (Int) -> ()) {
         DispatchQueue.global(qos: .utility).async { [weak self] in
             if let this = self {
-                ServiceAPI.getConversations(noncompletedHandler: this.errorHandler) {
+                ServiceAPI.getDialogs(noncompletedHandler: this.errorHandler) {
                     DispatchQueue.main.async {
                         refreshEnd(0)
                     }
@@ -181,11 +181,19 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             } else {
                 print("Какой-то неправильный у вас сендер")
             }
+        } else if let vc = segue.destination as? ContactsTableViewController{
+            vc.dialogDelegate = self
+            vc.groupDelegate = self
         }
     }
     
+    func openDialog(withID: Int){
+        self.performSegue(withIdentifier: "showDialog", sender: withID)
+    }
     
-    
+    func openGroup(withID: Int){
+        //self.performSegue(withIdentifier: "showGroup", sender: withID)
+    }
 }
 
 extension ChatsViewController: NSFetchedResultsControllerDelegate {

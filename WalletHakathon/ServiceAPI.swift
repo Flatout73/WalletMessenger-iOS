@@ -243,14 +243,18 @@ class ServiceAPI: NSObject {
                         let balance = subJSON["balance"].double,
                         let name = user["name"].string,
                         let userID = user["userID"].int,
-                        let image = user["image"].string,
                         let phone = user["phone"].string else {
                             noncompletedHandler("Неверный JSON")
                             return
                     }
                     
+                    var avatar:Data?
+                    
+                    if let image = user["image"].string {
+                        avatar = Data(base64Encoded: image)
+                    }
                     let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
-                    let avatar = Data(base64Encoded: image)
+                    
                     
                     if let mobilePhone = Int64(phone) {
                         CoreDataService.sharedInstance.insertConversation(userID: userID, conversationID: conversationID, date: date, name: name, mobilePhone: mobilePhone, balance: balance, avatar: avatar)
