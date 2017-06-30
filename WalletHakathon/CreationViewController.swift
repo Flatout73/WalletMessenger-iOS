@@ -34,7 +34,7 @@ class CreationViewController: UIViewController {
     @IBAction func createDialog(_ sender: Any) {
         
         if let number = numberField.text {
-            ServiceAPI.createDialog(phoneNumber: String(number), noncompletedHandler: errorHandler) {
+            ServiceAPI.createDialog(phoneNumber: String(number), noncompletedHandler: errorHandler) {_ in 
                 
             }
         }

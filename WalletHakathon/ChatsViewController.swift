@@ -181,14 +181,18 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             } else {
                 print("Какой-то неправильный у вас сендер")
             }
-        } else if let vc = segue.destination as? ContactsTableViewController{
-            vc.dialogDelegate = self
-            vc.groupDelegate = self
+        } else if let vc = segue.destination as? UINavigationController{
+            if let v = vc.viewControllers.first as? ContactsTableViewController{
+                v.dialogDelegate = self
+                v.groupDelegate = self
+            }
         }
     }
     
     func openDialog(withID: Int){
-        self.performSegue(withIdentifier: "showDialog", sender: withID)
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "showDialog", sender: withID)
+        }
     }
     
     func openGroup(withID: Int){

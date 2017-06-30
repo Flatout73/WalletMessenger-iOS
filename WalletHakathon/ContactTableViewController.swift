@@ -113,9 +113,9 @@ class ContactTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(phones[contact.phoneNumbers[indexPath.row - 1].value.stringValue] == 1){
-            ServiceAPI.createDialog(phoneNumber: contact.phoneNumbers[indexPath.row - 1].value.stringValue.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil), noncompletedHandler: {(str) in}, completionHandler: {
-                
-            })
+//            ServiceAPI.createDialog(phoneNumber: contact.phoneNumbers[indexPath.row - 1].value.stringValue.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil), noncompletedHandler: {(str) in}, completionHandler: {_ in
+//                
+//            })
         } else {
             tableView.deselectRow(at: indexPath, animated: true)
         }

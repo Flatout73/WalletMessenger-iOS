@@ -142,6 +142,9 @@ class ContactsTableViewController: UITableViewController, DialogDelegateCaller, 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ContactTableViewController, let num = sender as? Int{
             vc.contact = contacts[num]
+        } else if let vc = segue.destination as? WriteSomeBodyTableViewController{
+            vc.dialogDelegate = self.dialogDelegate
+            vc.groupDelegate = self.groupDelegate
         }
     }
  

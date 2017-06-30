@@ -9,8 +9,8 @@
 import UIKit
 import SwiftyJSON
 
-let serverAddress = "http://walletmsg.azurewebsites.net/api"
-//let serverAddress = "http://localhost:8080"
+//let serverAddress = "http://walletmsg.azurewebsites.net/api"
+let serverAddress = "http://localhost:8080"
 
 
 struct UserForSend {
@@ -412,17 +412,18 @@ class ServiceAPI: NSObject {
                 for (index, subJSON): (String, JSON) in transactions {
                     
                     guard
-                        let text = json["text"].string,
-                        let dateLong = json["date"].int64,
-                        let cash = json["cash"].bool,
-                        let proof = json["proof"].int,
-                        let money = json["money"].double,
-                        let userID = json["userID"].int,
-                        let transactionID = json["transactionID"].int else {
+                        let text = subJSON["text"].string,
+                        let dateLong = subJSON["date"].int64,
+                        let cash = subJSON["cash"].int,
+                        let proof = subJSON["proof"].int,
+                        let money = subJSON["money"].double,
+                        let userID = subJSON["userID"].int,
+                        let transactionID = subJSON["transactionID"].int else {
                             noncompletedHandler("Неверный формат JSON")
                             return
                     }
                     
+                    let cashb = (cash > 0)
                     let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
                     
                     //userID не получено из JSON (его надо взять из создания диалога или получения списка диалогов)
@@ -430,9 +431,9 @@ class ServiceAPI: NSObject {
                     let conversation = coreDataService.findConversaionBy(id: dialogID)
                     //хз что тут
                     if (user?.userID == Int32(userID)) {
-                        coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cash, proof: proof, conversation: conversation, group: nil, reciver: conversation?.participant, sender: coreDataService.appUser)
+                        coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cashb, proof: proof, conversation: conversation, group: nil, reciver: conversation?.participant, sender: coreDataService.appUser)
                     } else {
-                        coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cash, proof: proof, conversation: conversation, group: nil, reciver: conversation?.participant, sender: coreDataService.appUser)
+                        coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cashb, proof: proof, conversation: conversation, group: nil, reciver: conversation?.participant, sender: coreDataService.appUser)
                     }
                 }
                 completionHandler()
@@ -471,7 +472,7 @@ class ServiceAPI: NSObject {
     
     
     ///метод скорее всего больше не нужен
-        static func createDialog(phoneNumber: String, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+        static func createDialog(phoneNumber: String, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping(Int) -> Void) {
             
             let coreDataService = CoreDataService.sharedInstance
             
@@ -507,7 +508,7 @@ class ServiceAPI: NSObject {
                         let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
                         coreDataService.insertConversation(userID: userID, conversationID: conversationID, date: date, name: name, mobilePhone: phone, balance: 0.0, avatar: avatar)
                         
-                        completionHandler()
+                        completionHandler(conversationID)
                     }
                     
                 }
