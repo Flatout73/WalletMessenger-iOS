@@ -50,7 +50,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         coreDataService = CoreDataService.sharedInstance
         fetchedResultsController = coreDataService.getFRCForChats()
-    
+        
         fetchedResultsController.delegate = self
         try! fetchedResultsController.performFetch()
     
@@ -171,7 +171,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? CreationViewController {
-            vc.coreDataService = coreDataService
+            //vc.coreDataService = coreDataService
         } else if let vc = segue.destination as? DialogViewController{
             //Тут должно быть установка значения ID диалога на dialogID
             if let cell = sender as? ChatTableViewCell {
