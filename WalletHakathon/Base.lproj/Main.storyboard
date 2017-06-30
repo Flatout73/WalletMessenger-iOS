@@ -568,7 +568,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ivp-P7-TvJ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="549"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="toMe" id="1MN-rn-vzA" customClass="MessageTableViewCell" customModule="WalletHakathon" customModuleProvider="target">
@@ -682,27 +682,59 @@
                                     <action selector="sendMoney:" destination="hbU-V6-Vmt" eventType="touchUpInside" id="IDK-hw-Ozf"/>
                                 </connections>
                             </button>
+                            <stepper hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xHf-mv-Mzi">
+                                <rect key="frame" x="219" y="584" width="94" height="29"/>
+                                <connections>
+                                    <action selector="stepperChanged:" destination="hbU-V6-Vmt" eventType="valueChanged" id="xfz-Tz-kaS"/>
+                                </connections>
+                            </stepper>
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="1000" enabled="NO" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Сумма" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VE9-Rs-WP0">
+                                <rect key="frame" x="24" y="583" width="187" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="tjc-b6-Dem"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jZC-WM-dkr">
+                                <rect key="frame" x="329" y="583" width="30" height="30"/>
+                                <state key="normal" title="Go!"/>
+                                <connections>
+                                    <action selector="sendMoneyOnServer:" destination="hbU-V6-Vmt" eventType="touchUpInside" id="FdR-k9-l3I"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6Bc-8b-vAk" firstAttribute="right" secondItem="gxj-lN-iW8" secondAttribute="right" multiplier="4:5" id="4nf-Ud-asL"/>
+                            <constraint firstItem="xHf-mv-Mzi" firstAttribute="leading" secondItem="VE9-Rs-WP0" secondAttribute="trailing" constant="8" id="7TK-4f-I2N"/>
                             <constraint firstItem="ivp-P7-TvJ" firstAttribute="top" secondItem="i8j-uw-nkC" secondAttribute="bottom" id="8Ov-dQ-T9i"/>
                             <constraint firstAttribute="bottomMargin" secondItem="T42-eA-RP1" secondAttribute="bottom" constant="8" id="98n-VV-ttH"/>
                             <constraint firstAttribute="trailing" secondItem="ivp-P7-TvJ" secondAttribute="trailing" id="9jU-vF-OPK"/>
+                            <constraint firstItem="T42-eA-RP1" firstAttribute="top" secondItem="VE9-Rs-WP0" secondAttribute="bottom" constant="16" id="AsG-Hy-49Z"/>
                             <constraint firstItem="ivp-P7-TvJ" firstAttribute="leading" secondItem="gxj-lN-iW8" secondAttribute="leading" id="ML6-Wt-fAc"/>
-                            <constraint firstItem="T42-eA-RP1" firstAttribute="top" secondItem="ivp-P7-TvJ" secondAttribute="bottom" constant="8" id="gDQ-ke-iQ5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jZC-WM-dkr" secondAttribute="trailing" id="PmI-vZ-wcf"/>
+                            <constraint firstItem="jZC-WM-dkr" firstAttribute="bottom" secondItem="xHf-mv-Mzi" secondAttribute="bottom" id="Q56-ka-0hc"/>
+                            <constraint firstItem="T42-eA-RP1" firstAttribute="top" secondItem="ivp-P7-TvJ" secondAttribute="bottom" constant="16" id="gDQ-ke-iQ5"/>
                             <constraint firstItem="6Bc-8b-vAk" firstAttribute="bottom" secondItem="T42-eA-RP1" secondAttribute="bottom" id="kSd-Ha-9pU"/>
+                            <constraint firstItem="xHf-mv-Mzi" firstAttribute="bottom" secondItem="VE9-Rs-WP0" secondAttribute="bottom" id="lGB-UL-xRg"/>
                             <constraint firstItem="T42-eA-RP1" firstAttribute="right" secondItem="gxj-lN-iW8" secondAttribute="right" multiplier="2:5" id="mCS-c9-Shb"/>
+                            <constraint firstItem="jZC-WM-dkr" firstAttribute="leading" secondItem="xHf-mv-Mzi" secondAttribute="trailing" constant="16" id="n01-fT-6dc"/>
                             <constraint firstItem="6Bc-8b-vAk" firstAttribute="width" secondItem="T42-eA-RP1" secondAttribute="width" id="nPm-hu-Gni"/>
+                            <constraint firstItem="VE9-Rs-WP0" firstAttribute="leading" secondItem="gxj-lN-iW8" secondAttribute="leadingMargin" constant="8" id="za2-os-u67"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="goButton" destination="jZC-WM-dkr" id="zFM-oJ-eac"/>
+                        <outlet property="moneyField" destination="VE9-Rs-WP0" id="3tZ-oz-QMi"/>
+                        <outlet property="stepper" destination="xHf-mv-Mzi" id="jwB-3Y-ZvA"/>
                         <outlet property="tableView" destination="ivp-P7-TvJ" id="aaB-xf-auL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5T-pr-lIr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1929" y="-251"/>
+            <point key="canvasLocation" x="1928.8" y="-251.42428785607197"/>
         </scene>
     </scenes>
     <resources>

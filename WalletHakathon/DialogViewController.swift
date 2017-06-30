@@ -19,6 +19,16 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     
     var conversation: Conversation!
     var dialogID: Int!
+    
+    
+    var refreshControl: UIRefreshControl!
+    
+    
+    
+    @IBOutlet weak var moneyField: UITextField!
+    @IBOutlet weak var stepper: UIStepper!
+    @IBOutlet weak var goButton: UIButton!
+    
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -42,20 +52,60 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         fetchedResultsController = coreDataService.getFRCForTransactions(dialogID: dialogID)
-        
+
         fetchedResultsController.delegate = self
+        
         do{
             try fetchedResultsController.performFetch()
         } catch{
             print(error.localizedDescription)
         }
         
-        // Do any additional setup after loading the view.
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Идет обновлени...")
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        
+        refreshControl.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+        
+        tableView.addSubview(refreshControl)
     }
+    
+    func refresh(sender: Any) {
+        refreshBegin { (x:Int) -> () in
+            try! self.fetchedResultsController.performFetch()
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
+    }
+    
+    func refreshBegin(refreshEnd:@escaping (Int) -> ()) {
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            if let this = self {
+                
+                ServiceAPI.getDialogInfo(dialogID: this.dialogID, noncompletedHandler: this.errorHandler) {
+                    DispatchQueue.main.async {
+                        refreshEnd(0)
+                    }
+                }
+            }
+        }
+    }
+    
+    func errorHandler(error:String) {
+        self.refreshControl.endRefreshing()
+        ServiceAPI.alert(viewController: self, title: "Ошибка!", desc: error)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -102,32 +152,40 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
 //                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
 //                cell.isReversed = true
 //            }
-//            
+//
 //            cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
 //            cell.sum.text = messeges[indexPath.row] + " руб."
 //            
 //            return cell
 //        }
         
-        let transaction = fetchedResultsController.object(at: indexPath)
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
-        
-        if(!cell.isReversed){
-            cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-            cell.isReversed = true
-        }
-        
-        transaction.managedObjectContext?.performAndWait {
-            cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
-            cell.sum.text = String(transaction.money) + " руб."
+
+        if let section = fetchedResultsController.sections?[0] {
+            
+            let newIndexPath = IndexPath(row: section.numberOfObjects - indexPath.row - 1, section: indexPath.section)
+            let transaction = fetchedResultsController.object(at: newIndexPath)
+            
+            
+            
+            
+            if(!cell.isReversed){
+                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+                cell.isReversed = true
+            }
+            
+            transaction.managedObjectContext?.performAndWait {
+                cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
+                cell.sum.text = String(transaction.money) + " руб."
+            }
         }
         
         return cell
+
         
     }
     
-    
+    var i = 0
     @IBAction func sendMoney(_ sender: Any) {
         
         //messeges.insert("678", at: 0)
@@ -143,9 +201,51 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
 //            }
 //        }
         
-        conversation = coreDataService.findConversaionBy(id: dialogID)
-        CoreDataService.sharedInstance.insertTransaction(id: 1234, money: 12, text: "", date: Date(), isCash: true, conversation: conversation, group: nil, reciver: coreDataService.appUser, sender: coreDataService.appUser)
+        
+        showStepper()
     }
+    
+    func showStepper() {
+        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
+        tableView.scrollIndicatorInsets = tableView.contentInset
+        
+        if(tableView.numberOfRows(inSection: 0) > 0){
+            tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: true)
+        }
+        
+        moneyField.isHidden = false
+        stepper.isHidden = false
+        goButton.isHidden = false
+    }
+    
+    @IBAction func stepperChanged(_ sender: Any) {
+        
+        moneyField.text = Int((sender as! UIStepper).value).description
+    }
+    
+    
+    @IBAction func sendMoneyOnServer(_ sender: Any) {
+        
+        
+        conversation = coreDataService.findConversaionBy(id: dialogID)
+        
+        print(coreDataService.appUser.userID)
+        CoreDataService.sharedInstance.insertTransaction(id: 1234, money: Double(12 + i), text: "", date: Date(), isCash: true, conversation: conversation, group: nil, reciver: coreDataService.appUser, sender: coreDataService.appUser)
+        
+        
+        try! fetchedResultsController.performFetch()
+        tableView.reloadData()
+        
+        i+=1
+        
+        tableView.contentInset = UIEdgeInsets.zero
+        tableView.scrollIndicatorInsets = tableView.contentInset
+        
+        moneyField.isHidden = true
+        stepper.isHidden = true
+        goButton.isHidden = true
+    }
+    
     
 
 }
