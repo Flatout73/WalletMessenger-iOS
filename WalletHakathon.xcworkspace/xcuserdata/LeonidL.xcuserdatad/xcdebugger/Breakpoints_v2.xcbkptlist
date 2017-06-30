@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/CoreDataService.swift"
-            timestampString = "520456499.808623"
+            timestampString = "520463590.164797"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "insertConversation(userID:conversationID:name:mobilePhone:balance:avatar:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/CoreDataService.swift"
-            timestampString = "520456499.808623"
+            timestampString = "520463590.164797"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "getFRCForChats()"
             landmarkType = "7">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/CoreDataService.swift"
-            timestampString = "520456499.808623"
+            timestampString = "520463590.164797"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "insertConversation(userID:conversationID:name:mobilePhone:balance:avatar:)"
             landmarkType = "7">
             <Locations>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/CoreDataService.swift"
-            timestampString = "520456499.808623"
+            timestampString = "520463590.164797"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "insertConversation(userID:conversationID:name:mobilePhone:balance:avatar:)"
             landmarkType = "7">
             <Locations>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/CoreDataService.swift"
-            timestampString = "520456499.808623"
+            timestampString = "520463590.164797"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "insertConversation(userID:conversationID:name:mobilePhone:balance:avatar:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -506,11 +506,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/CoreDataService.swift"
-            timestampString = "520456967.05753"
+            timestampString = "520463590.164797"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "createAppUser(phone:name:id:avatar:)"
             landmarkType = "7">
             <Locations>
@@ -522,11 +522,11 @@
                   moduleName = "WalletHakathon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/LeonidL/Documents/Xcode%20Projects/WalletHakathon/WalletHakathon/CoreDataService.swift"
-                  timestampString = "520457188.519097"
+                  timestampString = "520463702.420494"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "46"
-                  endingLineNumber = "46"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
                   offsetFromSymbolStart = "51">
                </Location>
                <Location
@@ -537,11 +537,11 @@
                   moduleName = "WalletHakathon"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/LeonidL/Documents/Xcode%20Projects/WalletHakathon/WalletHakathon/CoreDataService.swift"
-                  timestampString = "520457188.521409"
+                  timestampString = "520463702.423889"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
                   offsetFromSymbolStart = "51">
                </Location>
             </Locations>
@@ -566,32 +566,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/DialogViewController.swift"
-            timestampString = "520458299.752094"
+            timestampString = "520474668.034091"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
-            landmarkName = "sendMoney(_:)"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
+            landmarkName = "controllerWillChangeContent(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WalletHakathon/DialogViewController.swift"
-            timestampString = "520460278.688702"
+            filePath = "WalletHakathon/CoreDataService.swift"
+            timestampString = "520463909.160957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
-            landmarkName = "controllerWillChangeContent(_:)"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "insertTransaction(id:money:text:date:isCash:conversation:group:reciver:sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WalletHakathon.CoreDataService.(insertTransaction (id : Swift.Int, money : Swift.Double, text : Swift.String, date : Foundation.Date, isCash : Swift.Bool, conversation : Swift.Optional&lt;WalletHakathon.Conversation&gt;, group : Swift.Optional&lt;WalletHakathon.GroupConversation&gt;, reciver : Swift.Optional&lt;WalletHakathon.User&gt;, sender : Swift.Optional&lt;WalletHakathon.User&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "WalletHakathon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/LeonidL/Documents/Xcode%20Projects/WalletHakathon/WalletHakathon/CoreDataService.swift"
+                  timestampString = "520463761.386901"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "135"
+                  endingLineNumber = "135"
+                  offsetFromSymbolStart = "231">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WalletHakathon.CoreDataService.(insertTransaction (id : Swift.Int, money : Swift.Double, text : Swift.String, date : Foundation.Date, isCash : Swift.Bool, conversation : Swift.Optional&lt;WalletHakathon.Conversation&gt;, group : Swift.Optional&lt;WalletHakathon.GroupConversation&gt;, reciver : Swift.Optional&lt;WalletHakathon.User&gt;, sender : Swift.Optional&lt;WalletHakathon.User&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "WalletHakathon"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/LeonidL/Documents/Xcode%20Projects/WalletHakathon/WalletHakathon/CoreDataService.swift"
+                  timestampString = "520463761.389164"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "135"
+                  endingLineNumber = "135"
+                  offsetFromSymbolStart = "1647">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WalletHakathon/TransactionExtension.swift"
+            timestampString = "520463291.053003"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "findOrInsertTransaction(id:money:text:date:isCash:conversation:group:reciver:sender:inContext:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

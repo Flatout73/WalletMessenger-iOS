@@ -20,6 +20,8 @@ class CoreDataService: NSObject {
     
     var appUser: User!
     
+    var backgroundContext: NSManagedObjectContext!
+    
     public static let sharedInstance = CoreDataService()
     
     private override init() {
@@ -39,6 +41,10 @@ class CoreDataService: NSObject {
             print(error.localizedDescription)
         }
         
+        container.performBackgroundTask { (context) in
+            self.backgroundContext = context
+        }
+        
     }
     
     func createAppUser(phone:Int, name: String, id: Int, avatar: Data?){
@@ -48,6 +54,7 @@ class CoreDataService: NSObject {
             
             context.saveThrows()
             self.dataBase.saveContext()
+            
         }
     }
     
@@ -77,7 +84,7 @@ class CoreDataService: NSObject {
         fetchRequst.sortDescriptors = [sortDescriptor]
         fetchRequst.fetchBatchSize = 20
         
-        return NSFetchedResultsController<Transaction>(fetchRequest: fetchRequst, managedObjectContext: container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        return NSFetchedResultsController<Transaction>(fetchRequest: fetchRequst, managedObjectContext: backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
     }
     
     //надо протестить
@@ -121,10 +128,11 @@ class CoreDataService: NSObject {
         
         container.performBackgroundTask { (context) in
             
-            context.automaticallyMergesChangesFromParent = true
-            self.container.viewContext.automaticallyMergesChangesFromParent = true
-            
+//            context.automaticallyMergesChangesFromParent = true
+//            self.container.viewContext.automaticallyMergesChangesFromParent = true
+//            
             if let user = reciver{
+                print(user.userID, self.appUser.userID)
                 Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, conversation: Int((conversation?.conversationID)!), group: nil, reciver: Int(user.userID), sender: Int(self.appUser.userID), inContext: context)
             } else {
                 Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, conversation: Int((conversation?.conversationID)!), group: nil, reciver: Int(self.appUser.userID), sender: Int(sender!.userID), inContext: context)
@@ -156,4 +164,3 @@ class CoreDataService: NSObject {
     }
     
 }
-
