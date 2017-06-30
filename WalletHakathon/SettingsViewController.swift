@@ -33,20 +33,30 @@ class SettingsViewController: UITableViewController {
     }
     
     
-    @IBAction func exit(_ sender: Any) {
+    func exit() {
         
         for key in UserDefaults.standard.dictionaryRepresentation().keys {
             UserDefaults.standard.removeObject(forKey: key)
         }
         
        
+        //navigationController?.popToRootViewController(animated: true)
+        //self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        
+        
+        
+        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        self.performSegue(withIdentifier: "exit", sender: self)
+    
         
         //self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
-        //navigationController?.popToRootViewController(animated: true)
-        
-        
-        self.performSegue(withIdentifier: "exit", sender: self)
-        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(indexPath == IndexPath(row: 1, section: 2))
+        {
+            exit()
+        }
     }
 
     /*

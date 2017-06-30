@@ -463,7 +463,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
             endingLineNumber = "38"
-            landmarkName = "exit(_:)"
+            landmarkName = "exit()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -479,7 +479,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
             endingLineNumber = "44"
-            landmarkName = "exit(_:)"
+            landmarkName = "exit()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -495,7 +495,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
             endingLineNumber = "39"
-            landmarkName = "exit(_:)"
+            landmarkName = "exit()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -14,10 +14,16 @@ class QiwiLoginViewController: UIViewController {
     
     @IBOutlet weak var codeField: UITextField!
     
+    
+    @IBOutlet weak var getCodeButton: UIButton!
+    @IBOutlet weak var connectButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        connectButton.layer.cornerRadius = connectButton.frame.height/2
+        
+        getCodeButton.layer.cornerRadius = connectButton.frame.height/2
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,17 +57,27 @@ class QiwiLoginViewController: UIViewController {
                 let json = try? JSONSerialization.jsonObject(with: data, options: [])
                 
                 if let dict = json as? [String: String] {
-                    if let c = dict["code"] {
-                        DispatchQueue.main.async { [weak self] in
-                            if let this = self{
-                                this.code = c
+                    
+                    if let error = dict["error"], let mess = dict["user_message"] {
+                        ServiceAPI.alert(viewController: self, title: "Ошибка!", desc: mess)
+                    } else {
+                        if let c = dict["code"] {
+                            DispatchQueue.main.async { [weak self] in
+                                if let this = self{
+                                    this.code = c
+                                }
                             }
+                        } else {
+                            ServiceAPI.alert(viewController: self, title: "Ошибка!", desc: "Неверный ответ от сервера")
                         }
-                        
                     }
                 }
             }
             task.resume()
+            
+            codeField.isHidden = false
+            connectButton.isHidden = false
+            
         }
     }
     
@@ -101,6 +117,8 @@ class QiwiLoginViewController: UIViewController {
                             }
                         }
                         
+                    } else {
+                        ServiceAPI.alert(viewController: self, title: "Ошибка!", desc: "Неверный код.")
                     }
                 }
             }

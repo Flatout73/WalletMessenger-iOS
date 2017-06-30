@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/QiwiLoginViewController.swift"
-            timestampString = "520104559.325912"
+            timestampString = "520518616.060199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "getCode(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/QiwiLoginViewController.swift"
-            timestampString = "520104559.325912"
+            timestampString = "520518616.060199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "getCode(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/QiwiLoginViewController.swift"
-            timestampString = "520104612.795647"
+            timestampString = "520518837.051445"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "enterinQiwi(_:)"
             landmarkType = "7">
          </BreakpointContent>
