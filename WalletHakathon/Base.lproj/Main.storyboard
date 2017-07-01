@@ -97,7 +97,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JOB-uh-1Nm">
-                                <rect key="frame" x="0.0" y="142" width="375" height="476"/>
+                                <rect key="frame" x="0.0" y="141" width="375" height="477"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="N4E-ZG-Pby">
                                     <rect key="frame" x="0.0" y="88" width="375" height="44"/>
@@ -160,13 +160,13 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ваш баланс:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xol-qu-RVr">
-                                <rect key="frame" x="138" y="80" width="99.5" height="21"/>
+                                <rect key="frame" x="138" y="80" width="99.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0,00 руб." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WiM-1c-XCh">
-                                <rect key="frame" x="151.5" y="105" width="71.5" height="21"/>
+                                <rect key="frame" x="151.5" y="104.5" width="71.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -179,6 +179,9 @@
                                     <action selector="testCreationDialog:" destination="See-Zs-9NM" eventType="touchUpInside" id="4kP-mU-yba"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jeN-3m-abR">
+                                <rect key="frame" x="177" y="369" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -190,17 +193,19 @@
                             <constraint firstItem="WiM-1c-XCh" firstAttribute="top" secondItem="xol-qu-RVr" secondAttribute="bottom" constant="4" id="lAm-JH-bPx"/>
                             <constraint firstAttribute="trailing" secondItem="JOB-uh-1Nm" secondAttribute="trailing" id="myU-5B-hac"/>
                             <constraint firstItem="xol-qu-RVr" firstAttribute="centerX" secondItem="QuQ-Wf-btK" secondAttribute="centerX" id="tE4-K0-2YP"/>
+                            <constraint firstItem="jeN-3m-abR" firstAttribute="centerX" secondItem="JOB-uh-1Nm" secondAttribute="centerX" id="vNR-y6-pC5"/>
+                            <constraint firstItem="jeN-3m-abR" firstAttribute="centerY" secondItem="JOB-uh-1Nm" secondAttribute="centerY" id="wi8-hF-x8h"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Диалоги" id="407-m8-XLv">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="fMf-MX-Pqx">
                             <connections>
-                                <action selector="createConversation:" destination="See-Zs-9NM" id="VmB-8O-Z05"/>
                                 <segue destination="ljx-kM-JN1" kind="presentation" id="qml-BB-g9R"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="jeN-3m-abR" id="6IL-D3-Ka8"/>
                         <outlet property="tableView" destination="JOB-uh-1Nm" id="7Am-Eo-Sml"/>
                     </connections>
                 </viewController>

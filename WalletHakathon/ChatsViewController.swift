@@ -20,6 +20,11 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var refreshControl: UIRefreshControl!
     
+    var loadMoreStatus = false
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         if(dialogID != -1){
             self.performSegue(withIdentifier: "", sender: dialogID)
@@ -47,6 +52,8 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        activityIndicator.hidesWhenStopped = true
 
         coreDataService = CoreDataService.sharedInstance
         fetchedResultsController = coreDataService.getFRCForChats()
@@ -79,6 +86,56 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         refreshEnd(0)
                     }
                 }
+            }
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        let deltaOffset = maximumOffset - currentOffset
+        
+        if deltaOffset <= 0 && currentOffset > 0 {
+            loadMore()
+        }
+    }
+    
+    func loadMore() {
+        if (!loadMoreStatus) {
+            self.loadMoreStatus = true
+            self.activityIndicator.startAnimating()
+            self.tableView.tableFooterView?.isHidden = false
+            loadMoreBegin(
+                          loadMoreEnd: {(x:Int) -> () in
+                            
+                            try! self.fetchedResultsController.performFetch()
+                            self.tableView.reloadData()
+                            self.loadMoreStatus = false
+                            self.activityIndicator.stopAnimating()
+                            self.tableView.tableFooterView?.isHidden = true
+            })
+        }
+    }
+    
+    func loadMoreBegin(loadMoreEnd:@escaping (Int) -> ()) {
+        DispatchQueue.global(qos: .utility).async {
+            print("loadmore")
+            
+            if(!self.fetchedResultsController.sections!.isEmpty) {
+                if let sectionInfo = self.fetchedResultsController.sections?[0]{
+                    if let conv = self.fetchedResultsController.object(at: IndexPath(row: sectionInfo.numberOfObjects - 1, section: 0)) as? Conversation{
+                        guard let date = conv.date as Date? else {
+                            print("Нет даты")
+                            return
+                        }
+                        ServiceAPI.getDialogsHist(date1: Int64(date.timeIntervalSince1970), noncompletedHandler: self.errorHandler){
+                            DispatchQueue.main.async  {
+                                loadMoreEnd(0)
+                            }
+                        }
+                    }
+                }
+                
             }
         }
     }
@@ -165,25 +222,16 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    @IBAction func createConversation(_ sender: Any) {
-        
-//            coreDataService.insertConversation(id: k)
-//            k += 1
-//            try! fetchedResultsController.performFetch()
-//        tableView.reloadData()
-        
-        
-    }
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? DialogViewController{
             if let cell = sender as? ChatTableViewCell {
                 vc.dialogID = cell.dialogID
                 vc.title = cell.name.text
                 vc.phone = Int64(cell.mobilePhone.text!)
-            } else if let id = sender as? Int {
-                vc.dialogID = id
+            } else if let info = sender as? DialogInfo {
+                vc.dialogID = info.dialogID
+                vc.title = info.user?.name
+                vc.phone = info.user?.mobilePhone
             } else {
                 print("Какой-то неправильный у вас сендер")
             }
@@ -197,7 +245,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func openDialog(withDialogInfo: DialogInfo){
         DispatchQueue.main.async {
-            self.performSegue(withIdentifier: "showDialog", sender: withDialogInfo.dialogID)
+            self.performSegue(withIdentifier: "showDialog", sender: withDialogInfo)
         }
     }
     
@@ -205,6 +253,16 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //self.performSegue(withIdentifier: "showGroup", sender: withID)
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 extension ChatsViewController: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

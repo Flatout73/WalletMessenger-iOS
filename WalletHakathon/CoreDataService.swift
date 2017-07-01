@@ -80,7 +80,7 @@ class CoreDataService: NSObject {
         var fetchedResultsController: NSFetchedResultsController<Conversation>
         
         let fetchRequest: NSFetchRequest<Conversation> = Conversation.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "conversationID", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         //let sortDescriptor2 = NSSortDescriptor(key: "summa", ascending: true)
         
         fetchRequest.sortDescriptors = [sortDescriptor]

@@ -318,6 +318,7 @@ class ServiceAPI: NSObject {
             ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
                 let dialogs = json["dialogs"]
                 
+                let count = dialogs.count
                 for (index, subJSON): (String, JSON) in dialogs {
                     print(subJSON)
                     
@@ -329,14 +330,19 @@ class ServiceAPI: NSObject {
                         let balance = subJSON["balance"].double,
                         let name = user["name"].string,
                         let userID = user["userID"].int,
-                        let image = user["image"].string,
                         let phone = user["phone"].string else {
                             noncompletedHandler("Неверный JSON")
                             return
                     }
                     
-                    let avatar = Data(base64Encoded: image)
+                    var avatar: Data?
+                    
+                    if let image = user["image"].string{
+                        avatar = Data(base64Encoded: image)
+                    }
                     let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                
+                    
                     if let mobilePhone = Int64(phone) {
                         CoreDataService.sharedInstance.insertConversation(userID: userID, conversationID: conversationID, date: date, name: name, mobilePhone: mobilePhone, balance: balance, avatar: avatar) {
                             completionHandler()
@@ -345,7 +351,9 @@ class ServiceAPI: NSObject {
                         noncompletedHandler("Неверный формат мобильного телефона")
                     }
                 }
-                completionHandler()
+                if(count == 0){
+                    completionHandler()
+                }
             }
         }
     }
@@ -432,6 +440,7 @@ class ServiceAPI: NSObject {
                 let transactions = json["transactions"]
                 
                 let count = transactions.count
+                
                 coreDataService.clearK()
                 for (index, subJSON): (String, JSON) in transactions {
                     
@@ -453,24 +462,26 @@ class ServiceAPI: NSObject {
                     
                     let user = coreDataService.findUserBy(id: userID)
                     //let conversation = coreDataService.findConversaionBy(id: dialogID)
-
+                    
                     
                     //coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cashb, proof: proof, conversation: dialogID, group: nil, userID: userID, count: count) {
-                        //completionHandler()
+                    //completionHandler()
                     //}
-                
+                    
                     coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cashb, proof: proof, conversation: dialogID, group: nil, userID: userID, count: count){
                         completionHandler()
                     }
                     
                     coreDataService.incrementK()
-
+                    
                 }
-                //completionHandler()
+                if(count == 0){
+                    completionHandler()
+                }
             }
         }
-        }
-        
+    }
+    
         static func sendTransaction(dialogID: Int, money: Double, cash: Bool, text: String?, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
             
             if var dicionary = loadDictionary() {
