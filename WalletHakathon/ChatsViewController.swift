@@ -24,13 +24,6 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if(dialogID != -1){
-            self.performSegue(withIdentifier: "", sender: dialogID)
-        }
-    }
-    
     var fetchedResultsController: NSFetchedResultsController<Conversation>!// {
 //        didSet {
 //            do {

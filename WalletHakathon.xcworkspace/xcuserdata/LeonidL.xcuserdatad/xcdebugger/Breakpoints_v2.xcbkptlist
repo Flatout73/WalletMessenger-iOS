@@ -14,7 +14,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "223"
-            endingLineNumber = "223">
+            endingLineNumber = "223"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -43,54 +45,10 @@
             timestampString = "520622762.443545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WalletHakathon.ChatsViewController.fetchedResultsController.didset : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.NSFetchedResultsController&lt;WalletHakathon.Conversation&gt;&gt;"
-                  moduleName = "WalletHakathon"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/LeonidL/Documents/Xcode%20Projects/WalletHakathon/WalletHakathon/ChatsViewController.swift"
-                  timestampString = "520277825.033287"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "19">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WalletHakathon.ChatsViewController.fetchedResultsController.didset : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.NSFetchedResultsController&lt;WalletHakathon.Conversation&gt;&gt;"
-                  moduleName = "WalletHakathon"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/LeonidL/Documents/Xcode%20Projects/WalletHakathon/WalletHakathon/ChatsViewController.swift"
-                  timestampString = "520277825.036133"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "74">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WalletHakathon/ChatsViewController.swift"
-            timestampString = "520622762.443545"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
-            endingLineNumber = "50">
+            endingLineNumber = "50"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -216,7 +174,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "182"
-            endingLineNumber = "182">
+            endingLineNumber = "182"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -230,7 +190,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "152"
-            endingLineNumber = "152">
+            endingLineNumber = "152"
+            landmarkName = "errorHandler(error:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -244,7 +206,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "245"
-            endingLineNumber = "245">
+            endingLineNumber = "245"
+            landmarkName = "ChatsViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -258,7 +222,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
-            endingLineNumber = "47">
+            endingLineNumber = "47"
+            landmarkName = "ChatsViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -272,7 +238,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"
-            endingLineNumber = "49">
+            endingLineNumber = "49"
+            landmarkName = "ChatsViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -494,7 +462,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "159"
-            endingLineNumber = "159">
+            endingLineNumber = "159"
+            landmarkName = "testCreationDialog(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
