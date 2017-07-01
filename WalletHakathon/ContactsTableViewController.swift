@@ -19,7 +19,7 @@ class ContactsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.close))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.dism))
         
         let status = CNContactStore.authorizationStatus(for: .contacts)
         if status == .denied || status == .restricted {
@@ -65,11 +65,14 @@ class ContactsTableViewController: UITableViewController {
     func close(dialogInfo: DialogInfo){
         DispatchQueue.main.async {[weak self] in
             _ = self?.navigationController?.popToRootViewController(animated: false)
-            self?.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+            self?.dismiss(animated: true, completion: nil)
             self?.dialogDelegate?.openDialog(withDialogInfo: dialogInfo )
         }
     }
 
+    func dism(){
+        self.dismiss(animated: true, completion: nil)
+    }
     
     // MARK: - Table view data source
 
@@ -95,13 +98,13 @@ class ContactsTableViewController: UITableViewController {
             
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactTableViewCell
 
             let contact = contacts[indexPath.row - 2]
-            cell.textLabel?.text = "\(contact.givenName) \(contact.familyName)"
+            cell.nameLabel.text = "\(contact.givenName) \(contact.familyName)"
             
             if let data = contact.imageData{
-                cell.imageView?.image = UIImage(data: data)
+                cell.userImageView.image = UIImage(data: data)
             }
             
             return cell
@@ -123,14 +126,21 @@ class ContactsTableViewController: UITableViewController {
             for phone in contact.phoneNumbers {
                 let phoneAction = UIAlertAction(title: StringService.getClearPhone(byString: phone.value.stringValue) , style: .default, handler: {(action) in
                     
-                    ServiceAPI.getByPhone(phoneNumber: StringService.getClearPhone(byString: action.title!) , noncompletedHandler: {str in ServiceAPI.alert(viewController: self, desc: str)}, completionHandler: { us in
+                    let phoneStr = StringService.getClearPhone(byString: action.title!)
+                    
+                    if let phone = CoreDataService.sharedInstance.mobilePhone, Int64(phoneStr) !=  phone{
+                        
+                    ServiceAPI.getByPhone(phoneNumber: phoneStr, noncompletedHandler: {str in ServiceAPI.alert(viewController: self, desc: str)}, completionHandler: { us in
                         ServiceAPI.createDialogWithUser(user: us, noncompletedHandler: {str in ServiceAPI.alert(viewController: self, desc: str)}, completionHandler: { dialogID in
-                            var dialogInfo = DialogInfo()
+                            let dialogInfo = DialogInfo()
                             dialogInfo.dialogID = dialogID
                             dialogInfo.user = us
                             self.close(dialogInfo: dialogInfo)
                         })
-                    })
+                     })
+                    } else {
+                        ServiceAPI.alert(viewController: self, desc: "Нельзя выбрать свой номер телефона")
+                    }
                 })
                 alert.addAction(phoneAction)
             }
@@ -163,6 +173,7 @@ class ContactsTableViewController: UITableViewController {
         if let vc = segue.destination as? WriteSomeBodyTableViewController{
             vc.dialogDelegate = self.dialogDelegate
             vc.groupDelegate = self.groupDelegate
+            vc.root = self
         } else if let vc = segue.destination as? GroupMembersTableViewController{
             vc.contacts = contacts
         }

@@ -40,17 +40,18 @@ class GroupMembersTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactTableViewCell
+        
         let contact = contacts[indexPath.row]
-        cell.textLabel?.text = "\(contact.givenName) \(contact.familyName)"
+        cell.nameLabel.text = "\(contact.givenName) \(contact.familyName)"
         
         if let data = contact.imageData{
-            cell.imageView?.image = UIImage(data: data)
+            cell.userImageView.image = UIImage(data: data)
         }
         
         if cellsChecked.contains(indexPath.row) {
             cell.accessoryType = .checkmark
+            cell.detailTextLabel?.text = phones[cellsChecked.index(of: indexPath.row)!]
         } else {
             cell.accessoryType = .none
         }
@@ -64,18 +65,27 @@ class GroupMembersTableViewController: UITableViewController {
 
             self.tableView.reloadData()
         } else {
-            cellsChecked.append(indexPath.row)
-            
             let alert = UIAlertController(title: "", message: "Выберите нужный номер телефона", preferredStyle: .actionSheet)
-            let contact = contacts[indexPath.row - 2]
+            let contact = contacts[indexPath.row]
             
             
             for phone in contact.phoneNumbers {
                 let phoneAction = UIAlertAction(title: StringService.getClearPhone(byString: phone.value.stringValue) , style: .default)
-                {
+                {[weak self]
                     (action) in
-                    
-                
+                    if let this = self {
+                        if this.phones.contains(action.title!) {
+                            this.phones.remove(at: this.phones.index(of: action.title!)! )
+                            this.cellsChecked.remove(at: this.cellsChecked.index(of: indexPath.row)!)
+                            
+                        } else {
+                            this.phones.append(action.title!)
+                            this.cellsChecked.append(indexPath.row)
+                        }
+                        DispatchQueue.main.async {
+                            this.tableView.reloadData()
+                        }
+                    }
                 }
                 alert.addAction(phoneAction)
             }

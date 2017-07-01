@@ -20,11 +20,12 @@ class WriteSomeBodyTableViewController: UITableViewController {
     
     var dialogDelegate: ContactDialogDelegate?
     var groupDelegate: ContactGroupDelegate?
+    var root:UIViewController?
     
     func close(withInfo: DialogInfo){
         DispatchQueue.main.async {[weak self] in
             _ = self?.navigationController?.popToRootViewController(animated: false)
-            self?.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+            self?.root?.dismiss(animated: true, completion: nil)
             self?.dialogDelegate?.openDialog(withDialogInfo: withInfo)
         }
     }
@@ -32,14 +33,21 @@ class WriteSomeBodyTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(indexPath.section == 1){
-            ServiceAPI.getByPhone(phoneNumber: StringService.getClearPhone(byString: phoneNumberTextField.text!) , noncompletedHandler: {_ in}, completionHandler: { us in
-                ServiceAPI.createDialogWithUser(user: us, noncompletedHandler: {_ in}, completionHandler: { dialogID in
-                    let dialogInfo = DialogInfo()
-                    dialogInfo.dialogID = dialogID
-                    dialogInfo.user = us
-                    self.close(withInfo: dialogInfo)
+            
+            let phoneStr = StringService.getClearPhone(byString: phoneNumberTextField.text!)
+            
+            if let phone = CoreDataService.sharedInstance.mobilePhone, Int64(phoneStr) !=  phone{
+                ServiceAPI.getByPhone(phoneNumber: phoneStr , noncompletedHandler: {str in ServiceAPI.alert(viewController: self, desc: str)}, completionHandler: { us in
+                    ServiceAPI.createDialogWithUser(user: us, noncompletedHandler: {str in ServiceAPI.alert(viewController: self, desc: str)}, completionHandler: { dialogID in
+                        let dialogInfo = DialogInfo()
+                        dialogInfo.dialogID = dialogID
+                        dialogInfo.user = us
+                        self.close(withInfo: dialogInfo)
+                    })
                 })
-            })
+            } else {
+                ServiceAPI.alert(viewController: self, desc: "Пожалуйста введите другой номер телефона")
+            }
         }
     }
 }
