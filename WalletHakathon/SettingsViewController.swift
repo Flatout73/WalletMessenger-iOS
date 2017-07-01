@@ -16,6 +16,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     
+    @IBOutlet var lastPasswordTextField: UITextField!
     var nameChanged = false
     var passwordChanged = false
     
@@ -28,17 +29,28 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         avatar.layer.cornerRadius = avatar.frame.height/2
         avatar.clipsToBounds = true
 
-        nameTextField.delegate = self
-        passwordTextField.delegate = self
-        
         
         //imageCell.backgroundColor = UIColor.init(patternImage: #imageLiteral(resourceName: "no_photo"))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Готово", style: .done, target: self, action: #selector(self.doneButton))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(self.cancelButton))
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.navigationItem.leftBarButtonItem?.isEnabled = false
+        self.nameTextField.addTarget(self, action: #selector(self.ed), for: .editingChanged)
+        self.passwordTextField.addTarget(self, action: #selector(self.ed2), for: .editingChanged)
     }
     
     func doneButton(){
+        if(nameChanged){
+            ServiceAPI.changeName(name: nameTextField.text!, completedHandler: {
+                //Надо подумать, что тут делать
+            }, noncompletedHandler: {_ in})
+        }
         
+        if(passwordChanged){
+            ServiceAPI.changePsd(last: lastPasswordTextField.text!, new: passwordTextField.text!, completedHandler: {
+            //Надо подумать, что тут делать
+            }, noncompletedHandler: {_ in})
+        }
     }
     
     func cancelButton(){
@@ -48,23 +60,38 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         self.passwordTextField.text = ""
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func ed(){
+        nameChanged = true
+            if let text = nameTextField.text,
+                text != "",
+                text.characters.count > 5{
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                self.navigationItem.leftBarButtonItem?.isEnabled = true
+            } else {
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
+                nameChanged = false
+            }
         
-        if let text = textField.text,
+        
+    }
+    
+    func ed2(){
+                    passwordChanged = true
+        if let text = passwordTextField.text,
             text != "",
             text.characters.count > 5{
             self.navigationItem.rightBarButtonItem?.isEnabled = true
             self.navigationItem.leftBarButtonItem?.isEnabled = true
         } else {
             self.navigationItem.rightBarButtonItem?.isEnabled = false
+            passwordChanged = false
         }
         
-        if(textField == self.nameTextField){
-            nameChanged = true
-        } else {
-            passwordChanged = true
-        }
+
     }
+    
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
