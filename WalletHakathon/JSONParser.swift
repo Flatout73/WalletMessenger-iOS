@@ -14,6 +14,7 @@ class JSONParser: NSObject {
     static func checkJSONWithDefaultClass(data: Data?, error: Error?, nonCompleteHandler: @escaping(String) -> Void, parseHandler: @escaping(JSON) -> ()) {
         do {
             if (error == nil) {
+                print(String(data: data!, encoding: .utf8))
                 let jsonObject = try JSONSerialization.jsonObject(with: data!, options: [])
                 
                 let json = JSON(jsonObject)

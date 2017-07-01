@@ -250,7 +250,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         //CoreDataService.sharedInstance.insertTransaction(id: 1234, money: Double(12 + i), text: "", date: Date(), isCash: true, proof: 0, conversation: conversation, group: nil, reciver: coreDataService.appUser, sender: coreDataService.appUser)
         
         if moneyField.text! != ""{
-            ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: isCash, text: "", noncompletedHandler: errorHandler) {
+            ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: isCash, text: "hey", noncompletedHandler: errorHandler) {
                 
                 DispatchQueue.main.async {
                     try! self.fetchedResultsController.performFetch()

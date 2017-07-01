@@ -460,8 +460,8 @@ class ServiceAPI: NSObject {
             if var dicionary = loadDictionary() {
                 dicionary["dialogID"] = String(dialogID)
                 dicionary["money"] = String(money)
-                dicionary["cash"] = cash ? "1":"0"
-                dicionary["text"] = text ?? ""
+                dicionary["cash"] = cash ? "1" : "0"
+                dicionary["text"] = text ?? " "
                 
                 let request = serverAddress + "/dialog/sendtr"
                 
@@ -968,7 +968,7 @@ class ServiceAPI: NSObject {
     }
     
     
-    public static func sendMoneyQiwi(phone: String, summa: Double, transactionID: Int = Int(round(Date().timeIntervalSince1970)), noncomplitedHandler: @escaping (String) -> Void,  complitionHandler: @escaping () -> Void) {
+    public static func sendMoneyQiwi(phoneToSend: Int64, summa: Double, transactionID: Int = Int(round(Date().timeIntervalSince1970)), noncomplitedHandler: @escaping (String) -> Void,  complitionHandler: @escaping () -> Void) {
         var request = URLRequest(url: URL(string: "https://sinap.qiwi.com/api/terms/99/payments")!)
         request.httpMethod = "POST"
         
@@ -978,20 +978,26 @@ class ServiceAPI: NSObject {
         request.setValue("HTTPie/0.3.0", forHTTPHeaderField: "User-Agent")
         
         let token = UserDefaults.standard.string(forKey: "access_token_qiwi")
-        let phone = String(CoreDataService.sharedInstance.mobilePhone)
-        let str = "\(phone):\(token)"
-        let utf8str = str.data(using: String.Encoding.utf8)
+        if let tok = token{
         
-        let base64 = utf8str?.base64EncodedString()
+            let phone = String(CoreDataService.sharedInstance.mobilePhone)
+            let str = "\(phone):\(tok)"
+            let utf8str = str.data(using: String.Encoding.utf8)
         
-        request.setValue("Token \(base64)", forHTTPHeaderField: "Authorization")
+            let base64 = utf8str?.base64EncodedString()
+        
+            request.setValue("Token \(base64!)", forHTTPHeaderField: "Authorization")
+        } else {
+            noncomplitedHandler("Нет токена Qiwi")
+            return
+        }
         
         let json = [
         "fields" : [
-            "account" : phone,
+            "account" : String(phoneToSend),
             "prvId" : "99"
         ],
-        "id" : transactionID,
+        "id" : String(transactionID),
         "paymentMethod" : [
             "type":"Account",
             "accountId":"643"
@@ -1026,7 +1032,7 @@ class ServiceAPI: NSObject {
             
             let json = try? JSONSerialization.jsonObject(with: data, options: [])
             
-            
+            print(json)
             //нужно посмотреть че приходит в json
             if let dict = json as? [String: String] {
                 if let token = dict["access_token"] {
