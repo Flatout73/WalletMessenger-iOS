@@ -22,6 +22,12 @@ class WriteSomeBodyTableViewController: UITableViewController {
     var groupDelegate: ContactGroupDelegate?
     var root:UIViewController?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationItem.title = "Создать диалог"
+    }
+    
     func close(withInfo: DialogInfo){
         DispatchQueue.main.async {[weak self] in
             _ = self?.navigationController?.popToRootViewController(animated: false)

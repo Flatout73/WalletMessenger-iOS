@@ -19,6 +19,8 @@ class GroupMembersTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Далее", style: .done, target: self, action: #selector(self.createGroupVC))
+        self.navigationItem.title = "Новая беседа"
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
     func createGroupVC(){
@@ -83,6 +85,11 @@ class GroupMembersTableViewController: UITableViewController {
                             this.cellsChecked.append(indexPath.row)
                         }
                         DispatchQueue.main.async {
+                            if(this.phones.count == 0){
+                                this.navigationItem.rightBarButtonItem?.isEnabled = false
+                            } else {
+                                this.navigationItem.rightBarButtonItem?.isEnabled = true
+                            }
                             this.tableView.reloadData()
                         }
                     }
