@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "Только финансы, ничего личного лишнего")
-            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(23, 8))
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(23, 8))
             
             let thirdPage = OnboardingContentViewController(title: "", body: "", image: #imageLiteral(resourceName: "3rdpage"), buttonText: "Начать") { () -> Void in
                 let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
