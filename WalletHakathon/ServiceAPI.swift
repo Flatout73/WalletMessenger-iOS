@@ -943,7 +943,7 @@ class ServiceAPI: NSObject {
     }
     
     //удалить беседу
-    static func groupDelGroup(groupID: Int, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+    static func groupDelGroup(groupID: Int, noncompletedHandler: @escaping (String) -> Void, completionHandler: @escaping () -> Void) {
         if var dicionary = loadDictionary() {
             dicionary["groupID"] = String(groupID)
             
@@ -967,4 +967,78 @@ class ServiceAPI: NSObject {
         }
     }
     
+    
+    public static func sendMoneyQiwi(phone: String, summa: Double, transactionID: Int = Int(round(Date().timeIntervalSince1970)), noncomplitedHandler: @escaping (String) -> Void,  complitionHandler: @escaping () -> Void) {
+        var request = URLRequest(url: URL(string: "https://sinap.qiwi.com/api/terms/99/payments")!)
+        request.httpMethod = "POST"
+        
+        request.setValue("application/vnd.qiwi.v2+json", forHTTPHeaderField: "Accept")
+        request.setValue("gzip, deflate, compress", forHTTPHeaderField: "Accept-Encoding")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("HTTPie/0.3.0", forHTTPHeaderField: "User-Agent")
+        
+        let token = UserDefaults.standard.string(forKey: "access_token_qiwi")
+        let phone = String(CoreDataService.sharedInstance.mobilePhone)
+        let str = "\(phone):\(token)"
+        let utf8str = str.data(using: String.Encoding.utf8)
+        
+        let base64 = utf8str?.base64EncodedString()
+        
+        request.setValue("Token \(base64)", forHTTPHeaderField: "Authorization")
+        
+        let json = [
+        "fields" : [
+            "account" : phone,
+            "prvId" : "99"
+        ],
+        "id" : transactionID,
+        "paymentMethod" : [
+            "type":"Account",
+            "accountId":"643"
+        ],
+        "sum" : [
+            "amount" : Double(summa),
+            "currency" : "643"
+        ]
+    ] as [String : Any]
+        
+        if let JSONData = try? JSONSerialization.data(withJSONObject: json, options: []) {
+            let postString = String(data: JSONData, encoding: .utf8)
+            print("JSON string = \(postString!)")
+            request.httpBody = postString!.data(using: .utf8)
+        }
+        
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print("error=\(error)")
+                noncomplitedHandler(error!.localizedDescription)
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(response)")
+            }
+            
+            let responseString = String(data: data, encoding: .utf8)
+            print("responseString = \(responseString)")
+            
+            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+            
+            
+            //нужно посмотреть че приходит в json
+            if let dict = json as? [String: String] {
+                if let token = dict["access_token"] {
+                    complitionHandler()
+                    
+                } else {
+                    noncomplitedHandler("Не удалось спарсить JSON")
+                }
+            }
+        }
+        task.resume()
+
+    }
+
 }

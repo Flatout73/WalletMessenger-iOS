@@ -17,12 +17,9 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     
     var coreDataService = CoreDataService.sharedInstance
     
-    var conversation: Conversation!
     var dialogID: Int!
     
-    
     var refreshControl: UIRefreshControl!
-    
     
     
     @IBOutlet weak var moneyField: UITextField!
@@ -63,7 +60,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "Идет обновлени...")
+        refreshControl.attributedTitle = NSAttributedString(string: "Идет обновление...")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
         refreshControl.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
@@ -159,33 +156,46 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
 //            return cell
 //        }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
 
-        if let section = fetchedResultsController.sections?[0] {
-            
+        var cell: MessageTableViewCell
+        guard let section = fetchedResultsController.sections?[0] else {
+            print("Нет такой секции")
+            let c = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
+            c.sum.text = "error"
+            return c
+        }
+        
             let newIndexPath = IndexPath(row: section.numberOfObjects - indexPath.row - 1, section: indexPath.section)
             let transaction = fetchedResultsController.object(at: newIndexPath)
             
+            if(transaction.sender!.userID == Int32(self.coreDataService.appUserID)) {
+                cell = tableView.dequeueReusableCell(withIdentifier: "fromMe", for: indexPath) as! MessageTableViewCell
+            } else{
+                cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
+            }
             
-            
+            transaction.managedObjectContext?.performAndWait {
+                if(transaction.isCash){
+                    cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
+                } else{
+                    cell.qiwiorNal.image = #imageLiteral(resourceName: "icon_money")
+                }
+                cell.sum.text = String(transaction.money) + " руб."
+            }
             
             if(!cell.isReversed){
                 cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
                 cell.isReversed = true
             }
-            
-            transaction.managedObjectContext?.performAndWait {
-                cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
-                cell.sum.text = String(transaction.money) + " руб."
-            }
-        }
+        
         
         return cell
 
         
     }
     
-    var i = 0
+    var isCash = true
     @IBAction func sendMoney(_ sender: Any) {
         
         //messeges.insert("678", at: 0)
@@ -202,8 +212,15 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
 //        }
         
         
+        isCash = true
         showStepper()
     }
+    
+    @IBAction func sendQiwi(_ sender: Any) {
+        isCash = false
+        showStepper()
+    }
+    
     
     func showStepper() {
         tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
@@ -233,15 +250,15 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         //CoreDataService.sharedInstance.insertTransaction(id: 1234, money: Double(12 + i), text: "", date: Date(), isCash: true, proof: 0, conversation: conversation, group: nil, reciver: coreDataService.appUser, sender: coreDataService.appUser)
         
         if moneyField.text! != ""{
-            ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: true, text: "", noncompletedHandler: errorHandler) {
+            ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: isCash, text: "", noncompletedHandler: errorHandler) {
                 
-                try! self.fetchedResultsController.performFetch()
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    try! self.fetchedResultsController.performFetch()
+                    self.tableView.reloadData()
+                }
+                
             }
             
-            
-            
-            i+=1
             
             tableView.contentInset = UIEdgeInsets.zero
             tableView.scrollIndicatorInsets = tableView.contentInset

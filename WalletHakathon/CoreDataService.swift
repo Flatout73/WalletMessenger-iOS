@@ -21,6 +21,7 @@ class CoreDataService: NSObject {
     //var appUser: User!
 
     var appUserID: Int!
+    var mobilePhone: Int64!
     
     //var backgroundContext: NSManagedObjectContext!
     
@@ -31,6 +32,9 @@ class CoreDataService: NSObject {
         container = dataBase.persistentContainer
         
         appUserID = UserDefaults.standard.integer(forKey: "appUserId")
+        if let phone = UserDefaults.standard.object(forKey: "mobilePhone") as? Int64{
+            mobilePhone = phone
+        }
         
         //container.viewContext.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
         
@@ -61,6 +65,9 @@ class CoreDataService: NSObject {
     func createAppUser(phone:Int64, name: String, id: Int, avatar: Data?){
         
         appUserID = id
+        mobilePhone = phone
+        UserDefaults.standard.set(phone, forKey: "mobilePhone")
+        
         container.performBackgroundTask { (context) in
             _ = User.findOrInsertUser(id: id, name: name, mobilePhone: phone, avatar: avatar, inContext: context)
             

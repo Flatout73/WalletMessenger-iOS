@@ -807,6 +807,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Bc-8b-vAk">
                                 <rect key="frame" x="227" y="629" width="73" height="30"/>
                                 <state key="normal" title="Qiwi"/>
+                                <connections>
+                                    <action selector="sendQiwi:" destination="hbU-V6-Vmt" eventType="touchUpInside" id="Eyf-y9-Kzd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T42-eA-RP1">
                                 <rect key="frame" x="77" y="629" width="73" height="30"/>

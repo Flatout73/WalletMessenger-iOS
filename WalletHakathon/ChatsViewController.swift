@@ -169,12 +169,10 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? CreationViewController {
-            //vc.coreDataService = coreDataService
-        } else if let vc = segue.destination as? DialogViewController{
-            //Тут должно быть установка значения ID диалога на dialogID
+        if let vc = segue.destination as? DialogViewController{
             if let cell = sender as? ChatTableViewCell {
                 vc.dialogID = cell.dialogID
+                vc.title = cell.name.text
             } else if let id = sender as? Int {
                 vc.dialogID = id
             } else {
