@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
-            let firstPage = OnboardingContentViewController(title: "", body: "Тут будет какая-то икнока", image: UIImage(named: "qiwi_logo"), buttonText: "Пропустить") { () -> Void in
+            let firstPage = OnboardingContentViewController(title: "", body: "Тут будет какая-то икнока", image: #imageLiteral(resourceName: "qiwi_logo"), buttonText: "Пропустить") { () -> Void in
                 let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
@@ -42,11 +42,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.makeKeyAndVisible()
             }
             
-            let thirdPage = OnboardingContentViewController(title: "", body: "Тут будет какая-то иконка", image: UIImage(named: "qiwi_logo"), buttonText: "Пропустить") { () -> Void in
+            let thirdPage = OnboardingContentViewController(title: "", body: "Тут будет какая-то иконка", image: #imageLiteral(resourceName: "3rdpage"), buttonText: "Начать") { () -> Void in
                 let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
             }
+            
+            
+            
             
             thirdPage.titleLabel.text = ""
             thirdPage.topPadding = 100
@@ -54,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             initialViewController = OnboardingViewController(backgroundImage: UIImage(named: "back"), contents: [firstPage, secondPage, thirdPage])
             
             if let vc = initialViewController as? OnboardingViewController{
-                vc.shouldMaskBackground = false // defaults to YES
+                vc.shouldMaskBackground = false 
             }
 
         }

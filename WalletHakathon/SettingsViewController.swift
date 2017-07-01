@@ -8,12 +8,17 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController {
+class SettingsViewController: UITableViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var imageCell: UIView!
     @IBOutlet weak var avatar: UIImageView!
-
+    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var passwordTextField: UITextField!
+    
+    var nameChanged = false
+    var passwordChanged = false
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -23,8 +28,29 @@ class SettingsViewController: UITableViewController {
         avatar.layer.cornerRadius = avatar.frame.height/2
         avatar.clipsToBounds = true
 
+        nameTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        
         //imageCell.backgroundColor = UIColor.init(patternImage: #imageLiteral(resourceName: "no_photo"))
     
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        if let text = textField.text,
+            text != "",
+            text.characters.count > 5{
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+        
+        if(textField == self.nameTextField){
+            nameChanged = true
+        } else {
+            passwordChanged = true
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,8 +70,6 @@ class SettingsViewController: UITableViewController {
         //self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
         
         
-        
-        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
         self.performSegue(withIdentifier: "exit", sender: self)
     
         
