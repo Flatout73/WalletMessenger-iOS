@@ -461,7 +461,7 @@ class ServiceAPI: NSObject {
                 dicionary["dialogID"] = String(dialogID)
                 dicionary["money"] = String(money)
                 dicionary["cash"] = cash ? "1" : "0"
-                dicionary["text"] = text ?? " "
+                dicionary["text"] = text ?? ""
                 
                 let request = serverAddress + "/dialog/sendtr"
                 

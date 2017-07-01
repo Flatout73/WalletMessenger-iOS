@@ -18,6 +18,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     var coreDataService = CoreDataService.sharedInstance
     
     var dialogID: Int!
+    var phone: Int64!
     
     var refreshControl: UIRefreshControl!
     
@@ -177,9 +178,9 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             
             transaction.managedObjectContext?.performAndWait {
                 if(transaction.isCash){
-                    cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
-                } else{
                     cell.qiwiorNal.image = #imageLiteral(resourceName: "icon_money")
+                } else{
+                    cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
                 }
                 cell.sum.text = String(transaction.money) + " руб."
             }
@@ -249,7 +250,14 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         //print(coreDataService.appUser.userID)
         //CoreDataService.sharedInstance.insertTransaction(id: 1234, money: Double(12 + i), text: "", date: Date(), isCash: true, proof: 0, conversation: conversation, group: nil, reciver: coreDataService.appUser, sender: coreDataService.appUser)
         
+        
+        
+        
         if moneyField.text! != ""{
+            
+            
+            //ServiceAPI.sendMoneyQiwi(phoneToSend: phone, summa: Double(moneyField.text!)!, transactionID: <#T##Int#>, noncomplitedHandler: <#T##(String) -> Void#>, complitionHandler: <#T##() -> Void#>)
+            
             ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: isCash, text: "hey", noncompletedHandler: errorHandler) {
                 
                 DispatchQueue.main.async {
