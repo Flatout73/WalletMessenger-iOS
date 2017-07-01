@@ -869,6 +869,9 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="XB7-C8-hCM">
+                                <rect key="frame" x="177.5" y="328.5" width="20" height="20"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Bc-8b-vAk">
                                 <rect key="frame" x="227" y="629" width="73" height="30"/>
                                 <state key="normal" title="Qiwi"/>
@@ -910,6 +913,7 @@
                         <constraints>
                             <constraint firstItem="6Bc-8b-vAk" firstAttribute="right" secondItem="gxj-lN-iW8" secondAttribute="right" multiplier="4:5" id="4nf-Ud-asL"/>
                             <constraint firstItem="xHf-mv-Mzi" firstAttribute="leading" secondItem="VE9-Rs-WP0" secondAttribute="trailing" constant="8" id="7TK-4f-I2N"/>
+                            <constraint firstItem="XB7-C8-hCM" firstAttribute="centerY" secondItem="ivp-P7-TvJ" secondAttribute="centerY" id="7nU-iG-7Pc"/>
                             <constraint firstItem="ivp-P7-TvJ" firstAttribute="top" secondItem="i8j-uw-nkC" secondAttribute="bottom" id="8Ov-dQ-T9i"/>
                             <constraint firstAttribute="bottomMargin" secondItem="T42-eA-RP1" secondAttribute="bottom" constant="8" id="98n-VV-ttH"/>
                             <constraint firstAttribute="trailing" secondItem="ivp-P7-TvJ" secondAttribute="trailing" id="9jU-vF-OPK"/>
@@ -923,10 +927,12 @@
                             <constraint firstItem="T42-eA-RP1" firstAttribute="right" secondItem="gxj-lN-iW8" secondAttribute="right" multiplier="2:5" id="mCS-c9-Shb"/>
                             <constraint firstItem="jZC-WM-dkr" firstAttribute="leading" secondItem="xHf-mv-Mzi" secondAttribute="trailing" constant="16" id="n01-fT-6dc"/>
                             <constraint firstItem="6Bc-8b-vAk" firstAttribute="width" secondItem="T42-eA-RP1" secondAttribute="width" id="nPm-hu-Gni"/>
+                            <constraint firstItem="XB7-C8-hCM" firstAttribute="centerX" secondItem="ivp-P7-TvJ" secondAttribute="centerX" id="onQ-Se-4Ce"/>
                             <constraint firstItem="VE9-Rs-WP0" firstAttribute="leading" secondItem="gxj-lN-iW8" secondAttribute="leadingMargin" constant="8" id="za2-os-u67"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="XB7-C8-hCM" id="YFM-Vc-L6w"/>
                         <outlet property="goButton" destination="jZC-WM-dkr" id="zFM-oJ-eac"/>
                         <outlet property="moneyField" destination="VE9-Rs-WP0" id="3tZ-oz-QMi"/>
                         <outlet property="stepper" destination="xHf-mv-Mzi" id="jwB-3Y-ZvA"/>

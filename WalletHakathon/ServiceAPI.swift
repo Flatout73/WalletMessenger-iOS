@@ -641,7 +641,9 @@ class ServiceAPI: NSObject {
                     coreDataService.incrementK()
                 }
                 
-                //completionHandler()
+                if(count == 0){
+                    completionHandler()
+                }
             }
         }
     }

@@ -22,6 +22,9 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     
     var refreshControl: UIRefreshControl!
     
+    var loadMoreStatus = false
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var moneyField: UITextField!
     @IBOutlet weak var stepper: UIStepper!
@@ -46,6 +49,8 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        activityIndicator.hidesWhenStopped = true
         
         messeges = messeges.reversed()
         tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi))
@@ -102,9 +107,63 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        let deltaOffset = maximumOffset - currentOffset
+        
+        if deltaOffset <= 0 && currentOffset > 0 {
+            loadMore()
+        }
+    }
+    
+    func loadMore() {
+        if (!loadMoreStatus) {
+            self.loadMoreStatus = true
+            self.activityIndicator.startAnimating()
+            self.tableView.tableFooterView?.isHidden = false
+            loadMoreBegin(
+                loadMoreEnd: {(x:Int) -> () in
+                    
+                    try! self.fetchedResultsController.performFetch()
+                    self.tableView.reloadData()
+                    self.loadMoreStatus = false
+                    self.activityIndicator.stopAnimating()
+                    self.tableView.tableFooterView?.isHidden = true
+            })
+        }
+    }
+    
+    func loadMoreBegin(loadMoreEnd:@escaping (Int) -> ()) {
+        DispatchQueue.global(qos: .utility).async {
+            print("loadmore")
+            
+            if(!self.fetchedResultsController.sections!.isEmpty) {
+                if let sectionInfo = self.fetchedResultsController.sections?[0]{
+                    if let trans = self.fetchedResultsController.object(at: IndexPath(row: sectionInfo.numberOfObjects - 1, section: 0)) as? Transaction{
+
+                        ServiceAPI.getDialogTransactions(transactionID: Int(trans.transactionID), dialogID: self.dialogID, noncompletedHandler: self.errorHandler){
+                            DispatchQueue.main.async  {
+                                loadMoreEnd(0)
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+    
     func errorHandler(error:String) {
-        self.refreshControl.endRefreshing()
-        ServiceAPI.alert(viewController: self, title: "Ошибка!", desc: error)
+        DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
+            self.activityIndicator.stopAnimating()
+            self.loadMoreStatus = false
+            self.tableView.tableFooterView?.isHidden = true
+            ServiceAPI.alert(viewController: self, title: "Ошибка!", desc: error)
+        }
+        
     }
     
 
@@ -179,8 +238,8 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             return c
         }
         
-            let newIndexPath = IndexPath(row: section.numberOfObjects - indexPath.row - 1, section: indexPath.section)
-            let transaction = fetchedResultsController.object(at: newIndexPath)
+            //let newIndexPath = IndexPath(row: section.numberOfObjects - indexPath.row - 1, section: indexPath.section)
+            let transaction = fetchedResultsController.object(at: indexPath)
             
             if(transaction.sender!.userID == Int32(self.coreDataService.appUserID)) {
                 cell = tableView.dequeueReusableCell(withIdentifier: "fromMe", for: indexPath) as! MessageTableViewCell
@@ -207,8 +266,8 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                     
                 } else{
                     cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
-                    //cell.hideButtons()
-                    //cell.indicator.backgroundColor = UIColor.clear
+                    cell.hideButtons()
+                    cell.indicator.backgroundColor = UIColor.clear
                 }
                 cell.sum.text = String(transaction.money) + " руб."
                 
