@@ -136,12 +136,15 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func errorHandler(error: String) {
         
         DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
+            self.loadMoreStatus = false
+            self.activityIndicator.stopAnimating()
+            self.tableView.tableFooterView?.isHidden = true
             let alert = UIAlertController(title: "Ошибка!", message: error, preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             
             self.present(alert, animated: true, completion: nil)
-            self.refreshControl.endRefreshing()
         }
     }
     

@@ -97,7 +97,7 @@ class CoreDataService: NSObject {
         let fetchRequst: NSFetchRequest<Transaction> = container.managedObjectModel.fetchRequestFromTemplate(withName: "TransactionsWithConversationId", substitutionVariables: ["CONVERSATIONID": String(dialogID)]) as! NSFetchRequest<Transaction>
         
         
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         fetchRequst.sortDescriptors = [sortDescriptor]
         fetchRequst.fetchBatchSize = 20
