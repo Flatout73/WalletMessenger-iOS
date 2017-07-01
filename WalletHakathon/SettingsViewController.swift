@@ -33,7 +33,19 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         
         
         //imageCell.backgroundColor = UIColor.init(patternImage: #imageLiteral(resourceName: "no_photo"))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Готово", style: .done, target: self, action: #selector(self.doneButton))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(self.cancelButton))
+    }
     
+    func doneButton(){
+        
+    }
+    
+    func cancelButton(){
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.navigationItem.leftBarButtonItem?.isEnabled = false
+        self.nameTextField.text = ""
+        self.passwordTextField.text = ""
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -42,6 +54,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
             text != "",
             text.characters.count > 5{
             self.navigationItem.rightBarButtonItem?.isEnabled = true
+            self.navigationItem.leftBarButtonItem?.isEnabled = true
         } else {
             self.navigationItem.rightBarButtonItem?.isEnabled = false
         }

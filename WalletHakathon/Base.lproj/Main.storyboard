@@ -170,8 +170,7 @@
                                     <segment title="Группы"/>
                                 </segments>
                                 <connections>
-                                    <action selector="segmentSwitched:" destination="See-Zs-9NM" eventType="valueChanged" id="EYs-0g-yud"/>
-                                    <action selector="switch:" destination="See-Zs-9NM" eventType="valueChanged" id="52x-9C-txt"/>
+                                    <action selector="segmentSwitched:" destination="See-Zs-9NM" eventType="valueChanged" id="nbd-7X-dxa"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>
