@@ -98,8 +98,8 @@ class ServiceAPI: NSObject {
     
     static func changePsd(last: String, new: String, completedHandler: @escaping() -> Void, noncompletedHandler: @escaping(String) -> Void) {
         if var dictionary = ServiceAPI.loadDictionary() {
-            dictionary["last"] = last
-            dictionary["new"] = new
+            dictionary["last"] = ServiceAPI.md5(last)
+            dictionary["new"] = ServiceAPI.md5(new)
             
             let requestStr = serverAddress + "/user/chpsd"
             

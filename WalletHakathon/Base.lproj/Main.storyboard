@@ -460,7 +460,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Аккаунт" id="Q0B-b1-fHL">
+                            <tableViewSection headerTitle="Имя:" id="8Sz-5D-UgN">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1m4-Ew-Bcq">
                                         <rect key="frame" x="0.0" y="219" width="375" height="44"/>
@@ -484,6 +484,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Пароль:" id="Q0B-b1-fHL">
+                                <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cM0-63-b74">
                                         <rect key="frame" x="0.0" y="263" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -491,7 +495,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GDy-AW-zol">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Старый пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GDy-AW-zol">
                                                     <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -503,6 +507,28 @@
                                                 <constraint firstItem="GDy-AW-zol" firstAttribute="leading" secondItem="Usc-pz-dVA" secondAttribute="leading" constant="16" id="Kr8-Xd-8uU"/>
                                                 <constraint firstAttribute="bottom" secondItem="GDy-AW-zol" secondAttribute="bottom" id="Tuy-ZG-fVz"/>
                                                 <constraint firstItem="GDy-AW-zol" firstAttribute="top" secondItem="Usc-pz-dVA" secondAttribute="top" id="bUf-p8-3fR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Tet-lP-MzK">
+                                        <rect key="frame" x="0.0" y="365" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tet-lP-MzK" id="XXi-xf-6Uw">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Новый пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0oF-YD-19S">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0oF-YD-19S" firstAttribute="top" secondItem="XXi-xf-6Uw" secondAttribute="top" id="OMu-3D-mFQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="0oF-YD-19S" secondAttribute="trailing" constant="16" id="drN-Gs-fUh"/>
+                                                <constraint firstItem="0oF-YD-19S" firstAttribute="leading" secondItem="XXi-xf-6Uw" secondAttribute="leading" constant="16" id="oy1-bi-6wu"/>
+                                                <constraint firstAttribute="bottom" secondItem="0oF-YD-19S" secondAttribute="bottom" id="p05-vw-JXA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -559,8 +585,9 @@
                     <connections>
                         <outlet property="avatar" destination="8Ld-yT-gqn" id="6xz-bs-ETN"/>
                         <outlet property="imageCell" destination="HiD-mj-DU5" id="F6D-E8-ACj"/>
+                        <outlet property="lastPasswordTextField" destination="GDy-AW-zol" id="YtZ-Ee-DDV"/>
                         <outlet property="nameTextField" destination="Rd3-A6-4q4" id="RUo-iD-ljl"/>
-                        <outlet property="passwordTextField" destination="GDy-AW-zol" id="nrF-S5-U2g"/>
+                        <outlet property="passwordTextField" destination="0oF-YD-19S" id="T5u-0q-TBx"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="exit" modalTransitionStyle="flipHorizontal" id="mKv-mB-Dbe"/>
                     </connections>
                 </tableViewController>
