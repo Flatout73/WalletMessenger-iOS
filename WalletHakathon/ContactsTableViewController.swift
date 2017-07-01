@@ -27,7 +27,7 @@ class ContactsTableViewController: UITableViewController, DialogDelegateCaller, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.close))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.close))
         
         let status = CNContactStore.authorizationStatus(for: .contacts)
         if status == .denied || status == .restricted {
@@ -70,9 +70,12 @@ class ContactsTableViewController: UITableViewController, DialogDelegateCaller, 
         }
     }
     
-    func close(){
-        _ = navigationController?.popToRootViewController(animated: false)
-        navigationController?.viewControllers.first?.dismiss(animated: true, completion: nil)
+    func close(id: Int){
+        DispatchQueue.main.async {[weak self] in
+            _ = self?.navigationController?.popToRootViewController(animated: false)
+            self?.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+            self?.dialogDelegate?.openDialog(withID: id)
+        }
     }
     
     // MARK: - Table view data source
@@ -119,7 +122,26 @@ class ContactsTableViewController: UITableViewController, DialogDelegateCaller, 
         } else if(indexPath.row == 1){
             self.performSegue(withIdentifier: "writeSMBD", sender: nil)
         } else {
-            self.performSegue(withIdentifier: "showUser", sender: indexPath.row - 2)
+            let alert = UIAlertController(title: "", message: "Выберите нужный номер телефона", preferredStyle: .actionSheet)
+            let contact = contacts[indexPath.row - 2]
+            
+            for phone in contact.phoneNumbers {
+                let phoneAction = UIAlertAction(title: phone.value.stringValue.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil), style: .default, handler: {(action) in
+                    ServiceAPI.createDialog(phoneNumber: (action.title)!, noncompletedHandler: {
+                        str in
+                    ServiceAPI.alert(viewController: self, desc: str)
+                    }, completionHandler: {id in
+                    self.close(id: id)
+                    })
+                })
+                alert.addAction(phoneAction)
+            }
+            
+            let cancelAction = UIAlertAction(title: "Отмена", style: .default, handler: nil)
+            
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
         
     }
@@ -140,11 +162,11 @@ class ContactsTableViewController: UITableViewController, DialogDelegateCaller, 
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? ContactTableViewController, let num = sender as? Int{
-            vc.contact = contacts[num]
-        } else if let vc = segue.destination as? WriteSomeBodyTableViewController{
+        if let vc = segue.destination as? WriteSomeBodyTableViewController{
             vc.dialogDelegate = self.dialogDelegate
             vc.groupDelegate = self.groupDelegate
+        } else if let vc = segue.destination as? GroupMembersTableViewController{
+            vc.contacts = contacts
         }
     }
  
