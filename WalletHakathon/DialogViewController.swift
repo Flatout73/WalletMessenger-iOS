@@ -275,7 +275,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                         cell.hideButtons()
                         cell.makeIndicator(green: false)
                     } else{
-                        cell.indicator.backgroundColor = UIColor.clear
+                        cell.indicator.backgroundColor = UIColor.yellow
                     }
                     
                 } else{

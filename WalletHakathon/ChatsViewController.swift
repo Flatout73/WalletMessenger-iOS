@@ -167,21 +167,21 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    var k = 2
-    let idTrans = round(Date().timeIntervalSince1970)
-    @IBAction func testCreationDialog(_ sender: Any) {
-        
-            //coreDataService.insertConversation(userID: k, conversationID: k, date: Date(),  name: String(k), mobilePhone: Int64(k), balance: Double(k), avatar: nil)
-//            k += 1
-//            try! fetchedResultsController.performFetch()
-//            tableView.reloadData()
-        
-        
-        ServiceAPI.sendMoneyQiwi(phoneToSend: 79036699731, summa: 1, transactionID: Int64(Int(idTrans)), noncomplitedHandler: errorHandler) {
-            
-        }
-    }
-    
+//    var k = 2
+//    let idTrans = round(Date().timeIntervalSince1970)
+//    @IBAction func testCreationDialog(_ sender: Any) {
+//        
+//            //coreDataService.insertConversation(userID: k, conversationID: k, date: Date(),  name: String(k), mobilePhone: Int64(k), balance: Double(k), avatar: nil)
+////            k += 1
+////            try! fetchedResultsController.performFetch()
+////            tableView.reloadData()
+//        
+//        
+//        ServiceAPI.sendMoneyQiwi(phoneToSend: 79036699731, summa: 1, transactionID: Int64(Int(idTrans)), noncomplitedHandler: errorHandler) {
+//            
+//        }
+//    }
+//    
     
     
     override func didReceiveMemoryWarning() {
