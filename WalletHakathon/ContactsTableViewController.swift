@@ -20,6 +20,7 @@ class ContactsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.dism))
+        self.navigationItem.title = "Новое сообщение"
         
         let status = CNContactStore.authorizationStatus(for: .contacts)
         if status == .denied || status == .restricted {
@@ -88,13 +89,15 @@ class ContactsTableViewController: UITableViewController {
         if(indexPath.row == 0){
             let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
             
+            cell.imageView?.image = #imageLiteral(resourceName: "group")
             cell.textLabel?.text = "Создать беседу"
             
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
             
-            cell.textLabel?.text = "Написать человеку не из контактов"
+            cell.imageView?.image = #imageLiteral(resourceName: "contact")
+            cell.textLabel?.text = "Создать диалог"
             
             return cell
         } else {

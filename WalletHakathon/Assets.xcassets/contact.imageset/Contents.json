@@ -2,16 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "icons8-Контакты Filled-24.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icons8-Чат Filled-50.png",
+      "filename" : "icons8-Контакты Filled-48.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icons8-Чат Filled-75.png",
+      "filename" : "icons8-Контакты Filled-72.png",
       "scale" : "3x"
     }
   ],
