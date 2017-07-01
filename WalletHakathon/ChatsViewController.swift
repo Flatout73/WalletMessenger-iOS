@@ -105,7 +105,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //            tableView.reloadData()
         
         
-        ServiceAPI.sendMoneyQiwi(phoneToSend: 79036699731, summa: 1, transactionID: Int(idTrans), noncomplitedHandler: errorHandler) {
+        ServiceAPI.sendMoneyQiwi(phoneToSend: 79036699731, summa: 1, transactionID: Int64(Int(idTrans)), noncomplitedHandler: errorHandler) {
             
         }
     }
@@ -181,7 +181,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if let cell = sender as? ChatTableViewCell {
                 vc.dialogID = cell.dialogID
                 vc.title = cell.name.text
-                vc.phone = Int64(cell.mobilePhone.text)
+                vc.phone = Int64(cell.mobilePhone.text!)
             } else if let id = sender as? Int {
                 vc.dialogID = id
             } else {

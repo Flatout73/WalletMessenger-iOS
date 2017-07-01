@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class DialogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class DialogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TableViewUpdateDelegate {
     
     var messeges = ["1234", "5678"]
     
@@ -30,6 +30,15 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     
+    func update() {
+        DispatchQueue.main.async {
+            try! self.fetchedResultsController.performFetch()
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +49,9 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         
         messeges = messeges.reversed()
         tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi))
+        
+        tableView.estimatedRowHeight = 60
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         
         
         //for tests
@@ -175,14 +187,31 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             } else{
                 cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
             }
-            
+        
+            cell.delegate = self
+            cell.transactionID = Int(transaction.transactionID)
+        
             transaction.managedObjectContext?.performAndWait {
                 if(transaction.isCash){
                     cell.qiwiorNal.image = #imageLiteral(resourceName: "icon_money")
+                    
+                    if(transaction.proof == 1) {
+                        cell.hideButtons()
+                        cell.makeIndicator(green: true)
+                    }else if (transaction.proof == -1){
+                        cell.hideButtons()
+                        cell.makeIndicator(green: false)
+                    } else{
+                        cell.indicator.backgroundColor = UIColor.clear
+                    }
+                    
                 } else{
                     cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
+                    //cell.hideButtons()
+                    //cell.indicator.backgroundColor = UIColor.clear
                 }
                 cell.sum.text = String(transaction.money) + " руб."
+                
             }
             
             if(!cell.isReversed){
@@ -190,11 +219,12 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                 cell.isReversed = true
             }
         
-        
         return cell
 
         
     }
+
+
     
     var isCash = true
     @IBAction func sendMoney(_ sender: Any) {
@@ -217,8 +247,10 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         showStepper()
     }
     
+    var transactionQiwiID: Int64!
     @IBAction func sendQiwi(_ sender: Any) {
         isCash = false
+        transactionQiwiID = Int64(round(Date().timeIntervalSince1970))
         showStepper()
     }
     
@@ -246,17 +278,28 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         //conversation = coreDataService.findConversaionBy(id: dialogID)
-    
+        
         //print(coreDataService.appUser.userID)
         //CoreDataService.sharedInstance.insertTransaction(id: 1234, money: Double(12 + i), text: "", date: Date(), isCash: true, proof: 0, conversation: conversation, group: nil, reciver: coreDataService.appUser, sender: coreDataService.appUser)
         
-        
-        
-        
-        if moneyField.text! != ""{
+        if (moneyField.text! != "") {
             
             
-            //ServiceAPI.sendMoneyQiwi(phoneToSend: phone, summa: Double(moneyField.text!)!, transactionID: <#T##Int#>, noncomplitedHandler: <#T##(String) -> Void#>, complitionHandler: <#T##() -> Void#>)
+            if(!isCash){
+                ServiceAPI.sendMoneyQiwi(phoneToSend: phone, summa: Double(moneyField.text!)!, transactionID: transactionQiwiID, noncomplitedHandler: errorHandler) {
+                    
+                    ServiceAPI.sendTransaction(dialogID: self.dialogID, money: Double(self.moneyField.text!)!, cash: self.isCash, text: "hey", noncompletedHandler: self.errorHandler) {
+                        
+                        DispatchQueue.main.async {
+                            try! self.fetchedResultsController.performFetch()
+                            self.tableView.reloadData()
+                        }
+                        
+                    }
+                }
+                
+            }
+        } else {
             
             ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: isCash, text: "hey", noncompletedHandler: errorHandler) {
                 
@@ -266,21 +309,17 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                 }
                 
             }
-            
-            
-            tableView.contentInset = UIEdgeInsets.zero
-            tableView.scrollIndicatorInsets = tableView.contentInset
-            
-            moneyField.isHidden = true
-            stepper.isHidden = true
-            goButton.isHidden = true
         }
+        
+        tableView.contentInset = UIEdgeInsets.zero
+        tableView.scrollIndicatorInsets = tableView.contentInset
+        
+        moneyField.isHidden = true
+        stepper.isHidden = true
+        goButton.isHidden = true
     }
     
-    
-
 }
-
 
 extension DialogViewController: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
