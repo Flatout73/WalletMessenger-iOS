@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController, UITextFieldDelegate {
+class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
     
     @IBOutlet weak var imageCell: UIView!
@@ -37,6 +37,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         self.navigationItem.leftBarButtonItem?.isEnabled = false
         self.nameTextField.addTarget(self, action: #selector(self.ed), for: .editingChanged)
         self.passwordTextField.addTarget(self, action: #selector(self.ed2), for: .editingChanged)
+        
     }
     
     func doneButton(){
@@ -119,14 +120,72 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func imageTapped() {
+        let choosingController = UIAlertController(title: "Загрузить фото из:", message: nil, preferredStyle: .actionSheet);
+        
+        let photoAction = UIAlertAction(title: "Камера", style: .default) { (alert) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = .camera;
+                imagePicker.allowsEditing = false
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }
+        
+        let libraryAction = UIAlertAction(title: "Фотопленка", style: .default) { (alert) in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = .photoLibrary;
+                imagePicker.allowsEditing = true
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }
+        
+        choosingController.addAction(photoAction)
+        choosingController.addAction(libraryAction)
+        
+        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
+        
+        choosingController.addAction(cancelAction)
+        self.present(choosingController, animated: true, completion: nil)
     }
-    */
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+        let cancelController = UIAlertController(title: "Фото не было выбрано", message: nil, preferredStyle: .alert);
+        let cancelAction = UIAlertAction(title: "Хорошо", style: .cancel)
+        cancelController.addAction(cancelAction)
+        self.present(cancelController, animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
+        
+        if let selectedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            let destinationSize = CGSize(width: 100, height: 100)
+            UIGraphicsBeginImageContext(destinationSize);
+            selectedImage.draw(in: CGRect(x: 0, y: 0, width: destinationSize.width, height: destinationSize.height))
+            let newImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext();
+
+
+            if let data = UIImagePNGRepresentation(newImage!) {
+                self.avatar.image = selectedImage
+                var dataString = data.base64EncodedString()
+                dataString = dataString.replacingOccurrences(of: "+", with: "%2b")
+                
+                self.view.isUserInteractionEnabled = false
+
+                _ = self.view.gestureRecognizers?.popLast()
+//                MBProgressHUD.showAdded(to: self.view, animated: true)
+                ServiceAPI.changePhoto(photo: data, completedHandler: {}, noncompletedHandler: {_ in})
+            }
+        }
+        
+        dismiss(animated: true, completion: nil)
+        self.tableView.reloadData()
+    }
 
 }

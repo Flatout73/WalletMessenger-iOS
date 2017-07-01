@@ -30,13 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
-            let firstPage = OnboardingContentViewController(title: "", body: "Тут будет какая-то икнока", image: #imageLiteral(resourceName: "qiwi_logo"), buttonText: "Пропустить") { () -> Void in
+            let firstPage = OnboardingContentViewController(title: "Добро пожаловать в тут будет название этого творения", body: " Первый меccенджер для взаиморасчётов", image: nil, buttonText: "Пропустить") { () -> Void in
                 let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
             }
             
-            let secondPage = OnboardingContentViewController(title: "", body: "Тут будет какая-то иконка", image: UIImage(named: "qiwi_logo"), buttonText: "Пропустить") { () -> Void in
+            let secondPage = OnboardingContentViewController(title: "", body: "Тут будет какая-то иконка", image: #imageLiteral(resourceName: "2ndpage"), buttonText: "Пропустить") { () -> Void in
                 let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
@@ -45,20 +45,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "Только финансы, ничего личного лишнего")
             attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(23, 8))
             
-            let thirdPage = OnboardingContentViewController(title: "", body: "", image: #imageLiteral(resourceName: "3rdpage"), buttonText: "Начать") { () -> Void in
+            let thirdPage = OnboardingContentViewController(title: "", body: "Привяжите свой QIWI кошелёк для расчета прямо в приложении", image: #imageLiteral(resourceName: "3rdpage"), buttonText: "Пропустить") { () -> Void in
                 let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
             }
             
+            let fourthPage = OnboardingContentViewController(title: "", body: "", image: nil, buttonText: "Начать") { () -> Void in
+                let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
+                self.window?.rootViewController = viewController
+                self.window?.makeKeyAndVisible()
+            }
             
-            thirdPage.bodyLabel.attributedText = attributeString
+            fourthPage.bodyLabel.attributedText = attributeString
             
             
             thirdPage.titleLabel.text = ""
             thirdPage.topPadding = 100
             
-            initialViewController = OnboardingViewController(backgroundImage: UIImage(named: "back"), contents: [firstPage, secondPage, thirdPage])
+            initialViewController = OnboardingViewController(backgroundImage: UIImage(named: "back"), contents: [firstPage, secondPage, thirdPage,fourthPage])
             
             if let vc = initialViewController as? OnboardingViewController{
                 vc.shouldMaskBackground = false 
