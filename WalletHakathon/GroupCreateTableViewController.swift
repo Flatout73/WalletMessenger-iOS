@@ -17,10 +17,7 @@ class GroupCreateTableViewController: UITableViewController {
     
     func close(){
         _ = navigationController?.popToRootViewController(animated: false)
-        
-        if let vc = navigationController?.viewControllers.first as? GroupDelegateCaller{
-            vc.callGroupDelegate(withGroupID: groupID)
-        }
+    
         
         self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }

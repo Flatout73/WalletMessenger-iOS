@@ -9,15 +9,7 @@
 import UIKit
 import Contacts
 
-class ContactsTableViewController: UITableViewController, DialogDelegateCaller, GroupDelegateCaller {
-    
-    func callDialogDelegate(withDialogID: Int) {
-        dialogDelegate?.openDialog(withID: withDialogID)
-    }
-
-    func callGroupDelegate(withGroupID: Int) {
-        groupDelegate?.openGroup(withID: withGroupID)
-    }
+class ContactsTableViewController: UITableViewController {
 
     var dialogDelegate: ContactDialogDelegate?
     var groupDelegate: ContactGroupDelegate?
@@ -70,13 +62,14 @@ class ContactsTableViewController: UITableViewController, DialogDelegateCaller, 
         }
     }
     
-    func close(id: Int){
+    func close(dialogInfo: DialogInfo){
         DispatchQueue.main.async {[weak self] in
             _ = self?.navigationController?.popToRootViewController(animated: false)
             self?.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
-            self?.dialogDelegate?.openDialog(withID: id)
+            self?.dialogDelegate?.openDialog(withDialogInfo: dialogInfo )
         }
     }
+
     
     // MARK: - Table view data source
 
@@ -125,13 +118,18 @@ class ContactsTableViewController: UITableViewController, DialogDelegateCaller, 
             let alert = UIAlertController(title: "", message: "Выберите нужный номер телефона", preferredStyle: .actionSheet)
             let contact = contacts[indexPath.row - 2]
             
+            
+            
             for phone in contact.phoneNumbers {
-                let phoneAction = UIAlertAction(title: phone.value.stringValue.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil), style: .default, handler: {(action) in
-                    ServiceAPI.createDialog(phoneNumber: (action.title)!, noncompletedHandler: {
-                        str in
-                    ServiceAPI.alert(viewController: self, desc: str)
-                    }, completionHandler: {id in
-                    self.close(id: id)
+                let phoneAction = UIAlertAction(title: StringService.getClearPhone(byString: phone.value.stringValue) , style: .default, handler: {(action) in
+                    
+                    ServiceAPI.getByPhone(phoneNumber: StringService.getClearPhone(byString: action.title!) , noncompletedHandler: {str in ServiceAPI.alert(viewController: self, desc: str)}, completionHandler: { us in
+                        ServiceAPI.createDialogWithUser(user: us, noncompletedHandler: {str in ServiceAPI.alert(viewController: self, desc: str)}, completionHandler: { dialogID in
+                            var dialogInfo = DialogInfo()
+                            dialogInfo.dialogID = dialogID
+                            dialogInfo.user = us
+                            self.close(dialogInfo: dialogInfo)
+                        })
                     })
                 })
                 alert.addAction(phoneAction)
@@ -174,18 +172,10 @@ class ContactsTableViewController: UITableViewController, DialogDelegateCaller, 
 }
 
 protocol ContactDialogDelegate {
-    func openDialog(withID: Int)
+    func openDialog(withDialogInfo: DialogInfo)
 }
 
 protocol ContactGroupDelegate {
-    func openGroup(withID: Int)
-}
-
-protocol DialogDelegateCaller {
-    func callDialogDelegate(withDialogID: Int)
-}
-
-protocol GroupDelegateCaller {
-    func callGroupDelegate(withGroupID: Int)
+    func openGroup(withGroupID: Int)
 }
 

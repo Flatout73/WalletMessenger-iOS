@@ -18,7 +18,7 @@ struct UserForSend {
     name: String,
     mobilePhone: Int64,
     balance: Double = 0.0,
-    avatar: Data
+    avatar: Data?
 }
 
 class ServiceAPI: NSObject {
@@ -143,7 +143,7 @@ class ServiceAPI: NSObject {
         }
     }
     
-    static func getByPhone(phoneNumber: String, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+    static func getByPhone(phoneNumber: String, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping(UserForSend) -> Void) {
         if var dicionary = loadDictionary() {
             dicionary["phone"] = phoneNumber
             
@@ -153,13 +153,21 @@ class ServiceAPI: NSObject {
                 
                 guard let userID = json["userID"].int,
                     let name = json["name"].string,
-                    let phone = json["phone"].string,
-                    let image = json["image"].string else {
+                    let phone = Int64( json["phone"].string!)
+                    else {
                         noncompletedHandler("Неверный JSON")
                         return
                 }
                 
-                completionHandler()
+                var avatar: Data? = nil
+                if let image = json["image"].string {
+                    avatar = Data(base64Encoded: image)
+                }
+                
+                var us = UserForSend(userID: userID, name: name, mobilePhone: phone, balance: 0, avatar: avatar)
+                
+            
+                completionHandler(us)
             }
         }
     }
@@ -541,7 +549,7 @@ class ServiceAPI: NSObject {
         
         //без получения юзера по телефону (телефон сюда как Int64 или сразу String)
         //походу лучше вообще весь профиль подавать (тип UserProfile), insertConversation куча данных надо..
-    static func createDialogWithUser(/*phone: Int64,*/ user: UserForSend, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+    static func createDialogWithUser(/*phone: Int64,*/ user: UserForSend, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping(Int) -> Void) {
             
             let coreDataService = CoreDataService.sharedInstance
             
@@ -556,9 +564,11 @@ class ServiceAPI: NSObject {
                             noncompletedHandler("Не удалось распознать JSON")
                             return
                     }
+                    
                     let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
                     coreDataService.insertConversation(userID: user.userID, conversationID: conversationID, date: date, name: user.name, mobilePhone: user.mobilePhone, balance: user.balance, avatar: user.avatar) {
-                        completionHandler()
+                        
+                        completionHandler(conversationID)
                     }
                     
                     //completionHandler()
