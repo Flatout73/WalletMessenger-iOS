@@ -48,11 +48,17 @@ class InfoRegistViewController: UIViewController {
         
         
         ServiceAPI.registerUser(phone: String(numberTF!), name: name, password: psw, noncompletedHandler: errorHandler) {
-            let alert = UIAlertController(title: "Успех!", message: "Пользователь успешно зарегистрирован", preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Успех!", message: "Пользователь успешно зарегистрирован", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default) { (action) in
+                    self.performSegue(withIdentifier: "registered", sender: self)
+                })
+                
+                self.present(alert, animated: true, completion: nil)
+            }
             
-            self.present(alert, animated: true, completion: nil)
         }
     }
     

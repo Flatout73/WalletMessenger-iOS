@@ -32,6 +32,8 @@ class CoreDataService: NSObject {
         
         appUserID = UserDefaults.standard.integer(forKey: "appUserId")
         
+        //container.viewContext.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
+        
         //let request: NSFetchRequest<User> = container.managedObjectModel.fetchRequestFromTemplate(withName: "UserWithId", substitutionVariables: ["USERID": userID]) as! NSFetchRequest<User>
         
         
@@ -43,9 +45,9 @@ class CoreDataService: NSObject {
 //            print(error.localizedDescription)
 //        }
 //        
-//        container.performBackgroundTask { (context) in
-//            self.backgroundContext = context
-//        }
+        container.performBackgroundTask { (context) in
+            context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
+        }
         
     }
     
@@ -105,7 +107,7 @@ class CoreDataService: NSObject {
         }
     }
     
-    func insertConversation(userID: Int, conversationID: Int, date: Date,  name: String, mobilePhone: Int64, balance: Double, avatar: Data?) {
+    func insertConversation(userID: Int, conversationID: Int, date: Date,  name: String, mobilePhone: Int64, balance: Double, avatar: Data?, completionHandler: @escaping() -> Void) {
         
         
         //возможно стоит это вынести вне метода
@@ -119,6 +121,7 @@ class CoreDataService: NSObject {
             context.saveThrows()
             self.dataBase.saveContext()
             
+            completionHandler()
         }
         
 //        let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
@@ -133,9 +136,22 @@ class CoreDataService: NSObject {
 //        }
     }
     
-    func insertTransaction(id: Int, money: Double, text: String, date: Date, isCash: Bool, proof: Int, conversation: Int?, group: Int?, userID: Int) {
+    var k = 0
+    
+    func clearK(){
+        k = 0
+    }
+    
+    func incrementK(){
+        k+=1
+    }
+    
+    
+    func insertTransaction(id: Int, money: Double, text: String, date: Date, isCash: Bool, proof: Int, conversation: Int?, group: Int?, userID: Int, count: Int = 0, completionHandler: @escaping() -> Void) {
         
         container.performBackgroundTask { (context) in
+            
+            context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
             
             //            context.automaticallyMergesChangesFromParent = true
             //            self.container.viewContext.automaticallyMergesChangesFromParent = true
@@ -147,11 +163,8 @@ class CoreDataService: NSObject {
                     return
                 }
                 
-                
-                let userID = UserDefaults.standard.integer(forKey: "appUserId")
-                
-                let user = User.findUser(id: userID, inContext: context)!
-                let appUser = user
+
+                let appUser = self.getAppUser(in: context)
                 
                 //print("ID пользователя приложения", appUser.userID)
                 
@@ -162,8 +175,13 @@ class CoreDataService: NSObject {
                 }
             }
             
-            context.saveThrows()
-            self.dataBase.saveContext()
+            if(self.k >= count){
+                context.saveThrows()
+                self.dataBase.saveContext()
+                self.k = 0
+                
+                completionHandler()
+            }
         }
         
         //                let request: NSFetchRequest<Transaction> = container.managedObjectModel.fetchRequestFromTemplate(withName: "TransactionsWithConversationId", substitutionVariables: ["CONVERSATIONID": String(conversation!.conversationID)]) as! NSFetchRequest<Transaction>
@@ -179,7 +197,7 @@ class CoreDataService: NSObject {
         
     }
     
-    func insertTransaction(id: Int, money: Double, text: String, date: Date, isCash: Bool, proof: Int, conversation: Int?, group: Int?, reciver: Int, sender: Int) {
+    func insertTransaction(id: Int, money: Double, text: String, date: Date, isCash: Bool, proof: Int, conversation: Int?, group: Int?, reciver: Int, sender: Int, count: Int = 0, completionHandler: @escaping() -> Void) {
         
         container.performBackgroundTask { (context) in
             if let conversationID = conversation{
@@ -192,8 +210,13 @@ class CoreDataService: NSObject {
                 _ = Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, proof: proof, conversation: conversation, group: nil, reciver: reciver, sender: sender, inContext: context)
             }
             
-            context.saveThrows()
-            self.dataBase.saveContext()
+            if(self.k >= count){
+                context.saveThrows()
+                self.dataBase.saveContext()
+                self.k = 0
+                
+                completionHandler()
+            }
         }
         
     }

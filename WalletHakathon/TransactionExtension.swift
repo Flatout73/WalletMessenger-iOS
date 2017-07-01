@@ -15,6 +15,7 @@ extension Transaction {
         
         
         let transaction = Transaction(context: context)
+        transaction.transactionID = Int32(id)
         transaction.money = money
         transaction.text = text
         transaction.date = date as NSDate?
@@ -90,8 +91,19 @@ extension Transaction {
         
         request.predicate = NSPredicate(format: "transactionID==%@", String(id))
         
-        if let transaction = (try? context.fetch(request))?.first {
-            return transaction
+        do {
+            let result = try context.fetch(request)
+            
+            let resultAll = try context.fetch(Transaction.fetchRequest())
+            
+            for res in resultAll as! [Transaction] {
+                print("В контексте:", res.transactionID)
+            }
+            if let transaction = result.first {
+                return transaction
+            }
+        } catch {
+            print(error.localizedDescription)
         }
         
         return nil
