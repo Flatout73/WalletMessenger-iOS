@@ -206,13 +206,15 @@ class CoreDataService: NSObject {
                 }
             }
             
-            if(self.k >= count){
+            //self.incrementK()
+            
+            //if(self.k >= count){
                 context.saveThrows()
                 self.dataBase.saveContext()
                 self.k = 0
                 
                 completionHandler()
-            }
+            //}
         }
         
         //                let request: NSFetchRequest<Transaction> = container.managedObjectModel.fetchRequestFromTemplate(withName: "TransactionsWithConversationId", substitutionVariables: ["CONVERSATIONID": String(conversation!.conversationID)]) as! NSFetchRequest<Transaction>
@@ -241,13 +243,13 @@ class CoreDataService: NSObject {
                 _ = Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, proof: proof, conversation: conversation, group: nil, reciver: reciver, sender: sender, inContext: context)
             }
             
-            if(self.k >= count){
+            //if(self.k >= count){
                 context.saveThrows()
                 self.dataBase.saveContext()
                 self.k = 0
                 
                 completionHandler()
-            }
+            //}
         }
         
     }

@@ -91,6 +91,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             try! self.fetchedResultsController.performFetch()
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
+            self.activityIndicator.stopAnimating()
         }
     }
     
@@ -369,17 +370,16 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                         
                     }
                 }
+            } else {
                 
-            }
-        } else {
-            
-            ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: isCash, text: "hey", noncompletedHandler: errorHandler) {
-                
-                DispatchQueue.main.async {
-                    try! self.fetchedResultsController.performFetch()
-                    self.tableView.reloadData()
+                ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: isCash, text: "hey", noncompletedHandler: errorHandler) {
+                    
+                    DispatchQueue.main.async {
+                        try! self.fetchedResultsController.performFetch()
+                        self.tableView.reloadData()
+                    }
+                    
                 }
-                
             }
         }
         
