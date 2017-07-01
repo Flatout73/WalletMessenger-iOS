@@ -228,6 +228,21 @@ class CoreDataService: NSObject {
         
     }
     
+    func acceptTransactionOrNot(id:Int, accept: Int, completionHandler: @escaping() -> Void) {
+        container.performBackgroundTask { (context) in
+            guard let transaction = Transaction.findTransaction(id: id, inContext: context) else {
+                print("Нет такой транзакции")
+                return
+            }
+            
+            transaction.proof = Int16(accept)
+            context.saveThrows()
+            self.dataBase.saveContext()
+            
+            completionHandler()
+        }
+    }
+    
     func changeName(name: String) {
         container.performBackgroundTask { (context) in
             

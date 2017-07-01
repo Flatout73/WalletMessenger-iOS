@@ -99,7 +99,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //            tableView.reloadData()
         
         
-        ServiceAPI.sendMoneyQiwi(phoneToSend: 79036699731, summa: 1, transactionID: Int(idTrans), noncomplitedHandler: errorHandler) {
+        ServiceAPI.sendMoneyQiwi(phoneToSend: 79036699731, summa: 1, transactionID: Int64(Int(idTrans)), noncomplitedHandler: errorHandler) {
             
         }
     }

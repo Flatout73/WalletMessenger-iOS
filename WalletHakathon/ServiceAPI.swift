@@ -390,8 +390,13 @@ class ServiceAPI: NSObject {
             
             let request = serverAddress + "/conv/accepttr"
             
+            
+            
             ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
-                completionHandler()
+                
+                CoreDataService.sharedInstance.acceptTransactionOrNot(id: transactionID, accept: 1) {
+                    completionHandler()
+                }
             }
         }
     }
@@ -403,7 +408,10 @@ class ServiceAPI: NSObject {
             let request = serverAddress + "/conv/declinetr"
             
             ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
-                completionHandler()
+                
+                CoreDataService.sharedInstance.acceptTransactionOrNot(id: transactionID, accept: -1) {
+                    completionHandler()
+                }
             }
         }
     }
@@ -978,7 +986,7 @@ class ServiceAPI: NSObject {
     }
     
     
-    public static func sendMoneyQiwi(phoneToSend: Int64, summa: Double, transactionID: Int = Int(round(Date().timeIntervalSince1970)), noncomplitedHandler: @escaping (String) -> Void,  complitionHandler: @escaping () -> Void) {
+    public static func sendMoneyQiwi(phoneToSend: Int64, summa: Double, transactionID: Int64 = Int64(round(Date().timeIntervalSince1970)), noncomplitedHandler: @escaping (String) -> Void,  complitionHandler: @escaping () -> Void) {
         var request = URLRequest(url: URL(string: "https://sinap.qiwi.com/api/terms/99/payments")!)
         request.httpMethod = "POST"
         
@@ -1020,7 +1028,6 @@ class ServiceAPI: NSObject {
         
         if let JSONData = try? JSONSerialization.data(withJSONObject: json, options: []) {
             let postString = String(data: JSONData, encoding: .utf8)
-            print("JSON string = \(postString!)")
             request.httpBody = postString!.data(using: .utf8)
         }
         
@@ -1037,20 +1044,19 @@ class ServiceAPI: NSObject {
                 print("response = \(response)")
             }
             
-            let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(responseString)")
-            
-            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+            let json = JSON(data: data)
             
             print(json)
-            //нужно посмотреть че приходит в json
-            if let dict = json as? [String: String] {
-                if let token = dict["access_token"] {
-                    complitionHandler()
-                    
-                } else {
-                    noncomplitedHandler("Не удалось спарсить JSON")
-                }
+            let transactionInfo = json["transaction"]
+            guard let code = transactionInfo["state"]["code"].string else {
+                noncomplitedHandler("Неверный формат JSON")
+                return
+            }
+            
+            if(code == "Accepted"){
+                complitionHandler()
+            } else {
+                noncomplitedHandler("Не удалось выполнить операцию: " + code)
             }
         }
         task.resume()

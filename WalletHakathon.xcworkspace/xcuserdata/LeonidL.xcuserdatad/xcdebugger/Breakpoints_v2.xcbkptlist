@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/ChatsViewController.swift"
-            timestampString = "520599925.916671"
+            timestampString = "520602370.49713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "ChatsViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -522,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/DialogViewController.swift"
-            timestampString = "520564771.779299"
+            timestampString = "520619157.442389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
             landmarkName = "controllerWillChangeContent(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -577,118 +577,6 @@
             endingLineNumber = "61"
             landmarkName = "getAppUser(in:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WalletHakathon/ServiceAPI.swift"
-            timestampString = "520594014.372936"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1037"
-            endingLineNumber = "1037"
-            landmarkName = "sendMoneyQiwi(phoneToSend:summa:transactionID:noncomplitedHandler:complitionHandler:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static WalletHakathon.ServiceAPI.(sendMoneyQiwi (phoneToSend : Swift.Int64, summa : Swift.Double, transactionID : Swift.Int, noncomplitedHandler : (Swift.String) -&gt; (), complitionHandler : () -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "WalletHakathon"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/LeonidL/Documents/Xcode%20Projects/WalletHakathon/WalletHakathon/ServiceAPI.swift"
-                  timestampString = "520600819.136282"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1037"
-                  endingLineNumber = "1037"
-                  offsetFromSymbolStart = "2968">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static WalletHakathon.ServiceAPI.(sendMoneyQiwi (phoneToSend : Swift.Int64, summa : Swift.Double, transactionID : Swift.Int, noncomplitedHandler : (Swift.String) -&gt; (), complitionHandler : () -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "WalletHakathon"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/LeonidL/Documents/Xcode%20Projects/WalletHakathon/WalletHakathon/ServiceAPI.swift"
-                  timestampString = "520600819.139365"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1037"
-                  endingLineNumber = "1037"
-                  offsetFromSymbolStart = "3349">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WalletHakathon/ServiceAPI.swift"
-            timestampString = "520594073.718401"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "983"
-            endingLineNumber = "983"
-            landmarkName = "sendMoneyQiwi(phoneToSend:summa:transactionID:noncomplitedHandler:complitionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WalletHakathon/ServiceAPI.swift"
-            timestampString = "520594138.978607"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1018"
-            endingLineNumber = "1018"
-            landmarkName = "sendMoneyQiwi(phoneToSend:summa:transactionID:noncomplitedHandler:complitionHandler:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static WalletHakathon.ServiceAPI.sendMoneyQiwi (phoneToSend : Swift.Int64, summa : Swift.Double, transactionID : Swift.Int, noncomplitedHandler : (Swift.String) -&gt; (), complitionHandler : () -&gt; ()) -&gt; ()"
-                  moduleName = "WalletHakathon"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/LeonidL/Documents/Xcode%20Projects/WalletHakathon/WalletHakathon/ServiceAPI.swift"
-                  timestampString = "520600819.149753"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1018"
-                  endingLineNumber = "1018"
-                  offsetFromSymbolStart = "6235">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static WalletHakathon.ServiceAPI.(sendMoneyQiwi (phoneToSend : Swift.Int64, summa : Swift.Double, transactionID : Swift.Int, noncomplitedHandler : (Swift.String) -&gt; (), complitionHandler : () -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "WalletHakathon"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/LeonidL/Documents/Xcode%20Projects/WalletHakathon/WalletHakathon/ServiceAPI.swift"
-                  timestampString = "520600819.15246"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1019"
-                  endingLineNumber = "1019"
-                  offsetFromSymbolStart = "44">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
