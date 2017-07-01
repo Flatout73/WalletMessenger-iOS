@@ -38,7 +38,7 @@ class SettingsViewController: UITableViewController {
         for key in UserDefaults.standard.dictionaryRepresentation().keys {
             UserDefaults.standard.removeObject(forKey: key)
         }
-        
+        CoreDataService.sharedInstance.destroyCoreData()
        
         //navigationController?.popToRootViewController(animated: true)
         //self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
@@ -46,8 +46,8 @@ class SettingsViewController: UITableViewController {
         
         
         self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        
         self.performSegue(withIdentifier: "exit", sender: self)
-    
         
         //self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }
