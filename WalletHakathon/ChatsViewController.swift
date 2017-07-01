@@ -195,13 +195,13 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func openDialog(withID: Int){
+    func openDialog(withDialogInfo: DialogInfo){
         DispatchQueue.main.async {
-            self.performSegue(withIdentifier: "showDialog", sender: withID)
+            self.performSegue(withIdentifier: "showDialog", sender: withDialogInfo.dialogID)
         }
     }
     
-    func openGroup(withID: Int){
+    func openGroup(withGroupID: Int){
         //self.performSegue(withIdentifier: "showGroup", sender: withID)
     }
 }

@@ -61,11 +61,31 @@ class GroupMembersTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if cellsChecked.contains(indexPath.row), let index = cellsChecked.index(where: {return $0 == indexPath.row}) {
             cellsChecked.remove(at: index)
-            phones.remove(at: index)
+
             self.tableView.reloadData()
         } else {
             cellsChecked.append(indexPath.row)
-            phones.append((contacts[indexPath.row].phoneNumbers.first?.value.stringValue.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range:nil))!)
+            
+            let alert = UIAlertController(title: "", message: "Выберите нужный номер телефона", preferredStyle: .actionSheet)
+            let contact = contacts[indexPath.row - 2]
+            
+            
+            for phone in contact.phoneNumbers {
+                let phoneAction = UIAlertAction(title: StringService.getClearPhone(byString: phone.value.stringValue) , style: .default)
+                {
+                    (action) in
+                    
+                
+                }
+                alert.addAction(phoneAction)
+            }
+            
+            let cancelAction = UIAlertAction(title: "Отмена", style: .default, handler: nil)
+            
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
+            
             self.tableView.reloadData()
         }
     }
@@ -81,4 +101,10 @@ class GroupMembersTableViewController: UITableViewController {
     }
     
 
+}
+
+class UserEntity{
+    var name:String = ""
+    var phone:Int64 = 0
+    var dialogID:Int = 0
 }
