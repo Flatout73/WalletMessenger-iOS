@@ -74,7 +74,7 @@ class InfoRegistViewController: UIViewController {
     }
     
     @IBAction func goBack(_ sender: Any) {
-        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        //self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
         
         self.performSegue(withIdentifier: "backToLogin", sender: self)
     }

@@ -61,6 +61,8 @@ class ServiceAPI: NSObject {
                 UserDefaults.standard.set(userID, forKey: "appUserId")
                 
                 CoreDataService.sharedInstance.createAppUser(phone: Int64(phone)!, name: name, id: userID, avatar: nil)
+            } else {
+                noncompletedHandler("Неверный JSON")
             }
             
             completionHandler()
@@ -242,6 +244,7 @@ class ServiceAPI: NSObject {
             ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
                 let dialogs = json["dialogs"]
                 
+                let count = dialogs.count
                 for (index, subJSON): (String, JSON) in dialogs {
                     print(subJSON)
                     
@@ -274,7 +277,9 @@ class ServiceAPI: NSObject {
                         noncompletedHandler("Не удалось спарсить мобильный телефон")
                     }
                 }
-                //completionHandler()
+                if(count == 0){
+                    completionHandler()
+                }
             }
         }
     }
@@ -460,7 +465,7 @@ class ServiceAPI: NSObject {
                     let cashb = (cash > 0)
                     let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
                     
-                    let user = coreDataService.findUserBy(id: userID)
+                    //let user = coreDataService.findUserBy(id: userID)
                     //let conversation = coreDataService.findConversaionBy(id: dialogID)
                     
                     
@@ -1062,7 +1067,7 @@ class ServiceAPI: NSObject {
             print(json)
             let transactionInfo = json["transaction"]
             guard let code = transactionInfo["state"]["code"].string else {
-                noncomplitedHandler("Неверный формат JSON")
+                noncomplitedHandler("У пользователя не привязан аккаунт Qiwi к этому номеру")
                 return
             }
             

@@ -107,11 +107,35 @@ class CoreDataService: NSObject {
     
     //надо протестить
     func destroyCoreData() {
-        do {
-            try container.persistentStoreCoordinator.destroyPersistentStore(at: URL(string: "WalletHakathon")!, ofType: NSSQLiteStoreType, options: nil)
-        } catch {
-            print(error.localizedDescription)
+        
+        container.performBackgroundTask { (context) in
+            
+            do {
+                var fetchReq: NSFetchRequest<NSFetchRequestResult> = Conversation.fetchRequest()
+                // Create Batch Delete Request
+                var batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchReq)
+                try context.execute(batchDeleteRequest)
+                
+                fetchReq = Transaction.fetchRequest()
+                batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchReq)
+                try context.execute(batchDeleteRequest)
+                
+                fetchReq = GroupConversation.fetchRequest()
+                batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchReq)
+                try context.execute(batchDeleteRequest)
+                
+                fetchReq = User.fetchRequest()
+                batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchReq)
+                try context.execute(batchDeleteRequest)
+                
+                context.saveThrows()
+                self.dataBase.saveContext()
+                
+            } catch {
+                print(error.localizedDescription)
+            }
         }
+        
     }
     
     func insertConversation(userID: Int, conversationID: Int, date: Date,  name: String, mobilePhone: Int64, balance: Double, avatar: Data?, completionHandler: @escaping() -> Void) {
@@ -182,13 +206,15 @@ class CoreDataService: NSObject {
                 }
             }
             
-            if(self.k >= count){
+            //self.incrementK()
+            
+            //if(self.k >= count){
                 context.saveThrows()
                 self.dataBase.saveContext()
                 self.k = 0
                 
                 completionHandler()
-            }
+            //}
         }
         
         //                let request: NSFetchRequest<Transaction> = container.managedObjectModel.fetchRequestFromTemplate(withName: "TransactionsWithConversationId", substitutionVariables: ["CONVERSATIONID": String(conversation!.conversationID)]) as! NSFetchRequest<Transaction>
@@ -217,13 +243,13 @@ class CoreDataService: NSObject {
                 _ = Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, proof: proof, conversation: conversation, group: nil, reciver: reciver, sender: sender, inContext: context)
             }
             
-            if(self.k >= count){
+            //if(self.k >= count){
                 context.saveThrows()
                 self.dataBase.saveContext()
                 self.k = 0
                 
                 completionHandler()
-            }
+            //}
         }
         
     }

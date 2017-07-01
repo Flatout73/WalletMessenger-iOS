@@ -91,6 +91,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             try! self.fetchedResultsController.performFetch()
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
+            self.activityIndicator.stopAnimating()
         }
     }
     
@@ -139,16 +140,29 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         DispatchQueue.global(qos: .utility).async {
             print("loadmore")
             
+            try? self.fetchedResultsController.performFetch()
             if(!self.fetchedResultsController.sections!.isEmpty) {
                 if let sectionInfo = self.fetchedResultsController.sections?[0]{
-                    if let trans = self.fetchedResultsController.object(at: IndexPath(row: sectionInfo.numberOfObjects - 1, section: 0)) as? Transaction{
-
+                    if (sectionInfo.numberOfObjects > 0) {
+                        
+                        let trans = self.fetchedResultsController.object(at: IndexPath(row: sectionInfo.numberOfObjects - 1, section: 0))
+                        
                         ServiceAPI.getDialogTransactions(transactionID: Int(trans.transactionID), dialogID: self.dialogID, noncompletedHandler: self.errorHandler){
                             DispatchQueue.main.async  {
                                 loadMoreEnd(0)
                             }
                         }
+                    } else {
+                        ServiceAPI.getDialogInfo(dialogID: self.dialogID, noncompletedHandler: self.errorHandler) {
+                            DispatchQueue.main.async  {
+                                loadMoreEnd(0)
+                            }
+                            
+                        }
                     }
+                    
+                    
+                    
                 }
                 
             }
@@ -356,17 +370,16 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                         
                     }
                 }
+            } else {
                 
-            }
-        } else {
-            
-            ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: isCash, text: "hey", noncompletedHandler: errorHandler) {
-                
-                DispatchQueue.main.async {
-                    try! self.fetchedResultsController.performFetch()
-                    self.tableView.reloadData()
+                ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: isCash, text: "hey", noncompletedHandler: errorHandler) {
+                    
+                    DispatchQueue.main.async {
+                        try! self.fetchedResultsController.performFetch()
+                        self.tableView.reloadData()
+                    }
+                    
                 }
-                
             }
         }
         

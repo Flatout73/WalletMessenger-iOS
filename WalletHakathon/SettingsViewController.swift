@@ -64,16 +64,12 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         for key in UserDefaults.standard.dictionaryRepresentation().keys {
             UserDefaults.standard.removeObject(forKey: key)
         }
+        CoreDataService.sharedInstance.destroyCoreData()
         
-       
-        //navigationController?.popToRootViewController(animated: true)
         //self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
         
         
         self.performSegue(withIdentifier: "exit", sender: self)
-    
-        
-        //self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

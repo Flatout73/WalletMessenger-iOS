@@ -116,12 +116,19 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             if(!self.fetchedResultsController.sections!.isEmpty) {
                 if let sectionInfo = self.fetchedResultsController.sections?[0]{
-                    if let conv = self.fetchedResultsController.object(at: IndexPath(row: sectionInfo.numberOfObjects - 1, section: 0)) as? Conversation{
+                    if(sectionInfo.numberOfObjects > 0) {
+                        let conv = self.fetchedResultsController.object(at: IndexPath(row: sectionInfo.numberOfObjects - 1, section: 0))
                         guard let date = conv.date as Date? else {
                             print("Нет даты")
                             return
                         }
                         ServiceAPI.getDialogsHist(date1: Int64(date.timeIntervalSince1970), noncompletedHandler: self.errorHandler){
+                            DispatchQueue.main.async  {
+                                loadMoreEnd(0)
+                            }
+                        }
+                    } else {
+                        ServiceAPI.getDialogs(noncompletedHandler: self.errorHandler) {
                             DispatchQueue.main.async  {
                                 loadMoreEnd(0)
                             }
