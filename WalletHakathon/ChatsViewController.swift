@@ -40,6 +40,8 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //let cells = ["Диалог"]
 
+    @IBOutlet var segment: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,6 +65,16 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.addSubview(refreshControl)
     }
 
+    
+    @IBAction func segmentSwitched(_ sender: UISegmentedControl) {
+        if(sender.selectedSegmentIndex == 0){
+            //Подгружаем диалоги
+        } else {
+            //Подгружаем группы
+        }
+        
+    }
+    
     func refresh(sender: Any) {
         refreshBegin { (x:Int) -> () in
             try! self.fetchedResultsController.performFetch()

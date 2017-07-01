@@ -42,13 +42,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.makeKeyAndVisible()
             }
             
-            let thirdPage = OnboardingContentViewController(title: "", body: "Тут будет какая-то иконка", image: #imageLiteral(resourceName: "3rdpage"), buttonText: "Начать") { () -> Void in
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "Только финансы, ничего личного лишнего")
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(23, 8))
+            
+            let thirdPage = OnboardingContentViewController(title: "", body: "", image: #imageLiteral(resourceName: "3rdpage"), buttonText: "Начать") { () -> Void in
                 let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
             }
             
             
+            thirdPage.bodyLabel.attributedText = attributeString
             
             
             thirdPage.titleLabel.text = ""

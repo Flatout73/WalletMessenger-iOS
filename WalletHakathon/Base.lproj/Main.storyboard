@@ -96,8 +96,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JOB-uh-1Nm">
-                                <rect key="frame" x="0.0" y="141" width="375" height="477"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JOB-uh-1Nm">
+                                <rect key="frame" x="0.0" y="108" width="375" height="510"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="N4E-ZG-Pby">
                                     <rect key="frame" x="0.0" y="88" width="375" height="44"/>
@@ -113,25 +113,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mna-QF-l4V">
-                                                    <rect key="frame" x="67" y="11.5" width="36.5" height="20.5"/>
+                                                    <rect key="frame" x="67" y="11" width="37" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_photo" translatesAutoresizingMaskIntoConstraints="NO" id="bOT-lX-RgU">
-                                                    <rect key="frame" x="16" y="8" width="43.5" height="43.5"/>
+                                                    <rect key="frame" x="16" y="8" width="43" height="43"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="bOT-lX-RgU" secondAttribute="height" multiplier="1:1" id="dJQ-n8-bGE"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Баланс руб." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOp-2F-CkC">
-                                                    <rect key="frame" x="231.5" y="19.5" width="94.5" height="21"/>
+                                                    <rect key="frame" x="231" y="19" width="95" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер телефона" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwU-3P-hwM">
-                                                    <rect key="frame" x="67" y="32" width="121.5" height="18"/>
+                                                    <rect key="frame" x="67" y="32" width="122" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -159,36 +159,44 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jeN-3m-abR">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jeN-3m-abR">
                                 <rect key="frame" x="177" y="369" width="20" height="20"/>
-                            </activityIndicatorView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vqd-oV-wPV">
-                                <rect key="frame" x="127" y="87" width="121" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vqd-oV-wPV">
+                                <rect key="frame" x="16" y="72" width="343" height="29"/>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
+                                    <segment title="Диалоги"/>
+                                    <segment title="Группы"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentSwitched:" destination="See-Zs-9NM" eventType="valueChanged" id="EYs-0g-yud"/>
+                                    <action selector="switch:" destination="See-Zs-9NM" eventType="valueChanged" id="52x-9C-txt"/>
+                                </connections>
                             </segmentedControl>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Sy-WH-FtD">
-                                <rect key="frame" x="16" y="64" width="46" height="30"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yg0-jZ-K2Y" firstAttribute="top" secondItem="JOB-uh-1Nm" secondAttribute="bottom" id="1cO-9p-A1m"/>
+                            <constraint firstItem="JOB-uh-1Nm" firstAttribute="leading" secondItem="QuQ-Wf-btK" secondAttribute="leading" id="Ea0-4Z-LHY"/>
+                            <constraint firstItem="vqd-oV-wPV" firstAttribute="top" secondItem="thN-X6-48z" secondAttribute="bottom" constant="8" id="Rk8-I9-4Uc"/>
+                            <constraint firstAttribute="trailing" secondItem="JOB-uh-1Nm" secondAttribute="trailing" id="XgF-YQ-oLo"/>
+                            <constraint firstItem="vqd-oV-wPV" firstAttribute="trailing" secondItem="QuQ-Wf-btK" secondAttribute="trailingMargin" id="cKg-6Z-3B0"/>
+                            <constraint firstItem="vqd-oV-wPV" firstAttribute="leading" secondItem="QuQ-Wf-btK" secondAttribute="leadingMargin" id="k5I-ZU-8yZ"/>
+                            <constraint firstItem="JOB-uh-1Nm" firstAttribute="top" secondItem="vqd-oV-wPV" secondAttribute="bottom" constant="8" id="xyz-y6-roY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Диалоги" id="407-m8-XLv">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="cdE-KW-qec">
+                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0Sy-WH-FtD">
+                                <rect key="frame" x="16" y="7" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="testCreationDialog:" destination="See-Zs-9NM" eventType="touchUpInside" id="4kP-mU-yba"/>
                                 </connections>
                             </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="yg0-jZ-K2Y" firstAttribute="top" secondItem="JOB-uh-1Nm" secondAttribute="bottom" id="1Oq-Yf-VX8"/>
-                            <constraint firstItem="JOB-uh-1Nm" firstAttribute="leading" secondItem="QuQ-Wf-btK" secondAttribute="leading" id="k6j-xA-8Zi"/>
-                            <constraint firstAttribute="trailing" secondItem="JOB-uh-1Nm" secondAttribute="trailing" id="myU-5B-hac"/>
-                            <constraint firstItem="jeN-3m-abR" firstAttribute="centerX" secondItem="JOB-uh-1Nm" secondAttribute="centerX" id="vNR-y6-pC5"/>
-                            <constraint firstItem="jeN-3m-abR" firstAttribute="centerY" secondItem="JOB-uh-1Nm" secondAttribute="centerY" id="wi8-hF-x8h"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Диалоги" id="407-m8-XLv">
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="fMf-MX-Pqx">
                             <connections>
                                 <segue destination="ljx-kM-JN1" kind="presentation" id="qml-BB-g9R"/>
@@ -197,6 +205,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="jeN-3m-abR" id="6IL-D3-Ka8"/>
+                        <outlet property="segment" destination="vqd-oV-wPV" id="MOZ-gT-eCo"/>
                         <outlet property="tableView" destination="JOB-uh-1Nm" id="7Am-Eo-Sml"/>
                     </connections>
                 </viewController>
