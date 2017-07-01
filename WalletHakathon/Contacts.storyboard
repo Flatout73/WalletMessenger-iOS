@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,7 +37,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" textLabel="j77-Wp-Bbp" imageView="FAC-ha-uRJ" style="IBUITableViewCellStyleDefault" id="xFT-vK-w4g">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" textLabel="j77-Wp-Bbp" imageView="FAC-ha-uRJ" style="IBUITableViewCellStyleDefault" id="xFT-vK-w4g" customClass="ContactTableViewCell" customModule="WalletHakathon" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xFT-vK-w4g" id="cvY-tS-Vup">
@@ -78,6 +79,42 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactCell" id="Ubr-xI-PiX" customClass="ContactTableViewCell" customModule="WalletHakathon" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="144" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ubr-xI-PiX" id="Ggp-ll-4CO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_photo" translatesAutoresizingMaskIntoConstraints="NO" id="6X9-2N-tVF">
+                                            <rect key="frame" x="16" y="8" width="27" height="27"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="6X9-2N-tVF" secondAttribute="height" multiplier="1:1" id="KQs-07-v9K"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZ6-RW-d8K">
+                                            <rect key="frame" x="51" y="11" width="37" height="21"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="YZ6-RW-d8K" firstAttribute="centerY" secondItem="Ggp-ll-4CO" secondAttribute="centerY" id="HzW-Zt-Lqc"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="YZ6-RW-d8K" secondAttribute="bottom" constant="3" id="K08-gO-woe"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="6X9-2N-tVF" secondAttribute="bottom" id="K7B-OZ-efA"/>
+                                        <constraint firstItem="6X9-2N-tVF" firstAttribute="leading" secondItem="Ggp-ll-4CO" secondAttribute="leadingMargin" constant="8" id="NHT-K8-76b"/>
+                                        <constraint firstItem="YZ6-RW-d8K" firstAttribute="top" secondItem="Ggp-ll-4CO" secondAttribute="topMargin" constant="3" id="T9x-oU-u0G"/>
+                                        <constraint firstItem="6X9-2N-tVF" firstAttribute="top" secondItem="Ggp-ll-4CO" secondAttribute="topMargin" id="b4L-3y-s2U"/>
+                                        <constraint firstItem="YZ6-RW-d8K" firstAttribute="leading" secondItem="6X9-2N-tVF" secondAttribute="trailing" constant="8" id="p4y-ga-9dv"/>
+                                        <constraint firstItem="6X9-2N-tVF" firstAttribute="centerY" secondItem="Ggp-ll-4CO" secondAttribute="centerY" id="q1Y-Cw-t7U"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="YZ6-RW-d8K" id="jQj-m4-y2r"/>
+                                    <outlet property="userImageView" destination="6X9-2N-tVF" id="TAQ-B1-8OB"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="WzY-LL-99w" id="36l-3q-8rU"/>
@@ -103,26 +140,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" textLabel="PLF-cB-GiW" imageView="7vO-kD-8M0" style="IBUITableViewCellStyleDefault" id="zNr-M0-VOG">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactCell" id="zgE-Av-z91" customClass="ContactTableViewCell" customModule="WalletHakathon" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zNr-M0-VOG" id="Xe3-Ec-zyS">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zgE-Av-z91" id="zwR-Uj-dkd">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PLF-cB-GiW">
-                                            <rect key="frame" x="73" y="0.0" width="287" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_photo" translatesAutoresizingMaskIntoConstraints="NO" id="Isa-u5-CQC">
+                                            <rect key="frame" x="16" y="8" width="27" height="27"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="Isa-u5-CQC" secondAttribute="height" multiplier="1:1" id="LSH-5m-lkJ"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39Q-Go-gd8">
+                                            <rect key="frame" x="51" y="11" width="37" height="21"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="no_photo" id="7vO-kD-8M0">
-                                            <rect key="frame" x="15" y="0.0" width="43" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="39Q-Go-gd8" secondAttribute="bottom" constant="3" id="0ll-mP-Bcd"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Isa-u5-CQC" secondAttribute="bottom" id="COi-Jc-aKJ"/>
+                                        <constraint firstItem="Isa-u5-CQC" firstAttribute="leading" secondItem="zwR-Uj-dkd" secondAttribute="leadingMargin" constant="8" id="DIr-Gc-oHv"/>
+                                        <constraint firstItem="Isa-u5-CQC" firstAttribute="centerY" secondItem="zwR-Uj-dkd" secondAttribute="centerY" id="LZD-JA-Fa8"/>
+                                        <constraint firstItem="39Q-Go-gd8" firstAttribute="top" secondItem="zwR-Uj-dkd" secondAttribute="topMargin" constant="3" id="jQI-qg-2N6"/>
+                                        <constraint firstItem="39Q-Go-gd8" firstAttribute="leading" secondItem="Isa-u5-CQC" secondAttribute="trailing" constant="8" id="r36-9K-2Kk"/>
+                                        <constraint firstItem="39Q-Go-gd8" firstAttribute="centerY" secondItem="zwR-Uj-dkd" secondAttribute="centerY" id="xIW-Pz-cn3"/>
+                                        <constraint firstItem="Isa-u5-CQC" firstAttribute="top" secondItem="zwR-Uj-dkd" secondAttribute="topMargin" id="xZt-24-Xll"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="39Q-Go-gd8" id="zC4-d0-J5E"/>
+                                    <outlet property="userImageView" destination="Isa-u5-CQC" id="IJi-Yw-m5q"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

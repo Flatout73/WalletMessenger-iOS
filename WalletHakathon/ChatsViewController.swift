@@ -19,13 +19,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var coreDataService: CoreDataService!
     
     var refreshControl: UIRefreshControl!
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if(dialogID != -1){
-            self.performSegue(withIdentifier: "", sender: dialogID)
-        }
-    }
-    
+
     var fetchedResultsController: NSFetchedResultsController<Conversation>!// {
 //        didSet {
 //            do {
@@ -181,7 +175,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if let cell = sender as? ChatTableViewCell {
                 vc.dialogID = cell.dialogID
                 vc.title = cell.name.text
-                vc.phone = Int64(cell.mobilePhone.text)
+                vc.phone = Int64(cell.mobilePhone.text!)
             } else if let id = sender as? Int {
                 vc.dialogID = id
             } else {
