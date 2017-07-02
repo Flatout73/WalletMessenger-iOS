@@ -128,7 +128,6 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
                 self.navigationController?.popViewController(animated: true)
                 self.delegate.updateTableForTransactions()
             }
-            
         }
     }
     
