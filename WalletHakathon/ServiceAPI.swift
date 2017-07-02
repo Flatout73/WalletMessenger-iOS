@@ -925,7 +925,7 @@ class ServiceAPI: NSObject {
     }
     
     
-    static func createGroupWithUsers(name: String, phones: String, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+    static func createGroupWithUsers(name: String, phones: String, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping(Int) -> Void) {
         if var dicionary = loadDictionary() {
             dicionary["name"] = name
             dicionary["phones"] = phones
@@ -949,7 +949,7 @@ class ServiceAPI: NSObject {
                 
                 //CoreDataService.sharedInstance.insertTransaction(id: transactionID, money: money, text: text ?? "", date: Date(timeIntervalSince1970: TimeInterval(date)), isCash: cash, conversation: conversation, group: nil, reciver: user, sender: CoreDataService.sharedInstance.appUser)
                 
-                completionHandler()
+                completionHandler(groupID)
             }
         }
     }
