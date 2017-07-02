@@ -9,7 +9,7 @@
 import UIKit
 
 
-class SenderTableViewController: UITableViewController, UITextFieldDelegate {
+class SenderTableViewController: UITableViewController, UITextFieldDelegate, SelectedUserDelegate {
     
     
     @IBOutlet weak var moneyField: UITextField!
@@ -18,6 +18,7 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var okButton: UIBarButtonItem!
     
+    @IBOutlet weak var nameReceiver: UILabel!
     
     var reciverID = 0
     var Nal: Bool = true
@@ -25,6 +26,21 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate {
     var groupId: Int!
     
     var delegate: TableViewUpdateDelegate!
+    
+    var phoneOfReceiver: Int64?
+    
+    func didSelect(user: User) {
+        nameReceiver.text = user.name
+        let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0))
+        cell?.accessoryType = .checkmark
+        
+        let cell2 = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
+        cell2?.accessoryType = .none
+        
+        reciverID = Int(user.userID)
+            
+        phoneOfReceiver = user.mobilePhone
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +62,7 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath == IndexPath(row: 0, section: 2)) {
+        if(indexPath == IndexPath(row: 0, section: 2)) { //способ оплаты
             
             let cell2 = tableView.cellForRow(at: IndexPath(row: 1, section: 2))!
             if(cell2.accessoryType == .checkmark){
@@ -70,31 +86,40 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate {
                 Nal = false
             }
             
-        } else if (indexPath == IndexPath(row: 0, section: 3)) {
+        } else if (indexPath == IndexPath(row: 0, section: 3)) { //отправка денег
             if(moneyField.text != "") {
                 sendMoney(money: Double(moneyField.text!)!)
             }
+        } else if (indexPath == IndexPath(row: 0, section: 0)) {
+            let cell2 = tableView.cellForRow(at: IndexPath(row: 1, section: 0))
+            let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
+            
+            cell?.accessoryType = .checkmark
+            cell2?.accessoryType = .disclosureIndicator
+            
+            reciverID = 0
         }
     }
 
-
+    var transactionQiwiID = Int64(Date().timeIntervalSince1970)
     func sendMoney(money: Double) {
         if(!Nal){
             
-//            ServiceAPI.sendMoneyQiwi(phoneToSend: phone, summa: Double(moneyField.text!)!, transactionID: transactionQiwiID, noncomplitedHandler: errorHandler) {
-//                
-//                ServiceAPI.sendTransaction(dialogID: self.dialogID, money: Double(self.moneyField.text!)!, cash: self.isCash, text: "hey", noncompletedHandler: self.errorHandler) {
-//                    
-//                    DispatchQueue.main.async {
-//                        try! self.fetchedResultsController.performFetch()
-//                        self.tableView.reloadData()
-//                    }
-//                    
-//                }
-//            }
+            ServiceAPI.sendMoneyQiwi(phoneToSend: phoneOfReceiver!, summa: Double(moneyField.text!)!, transactionID: transactionQiwiID, noncomplitedHandler: errorHandler) {
+                
+                ServiceAPI.groupSendTransaction(receiverID: self.reciverID, groupID: self.groupId, money: money, cash: self.Nal, text: self.textField.text == "" ? "hey" : self.textField.text, noncompletedHandler: self.errorHandler) {
+                    
+                    DispatchQueue.main.async {
+                       self.navigationController?.popViewController(animated: true)
+                       self.delegate.update()
+                    }
+                    
+                }
+            }
         } else {
             
             ServiceAPI.groupSendTransaction(receiverID: reciverID, groupID: groupId, money: money, cash: Nal, text: textField.text == "" ? "hey" : textField.text, noncompletedHandler: self.errorHandler) {
+                self.navigationController?.popViewController(animated: true)
                 self.delegate.update()
             }
             
@@ -123,6 +148,7 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? RecieverTableViewController {
             vc.groupID = groupId
+            vc.delegate = self
         }
     }
  

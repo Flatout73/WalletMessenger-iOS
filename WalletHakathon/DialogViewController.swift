@@ -270,13 +270,10 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                 cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
             }
         
-            cell.delegate = self
-            cell.transactionID = Int(transaction.transactionID)
+        
         
             transaction.managedObjectContext?.performAndWait {
                 if(transaction.isCash){
-                    cell.qiwiorNal.image = #imageLiteral(resourceName: "icon_money")
-                    
                     if(transaction.proof == 1) {
                         cell.hideButtons()
                         //cell.makeIndicator(green: true)
@@ -289,11 +286,12 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                         cell.indicator.backgroundColor = UIColor.yellow
                         cell.messView.layer.opacity = 0.5
                     }
-                    
+                    cell.qiwiorNal.image = #imageLiteral(resourceName: "icon_money")
                 } else{
                     cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
                     cell.hideButtons()
                     cell.indicator.backgroundColor = UIColor.clear
+                    cell.messView.layer.opacity = 1
                 }
                 cell.sum.text = String(transaction.money) + " руб."
                 
@@ -303,6 +301,9 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                 cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
                 cell.isReversed = true
             }
+        
+        cell.delegate = self
+        cell.transactionID = Int(transaction.transactionID)
         
         return cell
 

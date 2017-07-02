@@ -224,12 +224,19 @@ class CoreDataService: NSObject {
                 
                 context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
                 
-      
+                if(userID == self.appUserID) {
+                    
+                }
+                
                 let user = User.findOrInsertUser(id: userID, name: name, mobilePhone: phone, avatar: avatar, inContext: context)
                 
                 let group = GroupConversation.findConversation(id: groupID, inContext: context)
                 
-                group?.addToParticipants(user)
+                user.addToGroupConversations(group!)
+                //group!.addToParticipants(user)
+                
+                context.saveThrows()
+                self.dataBase.saveContext()
             }
         }
 

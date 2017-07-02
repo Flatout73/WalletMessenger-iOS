@@ -59,10 +59,12 @@ extension Transaction {
             transaction.isCash = isCash
             transaction.proof = Int16(proof)
             
-            guard let rec = User.findUser(id: reciver, inContext: context), let sen = User.findUser(id: sender, inContext: context) else {
-                print("Что-то пошло не так при создании транзакции")
+            guard let sen = User.findUser(id: sender, inContext: context) else {
+                print("Нет сендера у траназкции")
                 return transaction
             }
+            
+            let rec = User.findUser(id: reciver, inContext: context)
             
             transaction.reciever = rec
             transaction.sender = sen

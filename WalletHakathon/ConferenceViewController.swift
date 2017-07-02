@@ -31,6 +31,7 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
             try! self.fetchedResultsController.performFetch()
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
+            self.tableView.reloadData()
         }
         
     }
@@ -242,6 +243,7 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
                 cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
                 cell.hideButtons()
                 cell.indicator.backgroundColor = UIColor.clear
+                cell.messView.layer.opacity = 1
             }
             cell.sum.text = String(transaction.money) + " руб."
             

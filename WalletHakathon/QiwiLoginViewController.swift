@@ -18,6 +18,11 @@ class QiwiLoginViewController: UIViewController {
     @IBOutlet weak var getCodeButton: UIButton!
     @IBOutlet weak var connectButton: UIButton!
     
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -124,6 +129,7 @@ class QiwiLoginViewController: UIViewController {
             }
             task.resume()
         }
+
     }
 
     /*

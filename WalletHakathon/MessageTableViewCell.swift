@@ -54,6 +54,13 @@ class MessageTableViewCell: UITableViewCell {
         
     }
     
+    func addButtons(){
+        if(acceptButton != nil && declineButton != nil){
+            self.addSubview(acceptButton!)
+            self.addSubview(declineButton!)
+        }
+    }
+    
     func hideButtons() {
         
         if(acceptButton != nil && declineButton != nil){

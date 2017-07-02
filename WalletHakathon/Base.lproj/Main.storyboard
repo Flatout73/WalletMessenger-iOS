@@ -1450,6 +1450,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="moneyField" destination="lAv-xA-e2J" id="fQh-3b-VPO"/>
+                        <outlet property="nameReceiver" destination="iyb-WP-EOf" id="zm5-g5-r4e"/>
                         <outlet property="okButton" destination="VOL-b6-RDY" id="D1l-kf-1Xm"/>
                         <outlet property="textField" destination="kf9-jV-vMg" id="NM6-P0-g2f"/>
                     </connections>
@@ -1461,7 +1462,7 @@
         <!--Участники-->
         <scene sceneID="6CE-SA-6a2">
             <objects>
-                <tableViewController title="Участники" id="9Hh-kH-wTD" sceneMemberID="viewController">
+                <tableViewController title="Участники" id="9Hh-kH-wTD" customClass="RecieverTableViewController" customModule="WalletHakathon" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="omu-NB-ulW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1502,14 +1503,19 @@
             </objects>
             <point key="canvasLocation" x="3396" y="1008"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Participants Table View Controller-->
         <scene sceneID="1s1-4L-B8k">
             <objects>
-                <tableViewController id="tnF-rx-t3J" sceneMemberID="viewController">
+                <tableViewController id="tnF-rx-t3J" customClass="ParticipantsTableViewController" customModule="WalletHakathon" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="dWK-Zp-95W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lQ2-FO-s6p">
+                            <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button"/>
+                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="7v7-sA-Ukn">
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
