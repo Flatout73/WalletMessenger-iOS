@@ -28,9 +28,9 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
     
     func update() {
         DispatchQueue.main.async {
-            try! self.fetchedResultsController.performFetch()
-            self.tableView.beginUpdates()
-            self.tableView.endUpdates()
+            try? self.fetchedResultsController.performFetch()
+//            self.tableView.beginUpdates()
+//            self.tableView.endUpdates()
             self.tableView.reloadData()
         }
         
