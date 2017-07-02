@@ -140,6 +140,7 @@ class ServiceAPI: NSObject {
                 (json) in
                 
                 CoreDataService.sharedInstance.changePhoto(photo: photo)
+                completedHandler()
             }
         } else {
             noncompletedHandler("token error")

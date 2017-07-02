@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             firstPage.underTitlePadding = 30
             
             
-            let secondPage = OnboardingContentViewController(title: "", body: "Первый меccенджер для взаиморасчётов", image: #imageLiteral(resourceName: "2ndpage"), buttonText: "") { () -> Void in
+            let secondPage = OnboardingContentViewController(title: "", body:  "Записывайте, совершайте и подтверждайте совместные платежи", image: #imageLiteral(resourceName: "2ndpage"), buttonText: "") { () -> Void in
 
             }
             
@@ -58,8 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             
             firstPage.topPadding = 50
-            
             thirdPage.titleLabel.text = ""
+            
             thirdPage.topPadding = 100
             fourthPage.topPadding = 85
             secondPage.topPadding = 100
