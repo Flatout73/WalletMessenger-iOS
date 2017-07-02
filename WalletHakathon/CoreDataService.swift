@@ -92,6 +92,22 @@ class CoreDataService: NSObject {
         return fetchedResultsController
     }
     
+    func getFRCForGroups() -> NSFetchedResultsController<GroupConversation> {
+        var fetchedResultsController: NSFetchedResultsController<GroupConversation>
+        
+        let fetchRequest: NSFetchRequest<GroupConversation> = GroupConversation.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        //let sortDescriptor2 = NSSortDescriptor(key: "summa", ascending: true)
+        
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.fetchBatchSize = 20
+        
+        fetchedResultsController = NSFetchedResultsController<GroupConversation>(fetchRequest:
+            fetchRequest, managedObjectContext: container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        return fetchedResultsController
+    }
+    
     func getFRCForTransactions(dialogID: Int) -> NSFetchedResultsController<Transaction> {
         
         let fetchRequst: NSFetchRequest<Transaction> = container.managedObjectModel.fetchRequestFromTemplate(withName: "TransactionsWithConversationId", substitutionVariables: ["CONVERSATIONID": String(dialogID)]) as! NSFetchRequest<Transaction>
@@ -154,6 +170,36 @@ class CoreDataService: NSObject {
             
             completionHandler()
         }
+    }
+    
+        func insertGroup(groupID: Int, name: String, date: Date, summa: Double, myBalance: Double, adminID: Int, completionHandler: @escaping() -> Void){
+            
+            container.performBackgroundTask { (context) in
+                
+                var admin = User.findUser(id: adminID, inContext: context)
+                if (admin == nil) {
+                    admin = User.findOrInsertUser(id: adminID, name: "", mobilePhone: 0, avatar: nil, inContext: context)
+                }
+                
+                _ = GroupConversation.findOrInsertConversation(id: groupID, summa: summa, name: name, balance: myBalance, date: date, admin: admin!, users: [], transactions: [], inContext: context)
+                
+                context.saveThrows()
+                self.dataBase.saveContext()
+                
+                completionHandler()
+            }
+        }
+        
+        func insertGroupInfo(groupID: Int, balance: Double, name: String, userIDs: [Int], transactionIDs: [Int], completionHandler: @escaping() -> Void) {
+            container.performBackgroundTask { (context) in
+                
+                var users: [User]
+                var transactions: [Transaction]
+                for userID in userIDs {
+                    //users.append(User.findOrInsertUser(id: <#T##Int#>, name: <#T##String#>, mobilePhone: <#T##Int64#>, avatar: <#T##Data?#>, inContext: <#T##NSManagedObjectContext#>))
+                }
+            }
+        }
         
 //        let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
 //        
@@ -165,7 +211,6 @@ class CoreDataService: NSObject {
 //                }
 //            }
 //        }
-    }
     
     var k = 0
     

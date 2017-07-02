@@ -22,8 +22,11 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var loadMoreStatus = false
     
+    var isDialogs: Bool = true
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    var frcGroup: NSFetchedResultsController<GroupConversation>!
     var fetchedResultsController: NSFetchedResultsController<Conversation>!// {
 //        didSet {
 //            do {
@@ -51,10 +54,18 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         activityIndicator.hidesWhenStopped = true
 
         coreDataService = CoreDataService.sharedInstance
+      
         fetchedResultsController = coreDataService.getFRCForChats()
+        frcGroup = coreDataService.getFRCForGroups()
         
         fetchedResultsController.delegate = self
-        try! fetchedResultsController.performFetch()
+        frcGroup.delegate = self
+        do{
+            try fetchedResultsController.performFetch()
+            try frcGroup.performFetch()
+        } catch {
+            print(error.localizedDescription)
+        }
     
         //print(fetchedResultsController.delegate)
         
@@ -68,16 +79,27 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func segmentSwitched(_ sender: UISegmentedControl) {
         if(sender.selectedSegmentIndex == 0){
-            //Подгружаем диалоги
+            isDialogs = true
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
         } else {
-            //Подгружаем группы
+            isDialogs = false
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
         
     }
     
     func refresh(sender: Any) {
         refreshBegin { (x:Int) -> () in
-            try! self.fetchedResultsController.performFetch()
+            if(self.isDialogs){
+                try? self.fetchedResultsController.performFetch()
+            } else {
+                try? self.frcGroup.performFetch()
+            }
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
         }
@@ -86,9 +108,17 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func refreshBegin(refreshEnd:@escaping (Int) -> ()) {
         DispatchQueue.global(qos: .utility).async { [weak self] in
             if let this = self {
-                ServiceAPI.getDialogs(noncompletedHandler: this.errorHandler) {
-                    DispatchQueue.main.async {
-                        refreshEnd(0)
+                if(this.isDialogs){
+                    ServiceAPI.getDialogs(noncompletedHandler: this.errorHandler) {
+                        DispatchQueue.main.async {
+                            refreshEnd(0)
+                        }
+                    }
+                } else{
+                    ServiceAPI.getGroups(noncompletedHandler: this.errorHandler) {
+                        DispatchQueue.main.async {
+                            refreshEnd(0)
+                        }
                     }
                 }
             }
@@ -113,7 +143,11 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             loadMoreBegin(
                           loadMoreEnd: {(x:Int) -> () in
                             
-                            try! self.fetchedResultsController.performFetch()
+                            if(self.isDialogs){
+                                try? self.fetchedResultsController.performFetch()
+                            } else{
+                                try? self.frcGroup.performFetch()
+                            }
                             self.tableView.reloadData()
                             self.loadMoreStatus = false
                             self.activityIndicator.stopAnimating()
@@ -126,28 +160,56 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         DispatchQueue.global(qos: .utility).async {
             print("loadmore")
             
-            if(!self.fetchedResultsController.sections!.isEmpty) {
-                if let sectionInfo = self.fetchedResultsController.sections?[0]{
-                    if(sectionInfo.numberOfObjects > 0) {
-                        let conv = self.fetchedResultsController.object(at: IndexPath(row: sectionInfo.numberOfObjects - 1, section: 0))
-                        guard let date = conv.date as Date? else {
-                            print("Нет даты")
-                            return
-                        }
-                        ServiceAPI.getDialogsHist(date1: Int64(date.timeIntervalSince1970), noncompletedHandler: self.errorHandler){
-                            DispatchQueue.main.async  {
-                                loadMoreEnd(0)
+            if(self.isDialogs){
+                if(!self.fetchedResultsController.sections!.isEmpty) {
+                    if let sectionInfo = self.fetchedResultsController.sections?[0]{
+                        if(sectionInfo.numberOfObjects > 0) {
+                            let conv = self.fetchedResultsController.object(at: IndexPath(row: sectionInfo.numberOfObjects - 1, section: 0))
+                            guard let date = conv.date as Date? else {
+                                print("Нет даты")
+                                return
                             }
-                        }
-                    } else {
-                        ServiceAPI.getDialogs(noncompletedHandler: self.errorHandler) {
-                            DispatchQueue.main.async  {
-                                loadMoreEnd(0)
+                            ServiceAPI.getDialogsHist(date1: Int64(date.timeIntervalSince1970), noncompletedHandler: self.errorHandler){
+                                DispatchQueue.main.async  {
+                                    loadMoreEnd(0)
+                                }
+                            }
+                        } else {
+                            ServiceAPI.getDialogs(noncompletedHandler: self.errorHandler) {
+                                DispatchQueue.main.async  {
+                                    loadMoreEnd(0)
+                                }
                             }
                         }
                     }
+                    
                 }
-                
+            }
+            else {
+                if(!self.frcGroup.sections!.isEmpty) {
+                    if let sectionInfo = self.frcGroup.sections?[0]{
+                        if(sectionInfo.numberOfObjects > 0) {
+                            let conv = self.frcGroup.object(at: IndexPath(row: sectionInfo.numberOfObjects - 1, section: 0))
+                            guard let date = conv.date as Date? else {
+                                print("Нет даты")
+                                return
+                            }
+                            ServiceAPI.getGroupsHist(date1: Int64(date.timeIntervalSince1970), noncompletedHandler: self.errorHandler) {
+                                loadMoreEnd(0)
+                            }
+                        } else {
+                            ServiceAPI.getDialogs(noncompletedHandler: self.errorHandler) {
+                                DispatchQueue.main.async  {
+                                    loadMoreEnd(0)
+                                }
+                            }
+                            ServiceAPI.getGroups(noncompletedHandler: self.errorHandler) {
+                                
+                            }
+                        }
+                    }
+                    
+                }
             }
         }
     }
@@ -169,19 +231,13 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
 //    var k = 2
 //    let idTrans = round(Date().timeIntervalSince1970)
-//    @IBAction func testCreationDialog(_ sender: Any) {
-//        
-//            //coreDataService.insertConversation(userID: k, conversationID: k, date: Date(),  name: String(k), mobilePhone: Int64(k), balance: Double(k), avatar: nil)
-////            k += 1
-////            try! fetchedResultsController.performFetch()
-////            tableView.reloadData()
-//        
-//        
-//        ServiceAPI.sendMoneyQiwi(phoneToSend: 79036699731, summa: 1, transactionID: Int64(Int(idTrans)), noncomplitedHandler: errorHandler) {
-//            
-//        }
-//    }
-//    
+    @IBAction func testCreationDialog(_ sender: Any) {
+        
+        ServiceAPI.createGroup(name: "Друзья", noncompletedHandler: self.errorHandler) {
+            
+        }
+    }
+    
     
     
     override func didReceiveMemoryWarning() {
@@ -191,11 +247,22 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return 1
-        if(!fetchedResultsController.sections!.isEmpty) {
-            if let sectionInfo = fetchedResultsController.sections?[section]{
-                return sectionInfo.numberOfObjects
-            } else {
-                print("Unexpected Section")
+        
+        if(isDialogs){
+            if(!fetchedResultsController.sections!.isEmpty) {
+                if let sectionInfo = fetchedResultsController.sections?[section]{
+                    return sectionInfo.numberOfObjects
+                } else {
+                    print("Unexpected Section")
+                }
+            }
+        } else {
+            if(!frcGroup.sections!.isEmpty) {
+                if let sectionInfo = frcGroup.sections?[section]{
+                    return sectionInfo.numberOfObjects
+                } else {
+                    print("Unexpected Section")
+                }
             }
         }
         return 0
@@ -203,35 +270,54 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func numberOfSections(in tableView: UITableView) -> Int {
         //return cells.count
-        if let count = fetchedResultsController.sections?.count {
-            return count
-        } else {
-            return 0
+        if(isDialogs){
+            if let count = fetchedResultsController.sections?.count {
+                return count
+            }
+        } else{
+            if let count = frcGroup.sections?.count{
+                return count
+            }
         }
+        return 0
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell", for: indexPath) as!ChatTableViewCell
         
-        //cell.name.text = cells[indexPath.row]
-        
-        let conversation = fetchedResultsController.object(at: indexPath)
-        
-        if let participant = conversation.participant {
+        var cell: ChatTableViewCell
+        if(isDialogs){
+            cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell", for: indexPath) as! ChatTableViewCell
+            
+            //cell.name.text = cells[indexPath.row]
+            
+            let conversation = fetchedResultsController.object(at: indexPath)
+            
+            if let participant = conversation.participant {
+                
+                conversation.managedObjectContext?.performAndWait {
+                    //                for user in participants{
+                    //                    cell.name.text = user.name
+                    //                    break
+                    //                }
+                    cell.name.text = participant.name
+                    cell.dialogID = Int(conversation.conversationID)
+                    cell.balance.text = String(conversation.summa) + " руб."
+                    cell.mobilePhone.text = String(participant.mobilePhone)
+                }
+            }
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! ChatTableViewCell
+            
+            let conversation = frcGroup.object(at: indexPath)
             
             conversation.managedObjectContext?.performAndWait {
-//                for user in participants{
-//                    cell.name.text = user.name
-//                    break
-//                }
-                cell.name.text = participant.name
+                
+                cell.name.text = conversation.name
                 cell.dialogID = Int(conversation.conversationID)
-                cell.balance.text = String(conversation.summa) + " руб."
-                cell.mobilePhone.text = String(participant.mobilePhone)
+                cell.balance.text = String(conversation.myBalance) + " руб."
             }
         }
-
         
         return cell
         
@@ -254,6 +340,10 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if let v = vc.viewControllers.first as? ContactsTableViewController{
                 v.dialogDelegate = self
                 v.groupDelegate = self
+            }
+        } else if let vc = segue.destination as? ConferenceViewController {
+            if let cell = sender as? ChatTableViewCell{
+                vc.title = cell.name.text
             }
         }
     }

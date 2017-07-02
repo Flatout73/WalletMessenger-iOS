@@ -18,6 +18,7 @@
 		55B4E4961F06E2000043A0E5 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4941F06E2000043A0E5 /* OnboardingViewController.m */; };
 		55B4E4991F07BB680043A0E5 /* StringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4981F07BB680043A0E5 /* StringService.swift */; };
 		55B4E49B1F07EBFF0043A0E5 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E49A1F07EBFF0043A0E5 /* ContactTableViewCell.swift */; };
+		7117053F1F0877D300271947 /* ConferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7117053E1F0877D300271947 /* ConferenceViewController.swift */; };
 		711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */; };
 		711BEB211EFEF2E900907B42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB201EFEF2E900907B42 /* ViewController.swift */; };
 		711BEB241EFEF2E900907B42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 711BEB221EFEF2E900907B42 /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		55B4E4941F06E2000043A0E5 /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		55B4E4981F07BB680043A0E5 /* StringService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringService.swift; sourceTree = "<group>"; };
 		55B4E49A1F07EBFF0043A0E5 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		7117053E1F0877D300271947 /* ConferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceViewController.swift; sourceTree = "<group>"; };
 		711BEB1B1EFEF2E900907B42 /* WalletHakathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalletHakathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		711BEB201EFEF2E900907B42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				712DEED31F01B5F0004D5CE9 /* InfoRegistViewController.swift */,
 				712F62F01F043F3A004CC712 /* CreationViewController.swift */,
 				712F62F61F051FFA004CC712 /* SettingsViewController.swift */,
+				7117053E1F0877D300271947 /* ConferenceViewController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				712DEED41F01B5F0004D5CE9 /* InfoRegistViewController.swift in Sources */,
 				5572CE911F003A7A00E0FC3E /* ServiceAPI.swift in Sources */,
 				712DEEE51F02B6A1004D5CE9 /* MOCExtension.swift in Sources */,
+				7117053F1F0877D300271947 /* ConferenceViewController.swift in Sources */,
 				55B4E4991F07BB680043A0E5 /* StringService.swift in Sources */,
 				55B4E45A1F058BA10043A0E5 /* GroupMembersTableViewController.swift in Sources */,
 				712DEEE01F028DB9004D5CE9 /* TransactionExtension.swift in Sources */,

@@ -13,11 +13,15 @@ import Foundation
 import CoreData
 
 extension GroupConversation {
-    private class func insertConversation(id: Int, summa: Double, name: String, users: [User], transactions: [Transaction], inContext context: NSManagedObjectContext) -> GroupConversation{
+    private class func insertConversation(id: Int, summa: Double, name: String, balance: Double,  date: Date, admin: User, users: [User], transactions: [Transaction], inContext context: NSManagedObjectContext) -> GroupConversation{
         let conversation = GroupConversation(context: context)
         conversation.conversationID = Int32(id)
         conversation.summa = summa
         conversation.name = name
+        conversation.admin = admin
+        conversation.myBalance = balance
+        conversation.date = date as NSDate
+        
         for user in users {
             conversation.addToParticipants(user)
         }
@@ -28,11 +32,14 @@ extension GroupConversation {
         return conversation
     }
     
-    class func findOrInsertConversation(id: Int, summa: Double, name: String, users: [User], transactions: [Transaction], inContext context: NSManagedObjectContext) -> GroupConversation {
+    class func findOrInsertConversation(id: Int, summa: Double, name: String, balance: Double, date: Date, admin: User, users: [User], transactions: [Transaction], inContext context: NSManagedObjectContext) -> GroupConversation {
         
         if let conversation = findConversation(id: id, inContext: context) {
             conversation.summa = summa
             conversation.name = name
+            conversation.admin = admin
+            conversation.myBalance = balance
+            conversation.date = date as NSDate
             for user in users {
                 conversation.addToParticipants(user)
             }
@@ -43,7 +50,7 @@ extension GroupConversation {
             
             return conversation
         } else {
-            return insertConversation(id: id, summa: summa, name: name, users: users, transactions: transactions, inContext: context)
+            return insertConversation(id: id, summa: summa, name: name, balance: balance, date: date, admin: admin, users: users, transactions: transactions, inContext: context)
         }
         
     }
@@ -51,10 +58,14 @@ extension GroupConversation {
     class func findConversation(id: Int, inContext context: NSManagedObjectContext) -> GroupConversation? {
         let request: NSFetchRequest<GroupConversation> = GroupConversation.fetchRequest()
         
-        request.predicate = NSPredicate(format: "conversationID==%@", id)
+        request.predicate = NSPredicate(format: "conversationID==%@", String(id))
         
-        if let conversation = (try? context.fetch(request))?.first {
-            return conversation
+        do{
+            if let conversation = (try context.fetch(request)).first {
+                return conversation
+            }
+        } catch{
+            print(error.localizedDescription)
         }
         
         return nil
