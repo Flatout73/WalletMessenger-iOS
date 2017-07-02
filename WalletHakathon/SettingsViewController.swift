@@ -40,11 +40,24 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let coreDataService = CoreDataService.sharedInstance
+        
+        coreDataService.container.viewContext.perform {
+            let appUser = coreDataService.getAppUser(in: coreDataService.container.viewContext)
+            
+            self.nameTextField.text = appUser.name
+            if let image = appUser.avatar as Data? {
+                self.avatar.image = UIImage.init(data: image)
+            }
+        }
+    }
+    
     func doneButton(){
         if(nameChanged){
 
             ServiceAPI.changeName(name: nameTextField.text!, completedHandler: {
-                //Повесить обновление из кордаты
+                //в Core Data вроде больше ничего не надо, в сервис апи все есть
             }, noncompletedHandler: {str in
                 ServiceAPI.alert(viewController: self, desc: str)
             })

@@ -89,11 +89,20 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func refresh(sender: Any) {
-        refreshBegin { (x:Int) -> () in
-            try? self.fetchedResultsController.performFetch()
-            self.tableView.reloadData()
+        
+        if (!loadMoreStatus) {
+            self.loadMoreStatus = true
+            
+            refreshBegin { (x:Int) -> () in
+                try? self.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
+                self.activityIndicator.stopAnimating()
+                
+                self.loadMoreStatus = false
+            }
+        } else {
             self.refreshControl.endRefreshing()
-            self.activityIndicator.stopAnimating()
         }
     }
     
