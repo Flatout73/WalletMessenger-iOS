@@ -199,8 +199,6 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
 
             if let data = UIImagePNGRepresentation(newImage!) {
                 self.avatar.image = selectedImage
-                var dataString = data.base64EncodedString()
-                dataString = dataString.replacingOccurrences(of: "+", with: "%2b")
 
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                 ServiceAPI.changePhoto(photo: data, completedHandler: {

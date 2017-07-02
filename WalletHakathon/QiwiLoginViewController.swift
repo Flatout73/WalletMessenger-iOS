@@ -81,7 +81,10 @@ class QiwiLoginViewController: UIViewController {
                         }
                     }
                 }
-                MBProgressHUD.hide(for: self.view, animated: true)
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                }
+                
             }
             task.resume()
             
@@ -121,7 +124,9 @@ class QiwiLoginViewController: UIViewController {
                                 
                                 UserDefaults.standard.set(token, forKey: "access_token_qiwi")
                                 let alert = UIAlertController(title: "Успех!", message: "Кошелек Qiwi успешно привязан.", preferredStyle: UIAlertControllerStyle.alert)
-                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (action) in
+                                    _ = this.navigationController?.popViewController(animated: true)
+                                })
                                 this.present(alert, animated: true, completion: nil)
                                 
                                 print("token:", UserDefaults.standard.value(forKey: "access_token_qiwi")!)
@@ -133,6 +138,7 @@ class QiwiLoginViewController: UIViewController {
                         ServiceAPI.alert(viewController: self, title: "Ошибка!", desc: "Неверный код.")
                     }
                 }
+                
                 MBProgressHUD.hide(for: self.view, animated: true)
             }
             task.resume()

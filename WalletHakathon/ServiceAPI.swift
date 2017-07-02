@@ -133,7 +133,11 @@ class ServiceAPI: NSObject {
     //фото тип string пока стоит
     static func changePhoto(photo: Data, completedHandler: @escaping() -> Void, noncompletedHandler: @escaping(String) -> Void) {
         if var dictionary = ServiceAPI.loadDictionary() {
-            dictionary["photo"] = photo.base64EncodedString()
+            
+            var dataString = photo.base64EncodedString()
+            dataString = dataString.replacingOccurrences(of: "+", with: "%2b")
+            
+            dictionary["photo"] = dataString
             
             let requestStr = serverAddress + "/user/chphoto"
             
@@ -763,7 +767,7 @@ class ServiceAPI: NSObject {
                     
                 }
                 
-                sleep(1)
+                //sleep(1)
                 let transactions = json["transactions"]
                 for (index, subJSON): (String, JSON) in transactions {
                     
