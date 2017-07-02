@@ -321,6 +321,9 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
         if let vc = segue.destination as? SenderTableViewController {
             vc.groupId = groupID
             vc.delegate = self
+        } else if let vc = segue.destination as? ParticipantsTableViewController{
+            vc.adminID = adminID
+            vc.groupID = groupID
         }
     }
 
