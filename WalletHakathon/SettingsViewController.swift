@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
@@ -57,18 +58,21 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
     
     func doneButton(){
         if(nameChanged){
-
+            MBProgressHUD.showAdded(to: self.view, animated: true)
             ServiceAPI.changeName(name: nameTextField.text!, completedHandler: {
-                //в Core Data вроде больше ничего не надо, в сервис апи все есть
+                MBProgressHUD.hide(for: self.view, animated: true)
             }, noncompletedHandler: {str in
+                MBProgressHUD.hide(for: self.view, animated: true)
                 ServiceAPI.alert(viewController: self, desc: str)
             })
         }
         
         if(passwordChanged){
+            MBProgressHUD.showAdded(to: self.view, animated: true)
             ServiceAPI.changePsd(last: lastPasswordTextField.text!, new: passwordTextField.text!, completedHandler: {
-                //Повесить обновление из кордаты
+                MBProgressHUD.hide(for: self.view, animated: true)
             }, noncompletedHandler: {str in
+                MBProgressHUD.hide(for: self.view, animated: true)
                 ServiceAPI.alert(viewController: self, desc: str)
             })
         }
@@ -198,12 +202,16 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
                 var dataString = data.base64EncodedString()
                 dataString = dataString.replacingOccurrences(of: "+", with: "%2b")
 
-//                MBProgressHUD.showAdded(to: self.view, animated: true)
+                MBProgressHUD.showAdded(to: self.view, animated: true)
                 ServiceAPI.changePhoto(photo: data, completedHandler: {
                     DispatchQueue.main.async {[weak self] in
-                        self?.viewWillAppear(true)
+                        if let this = self{
+                            MBProgressHUD.hide(for: this.view, animated: true)
+                            self?.viewWillAppear(true)
+                        }
                     }
                 }, noncompletedHandler: {str in
+                    MBProgressHUD.hide(for: self.view, animated: true)
                     ServiceAPI.alert(viewController: self, desc: str)
                 })
             }

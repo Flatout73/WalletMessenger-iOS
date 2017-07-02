@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MBProgressHUD
 
 class SenderTableViewController: UITableViewController, UITextFieldDelegate, SelectedUserDelegate {
     
@@ -104,12 +104,13 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
     var transactionQiwiID = Int64(Date().timeIntervalSince1970)
     func sendMoney(money: Double) {
         if(!Nal){
-            
+            MBProgressHUD.showAdded(to: self.view, animated: true)
             ServiceAPI.sendMoneyQiwi(phoneToSend: phoneOfReceiver!, summa: Double(moneyField.text!)!, transactionID: transactionQiwiID, noncomplitedHandler: errorHandler) {
                 
                 ServiceAPI.groupSendTransaction(receiverID: self.reciverID, groupID: self.groupId, money: money, cash: self.Nal, text: self.textField.text == "" ? "hey" : self.textField.text, noncompletedHandler: self.errorHandler) {
                     
                     DispatchQueue.main.async {
+                       MBProgressHUD.hide(for: self.view, animated: true)
                        self.navigationController?.popViewController(animated: true)
                        self.delegate.update()
                     }
@@ -119,10 +120,9 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
         } else {
             
             ServiceAPI.groupSendTransaction(receiverID: reciverID, groupID: groupId, money: money, cash: Nal, text: textField.text == "" ? "hey" : textField.text, noncompletedHandler: self.errorHandler) {
-                DispatchQueue.main.async {
-                    self.navigationController?.popViewController(animated: true)
-                    self.delegate.update()
-                }
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.navigationController?.popViewController(animated: true)
+                self.delegate.update()
             }
             
         }

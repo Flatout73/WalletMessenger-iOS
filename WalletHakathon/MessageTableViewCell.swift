@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 protocol TableViewUpdateDelegate {
     func update()
@@ -99,8 +100,6 @@ class MessageTableViewCell: UITableViewCell {
             }
             
         }
-        
-        
     }
     
     

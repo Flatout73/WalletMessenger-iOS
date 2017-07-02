@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import MBProgressHUD
 
 let serverAddress = "http://walletmsg.azurewebsites.net/api"
 //let serverAddress = "http://localhost:8080"
@@ -1048,7 +1049,7 @@ class ServiceAPI: NSObject {
     
     public static func alert(viewController: UIViewController, title: String = "Ошибка!", desc: String) {
         DispatchQueue.main.async {
-            
+            MBProgressHUD.hide(for: viewController.view, animated: true)
             let alert = UIAlertController(title: title, message: desc, preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
