@@ -179,6 +179,8 @@ class ContactsTableViewController: UITableViewController {
             vc.root = self
         } else if let vc = segue.destination as? GroupMembersTableViewController{
             vc.contacts = contacts
+            vc.groupDelegate = groupDelegate
+            vc.root = self
         }
     }
  

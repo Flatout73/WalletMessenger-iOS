@@ -11,6 +11,9 @@ import Contacts
 
 class GroupMembersTableViewController: UITableViewController {
 
+    var groupDelegate: ContactGroupDelegate?
+    var root:UIViewController?
+    
     var contacts = [CNContact]()
     var cellsChecked:[Int] = []
     var phones:[String] = []
@@ -114,6 +117,8 @@ class GroupMembersTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? GroupCreateTableViewController{
             vc.phones = phones
+            vc.groupDelegate = groupDelegate
+            vc.root = self
         }
     }
     
