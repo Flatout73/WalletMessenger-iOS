@@ -29,13 +29,16 @@ class GroupCreateTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(indexPath.section == 1){
             if(groupNameTextField.text != ""){
-                //ServiceAPI.createGroup
-                //Крутится колесо, close()
+                ServiceAPI.createGroupWithUsers(name: groupNameTextField.text!, phones: StringService.createPhones(byArray: phones), noncompletedHandler: {str in
+                    
+                ServiceAPI.alert(viewController: self, desc: str)
+                }, completionHandler: {
+                    self.close()
+                })
             } else {
-                
+                ServiceAPI.alert(viewController: self, desc: "Пожалуйста, введите имя группы")
             }
 
-            
             close()
         }
     }

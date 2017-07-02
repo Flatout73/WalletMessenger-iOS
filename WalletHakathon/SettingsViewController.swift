@@ -42,15 +42,20 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
     
     func doneButton(){
         if(nameChanged){
+
             ServiceAPI.changeName(name: nameTextField.text!, completedHandler: {
-                //Надо подумать, что тут делать
-            }, noncompletedHandler: {_ in})
+                //Повесить обновление из кордаты
+            }, noncompletedHandler: {str in
+                ServiceAPI.alert(viewController: self, desc: str)
+            })
         }
         
         if(passwordChanged){
             ServiceAPI.changePsd(last: lastPasswordTextField.text!, new: passwordTextField.text!, completedHandler: {
-            //Надо подумать, что тут делать
-            }, noncompletedHandler: {_ in})
+                //Повесить обновление из кордаты
+            }, noncompletedHandler: {str in
+                ServiceAPI.alert(viewController: self, desc: str)
+            })
         }
     }
     
@@ -182,7 +187,11 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
 
                 _ = self.view.gestureRecognizers?.popLast()
 //                MBProgressHUD.showAdded(to: self.view, animated: true)
-                ServiceAPI.changePhoto(photo: data, completedHandler: {}, noncompletedHandler: {_ in})
+                ServiceAPI.changePhoto(photo: data, completedHandler: {
+                    //Повесить обновление из кордаты
+                }, noncompletedHandler: {str in
+                    ServiceAPI.alert(viewController: self, desc: str)
+                })
             }
         }
         

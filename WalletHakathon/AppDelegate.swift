@@ -30,13 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
-            let firstPage = OnboardingContentViewController(title: "Добро пожаловать в Wallet Messenger", body: " Первый меccенджер для взаиморасчётов", image: nil, buttonText: "Пропустить") { () -> Void in
+            let firstPage = OnboardingContentViewController(title: "Добро пожаловать в Wallet Messenger", body: "", image: nil, buttonText: "Пропустить") { () -> Void in
                 let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
             }
             
-            let secondPage = OnboardingContentViewController(title: "", body: "Тут будет какая-то иконка", image: #imageLiteral(resourceName: "2ndpage"), buttonText: "Пропустить") { () -> Void in
+            let secondPage = OnboardingContentViewController(title: "", body: "Первый меccенджер для взаиморасчётов", image: #imageLiteral(resourceName: "2ndpage"), buttonText: "Пропустить") { () -> Void in
                 let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.makeKeyAndVisible()
             }
             
-            let fourthPage = OnboardingContentViewController(title: "", body: "", image: nil, buttonText: "Начать") { () -> Void in
+            let fourthPage = OnboardingContentViewController(title: "", body: "", image: #imageLiteral(resourceName: "4th"), buttonText: "Начать") { () -> Void in
                 let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
@@ -63,6 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             thirdPage.titleLabel.text = ""
             thirdPage.topPadding = 100
+            fourthPage.topPadding = 100
+            secondPage.topPadding = 100
             
             initialViewController = OnboardingViewController(backgroundImage: UIImage(named: "back"), contents: [firstPage, secondPage, thirdPage,fourthPage])
             

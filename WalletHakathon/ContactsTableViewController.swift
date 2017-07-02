@@ -158,12 +158,12 @@ class ContactsTableViewController: UITableViewController {
     }
     
     func presentSettingsActionSheet() {
-        let alert = UIAlertController(title: "Permission to Contacts", message: "This app needs access to contacts in order to ...", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Go to Settings", style: .default) { _ in
+        let alert = UIAlertController(title: "Доступ к контактам", message: "Данное приложение требует доступа к контактам", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Открыть настройки", style: .default) { _ in
             let url = URL(string: UIApplicationOpenSettingsURLString)!
             UIApplication.shared.open(url)
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Отменить", style: .cancel))
         present(alert, animated: true)
     }
 
