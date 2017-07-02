@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/CoreDataService.swift"
-            timestampString = "520718892.683842"
+            timestampString = "520727648.59386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "331"
-            endingLineNumber = "331"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
             landmarkName = "insertTransaction(id:money:text:date:isCash:proof:conversation:group:reciver:sender:count:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
