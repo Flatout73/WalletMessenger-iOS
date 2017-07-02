@@ -84,8 +84,8 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         refreshControl.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         
         tableView.addSubview(refreshControl)
-        self.tableView.emptyDataSetSource = self
-        self.tableView.emptyDataSetDelegate = self
+//        self.tableView.emptyDataSetSource = self
+//        self.tableView.emptyDataSetDelegate = self
     }
     
     func refresh(sender: Any) {
@@ -442,24 +442,25 @@ extension DialogViewController: NSFetchedResultsControllerDelegate {
     }
 }
 
-extension DialogViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
-    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
-        return #imageLiteral(resourceName: "chat_logo")
-    }
-    
-    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        return NSMutableAttributedString(string: "Здесь будут ваши транзакции")
-    }
-    
-    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        return NSMutableAttributedString(string: "Потяните снизу, чтобы загрузить новые.")
-    }
-    
-    func backgroundColor(forEmptyDataSet scrollView: UIScrollView) -> UIColor? {
-        return UIColor.white
-    }
-    
-    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
-        return true
-    }
-}
+//extension DialogViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+//    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+//        return #imageLiteral(resourceName: "chat_logo")
+//    }
+//    
+//    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+//        var str = NSMutableAttributedString(string: "Здесь будут ваши транзакции")
+//        return str
+//    }
+//    
+//    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+//        return NSMutableAttributedString(string: "Потяните снизу, чтобы загрузить новые.")
+//    }
+//    
+//    func backgroundColor(forEmptyDataSet scrollView: UIScrollView) -> UIColor? {
+//        return UIColor.white
+//    }
+//    
+//    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
+//        return true
+//    }
+//}
