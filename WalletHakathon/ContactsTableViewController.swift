@@ -8,6 +8,7 @@
 
 import UIKit
 import Contacts
+import MBProgressHUD
 
 class ContactsTableViewController: UITableViewController {
 
@@ -65,6 +66,10 @@ class ContactsTableViewController: UITableViewController {
     
     func close(dialogInfo: DialogInfo){
         DispatchQueue.main.async {[weak self] in
+            if let this = self{
+               MBProgressHUD.hide(for: this.view, animated: true)
+            }
+            
             _ = self?.navigationController?.popToRootViewController(animated: false)
             self?.dismiss(animated: true, completion: nil)
             self?.dialogDelegate?.openDialog(withDialogInfo: dialogInfo )
@@ -132,7 +137,8 @@ class ContactsTableViewController: UITableViewController {
                     let phoneStr = StringService.getClearPhone(byString: action.title!)
                     
                     if let phone = CoreDataService.sharedInstance.mobilePhone, Int64(phoneStr) !=  phone{
-                        
+                    
+                    MBProgressHUD.showAdded(to: self.view, animated: true)
                     ServiceAPI.getByPhone(phoneNumber: phoneStr, noncompletedHandler: {str in ServiceAPI.alert(viewController: self, desc: str)}, completionHandler: { us in
                         ServiceAPI.createDialogWithUser(user: us, noncompletedHandler: {str in ServiceAPI.alert(viewController: self, desc: str)}, completionHandler: { dialogID in
                             let dialogInfo = DialogInfo()

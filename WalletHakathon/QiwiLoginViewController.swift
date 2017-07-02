@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class QiwiLoginViewController: UIViewController {
 
@@ -41,6 +42,8 @@ class QiwiLoginViewController: UIViewController {
     
     @IBAction func getCode(_ sender: Any) {
         if(!telephoneNumberField.text!.isEmpty) {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            
             var request = URLRequest(url: URL(string: "https://w.qiwi.com/oauth/authorize")!)
             request.httpMethod = "POST"
             let postString = "client_id=qw-fintech&client_secret=Xghj!bkjv64&client-software=qw-fintech-0.0.1&response_type=code&username=\(telephoneNumberField.text!)"
@@ -69,6 +72,7 @@ class QiwiLoginViewController: UIViewController {
                         if let c = dict["code"] {
                             DispatchQueue.main.async { [weak self] in
                                 if let this = self{
+                                    MBProgressHUD.hide(for: this.view, animated: true)
                                     this.code = c
                                 }
                             }
@@ -77,6 +81,7 @@ class QiwiLoginViewController: UIViewController {
                         }
                     }
                 }
+                MBProgressHUD.hide(for: self.view, animated: true)
             }
             task.resume()
             
@@ -113,6 +118,7 @@ class QiwiLoginViewController: UIViewController {
                     if let token = dict["access_token"] {
                         DispatchQueue.main.async { [weak self] in
                             if let this = self{
+                                
                                 UserDefaults.standard.set(token, forKey: "access_token_qiwi")
                                 let alert = UIAlertController(title: "Успех!", message: "Кошелек Qiwi успешно привязан.", preferredStyle: UIAlertControllerStyle.alert)
                                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
@@ -123,9 +129,11 @@ class QiwiLoginViewController: UIViewController {
                         }
                         
                     } else {
+                        
                         ServiceAPI.alert(viewController: self, title: "Ошибка!", desc: "Неверный код.")
                     }
                 }
+                MBProgressHUD.hide(for: self.view, animated: true)
             }
             task.resume()
         }

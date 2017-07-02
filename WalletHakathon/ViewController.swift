@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class ViewController: UIViewController {
     @IBOutlet weak var loginField: UITextField!
@@ -26,9 +27,11 @@ class ViewController: UIViewController {
     @IBAction func login(_ sender: Any) {
         
         if let login = loginField.text, let psw = passwordField.text {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
             ServiceAPI.loginUser(phone: login, password: psw, noncompletedHandler: errorHandler) {
                 DispatchQueue.main.async { [weak self] in
                     if let this = self {
+                        MBProgressHUD.hide(for: this.view, animated: true)
                         this.performSegue(withIdentifier: "loginS", sender: this)
                     }
                 }

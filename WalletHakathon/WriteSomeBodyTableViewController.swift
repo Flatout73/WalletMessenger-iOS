@@ -44,6 +44,7 @@ class WriteSomeBodyTableViewController: UITableViewController {
             let phoneStr = StringService.getClearPhone(byString: phoneNumberTextField.text!)
             
             if let phone = CoreDataService.sharedInstance.mobilePhone, Int64(phoneStr) !=  phone{
+                MBProgressHUD.showAdded(to: self.view, animated: true)
                 ServiceAPI.getByPhone(phoneNumber: phoneStr , noncompletedHandler: {str in ServiceAPI.alert(viewController: self, desc: str)}, completionHandler: { us in
                     ServiceAPI.createDialogWithUser(user: us, noncompletedHandler: {str in ServiceAPI.alert(viewController: self, desc: str)}, completionHandler: { dialogID in
                         let dialogInfo = DialogInfo()

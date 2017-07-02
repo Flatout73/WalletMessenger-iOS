@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class InfoRegistViewController: UIViewController {
 
@@ -46,10 +47,12 @@ class InfoRegistViewController: UIViewController {
             
         }
         
-        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         ServiceAPI.registerUser(phone: String(numberTF!), name: name, password: psw, noncompletedHandler: errorHandler) {
             
             DispatchQueue.main.async {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                
                 let alert = UIAlertController(title: "Успех!", message: "Пользователь успешно зарегистрирован", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "OK", style: .default) { (action) in
