@@ -40,7 +40,19 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
         
     }
     
-    @IBAction func endEditing(_ sender: UITextField) {
+    @IBAction func endEditing(_ sender: UITextField) { }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let coreDataService = CoreDataService.sharedInstance
+        
+        coreDataService.container.viewContext.perform {
+            let appUser = coreDataService.getAppUser(in: coreDataService.container.viewContext)
+            
+            self.nameTextField.text = appUser.name
+            if let image = appUser.avatar as Data? {
+                self.avatar.image = UIImage.init(data: image)
+            }
+        }
     }
     
     func doneButton(){
@@ -185,21 +197,21 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
                 self.avatar.image = selectedImage
                 var dataString = data.base64EncodedString()
                 dataString = dataString.replacingOccurrences(of: "+", with: "%2b")
-                
-                self.view.isUserInteractionEnabled = false
 
-                _ = self.view.gestureRecognizers?.popLast()
 //                MBProgressHUD.showAdded(to: self.view, animated: true)
                 ServiceAPI.changePhoto(photo: data, completedHandler: {
-                    //Повесить обновление из кордаты
+                    DispatchQueue.main.async {[weak self] in
+                        self?.viewWillAppear(true)
+                    }
                 }, noncompletedHandler: {str in
                     ServiceAPI.alert(viewController: self, desc: str)
                 })
             }
         }
         
-        dismiss(animated: true, completion: nil)
-        self.tableView.reloadData()
+        DispatchQueue.main.async {[weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }
     }
 
 }
