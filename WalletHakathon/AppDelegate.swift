@@ -30,8 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
-            let firstPage = OnboardingContentViewController(title: "Добро пожаловать в   \n  \n Wallet Messenger", body: "", image: nil, buttonText: "") { () -> Void in
+            let firstPage = OnboardingContentViewController(title: "Wallet Messenger", body: "Добро пожаловать! ", image: #imageLiteral(resourceName: "1st"), buttonText: "") { () -> Void in
             }
+            
+            firstPage.underTitlePadding = 30
+            
             
             let secondPage = OnboardingContentViewController(title: "", body: "Первый меccенджер для взаиморасчётов", image: #imageLiteral(resourceName: "2ndpage"), buttonText: "") { () -> Void in
 
@@ -49,6 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "Только финансы, ничего личного лишнего")
             attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(23, 8))
+            
+            
             fourthPage.bodyLabel.attributedText = attributeString
             
             
