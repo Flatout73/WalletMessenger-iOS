@@ -71,6 +71,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         }
         
+        UINavigationBar.appearance().barTintColor = UIColor(patternImage: #imageLiteral(resourceName: "back"))
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        UIBarButtonItem.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().tintColor = UIColor.white
+        
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
         return true

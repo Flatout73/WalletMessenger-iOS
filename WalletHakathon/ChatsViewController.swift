@@ -66,7 +66,9 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         } catch {
             print(error.localizedDescription)
         }
-    
+        
+        
+        
         //print(fetchedResultsController.delegate)
         
         refreshControl = UIRefreshControl()
@@ -76,7 +78,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.addSubview(refreshControl)
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
-        
+
     }
 
     
@@ -378,6 +380,10 @@ extension ChatsViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
     
     func backgroundColor(forEmptyDataSet scrollView: UIScrollView) -> UIColor? {
         return UIColor.white
+    }
+    
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
+        return true
     }
 }
 

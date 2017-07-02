@@ -458,4 +458,8 @@ extension DialogViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
     func backgroundColor(forEmptyDataSet scrollView: UIScrollView) -> UIColor? {
         return UIColor.white
     }
+    
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
+        return true
+    }
 }
