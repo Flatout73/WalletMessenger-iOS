@@ -18,6 +18,7 @@
 		55B4E4961F06E2000043A0E5 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4941F06E2000043A0E5 /* OnboardingViewController.m */; };
 		55B4E4991F07BB680043A0E5 /* StringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4981F07BB680043A0E5 /* StringService.swift */; };
 		55B4E49B1F07EBFF0043A0E5 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E49A1F07EBFF0043A0E5 /* ContactTableViewCell.swift */; };
+		55B4E49E1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E49C1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.m */; };
 		7117053F1F0877D300271947 /* ConferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7117053E1F0877D300271947 /* ConferenceViewController.swift */; };
 		711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */; };
 		711BEB211EFEF2E900907B42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB201EFEF2E900907B42 /* ViewController.swift */; };
@@ -61,6 +62,8 @@
 		55B4E4941F06E2000043A0E5 /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		55B4E4981F07BB680043A0E5 /* StringService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringService.swift; sourceTree = "<group>"; };
 		55B4E49A1F07EBFF0043A0E5 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		55B4E49C1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
+		55B4E49D1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
 		7117053E1F0877D300271947 /* ConferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceViewController.swift; sourceTree = "<group>"; };
 		711BEB1B1EFEF2E900907B42 /* WalletHakathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalletHakathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 		55B4E4971F06E2050043A0E5 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				55B4E49C1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.m */,
+				55B4E49D1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.h */,
 				55B4E4901F06E2000043A0E5 /* OnboardingContentViewController_Private.h */,
 				55B4E4911F06E2000043A0E5 /* OnboardingContentViewController.h */,
 				55B4E4921F06E2000043A0E5 /* OnboardingContentViewController.m */,
@@ -398,6 +403,7 @@
 				712DEEE01F028DB9004D5CE9 /* TransactionExtension.swift in Sources */,
 				711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */,
 				712F62F11F043F3A004CC712 /* CreationViewController.swift in Sources */,
+				55B4E49E1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.m in Sources */,
 				712F62F71F051FFA004CC712 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

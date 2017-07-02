@@ -74,6 +74,9 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
         tableView.addSubview(refreshControl)
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
+        
     }
 
     
@@ -315,7 +318,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 cell.name.text = conversation.name
                 cell.dialogID = Int(conversation.conversationID)
-                cell.balance.text = String(conversation.myBalance) + " руб."
+                //cell.balance.text = String(conversation.myBalance) + " руб."
             }
         }
         
@@ -360,13 +363,23 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 }
 
 
-
-
-
-
-
-
-
+extension ChatsViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+        return #imageLiteral(resourceName: "chat_logo")
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        return NSMutableAttributedString(string: "Здесь будут ваши диалоги")
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        return NSMutableAttributedString(string: "Потяните вниз, чтобы загрузить\n Чтобы добавить новый диалог нажмите на плюс в правом верхнем углу")
+    }
+    
+    func backgroundColor(forEmptyDataSet scrollView: UIScrollView) -> UIColor? {
+        return UIColor.white
+    }
+}
 
 
 extension ChatsViewController: NSFetchedResultsControllerDelegate {

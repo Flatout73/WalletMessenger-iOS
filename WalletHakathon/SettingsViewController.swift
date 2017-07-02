@@ -117,6 +117,8 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
         if(indexPath == IndexPath(row: 1, section: 2))
         {
             exit()
+        } else if indexPath == IndexPath(row: 0, section:0){
+            imageTapped()
         }
     }
 

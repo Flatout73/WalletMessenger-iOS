@@ -27,6 +27,8 @@
 	</dict>
 	<key>NSContactsUsageDescription</key>
 	<string>Для более удобного общения</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Для установки фото пользователя</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
