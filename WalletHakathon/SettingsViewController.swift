@@ -40,6 +40,9 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
         
     }
     
+    @IBAction func endEditing(_ sender: UITextField) {
+    }
+    
     func doneButton(){
         if(nameChanged){
 

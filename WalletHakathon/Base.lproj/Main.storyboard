@@ -551,6 +551,10 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="endEditing:" destination="Z1Q-gW-GOZ" eventType="editingDidEndOnExit" id="6ql-rp-7yc"/>
+                                                        <action selector="endEditing:" destination="Z1Q-gW-GOZ" eventType="editingDidEnd" id="o8X-ei-s6J"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -577,6 +581,10 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                                    <connections>
+                                                        <action selector="endEditing:" destination="Z1Q-gW-GOZ" eventType="editingDidEnd" id="dw6-oM-cbu"/>
+                                                        <action selector="endEditing:" destination="Z1Q-gW-GOZ" eventType="editingDidEndOnExit" id="gGg-dQ-RJI"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -599,6 +607,10 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                                    <connections>
+                                                        <action selector="endEditing:" destination="Z1Q-gW-GOZ" eventType="editingDidEnd" id="F0p-GW-da6"/>
+                                                        <action selector="endEditing:" destination="Z1Q-gW-GOZ" eventType="editingDidEndOnExit" id="Xtd-Ga-F2A"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1369,6 +1381,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="0Vm-lV-nYY"/>
-        <segue reference="3wQ-Po-sGH"/>
+        <segue reference="mKv-mB-Dbe"/>
     </inferredMetricsTieBreakers>
 </document>
