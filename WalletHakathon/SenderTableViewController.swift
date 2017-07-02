@@ -9,6 +9,10 @@
 import UIKit
 import MBProgressHUD
 
+protocol UpdateTable{
+    func updateTableForTransactions()
+}
+
 class SenderTableViewController: UITableViewController, UITextFieldDelegate, SelectedUserDelegate {
     
     
@@ -25,7 +29,7 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
     
     var groupId: Int!
     
-    var delegate: TableViewUpdateDelegate!
+    var delegate: UpdateTable!
     
     var phoneOfReceiver: Int64?
     
@@ -112,7 +116,7 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
                     DispatchQueue.main.async {
                        MBProgressHUD.hide(for: self.view, animated: true)
                        self.navigationController?.popViewController(animated: true)
-                       self.delegate.update()
+                       self.delegate.updateTableForTransactions()
                     }
                     
                 }
@@ -122,7 +126,7 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
             ServiceAPI.groupSendTransaction(receiverID: reciverID, groupID: groupId, money: money, cash: Nal, text: textField.text == "" ? "hey" : textField.text, noncompletedHandler: self.errorHandler) {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 self.navigationController?.popViewController(animated: true)
-                self.delegate.update()
+                self.delegate.updateTableForTransactions()
             }
             
         }

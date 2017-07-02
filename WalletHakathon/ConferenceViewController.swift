@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ConferenceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TableViewUpdateDelegate {
+class ConferenceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TableViewUpdateDelegate, UpdateTable {
 
     var fetchedResultsController: NSFetchedResultsController<Transaction>!
     
@@ -29,13 +29,20 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
     func update() {
         DispatchQueue.main.async {
             try? self.fetchedResultsController.performFetch()
-//            self.tableView.beginUpdates()
-//            self.tableView.endUpdates()
-            self.tableView.reloadData()
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+            
         }
         
     }
     
+    
+    func updateTableForTransactions() {
+        DispatchQueue.main.async {
+            try? self.fetchedResultsController.performFetch()
+            self.tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
