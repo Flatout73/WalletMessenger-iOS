@@ -19,7 +19,7 @@ extension GroupConversation {
         conversation.summa = summa
         conversation.name = name
         conversation.admin = admin
-        //conversation.myBalance = balance
+        conversation.myBalance = balance
         conversation.date = date as NSDate
         
         for user in users {
@@ -38,7 +38,7 @@ extension GroupConversation {
             conversation.summa = summa
             conversation.name = name
             conversation.admin = admin
-            //conversation.myBalance = balance
+            conversation.myBalance = balance
             conversation.date = date as NSDate
             for user in users {
                 conversation.addToParticipants(user)

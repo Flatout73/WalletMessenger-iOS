@@ -36,7 +36,9 @@ extension Transaction {
                 conv.addToTransactions(transaction)
             }
         } else {
-            //доделать для группы
+            if let group = GroupConversation.findConversation(id: id, inContext: context) {
+                group.addToTransactions(transaction)
+            }
         }
         
 //        if let conv = conversation {
@@ -70,7 +72,9 @@ extension Transaction {
                     conv.addToTransactions(transaction)
                 }
             } else {
-                //доделать для группы
+                if let group = GroupConversation.findConversation(id: group!, inContext: context) {
+                    group.addToTransactions(transaction)
+                }
             }
             
 //            if let conv = Conversation.findConversation(id: conversation, inContext: context) {

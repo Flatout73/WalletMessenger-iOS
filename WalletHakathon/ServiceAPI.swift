@@ -488,6 +488,8 @@ class ServiceAPI: NSObject {
                     //completionHandler()
                     //}
                     
+                    
+                    //поправит это
                     coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cashb, proof: proof, conversation: dialogID, group: nil, userID: userID, count: count){
                         completionHandler()
                     }
@@ -734,14 +736,14 @@ class ServiceAPI: NSObject {
                 for (index, subJSON): (String, JSON) in transactions {
                     
                     guard
-                        let text = json["text"].string,
-                        let dateLong = json["date"].int64,
-                        let cashInt = json["cash"].int,
-                        let proof = json["proof"].int,
-                        let money = json["money"].double,
-                        let userID = json["userID"].int,
-                        let receiverID = json["receiverID"].int,
-                        let transactionID = json["transactionID"].int else {
+                        let text = subJSON["text"].string,
+                        let dateLong = subJSON["date"].int64,
+                        let cashInt = subJSON["cash"].int,
+                        let proof = subJSON["proof"].int,
+                        let money = subJSON["money"].double,
+                        let userID = subJSON["userID"].int,
+                        let receiverID = subJSON["receiverID"].int,
+                        let transactionID = subJSON["transactionID"].int else {
                             noncompletedHandler("Неверный формат JSON")
                             return
                     }
@@ -749,14 +751,18 @@ class ServiceAPI: NSObject {
                     let cash = cashInt > 0
                     let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
                     
-                    let user = coreDataService.findUserBy(id: userID)
-                    let conversation = coreDataService.findConversaionBy(id: groupID)
+                    //let user = coreDataService.findUserBy(id: userID)
+                    //let conversation = coreDataService.findConversaionBy(id: groupID)
                     //здесь сохраняем транзакции для группы
 //                    if (user?.userID == Int32(userID)) {
 //                        coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cash, proof: proof, conversation: conversation, group: nil, reciver: conversation?.participant, sender: coreDataService.appUser)
 //                    } else {
 //                        coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cash, proof: proof, conversation: conversation, group: nil, reciver: conversation?.participant, sender: coreDataService.appUser)
 //                    }
+                    
+                    coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cash, proof: proof, conversation: nil, group: groupID, reciver: receiverID, sender: userID) {
+                        
+                    }
                 }
                 
                 let userprofiles = json["userProfiles"]
@@ -764,15 +770,22 @@ class ServiceAPI: NSObject {
                 //получаем юзеров в группе
                 for (index, subJSON): (String, JSON) in transactions {
                     
-                    guard let userID = json["userID"].int,
-                        let balance = json["balance"].double,
-                        let name = json["name"].string,
-                        let phone = json["phone"].string,
-                        let image = json["image"].string else {
-                            noncompletedHandler("РќРµРІРµСЂРЅС‹Р№ JSON")
+                    guard let userID = userprofiles["userID"].int,
+                        let balance = userprofiles["balance"].double,
+                        let name = userprofiles["name"].string,
+                        let phone = userprofiles["phone"].int64 else {
+                            noncompletedHandler("Неверный формат JSON при получении юзеров в группе")
                             return
                     }
-                    //куда-нить сохранить надо каждого юзера...
+                    
+                    var avatar: Data?
+                    if let image = json["image"].string{
+                        avatar = Data(base64Encoded: image)
+                    }
+                    
+                    coreDataService.insertGroupUsers(groupID: groupID, userID: userID, balance: balance, name: name, phone: phone, avatar: avatar) {
+                        completionHandler()
+                    }
                     
                 }
                 
@@ -791,6 +804,8 @@ class ServiceAPI: NSObject {
             
             let request = serverAddress + "/group/sendtransaction"
             
+            let coreDataService = CoreDataService.sharedInstance
+            
             ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
                 guard let dateLong = json["date"].int64,
                     let transactionID = json["id"].int else {
@@ -799,16 +814,21 @@ class ServiceAPI: NSObject {
                 }
                 let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
                 
-                let conversation = CoreDataService.sharedInstance.findConversaionBy(id: groupID)
-                let user = conversation?.participant
+                //let conversation = CoreDataService.sharedInstance.findConversaionBy(id: groupID)
+                //let user = conversation?.participant
                 
                 //CoreDataService.sharedInstance.insertTransaction(id: transactionID, money: money, text: text ?? "", date: date, isCash: cash, proof: 0, conversation: conversation, group: nil, reciver: user, sender: CoreDataService.sharedInstance.appUser)
                 
-                completionHandler()
+                coreDataService.insertTransaction(id: transactionID, money: money, text: text!, date: date, isCash: cash, proof: 0, conversation: nil, group: groupID, reciver: receiverID, sender: coreDataService.appUserID) {
+                    completionHandler()
+                }
+                
+                
             }
         }
     }
     
+    //История транзакций
     static func getGroupTransactions(groupID: Int, transactionID: Int, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
         if var dicionary = loadDictionary() {
             dicionary["groupID"] = String(groupID)
@@ -818,6 +838,7 @@ class ServiceAPI: NSObject {
             let coreDataService = CoreDataService.sharedInstance
             
             ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
+                
                 let transactions = json["transactions"]
                 for (index, subJSON): (String, JSON) in transactions {
                     guard
@@ -837,14 +858,18 @@ class ServiceAPI: NSObject {
                     let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
                     
                     //userID не получено из JSON (его надо взять после создания группы или из списка
-                    let user = coreDataService.findUserBy(id: userID)
-                    let conversation = coreDataService.findConversaionBy(id: groupID)
+                    //let user = coreDataService.findUserBy(id: userID)
+                    //let conversation = coreDataService.findConversaionBy(id: groupID)
                     //хз что тут
                     //                                if (user?.userID == Int32(userID)) {
                     //                                    coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cash, proof: proof, conversation: conversation, group: nil, reciver: conversation?.participant, sender: coreDataService.appUser)
                     //                                } else {
                     //                                    coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cash, proof: proof, conversation: conversation, group: nil, reciver: conversation?.participant, sender: coreDataService.appUser)
                     //                                }
+                    
+                    coreDataService.insertTransaction(id: transactionID, money: money, text: text, date: date, isCash: cash, proof: proof, conversation: nil, group: groupID, reciver: receiverID, sender: userID) {
+                        completionHandler()
+                    }
                 }
                 completionHandler()
             }

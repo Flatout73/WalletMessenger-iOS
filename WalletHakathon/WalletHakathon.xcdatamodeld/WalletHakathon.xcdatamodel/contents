@@ -42,6 +42,7 @@
     </entity>
     <fetchRequest name="ConversationWithId" entity="Conversation" predicateString="conversationID == $CONVERSATIONID"/>
     <fetchRequest name="TransactionsWithConversationId" entity="Transaction" predicateString="conversation.conversationID == $CONVERSATIONID"/>
+    <fetchRequest name="TransactionsWithGroupId" entity="Transaction" predicateString="groupConversation.conversationID == $CONVERSATIONID"/>
     <fetchRequest name="UserWithId" entity="User" predicateString="userID == $USERID"/>
     <elements>
         <element name="Conversation" positionX="295" positionY="-81" width="128" height="118"/>

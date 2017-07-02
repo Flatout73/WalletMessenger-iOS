@@ -11,7 +11,6 @@ import CoreData
 
 class DialogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TableViewUpdateDelegate {
     
-    var messeges = ["1234", "5678"]
     
     var fetchedResultsController: NSFetchedResultsController<Transaction>!
     
@@ -52,7 +51,6 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         
         activityIndicator.hidesWhenStopped = true
         
-        messeges = messeges.reversed()
         tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi))
         
         tableView.estimatedRowHeight = 60

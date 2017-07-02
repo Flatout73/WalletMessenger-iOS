@@ -121,7 +121,20 @@ class CoreDataService: NSObject {
         return NSFetchedResultsController<Transaction>(fetchRequest: fetchRequst, managedObjectContext: container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
     }
     
-    //надо протестить
+    
+    func getFRCForTransactions(groupID: Int) -> NSFetchedResultsController<Transaction> {
+        
+        let fetchRequst: NSFetchRequest<Transaction> = container.managedObjectModel.fetchRequestFromTemplate(withName: "TransactionsWithGroupId", substitutionVariables: ["CONVERSATIONID": String(groupID)]) as! NSFetchRequest<Transaction>
+        
+        
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        
+        fetchRequst.sortDescriptors = [sortDescriptor]
+        fetchRequst.fetchBatchSize = 20
+        
+        return NSFetchedResultsController<Transaction>(fetchRequest: fetchRequst, managedObjectContext: container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+    }
+    
     func destroyCoreData() {
         
         container.performBackgroundTask { (context) in
@@ -192,29 +205,21 @@ class CoreDataService: NSObject {
             }
         }
         
-        func insertGroupInfo(groupID: Int, balance: Double, name: String, userIDs: [Int], transactionIDs: [Int], completionHandler: @escaping() -> Void) {
+    func insertGroupUsers(groupID: Int, userID: Int, balance: Double, name: String, phone: Int64, avatar: Data?, completionHandler: @escaping() -> Void) {
             container.performBackgroundTask { (context) in
                 
                 context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
                 
-                var users: [User]
-                var transactions: [Transaction]
-                for userID in userIDs {
-                    //users.append(User.findOrInsertUser(id: <#T##Int#>, name: <#T##String#>, mobilePhone: <#T##Int64#>, avatar: <#T##Data?#>, inContext: <#T##NSManagedObjectContext#>))
-                }
+      
+                let user = User.findOrInsertUser(id: userID, name: name, mobilePhone: phone, avatar: avatar, inContext: context)
+                
+                let group = GroupConversation.findConversation(id: groupID, inContext: context)
+                
+                group?.addToParticipants(user)
             }
         }
-        
-//        let request: NSFetchRequest<Conversation> = Conversation.fetchRequest()
-//        
-//        container.viewContext.performAndWait {
-//            if let results = try? self.container.viewContext.fetch(request) {
-//                print("\(results.count) TweetMs")
-//                for result in results{
-//                    print(result.conversationID, result.summa)
-//                }
-//            }
-//        }
+
+    
     
     var k = 0
     
@@ -284,15 +289,19 @@ class CoreDataService: NSObject {
         container.performBackgroundTask { (context) in
             context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
             
-            if let conversationID = conversation{
-                let convers = Conversation.findConversation(id: conversationID, inContext: context)
-                guard let participant = convers?.participant else {
-                    print("Нет собеседника в диалоге")
-                    return
-                }
+//            if let conversationID = conversation{
+//                let convers = Conversation.findConversation(id: conversationID, inContext: context)
+//                guard let participant = convers?.participant else {
+//                    print("Нет собеседника в диалоге")
+//                    return
+//                }
                 
-                _ = Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, proof: proof, conversation: conversation, group: nil, reciver: reciver, sender: sender, inContext: context)
-            }
+                _ = Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, proof: proof, conversation: conversation, group: group, reciver: reciver, sender: sender, inContext: context)
+//            } else if let groupID = group {
+//               
+//               _ = Transaction.findOrInsertTransaction(id: id, money: money, text: text, date: date, isCash: isCash, proof: proof, conversation: conversation, group: goup, reciver: reciver, sender: sender, inContext: context)
+//                
+//            }
             
             //if(self.k >= count){
                 context.saveThrows()
