@@ -89,11 +89,20 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func refresh(sender: Any) {
-        refreshBegin { (x:Int) -> () in
-            try! self.fetchedResultsController.performFetch()
-            self.tableView.reloadData()
+        
+        if (!loadMoreStatus) {
+            self.loadMoreStatus = true
+            
+            refreshBegin { (x:Int) -> () in
+                try? self.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
+                self.activityIndicator.stopAnimating()
+                
+                self.loadMoreStatus = false
+            }
+        } else {
             self.refreshControl.endRefreshing()
-            self.activityIndicator.stopAnimating()
         }
     }
     
@@ -272,12 +281,15 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                     
                     if(transaction.proof == 1) {
                         cell.hideButtons()
-                        cell.makeIndicator(green: true)
+                        //cell.makeIndicator(green: true)
+                        cell.messView.layer.opacity = 1
                     }else if (transaction.proof == -1){
                         cell.hideButtons()
                         cell.makeIndicator(green: false)
+                        cell.messView.layer.opacity = 0.5
                     } else{
                         cell.indicator.backgroundColor = UIColor.yellow
+                        cell.messView.layer.opacity = 0.5
                     }
                     
                 } else{

@@ -47,7 +47,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
         if(nameChanged){
 
             ServiceAPI.changeName(name: nameTextField.text!, completedHandler: {
-                //Повесить обновление из кордаты
+                //в Core Data вроде больше ничего не надо, в сервис апи все есть
             }, noncompletedHandler: {str in
                 ServiceAPI.alert(viewController: self, desc: str)
             })
@@ -122,7 +122,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath == IndexPath(row: 1, section: 2))
+        if(indexPath == IndexPath(row: 1, section: 3))
         {
             exit()
         } else if indexPath == IndexPath(row: 0, section:0){

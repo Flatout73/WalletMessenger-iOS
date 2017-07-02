@@ -99,13 +99,21 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func refresh(sender: Any) {
-        refreshBegin { (x:Int) -> () in
-            if(self.isDialogs){
-                try? self.fetchedResultsController.performFetch()
-            } else {
-                try? self.frcGroup.performFetch()
+        if (!loadMoreStatus) {
+            self.loadMoreStatus = true
+            
+            refreshBegin { (x:Int) -> () in
+                if(self.isDialogs){
+                    try? self.fetchedResultsController.performFetch()
+                } else {
+                    try? self.frcGroup.performFetch()
+                }
+                self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
+                
+                self.loadMoreStatus = false
             }
-            self.tableView.reloadData()
+        } else {
             self.refreshControl.endRefreshing()
         }
     }
@@ -320,7 +328,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 cell.name.text = conversation.name
                 cell.dialogID = Int(conversation.conversationID)
-                //cell.balance.text = String(conversation.myBalance) + " руб."
+                cell.balance.text = String(conversation.myBalance) + " руб."
             }
         }
         

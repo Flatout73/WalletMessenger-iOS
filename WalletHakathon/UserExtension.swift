@@ -17,6 +17,8 @@ extension User {
         user.mobilePhone = mobilePhone
         if let ava = avatar as? NSData {
             user.avatar = ava
+        } else {
+            user.avatar = nil
         }
         if let conversations = conversations{
             for conversation in conversations {
@@ -34,6 +36,8 @@ extension User {
             user.mobilePhone = mobilePhone
             if let ava = avatar as NSData? {
                 user.avatar = ava
+            } else {
+                user.avatar = nil
             }
 //            for conversation in conversations {
 //                conversation.addToParticipants(user)
