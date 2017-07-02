@@ -30,25 +30,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
-            let firstPage = OnboardingContentViewController(title: "Добро пожаловать в Wallet Messenger", body: "", image: nil, buttonText: "Пропустить") { () -> Void in
-                let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
-                self.window?.rootViewController = viewController
-                self.window?.makeKeyAndVisible()
+            let firstPage = OnboardingContentViewController(title: "Добро пожаловать в   \n  \n Wallet Messenger", body: "", image: nil, buttonText: "") { () -> Void in
             }
             
-            let secondPage = OnboardingContentViewController(title: "", body: "Первый меccенджер для взаиморасчётов", image: #imageLiteral(resourceName: "2ndpage"), buttonText: "Пропустить") { () -> Void in
-                let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
-                self.window?.rootViewController = viewController
-                self.window?.makeKeyAndVisible()
+            let secondPage = OnboardingContentViewController(title: "", body: "Первый меccенджер для взаиморасчётов", image: #imageLiteral(resourceName: "2ndpage"), buttonText: "") { () -> Void in
+
             }
             
-            let thirdPage = OnboardingContentViewController(title: "", body: "Привяжите свой QIWI кошелёк для расчета прямо в приложении", image: #imageLiteral(resourceName: "3rdpage"), buttonText: "Пропустить") { () -> Void in
-                let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
-                self.window?.rootViewController = viewController
-                self.window?.makeKeyAndVisible()
+            let thirdPage = OnboardingContentViewController(title: "", body: "Привяжите свой QIWI кошелёк для расчета прямо в приложении", image: #imageLiteral(resourceName: "3rdpage"), buttonText: "") { () -> Void in
+
             }
             
-            let fourthPage = OnboardingContentViewController(title: "", body: "", image: #imageLiteral(resourceName: "4th"), buttonText: "Начать") { () -> Void in
+            let fourthPage = OnboardingContentViewController(title: "", body: "", image: #imageLiteral(resourceName: "4th"), buttonText: "Начать использование!") { () -> Void in
                 let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
@@ -59,11 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             fourthPage.bodyLabel.attributedText = attributeString
             
             
-            firstPage.topPadding = 0
+            firstPage.topPadding = 50
             
             thirdPage.titleLabel.text = ""
             thirdPage.topPadding = 100
-            fourthPage.topPadding = 100
+            fourthPage.topPadding = 85
             secondPage.topPadding = 100
             
             initialViewController = OnboardingViewController(backgroundImage: UIImage(named: "back"), contents: [firstPage, secondPage, thirdPage,fourthPage])

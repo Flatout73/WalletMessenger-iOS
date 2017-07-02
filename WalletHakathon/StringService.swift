@@ -17,7 +17,7 @@ class StringService: NSObject {
     static func createPhones(byArray phones: [String])->String{
         var result = ""
         for i in 0..<phones.count-1 {
-            result = result + "\(phones[i]), "
+            result = result + "\(phones[i]),"
         }
         
         return result + phones[phones.count-1]
