@@ -97,6 +97,11 @@ static char const * const kEmptyDataSetView =       "emptyDataSetView";
         view.tapGesture.delegate = self;
         [view addGestureRecognizer:view.tapGesture];
         
+        if([self.emptyDataSetSource isReversed:self])
+        {
+            CGAffineTransform transform = CGAffineTransformMakeScale(1, 1);
+            view.transform = CGAffineTransformRotate(transform, 2 * M_PI_2);
+        }
         [self setEmptyDataSetView:view];
     }
     return view;

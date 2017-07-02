@@ -78,7 +78,6 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.addSubview(refreshControl)
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
-
     }
 
     
@@ -398,6 +397,10 @@ extension ChatsViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
     
     func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
         return true
+    }
+    
+    func isReversed(_ scrollView: UIScrollView) -> Bool {
+        return false
     }
 }
 
