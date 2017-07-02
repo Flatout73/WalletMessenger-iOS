@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
-            let firstPage = OnboardingContentViewController(title: "Добро пожаловать в тут будет название этого творения", body: " Первый меccенджер для взаиморасчётов", image: nil, buttonText: "Пропустить") { () -> Void in
+            let firstPage = OnboardingContentViewController(title: "Добро пожаловать в Wallet Messenger", body: " Первый меccенджер для взаиморасчётов", image: nil, buttonText: "Пропустить") { () -> Void in
                 let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
@@ -41,9 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
             }
-            
-            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "Только финансы, ничего личного лишнего")
-            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(23, 8))
             
             let thirdPage = OnboardingContentViewController(title: "", body: "Привяжите свой QIWI кошелёк для расчета прямо в приложении", image: #imageLiteral(resourceName: "3rdpage"), buttonText: "Пропустить") { () -> Void in
                 let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
@@ -57,8 +54,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.makeKeyAndVisible()
             }
             
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "Только финансы, ничего личного лишнего")
+            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(23, 8))
             fourthPage.bodyLabel.attributedText = attributeString
             
+            
+            firstPage.topPadding = 0
             
             thirdPage.titleLabel.text = ""
             thirdPage.topPadding = 100
