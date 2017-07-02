@@ -78,7 +78,7 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
             
         } else if (indexPath == IndexPath(row: 1, section: 2)) {
             
-            if(true/*&& reciverID != 0*/) {
+            if(reciverID != 0) {
                 let cell2 = tableView.cellForRow(at: IndexPath(row: 0, section: 2))!
                 if(cell2.accessoryType == .checkmark){
                     
@@ -124,9 +124,11 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
         } else {
             
             ServiceAPI.groupSendTransaction(receiverID: reciverID, groupID: groupId, money: money, cash: Nal, text: textField.text == "" ? "hey" : textField.text, noncompletedHandler: self.errorHandler) {
-                MBProgressHUD.hide(for: self.view, animated: true)
-                self.navigationController?.popViewController(animated: true)
-                self.delegate.updateTableForTransactions()
+                DispatchQueue.main.async {
+                                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.navigationController?.popViewController(animated: true)
+                    self.delegate.updateTableForTransactions()
+                }
             }
         }
     }
