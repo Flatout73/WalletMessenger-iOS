@@ -762,6 +762,7 @@ class ServiceAPI: NSObject {
                     
                 }
                 
+                sleep(1)
                 let transactions = json["transactions"]
                 for (index, subJSON): (String, JSON) in transactions {
                     

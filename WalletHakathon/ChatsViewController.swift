@@ -390,7 +390,7 @@ extension ChatsViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        return NSMutableAttributedString(string: "Потяните вниз, чтобы загрузить\n Чтобы добавить новый диалог нажмите на плюс в правом верхнем углу")
+        return NSMutableAttributedString(string: "Потяните вверх, чтобы загрузить\n Чтобы добавить новый диалог нажмите на плюс в правом верхнем углу")
     }
     
     func backgroundColor(forEmptyDataSet scrollView: UIScrollView) -> UIColor? {

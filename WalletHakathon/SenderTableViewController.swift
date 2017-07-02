@@ -9,6 +9,10 @@
 import UIKit
 import MBProgressHUD
 
+protocol UpdateTable{
+    func updateTableForTransactions()
+}
+
 class SenderTableViewController: UITableViewController, UITextFieldDelegate, SelectedUserDelegate {
     
     
@@ -25,7 +29,7 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
     
     var groupId: Int!
     
-    var delegate: TableViewUpdateDelegate!
+    var delegate: UpdateTable!
     
     var phoneOfReceiver: Int64?
     
@@ -74,7 +78,7 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
             
         } else if (indexPath == IndexPath(row: 1, section: 2)) {
             
-            if(true/*&& reciverID != 0*/) {
+            if(reciverID != 0) {
                 let cell2 = tableView.cellForRow(at: IndexPath(row: 0, section: 2))!
                 if(cell2.accessoryType == .checkmark){
                     
@@ -112,7 +116,7 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
                     DispatchQueue.main.async {
                        MBProgressHUD.hide(for: self.view, animated: true)
                        self.navigationController?.popViewController(animated: true)
-                       self.delegate.update()
+                       self.delegate.updateTableForTransactions()
                     }
                     
                 }
@@ -123,7 +127,7 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
                 DispatchQueue.main.async {
                                     MBProgressHUD.hide(for: self.view, animated: true)
                     self.navigationController?.popViewController(animated: true)
-                    self.delegate.update()
+                    self.delegate.updateTableForTransactions()
                 }
             }
         }
