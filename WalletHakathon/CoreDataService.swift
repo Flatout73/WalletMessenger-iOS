@@ -160,7 +160,8 @@ class CoreDataService: NSObject {
         //возможно стоит это вынести вне метода
         container.performBackgroundTask { (context) in
             
-        
+        context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
+            
         let user = User.findOrInsertUser(id: userID, name: name, mobilePhone: mobilePhone, avatar: avatar, inContext: context)
         
             _ = Conversation.findOrInsertConversation(id: conversationID, summa: balance, date: date, users: [user], transactions: [], inContext: context)
@@ -175,6 +176,7 @@ class CoreDataService: NSObject {
         func insertGroup(groupID: Int, name: String, date: Date, summa: Double, myBalance: Double, adminID: Int, completionHandler: @escaping() -> Void){
             
             container.performBackgroundTask { (context) in
+                context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
                 
                 var admin = User.findUser(id: adminID, inContext: context)
                 if (admin == nil) {
@@ -192,6 +194,8 @@ class CoreDataService: NSObject {
         
         func insertGroupInfo(groupID: Int, balance: Double, name: String, userIDs: [Int], transactionIDs: [Int], completionHandler: @escaping() -> Void) {
             container.performBackgroundTask { (context) in
+                
+                context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
                 
                 var users: [User]
                 var transactions: [Transaction]
@@ -278,6 +282,8 @@ class CoreDataService: NSObject {
     func insertTransaction(id: Int, money: Double, text: String, date: Date, isCash: Bool, proof: Int, conversation: Int?, group: Int?, reciver: Int, sender: Int, count: Int = 0, completionHandler: @escaping() -> Void) {
         
         container.performBackgroundTask { (context) in
+            context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
+            
             if let conversationID = conversation{
                 let convers = Conversation.findConversation(id: conversationID, inContext: context)
                 guard let participant = convers?.participant else {
@@ -316,6 +322,7 @@ class CoreDataService: NSObject {
     
     func changeName(name: String) {
         container.performBackgroundTask { (context) in
+            context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
             
             let appUser = self.getAppUser(in: context)
             appUser.name = name
@@ -327,6 +334,8 @@ class CoreDataService: NSObject {
     
     func changePhoto(photo: Data) {
         container.performBackgroundTask { (context) in
+            
+            context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
             
             let appUser = self.getAppUser(in: context)
             appUser.avatar = photo as NSData
