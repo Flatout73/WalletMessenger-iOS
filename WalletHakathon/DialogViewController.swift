@@ -86,6 +86,10 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
 //        self.tableView.emptyDataSetDelegate = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        refresh(sender: self)
+    }
+    
     func refresh(sender: Any) {
         
         if (!loadMoreStatus) {

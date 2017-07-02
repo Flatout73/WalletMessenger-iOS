@@ -77,6 +77,10 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
         
         tableView.addSubview(refreshControl)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        refresh(sender: self)
+    }
 
     func refresh(sender: Any) {
         
