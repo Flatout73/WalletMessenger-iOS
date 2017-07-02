@@ -46,7 +46,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
     override func viewWillAppear(_ animated: Bool) {
         let coreDataService = CoreDataService.sharedInstance
         
-        coreDataService.container.viewContext.perform {
+        coreDataService.container.viewContext.performAndWait {
             let appUser = coreDataService.getAppUser(in: coreDataService.container.viewContext)
             
             self.nameTextField.text = appUser.name
