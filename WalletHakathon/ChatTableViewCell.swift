@@ -18,6 +18,7 @@ class ChatTableViewCell: UITableViewCell {
     
     
     var dialogID: Int!
+    var adminID: Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()

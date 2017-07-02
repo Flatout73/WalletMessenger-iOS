@@ -20,6 +20,8 @@
 		55B4E49B1F07EBFF0043A0E5 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E49A1F07EBFF0043A0E5 /* ContactTableViewCell.swift */; };
 		55B4E49E1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E49C1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.m */; };
 		7117053F1F0877D300271947 /* ConferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7117053E1F0877D300271947 /* ConferenceViewController.swift */; };
+		711705411F09470900271947 /* SenderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711705401F09470900271947 /* SenderTableViewController.swift */; };
+		711705431F0947F800271947 /* RecieverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711705421F0947F800271947 /* RecieverTableViewController.swift */; };
 		711BEB1F1EFEF2E900907B42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */; };
 		711BEB211EFEF2E900907B42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711BEB201EFEF2E900907B42 /* ViewController.swift */; };
 		711BEB241EFEF2E900907B42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 711BEB221EFEF2E900907B42 /* Main.storyboard */; };
@@ -64,6 +66,8 @@
 		55B4E49C1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		55B4E49D1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
 		7117053E1F0877D300271947 /* ConferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceViewController.swift; sourceTree = "<group>"; };
+		711705401F09470900271947 /* SenderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SenderTableViewController.swift; sourceTree = "<group>"; };
+		711705421F0947F800271947 /* RecieverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecieverTableViewController.swift; sourceTree = "<group>"; };
 		711BEB1B1EFEF2E900907B42 /* WalletHakathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalletHakathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		711BEB1E1EFEF2E900907B42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		711BEB201EFEF2E900907B42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 				712DEED31F01B5F0004D5CE9 /* InfoRegistViewController.swift */,
 				712F62F61F051FFA004CC712 /* SettingsViewController.swift */,
 				7117053E1F0877D300271947 /* ConferenceViewController.swift */,
+				711705401F09470900271947 /* SenderTableViewController.swift */,
+				711705421F0947F800271947 /* RecieverTableViewController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -372,9 +378,11 @@
 			files = (
 				55B4E4951F06E2000043A0E5 /* OnboardingContentViewController.m in Sources */,
 				5572CE8F1F003A3F00E0FC3E /* RequestSender.swift in Sources */,
+				711705411F09470900271947 /* SenderTableViewController.swift in Sources */,
 				712DEED21F01A836004D5CE9 /* RegistrViewController.swift in Sources */,
 				55B4E4961F06E2000043A0E5 /* OnboardingViewController.m in Sources */,
 				712DEEDA1F0281BE004D5CE9 /* ConversationExtension.swift in Sources */,
+				711705431F0947F800271947 /* RecieverTableViewController.swift in Sources */,
 				712DEECE1F002236004D5CE9 /* QiwiLoginViewController.swift in Sources */,
 				55B4E49B1F07EBFF0043A0E5 /* ContactTableViewCell.swift in Sources */,
 				55B4E44F1F0504D00043A0E5 /* ContactsTableViewController.swift in Sources */,

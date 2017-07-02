@@ -135,6 +135,20 @@ class CoreDataService: NSObject {
         return NSFetchedResultsController<Transaction>(fetchRequest: fetchRequst, managedObjectContext: container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
     }
     
+    func getParticipants(groupID: Int) -> [User] {
+        
+        var user: [User] = []
+        container.viewContext.performAndWait {
+            let group = GroupConversation.findConversation(id: groupID, inContext: self.container.viewContext)
+            
+            if let participants = group?.participants {
+                user = participants.array as! [User]
+            }
+        }
+        
+        return user
+    }
+    
     func destroyCoreData() {
         
         container.performBackgroundTask { (context) in

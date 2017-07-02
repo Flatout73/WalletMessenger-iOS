@@ -329,6 +329,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 cell.name.text = conversation.name
                 cell.dialogID = Int(conversation.conversationID)
                 cell.balance.text = String(conversation.myBalance) + " руб."
+                cell.adminID = Int(conversation.admin!.userID)
             }
         }
         
@@ -357,6 +358,8 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         } else if let vc = segue.destination as? ConferenceViewController {
             if let cell = sender as? ChatTableViewCell{
                 vc.title = cell.name.text
+                vc.groupID = cell.dialogID
+                vc.adminID = cell.adminID
             }
         }
     }
