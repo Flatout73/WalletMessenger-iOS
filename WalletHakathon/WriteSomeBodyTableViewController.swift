@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class DialogInfo: NSObject {
     var dialogID = 0
