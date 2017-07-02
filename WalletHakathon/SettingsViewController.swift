@@ -207,7 +207,8 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
                     DispatchQueue.main.async {[weak self] in
                         if let this = self{
                             MBProgressHUD.hide(for: this.view, animated: true)
-                            self?.viewWillAppear(true)
+                            //self?.viewWillAppear(true)
+                            self?.avatar.image = newImage
                         }
                     }
                 }, noncompletedHandler: {str in

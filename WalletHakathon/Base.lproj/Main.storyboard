@@ -31,7 +31,7 @@
                                 <rect key="frame" x="24" y="272.5" width="327" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kpb-tI-E2V">
                                 <rect key="frame" x="24" y="318.5" width="327" height="30"/>
@@ -512,7 +512,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="127.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_photo" translatesAutoresizingMaskIntoConstraints="NO" id="8Ld-yT-gqn">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_photo" translatesAutoresizingMaskIntoConstraints="NO" id="8Ld-yT-gqn">
                                                     <rect key="frame" x="124" y="0.0" width="127.5" height="127.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="8Ld-yT-gqn" secondAttribute="height" multiplier="1:1" id="cxp-aZ-rRi"/>
@@ -572,7 +572,7 @@
                                                     <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                                     <connections>
                                                         <action selector="endEditing:" destination="Z1Q-gW-GOZ" eventType="editingDidEnd" id="dw6-oM-cbu"/>
                                                         <action selector="endEditing:" destination="Z1Q-gW-GOZ" eventType="editingDidEndOnExit" id="gGg-dQ-RJI"/>
@@ -598,7 +598,7 @@
                                                     <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                                     <connections>
                                                         <action selector="endEditing:" destination="Z1Q-gW-GOZ" eventType="editingDidEnd" id="F0p-GW-da6"/>
                                                         <action selector="endEditing:" destination="Z1Q-gW-GOZ" eventType="editingDidEndOnExit" id="Xtd-Ga-F2A"/>
