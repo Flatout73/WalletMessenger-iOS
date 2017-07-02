@@ -10,15 +10,35 @@ import UIKit
 
 class ParticipantsTableViewController: UITableViewController {
 
+    var groupID: Int!
+    var adminID: Int?
+    
+    @IBOutlet weak var exitButton: UIButton!
+    
+    var amIAdmin = false
+    var users: [User] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
 
+        if(adminID == CoreDataService.sharedInstance.appUserID){
+            amIAdmin = true
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        if(amIAdmin) {
+            exitButton.setTitle("Удалить", for: .normal)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        users = CoreDataService.sharedInstance.getParticipants(groupID: groupID)
+        users.sort { $0.name! < $1.name! }
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,25 +49,56 @@ class ParticipantsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return users.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "participantCell", for: indexPath) as! ParticipantCell
 
-        // Configure the cell...
+        let user = users[indexPath.row]
+        cell.name.text = user.name
+        cell.mobilePhone.text = String(user.mobilePhone)
+        
+        if let avatar = user.avatar {
+            cell.avatar.image = UIImage.init(data: avatar as Data)
+        }
+        
+        if(Int(user.userID) == adminID) {
+            cell.admin.text = "Admin"
+        } else {
+            cell.admin.text = ""
+        }
 
         return cell
     }
-    */
+    
 
+    @IBAction func exitOrDelete(_ sender: Any) {
+        
+        if(amIAdmin){
+            ServiceAPI.groupDelGroup(groupID: groupID, noncompletedHandler: errorHandler) {
+                DispatchQueue.main.async {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            }
+        } else {
+            ServiceAPI.groupQuit(groupID: groupID, noncompletedHandler: errorHandler){
+                DispatchQueue.main.async {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            }
+        }
+    }
+    
+    func errorHandler(error: String){
+        ServiceAPI.alert(viewController: self, desc: error)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

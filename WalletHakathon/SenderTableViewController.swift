@@ -119,8 +119,10 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
         } else {
             
             ServiceAPI.groupSendTransaction(receiverID: reciverID, groupID: groupId, money: money, cash: Nal, text: textField.text == "" ? "hey" : textField.text, noncompletedHandler: self.errorHandler) {
-                self.navigationController?.popViewController(animated: true)
-                self.delegate.update()
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                    self.delegate.update()
+                }
             }
             
         }

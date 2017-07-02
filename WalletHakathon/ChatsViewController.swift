@@ -317,6 +317,10 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     cell.dialogID = Int(conversation.conversationID)
                     cell.balance.text = String(conversation.summa) + " руб."
                     cell.mobilePhone.text = String(participant.mobilePhone)
+                    
+                    if let avatar = participant.avatar {
+                        cell.avatar.image = UIImage.init(data: avatar as Data)
+                    }
                 }
             }
         } else {

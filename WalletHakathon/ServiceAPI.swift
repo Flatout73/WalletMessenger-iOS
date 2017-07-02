@@ -1021,7 +1021,10 @@ class ServiceAPI: NSObject {
             let request = serverAddress + "/group/quit"
             
             ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
-                completionHandler()
+                
+                CoreDataService.sharedInstance.deleteGroup(groupID: groupID){
+                    completionHandler()
+                }
             }
         }
     }
@@ -1035,7 +1038,10 @@ class ServiceAPI: NSObject {
             let request = serverAddress + "/group/leave"
             
             ServiceAPI.getDefaultClassResult(dictionary: dicionary, requestString: request, noncompletedHandler: noncompletedHandler) { (json) in
-                completionHandler()
+                
+                CoreDataService.sharedInstance.deleteGroup(groupID: groupID){
+                    completionHandler()
+                }
             }
         }
     }

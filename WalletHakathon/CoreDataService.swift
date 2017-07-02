@@ -181,6 +181,23 @@ class CoreDataService: NSObject {
         
     }
     
+    func deleteGroup(groupID: Int, completionHandler: @escaping() -> Void){
+        container.performBackgroundTask{ (context) in
+            context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
+            
+            
+            let group = GroupConversation.findConversation(id: groupID, inContext: context)
+            
+            if let group = group{
+                context.delete(group)
+            }
+            context.saveThrows()
+            self.dataBase.saveContext()
+            
+            completionHandler()
+        }
+    }
+    
     func insertConversation(userID: Int, conversationID: Int, date: Date,  name: String, mobilePhone: Int64, balance: Double, avatar: Data?, completionHandler: @escaping() -> Void) {
         
         
