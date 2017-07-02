@@ -119,7 +119,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath == IndexPath(row: 1, section: 2))
+        if(indexPath == IndexPath(row: 1, section: 3))
         {
             exit()
         } else if indexPath == IndexPath(row: 0, section:0){

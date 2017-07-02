@@ -320,7 +320,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 cell.name.text = conversation.name
                 cell.dialogID = Int(conversation.conversationID)
-                //cell.balance.text = String(conversation.myBalance) + " руб."
+                cell.balance.text = String(conversation.myBalance) + " руб."
             }
         }
         
