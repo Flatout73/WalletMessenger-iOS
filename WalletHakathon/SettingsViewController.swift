@@ -209,15 +209,16 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
 
 
             if let data = UIImagePNGRepresentation(newImage!) {
-                self.avatar.image = selectedImage
+                
 
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                 ServiceAPI.changePhoto(photo: data, completedHandler: {
                     DispatchQueue.main.async {[weak self] in
                         if let this = self{
                             MBProgressHUD.hide(for: this.view, animated: true)
+                            self?.avatar.image = selectedImage
                         }
-                        self?.viewWillAppear(true)
+                        //self?.viewWillAppear(true)
                     }
                 }, noncompletedHandler: {str in
                     DispatchQueue.main.async {
