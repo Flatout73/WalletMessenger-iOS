@@ -254,6 +254,8 @@ class CoreDataService: NSObject {
                 
                 context.saveThrows()
                 self.dataBase.saveContext()
+                
+                completionHandler()
             }
         }
 

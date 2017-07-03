@@ -11,6 +11,7 @@ import CoreData
 
 extension User {
     private class func insertUser(id: Int, name: String, mobilePhone: Int64, avatar: Data?, conversations: [Conversation]?, groups: [GroupConversation]?, ownerOf: [GroupConversation]?, inContext context: NSManagedObjectContext) -> User {
+        
         let user = User(context: context)
         user.userID = Int32(id)
         user.name = name

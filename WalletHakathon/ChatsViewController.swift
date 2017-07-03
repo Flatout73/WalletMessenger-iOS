@@ -78,7 +78,6 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.addSubview(refreshControl)
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
-
     }
 
     
@@ -208,16 +207,15 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                 return
                             }
                             ServiceAPI.getGroupsHist(date1: Int64(date.timeIntervalSince1970), noncompletedHandler: self.errorHandler) {
-                                loadMoreEnd(0)
-                            }
-                        } else {
-                            ServiceAPI.getDialogs(noncompletedHandler: self.errorHandler) {
                                 DispatchQueue.main.async  {
                                     loadMoreEnd(0)
                                 }
                             }
+                        } else {
                             ServiceAPI.getGroups(noncompletedHandler: self.errorHandler) {
-                                
+                                DispatchQueue.main.async  {
+                                    loadMoreEnd(0)
+                                }
                             }
                         }
                     }
@@ -399,6 +397,10 @@ extension ChatsViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
     
     func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
         return true
+    }
+    
+    func isReversed(_ scrollView: UIScrollView) -> Bool {
+        return false
     }
 }
 

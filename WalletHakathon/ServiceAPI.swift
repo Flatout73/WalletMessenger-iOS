@@ -105,7 +105,7 @@ class ServiceAPI: NSObject {
             let requestStr = serverAddress + "/user/chpsd"
             
             ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler) { (json) in
-                
+                completedHandler()
             }
         } else {
             noncompletedHandler("token error")
@@ -123,6 +123,7 @@ class ServiceAPI: NSObject {
             ServiceAPI.getDefaultClassResult(dictionary: dictionary, requestString: requestStr, noncompletedHandler: noncompletedHandler) {   (json) in
                 
                 coreDataService.changeName(name: name)
+                completedHandler()
             }
         } else {
             noncompletedHandler("token error")
@@ -132,7 +133,11 @@ class ServiceAPI: NSObject {
     //фото тип string пока стоит
     static func changePhoto(photo: Data, completedHandler: @escaping() -> Void, noncompletedHandler: @escaping(String) -> Void) {
         if var dictionary = ServiceAPI.loadDictionary() {
-            dictionary["photo"] = photo.base64EncodedString()
+            
+            var dataString = photo.base64EncodedString()
+            dataString = dataString.replacingOccurrences(of: "+", with: "%2b")
+            
+            dictionary["photo"] = dataString
             
             let requestStr = serverAddress + "/user/chphoto"
             

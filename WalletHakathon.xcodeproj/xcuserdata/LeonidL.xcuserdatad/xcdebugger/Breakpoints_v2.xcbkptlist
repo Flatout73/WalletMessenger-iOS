@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/QiwiLoginViewController.swift"
-            timestampString = "520714135.492479"
+            timestampString = "520723697.582516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "enterinQiwi(_:)"
             landmarkType = "7">
          </BreakpointContent>

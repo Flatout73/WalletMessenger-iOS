@@ -72,6 +72,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView;
 
+/*
+ Нужны были плейсхолдеры для перевернутых таблиц. Я решил пораскинуть мозгами и чуток поменять либку. И на удивление это сработало.
+ 
+ */
+
+- (BOOL)isReversed:(UIScrollView *)scrollView;
+
 
 /**
  Asks the data source for a tint color of the image dataset. Default is nil.
