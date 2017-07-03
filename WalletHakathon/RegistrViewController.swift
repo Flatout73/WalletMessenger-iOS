@@ -66,7 +66,7 @@ class RegistrViewController: UIViewController, UITextFieldDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? InfoRegistViewController {
-            vc.numberTF = Int(numberTF.text!)
+            vc.numberTF = Int64(numberTF.text!)
         }
     }
 

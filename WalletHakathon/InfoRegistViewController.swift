@@ -12,7 +12,7 @@ import MBProgressHUD
 class InfoRegistViewController: UIViewController {
 
     
-    var numberTF: Int?
+    var numberTF: Int64?
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
