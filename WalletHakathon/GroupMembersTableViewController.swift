@@ -67,7 +67,7 @@ class GroupMembersTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if cellsChecked.contains(indexPath.row), let index = cellsChecked.index(where: {return $0 == indexPath.row}) {
             cellsChecked.remove(at: index)
-
+            phones.remove(at: index)
             self.tableView.reloadData()
         } else {
             let alert = UIAlertController(title: "", message: "Выберите нужный номер телефона", preferredStyle: .actionSheet)
