@@ -363,6 +363,10 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBAction func stepperChanged(_ sender: UIStepper) {
         
+        if(moneyField.text == "") {
+            moneyField.text = "0.0"
+        }
+        
         if(sender.value > oldValue){
             moneyField.text = String(Double(moneyField.text!)! + 1)
             
