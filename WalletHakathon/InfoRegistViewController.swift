@@ -68,9 +68,14 @@ class InfoRegistViewController: UIViewController {
     func errorHandler(error: String) {
         
         DispatchQueue.main.async {
+            MBProgressHUD.hide(for: self.view, animated: true)
             let alert = UIAlertController(title: "Ошибка!", message: error, preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK", style: .default) {action in
+                DispatchQueue.main.async {
+                    self.view.endEditing(true)
+                }
+            })
             
             self.present(alert, animated: true, completion: nil)
         }

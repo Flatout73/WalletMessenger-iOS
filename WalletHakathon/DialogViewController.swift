@@ -271,7 +271,12 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             if(transaction.sender!.userID == Int32(self.coreDataService.appUserID)) {
                 cell = tableView.dequeueReusableCell(withIdentifier: "fromMe", for: indexPath) as! MessageTableViewCell
             } else{
-                cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
+                if(transaction.proof == 0 && transaction.isCash){
+                    cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
+                } else {
+                    cell = tableView.dequeueReusableCell(withIdentifier: "toMeApproved", for: indexPath) as! MessageTableViewCell
+                }
+                
             }
         
         

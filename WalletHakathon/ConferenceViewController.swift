@@ -224,7 +224,12 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
         if(transaction.sender!.userID == Int32(self.coreDataService.appUserID)) {
             cell = tableView.dequeueReusableCell(withIdentifier: "fromMe", for: indexPath) as! MessageTableViewCell
         } else{
-            cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
+            
+            if(transaction.isCash && transaction.proof == 0) {
+                cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
+            } else {
+                cell = tableView.dequeueReusableCell(withIdentifier: "toMeApproved", for: indexPath) as! MessageTableViewCell
+            }
         }
         
         cell.delegate = self
@@ -276,55 +281,6 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    var isCash = true
-//    @IBAction func sendMoney(_ sender: Any) {
-//        
-//        isCash = true
-//        showStepper()
-//    }
-    
-//    @IBAction func sendToServer(_ sender: Any) {
-//        
-//        if (moneyField.text! != "") {
-//            
-//            
-//            if(!isCash){
-//                ServiceAPI.sendMoneyQiwi(phoneToSend: phone, summa: Double(moneyField.text!)!, transactionID: transactionQiwiID, noncomplitedHandler: errorHandler) {
-//                    
-//                    ServiceAPI.sendTransaction(dialogID: self.dialogID, money: Double(self.moneyField.text!)!, cash: self.isCash, text: "hey", noncompletedHandler: self.errorHandler) {
-//                        
-//                        DispatchQueue.main.async {
-//                            try! self.fetchedResultsController.performFetch()
-//                            self.tableView.reloadData()
-//                        }
-//                        
-//                    }
-//                }
-//            } else {
-//                
-//                ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: isCash, text: "hey", noncompletedHandler: errorHandler) {
-//                    
-//                    DispatchQueue.main.async {
-//                        try! self.fetchedResultsController.performFetch()
-//                        self.tableView.reloadData()
-//                    }
-//                    
-//                }
-//            }
-//        }
-//        
-//        tableView.contentInset = UIEdgeInsets.zero
-//        tableView.scrollIndicatorInsets = tableView.contentInset
-//        
-//        moneyField.isHidden = true
-//        stepper.isHidden = true
-//        goButton.isHidden = true
-//    }
-//
-//    }
-  
-
     
      //MARK: - Navigation
 

@@ -60,20 +60,31 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
         if(nameChanged){
             MBProgressHUD.showAdded(to: self.view, animated: true)
             ServiceAPI.changeName(name: nameTextField.text!, completedHandler: {
-                MBProgressHUD.hide(for: self.view, animated: true)
+                DispatchQueue.main.async {
+                     MBProgressHUD.hide(for: self.view, animated: true)
+                }
+               
             }, noncompletedHandler: {str in
-                MBProgressHUD.hide(for: self.view, animated: true)
-                ServiceAPI.alert(viewController: self, desc: str)
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    ServiceAPI.alert(viewController: self, desc: str)
+                }
             })
         }
         
         if(passwordChanged){
             MBProgressHUD.showAdded(to: self.view, animated: true)
             ServiceAPI.changePsd(last: lastPasswordTextField.text!, new: passwordTextField.text!, completedHandler: {
-                MBProgressHUD.hide(for: self.view, animated: true)
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                }
+                
             }, noncompletedHandler: {str in
-                MBProgressHUD.hide(for: self.view, animated: true)
-                ServiceAPI.alert(viewController: self, desc: str)
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    ServiceAPI.alert(viewController: self, desc: str)
+                }
+                
             })
         }
     }
@@ -209,8 +220,11 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
                         self?.viewWillAppear(true)
                     }
                 }, noncompletedHandler: {str in
-                    MBProgressHUD.hide(for: self.view, animated: true)
-                    ServiceAPI.alert(viewController: self, desc: str)
+                    DispatchQueue.main.async {
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        ServiceAPI.alert(viewController: self, desc: str)
+                    }
+                    
                 })
             }
         }
