@@ -809,7 +809,7 @@
             </objects>
             <point key="canvasLocation" x="1621" y="-815"/>
         </scene>
-        <!--Dialog View Controller-->
+        <!--Title-->
         <scene sceneID="z4d-W2-Myp">
             <objects>
                 <viewController storyboardIdentifier="DialogVC" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="hbU-V6-Vmt" customClass="DialogViewController" customModule="WalletHakathon" customModuleProvider="target" sceneMemberID="viewController">
@@ -1054,13 +1054,13 @@
                                     <action selector="sendMoney:" destination="hbU-V6-Vmt" eventType="touchUpInside" id="IDK-hw-Ozf"/>
                                 </connections>
                             </button>
-                            <stepper hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xHf-mv-Mzi">
+                            <stepper hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100000" translatesAutoresizingMaskIntoConstraints="NO" id="xHf-mv-Mzi">
                                 <rect key="frame" x="219" y="584" width="94" height="29"/>
                                 <connections>
                                     <action selector="stepperChanged:" destination="hbU-V6-Vmt" eventType="valueChanged" id="xfz-Tz-kaS"/>
                                 </connections>
                             </stepper>
-                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="1000" enabled="NO" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Сумма" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VE9-Rs-WP0">
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="1000" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Сумма" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VE9-Rs-WP0">
                                 <rect key="frame" x="24" y="583" width="187" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="tjc-b6-Dem"/>
@@ -1079,6 +1079,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ivp-P7-TvJ" secondAttribute="bottom" constant="54" id="2fV-Cw-7ha"/>
                             <constraint firstItem="6Bc-8b-vAk" firstAttribute="right" secondItem="gxj-lN-iW8" secondAttribute="right" multiplier="4:5" id="4nf-Ud-asL"/>
                             <constraint firstItem="xHf-mv-Mzi" firstAttribute="leading" secondItem="VE9-Rs-WP0" secondAttribute="trailing" constant="8" id="7TK-4f-I2N"/>
                             <constraint firstItem="XB7-C8-hCM" firstAttribute="centerY" secondItem="ivp-P7-TvJ" secondAttribute="centerY" id="7nU-iG-7Pc"/>
@@ -1088,7 +1089,6 @@
                             <constraint firstItem="ivp-P7-TvJ" firstAttribute="leading" secondItem="gxj-lN-iW8" secondAttribute="leading" id="ML6-Wt-fAc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jZC-WM-dkr" secondAttribute="trailing" id="PmI-vZ-wcf"/>
                             <constraint firstItem="jZC-WM-dkr" firstAttribute="bottom" secondItem="xHf-mv-Mzi" secondAttribute="bottom" id="Q56-ka-0hc"/>
-                            <constraint firstItem="T42-eA-RP1" firstAttribute="top" secondItem="ivp-P7-TvJ" secondAttribute="bottom" constant="16" id="gDQ-ke-iQ5"/>
                             <constraint firstItem="ivp-P7-TvJ" firstAttribute="top" secondItem="i8j-uw-nkC" secondAttribute="bottom" id="jjV-qZ-JK2"/>
                             <constraint firstItem="6Bc-8b-vAk" firstAttribute="bottom" secondItem="T42-eA-RP1" secondAttribute="bottom" id="kSd-Ha-9pU"/>
                             <constraint firstItem="xHf-mv-Mzi" firstAttribute="bottom" secondItem="VE9-Rs-WP0" secondAttribute="bottom" id="lGB-UL-xRg"/>
@@ -1099,9 +1099,17 @@
                             <constraint firstItem="VE9-Rs-WP0" firstAttribute="leading" secondItem="gxj-lN-iW8" secondAttribute="leadingMargin" constant="8" id="za2-os-u67"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="3CZ-y2-LHe">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="hXZ-jg-86i">
+                            <connections>
+                                <action selector="cancelEditing:" destination="hbU-V6-Vmt" id="tY7-6S-BMU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activityIndicator" destination="XB7-C8-hCM" id="YFM-Vc-L6w"/>
+                        <outlet property="bottomConstraint" destination="98n-VV-ttH" id="jc8-sz-CMD"/>
                         <outlet property="goButton" destination="jZC-WM-dkr" id="zFM-oJ-eac"/>
                         <outlet property="moneyField" destination="VE9-Rs-WP0" id="3tZ-oz-QMi"/>
                         <outlet property="stepper" destination="xHf-mv-Mzi" id="jwB-3Y-ZvA"/>

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class DialogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TableViewUpdateDelegate {
+class DialogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, TableViewUpdateDelegate {
     
     
     var fetchedResultsController: NSFetchedResultsController<Transaction>!
@@ -32,6 +32,9 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     
+    
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
     func update() {
         DispatchQueue.main.async {
             try! self.fetchedResultsController.performFetch()
@@ -49,19 +52,14 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         tableView.dataSource = self
         
+        moneyField.delegate = self
+        
         activityIndicator.hidesWhenStopped = true
         
         tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi))
         
         tableView.estimatedRowHeight = 60
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        
-        
-        //for tests
-        //coreDataService.insertConversation(userID: 123, conversationID: 45, name: "kek", mobilePhone: 123456, balance: 56.0, avatar: nil)
-        
-        //dialogID = 45
-        //conversation = coreDataService.findConversaionBy(id: 45)
         
         
         fetchedResultsController = coreDataService.getFRCForTransactions(dialogID: dialogID)
@@ -84,6 +82,34 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.addSubview(refreshControl)
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
+        
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+    }
+    
+    func adjustForKeyboard(notification: Notification) {
+        let userInfo = notification.userInfo!
+        
+        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+        
+        if notification.name == Notification.Name.UIKeyboardWillHide {
+            tableView.contentInset = UIEdgeInsets.zero
+            
+            bottomConstraint.constant = 8
+            
+            moneyField.isHidden = true
+            stepper.isHidden = true
+            goButton.isHidden = true
+        } else {
+            tableView.contentInset = UIEdgeInsets(top: keyboardViewEndFrame.height + 32, left: 0, bottom: 0, right: 0)
+            bottomConstraint.constant += keyboardViewEndFrame.height
+        }
+        
+        tableView.scrollIndicatorInsets = tableView.contentInset
+        tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -205,7 +231,6 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        //return 1
         
         if let count = fetchedResultsController.sections?.count {
             return count
@@ -215,7 +240,6 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return messeges.count
         
         if(!fetchedResultsController.sections!.isEmpty) {
             if let sectionInfo = fetchedResultsController.sections?[section]{
@@ -228,34 +252,6 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-//        if(indexPath.section % 2 == 0) {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
-//            
-//            if(!cell.isReversed){
-//                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-//                cell.isReversed = true
-//            }
-//        
-//            cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
-//            cell.sum.text = messeges[indexPath.row] + " руб."
-//        
-//            return cell
-//        } else {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "fromMe", for: indexPath) as! MessageTableViewCell
-//            
-//            if(!cell.isReversed){
-//                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-//                cell.isReversed = true
-//            }
-//
-//            cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
-//            cell.sum.text = messeges[indexPath.row] + " руб."
-//            
-//            return cell
-//        }
-        
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
 
         var cell: MessageTableViewCell
         guard let section = fetchedResultsController.sections?[0] else {
@@ -363,12 +359,20 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         goButton.isHidden = false
     }
     
-    @IBAction func stepperChanged(_ sender: Any) {
+    var oldValue = 0.0
+    
+    @IBAction func stepperChanged(_ sender: UIStepper) {
         
-        moneyField.text = Int((sender as! UIStepper).value).description
+        if(sender.value > oldValue){
+            moneyField.text = String(Double(moneyField.text!)! + 1)
+            
+        } else{
+            moneyField.text = String(Double(moneyField.text!)! - 1)
+        }
+        oldValue = sender.value
+        
     }
-    
-    
+
     @IBAction func sendMoneyOnServer(_ sender: Any) {
         
         
@@ -405,12 +409,19 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             }
         }
         
-        tableView.contentInset = UIEdgeInsets.zero
-        tableView.scrollIndicatorInsets = tableView.contentInset
+//        tableView.contentInset = UIEdgeInsets.zero
+//        tableView.scrollIndicatorInsets = tableView.contentInset
+//        
+//        moneyField.isHidden = true
+//        stepper.isHidden = true
+//        goButton.isHidden = true
         
-        moneyField.isHidden = true
-        stepper.isHidden = true
-        goButton.isHidden = true
+        self.view.endEditing(true)
+    }
+    
+    
+    @IBAction func cancelEditing(_ sender: Any) {
+        self.view.endEditing(true)
     }
     
 }
