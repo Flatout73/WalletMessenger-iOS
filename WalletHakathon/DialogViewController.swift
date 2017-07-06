@@ -391,7 +391,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             if(!isCash){
                 ServiceAPI.sendMoneyQiwi(phoneToSend: phone, summa: Double(moneyField.text!)!, transactionID: transactionQiwiID, noncomplitedHandler: errorHandler) {
                     
-                    ServiceAPI.sendTransaction(dialogID: self.dialogID, money: Double(self.moneyField.text!)!, cash: self.isCash, text: "hey", noncompletedHandler: self.errorHandler) {
+                    ServiceAPI.sendTransaction(dialogID: self.dialogID, money: Double(self.moneyField.text!)!, cash: self.isCash, text: "Нет текста", noncompletedHandler: self.errorHandler) {
                         
                         DispatchQueue.main.async {
                             try! self.fetchedResultsController.performFetch()
@@ -402,7 +402,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                 }
             } else {
                 
-                ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: isCash, text: "hey", noncompletedHandler: errorHandler) {
+                ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: isCash, text: "Нет текста", noncompletedHandler: errorHandler) {
                     
                     DispatchQueue.main.async {
                         try! self.fetchedResultsController.performFetch()
