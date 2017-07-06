@@ -46,6 +46,7 @@
 		712F62F71F051FFA004CC712 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712F62F61F051FFA004CC712 /* SettingsViewController.swift */; };
 		715E45A11F097D7D0095D08C /* ParticipantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E45A01F097D7D0095D08C /* ParticipantsTableViewController.swift */; };
 		715E45A31F0985B40095D08C /* ParticipantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715E45A21F0985B40095D08C /* ParticipantCell.swift */; };
+		71918AF11F0E51F000E68BC1 /* TransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71918AF01F0E51F000E68BC1 /* TransactionTableViewController.swift */; };
 		FBD33BEC9520952B38CD0DF1 /* Pods_WalletHakathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F77F89AC65A0E9459599EF21 /* Pods_WalletHakathon.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +98,7 @@
 		712F62F61F051FFA004CC712 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		715E45A01F097D7D0095D08C /* ParticipantsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantsTableViewController.swift; sourceTree = "<group>"; };
 		715E45A21F0985B40095D08C /* ParticipantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantCell.swift; sourceTree = "<group>"; };
+		71918AF01F0E51F000E68BC1 /* TransactionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewController.swift; sourceTree = "<group>"; };
 		D9A89CC916FD2A201B258B86 /* Pods-WalletHakathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletHakathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletHakathon/Pods-WalletHakathon.debug.xcconfig"; sourceTree = "<group>"; };
 		F77F89AC65A0E9459599EF21 /* Pods_WalletHakathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletHakathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -164,6 +166,7 @@
 				711705421F0947F800271947 /* RecieverTableViewController.swift */,
 				715E45A01F097D7D0095D08C /* ParticipantsTableViewController.swift */,
 				715E45A21F0985B40095D08C /* ParticipantCell.swift */,
+				71918AF01F0E51F000E68BC1 /* TransactionTableViewController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				55B4E4961F06E2000043A0E5 /* OnboardingViewController.m in Sources */,
 				712DEEDA1F0281BE004D5CE9 /* ConversationExtension.swift in Sources */,
 				711705431F0947F800271947 /* RecieverTableViewController.swift in Sources */,
+				71918AF11F0E51F000E68BC1 /* TransactionTableViewController.swift in Sources */,
 				712DEECE1F002236004D5CE9 /* QiwiLoginViewController.swift in Sources */,
 				55B4E49B1F07EBFF0043A0E5 /* ContactTableViewCell.swift in Sources */,
 				55B4E44F1F0504D00043A0E5 /* ContactsTableViewController.swift in Sources */,

@@ -33,6 +33,11 @@ class MessageTableViewCell: UITableViewCell {
     var delegate: TableViewUpdateDelegate!
     
     var transactionID: Int!
+    var sender: User?
+    var reciever: User?
+    var date: Date?
+    var textInfo: String?
+    
     
     //-1 - Отклонена, 0 - в ожидании, 1 - принята, 2 - Qiwi(нейтральная)
     var needApproved: Int = 2

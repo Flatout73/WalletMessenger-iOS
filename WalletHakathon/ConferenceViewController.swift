@@ -263,6 +263,10 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
             }
             cell.sum.text = String(transaction.money) + " руб."
             
+            cell.sender = transaction.sender
+            cell.reciever = transaction.reciever
+            cell.date = transaction.date as Date?
+            cell.textInfo = transaction.text
         }
         
         if(!cell.isReversed){
@@ -291,6 +295,18 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
         } else if let vc = segue.destination as? ParticipantsTableViewController{
             vc.adminID = adminID
             vc.groupID = groupID
+        } else if let vc = segue.destination as? TransactionTableViewController {
+            if let cell = sender as? MessageTableViewCell {
+                vc.transactionID = cell.transactionID
+                vc.sender = cell.sender
+                
+                vc.reciever = cell.reciever
+                
+                vc.dateNumber = cell.date
+                vc.info = cell.textInfo
+                
+                vc.summa = cell.sum.text
+            }
         }
     }
 

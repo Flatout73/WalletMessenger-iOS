@@ -1086,7 +1086,7 @@ class ServiceAPI: NSObject {
         
             request.setValue("Token \(base64!)", forHTTPHeaderField: "Authorization")
         } else {
-            noncomplitedHandler("Нет токена Qiwi")
+            noncomplitedHandler("Нет токена Qiwi. Подключите аккаунт Qiwi в настройках.")
             return
         }
         
