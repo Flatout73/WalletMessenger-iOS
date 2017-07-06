@@ -35,11 +35,12 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    func update() {
+    func update(index: IndexPath) {
         DispatchQueue.main.async {
             try! self.fetchedResultsController.performFetch()
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
+            self.tableView.reloadRows(at: [index], with: .top)
         }
         
     }
@@ -98,7 +99,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         if notification.name == Notification.Name.UIKeyboardWillHide {
             tableView.contentInset = UIEdgeInsets.zero
             
-            bottomConstraint.constant = 8
+            bottomConstraint.constant = 0
             
             moneyField.isHidden = true
             stepper.isHidden = true
@@ -153,7 +154,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         let deltaOffset = maximumOffset - currentOffset
         
-        if deltaOffset <= 0 && currentOffset > 0 {
+        if deltaOffset < 0 && currentOffset > 0 {
             loadMore()
         }
     }
@@ -179,11 +180,11 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         DispatchQueue.global(qos: .utility).async {
             print("loadmore")
             
-            try? self.fetchedResultsController.performFetch()
+            //try? self.fetchedResultsController.performFetch()
             if(!self.fetchedResultsController.sections!.isEmpty) {
                 if let sectionInfo = self.fetchedResultsController.sections?[0]{
                     if (sectionInfo.numberOfObjects > 0) {
-                        
+                        print(sectionInfo.numberOfObjects)
                         let trans = self.fetchedResultsController.object(at: IndexPath(row: sectionInfo.numberOfObjects - 1, section: 0))
                         
                         ServiceAPI.getDialogTransactions(transactionID: Int(trans.transactionID), dialogID: self.dialogID, noncompletedHandler: self.errorHandler){
@@ -280,11 +281,11 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             transaction.managedObjectContext?.performAndWait {
                 if(transaction.isCash){
                     if(transaction.proof == 1) {
-                        cell.hideButtons()
-                        //cell.makeIndicator(green: true)
+                        //cell.hideButtons()
+                        cell.makeIndicator(green: true)
                         cell.messView.layer.opacity = 1
                     }else if (transaction.proof == -1){
-                        cell.hideButtons()
+                        //cell.hideButtons()
                         cell.makeIndicator(green: false)
                         cell.messView.layer.opacity = 0.5
                     } else{
@@ -294,12 +295,13 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                     cell.qiwiorNal.image = #imageLiteral(resourceName: "icon_money")
                 } else{
                     cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
-                    cell.hideButtons()
-                    cell.indicator.backgroundColor = UIColor.clear
+                    //cell.hideButtons()
+                    cell.makeIndicator(green: true)
                     cell.messView.layer.opacity = 1
                 }
                 cell.sum.text = String(transaction.money) + " руб."
                 
+                cell.cellIndex = indexPath
             }
             
             if(!cell.isReversed){
@@ -393,36 +395,34 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                     
                     ServiceAPI.sendTransaction(dialogID: self.dialogID, money: Double(self.moneyField.text!)!, cash: self.isCash, text: "Нет текста", noncompletedHandler: self.errorHandler) {
                         
-                        DispatchQueue.main.async {
-                            try! self.fetchedResultsController.performFetch()
-                            self.tableView.reloadData()
-                        }
-                        
+                        self.updateTableForTransactions()
                     }
                 }
             } else {
                 
                 ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: isCash, text: "Нет текста", noncompletedHandler: errorHandler) {
                     
-                    DispatchQueue.main.async {
-                        try! self.fetchedResultsController.performFetch()
-                        self.tableView.reloadData()
-                    }
-                    
+                    self.updateTableForTransactions()
                 }
             }
         }
         
-//        tableView.contentInset = UIEdgeInsets.zero
-//        tableView.scrollIndicatorInsets = tableView.contentInset
-//        
-//        moneyField.isHidden = true
-//        stepper.isHidden = true
-//        goButton.isHidden = true
+        tableView.contentInset = UIEdgeInsets.zero
+        tableView.scrollIndicatorInsets = tableView.contentInset
+        
+        moneyField.isHidden = true
+        stepper.isHidden = true
+        goButton.isHidden = true
         
         self.view.endEditing(true)
     }
     
+    func updateTableForTransactions(){
+        DispatchQueue.main.async {
+            try? self.fetchedResultsController.performFetch()
+            self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .top)
+        }
+    }
     
     @IBAction func cancelEditing(_ sender: Any) {
         self.view.endEditing(true)

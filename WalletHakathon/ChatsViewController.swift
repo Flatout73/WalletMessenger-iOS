@@ -72,7 +72,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //print(fetchedResultsController.delegate)
         
         refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "Идет обновлени...")
+        refreshControl.attributedTitle = NSAttributedString(string: "Идет обновление...")
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
         tableView.addSubview(refreshControl)

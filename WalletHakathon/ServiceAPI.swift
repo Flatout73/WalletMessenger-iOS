@@ -806,7 +806,7 @@ class ServiceAPI: NSObject {
         }
     }
     
-    static func groupSendTransaction(receiverID: Int, groupID: Int, money: Double, cash: Bool, text: String?, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
+    static func groupSendTransaction(receiverID: Int, groupID: Int, money: Double, cash: Bool, proof: Int = 0, text: String?, noncompletedHandler: @escaping(String) -> Void, completionHandler: @escaping() -> Void) {
         if var dicionary = loadDictionary() {
             dicionary["receiverID"] = String(receiverID)
             dicionary["groupID"] = String(groupID)
@@ -831,7 +831,7 @@ class ServiceAPI: NSObject {
                 
                 //CoreDataService.sharedInstance.insertTransaction(id: transactionID, money: money, text: text ?? "", date: date, isCash: cash, proof: 0, conversation: conversation, group: nil, reciver: user, sender: CoreDataService.sharedInstance.appUser)
                 
-                coreDataService.insertTransaction(id: transactionID, money: money, text: text!, date: date, isCash: cash, proof: 0, conversation: nil, group: groupID, reciver: receiverID, sender: coreDataService.appUserID) {
+                coreDataService.insertTransaction(id: transactionID, money: money, text: text!, date: date, isCash: cash, proof: proof, conversation: nil, group: groupID, reciver: receiverID, sender: coreDataService.appUserID) {
                     completionHandler()
                 }
                 

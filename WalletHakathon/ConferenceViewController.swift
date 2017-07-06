@@ -26,12 +26,13 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    func update() {
+    func update(index: IndexPath) {
         DispatchQueue.main.async {
             try? self.fetchedResultsController.performFetch()
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
             
+            self.tableView.reloadRows(at: [index], with: .top)
         }
         
     }
@@ -40,7 +41,7 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
     func updateTableForTransactions() {
         DispatchQueue.main.async {
             try? self.fetchedResultsController.performFetch()
-            self.tableView.reloadData()
+            self.tableView.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .top)
         }
     }
     
@@ -118,7 +119,7 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         let deltaOffset = maximumOffset - currentOffset
         
-        if deltaOffset <= 0 && currentOffset > 0 {
+        if deltaOffset < 0 && currentOffset > 0 {
             loadMore()
         }
     }
@@ -144,7 +145,6 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
         DispatchQueue.global(qos: .utility).async {
             print("loadmore")
             
-            try? self.fetchedResultsController.performFetch()
             if(!self.fetchedResultsController.sections!.isEmpty) {
                 if let sectionInfo = self.fetchedResultsController.sections?[0]{
                     if (sectionInfo.numberOfObjects > 0) {
@@ -225,7 +225,7 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
             cell = tableView.dequeueReusableCell(withIdentifier: "fromMe", for: indexPath) as! MessageTableViewCell
         } else{
             
-            if(transaction.isCash && transaction.proof == 0) {
+            if(transaction.isCash && transaction.proof == 0 && (transaction.reciever?.userID == Int32(self.coreDataService.appUserID) || transaction.reciever?.userID == Int32(adminID))) {
                 cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "toMeApproved", for: indexPath) as! MessageTableViewCell
@@ -240,28 +240,27 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
                 cell.qiwiorNal.image = #imageLiteral(resourceName: "icon_money")
                 
                 if(transaction.proof == 1) {
-                    cell.hideButtons()
-                    //cell.makeIndicator(green: true)
+                    //cell.hideButtons()
+                    cell.makeIndicator(green: true)
                     cell.messView.layer.opacity = 1
                 }else if (transaction.proof == -1){
-                    cell.hideButtons()
+                    //cell.hideButtons()
                     cell.makeIndicator(green: false)
                     cell.messView.layer.opacity = 0.5
                 } else{
-                    if(self.coreDataService.appUserID != self.adminID) {
-                        cell.hideButtons()
-                    }
                     cell.indicator.backgroundColor = UIColor.yellow
                     cell.messView.layer.opacity = 0.5
                 }
                 
             } else{
                 cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
-                cell.hideButtons()
-                cell.indicator.backgroundColor = UIColor.clear
+                //cell.hideButtons()
+                cell.makeIndicator(green: true)
                 cell.messView.layer.opacity = 1
             }
             cell.sum.text = String(transaction.money) + " руб."
+            
+            cell.cellIndex = indexPath
             
             cell.sender = transaction.sender
             cell.reciever = transaction.reciever
@@ -292,6 +291,9 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
         if let vc = segue.destination as? SenderTableViewController {
             vc.groupId = groupID
             vc.delegate = self
+            if(coreDataService.appUserID == adminID){
+                vc.amIadmin = true
+            }
         } else if let vc = segue.destination as? ParticipantsTableViewController{
             vc.adminID = adminID
             vc.groupID = groupID

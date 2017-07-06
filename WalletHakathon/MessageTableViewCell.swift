@@ -10,7 +10,7 @@ import UIKit
 import MBProgressHUD
 
 protocol TableViewUpdateDelegate {
-    func update()
+    func update(index: IndexPath)
 }
 
 class MessageTableViewCell: UITableViewCell {
@@ -38,9 +38,7 @@ class MessageTableViewCell: UITableViewCell {
     var date: Date?
     var textInfo: String?
     
-    
-    //-1 - Отклонена, 0 - в ожидании, 1 - принята, 2 - Qiwi(нейтральная)
-    var needApproved: Int = 2
+    var cellIndex: IndexPath!
     
     @IBOutlet weak var messView: UIView!
     
@@ -53,11 +51,6 @@ class MessageTableViewCell: UITableViewCell {
         messView.layer.borderColor = UIColor.white.cgColor
         
         indicator.layer.cornerRadius = indicator.frame.height/2
-    }
-    
-    func makeNeedApproveOrNot(code: Int) {
-        needApproved = code
-        
     }
     
     func addButtons(){
@@ -78,7 +71,7 @@ class MessageTableViewCell: UITableViewCell {
     
     func makeIndicator(green: Bool) {
         if(green) {
-            indicator.backgroundColor = UIColor.green
+            indicator.backgroundColor = UIColor.clear
         } else {
             indicator.backgroundColor = UIColor.red
         }
@@ -91,17 +84,17 @@ class MessageTableViewCell: UITableViewCell {
     
     @IBAction func accept(_ sender: Any) {
         
-        let button = sender as! UIButton
+//        let button = sender as! UIButton
+//
+//        guard let cell = button.superview?.superview as? MessageTableViewCell else {
+//            print("Не могу получить ячейку")
+//            return
+//        }
         
-        guard let cell = button.superview?.superview as? MessageTableViewCell else {
-            print("Не могу получить ячейку")
-            return
-        }
-        
-        ServiceAPI.acceptTransaction(transactionID: cell.transactionID, noncompletedHandler: errorHandler) {
+        ServiceAPI.acceptTransaction(transactionID: transactionID, noncompletedHandler: errorHandler) {
             DispatchQueue.main.async {
-                self.hideButtons()
-                self.delegate.update()
+                //self.hideButtons()
+                self.delegate.update(index: self.cellIndex)
             }
             
         }
@@ -110,17 +103,17 @@ class MessageTableViewCell: UITableViewCell {
     
     @IBAction func decline(_ sender: Any) {
         
-        let button = sender as! UIButton
+//        let button = sender as! UIButton
+//
+//        guard let cell = button.superview?.superview as? MessageTableViewCell else {
+//            print("Не могу получить ячейку")
+//            return
+//        }
         
-        guard let cell = button.superview?.superview as? MessageTableViewCell else {
-            print("Не могу получить ячейку")
-            return
-        }
-        
-        ServiceAPI.declineTransaction(transactionID: cell.transactionID, noncompletedHandler: errorHandler) {
+        ServiceAPI.declineTransaction(transactionID: transactionID, noncompletedHandler: errorHandler) {
             DispatchQueue.main.async {
-                self.hideButtons()
-                self.delegate.update()
+                //self.hideButtons()
+                self.delegate.update(index: self.cellIndex)
             }
         }
     }

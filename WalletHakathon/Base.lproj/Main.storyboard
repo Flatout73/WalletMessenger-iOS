@@ -827,7 +827,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ivp-P7-TvJ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="549"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="563"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="toMe" rowHeight="90" id="m5W-Ir-Yb6" customClass="MessageTableViewCell" customModule="WalletHakathon" customModuleProvider="target">
@@ -1043,7 +1043,7 @@
                                 </prototypes>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="XB7-C8-hCM">
-                                <rect key="frame" x="177.5" y="328.5" width="20" height="20"/>
+                                <rect key="frame" x="177.5" y="335.5" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Bc-8b-vAk">
                                 <rect key="frame" x="188.5" y="637" width="186.5" height="30"/>
@@ -1090,7 +1090,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="ivp-P7-TvJ" secondAttribute="bottom" constant="54" id="2fV-Cw-7ha"/>
+                            <constraint firstAttribute="bottom" secondItem="ivp-P7-TvJ" secondAttribute="bottom" constant="40" id="2fV-Cw-7ha"/>
                             <constraint firstItem="xHf-mv-Mzi" firstAttribute="leading" secondItem="VE9-Rs-WP0" secondAttribute="trailing" constant="8" id="7TK-4f-I2N"/>
                             <constraint firstItem="XB7-C8-hCM" firstAttribute="centerY" secondItem="ivp-P7-TvJ" secondAttribute="centerY" id="7nU-iG-7Pc"/>
                             <constraint firstAttribute="bottom" secondItem="T42-eA-RP1" secondAttribute="bottom" id="98n-VV-ttH"/>
@@ -1112,7 +1112,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="3CZ-y2-LHe">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="hXZ-jg-86i">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="cancel" id="hXZ-jg-86i">
                             <connections>
                                 <action selector="cancelEditing:" destination="hbU-V6-Vmt" id="tY7-6S-BMU"/>
                             </connections>
