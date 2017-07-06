@@ -23,6 +23,7 @@ class MessageTableViewCell: UITableViewCell {
     
     @IBOutlet weak var indicator: UIView!
     
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView?
     
     @IBOutlet weak var fromViewToImage: NSLayoutConstraint!
     
@@ -51,6 +52,8 @@ class MessageTableViewCell: UITableViewCell {
         messView.layer.borderColor = UIColor.white.cgColor
         
         indicator.layer.cornerRadius = indicator.frame.height/2
+        
+        loadingIndicator?.hidesWhenStopped = true
     }
     
     func addButtons(){
@@ -90,10 +93,11 @@ class MessageTableViewCell: UITableViewCell {
 //            print("Не могу получить ячейку")
 //            return
 //        }
-        
+        loadingIndicator?.startAnimating()
         ServiceAPI.acceptTransaction(transactionID: transactionID, noncompletedHandler: errorHandler) {
             DispatchQueue.main.async {
                 //self.hideButtons()
+                self.loadingIndicator?.stopAnimating()
                 self.delegate.update(index: self.cellIndex)
             }
             

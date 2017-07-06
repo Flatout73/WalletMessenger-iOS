@@ -82,6 +82,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         refreshControl.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
         
         tableView.addSubview(refreshControl)
+        
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
         
@@ -116,7 +117,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         refreshControl.beginRefreshing()
         refresh(sender: self)
     }

@@ -30,7 +30,7 @@ class GroupMembersTableViewController: UITableViewController {
         if(phones.count > 1){
             self.performSegue(withIdentifier: "createGroup", sender: nil)
         } else {
-            
+            ServiceAPI.alert(viewController: self, desc: "Выберите больше 1 пользователя или создайте диалог!")
         }
     }
 
