@@ -129,6 +129,8 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
                 proof = 1
             }
             
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            
             ServiceAPI.groupSendTransaction(receiverID: reciverID, groupID: groupId, money: money, cash: Nal, proof: proof, text: textField.text == "" ? "Нет текста" : textField.text, noncompletedHandler: self.errorHandler) {
                 DispatchQueue.main.async {
                     MBProgressHUD.hide(for: self.view, animated: true)

@@ -29,7 +29,8 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var goButton: UIButton!
     
-
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -37,7 +38,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     
     func update(index: IndexPath) {
         DispatchQueue.main.async {
-            try! self.fetchedResultsController.performFetch()
+            try? self.fetchedResultsController.performFetch()
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
             self.tableView.reloadRows(at: [index], with: .top)
@@ -99,14 +100,16 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         if notification.name == Notification.Name.UIKeyboardWillHide {
             tableView.contentInset = UIEdgeInsets.zero
             
-            bottomConstraint.constant = 0
+            bottomConstraint.constant = 8
             
             moneyField.isHidden = true
             stepper.isHidden = true
             goButton.isHidden = true
         } else {
             tableView.contentInset = UIEdgeInsets(top: keyboardViewEndFrame.height + 32, left: 0, bottom: 0, right: 0)
-            bottomConstraint.constant += keyboardViewEndFrame.height
+            bottomConstraint.constant = keyboardViewEndFrame.height
+            
+            cancelButton.isEnabled = true
         }
         
         tableView.scrollIndicatorInsets = tableView.contentInset
@@ -114,6 +117,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        refreshControl.beginRefreshing()
         refresh(sender: self)
     }
     
@@ -389,7 +393,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         
         if (moneyField.text! != "") {
             
-            
+            activityIndicator.startAnimating()
             if(!isCash){
                 ServiceAPI.sendMoneyQiwi(phoneToSend: phone, summa: Double(moneyField.text!)!, transactionID: transactionQiwiID, noncomplitedHandler: errorHandler) {
                     
@@ -421,6 +425,8 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         DispatchQueue.main.async {
             try? self.fetchedResultsController.performFetch()
             self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .top)
+            
+            self.activityIndicator.stopAnimating()
         }
     }
     

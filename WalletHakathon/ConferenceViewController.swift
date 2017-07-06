@@ -41,7 +41,9 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
     func updateTableForTransactions() {
         DispatchQueue.main.async {
             try? self.fetchedResultsController.performFetch()
-            self.tableView.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .top)
+            self.tableView.beginUpdates()
+            //self.tableView.insertRows(at: [IndexPath.init(row: 0, section: 0)], with: .top)
+            self.tableView.endUpdates()
         }
     }
     
@@ -80,6 +82,7 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        refreshControl.beginRefreshing()
         refresh(sender: self)
     }
 

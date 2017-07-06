@@ -1121,7 +1121,8 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activityIndicator" destination="XB7-C8-hCM" id="YFM-Vc-L6w"/>
-                        <outlet property="bottomConstraint" destination="98n-VV-ttH" id="jc8-sz-CMD"/>
+                        <outlet property="bottomConstraint" destination="AsG-Hy-49Z" id="kQ3-Td-3Jv"/>
+                        <outlet property="cancelButton" destination="hXZ-jg-86i" id="Be7-1c-hDr"/>
                         <outlet property="goButton" destination="jZC-WM-dkr" id="zFM-oJ-eac"/>
                         <outlet property="moneyField" destination="VE9-Rs-WP0" id="3tZ-oz-QMi"/>
                         <outlet property="stepper" destination="xHf-mv-Mzi" id="jwB-3Y-ZvA"/>

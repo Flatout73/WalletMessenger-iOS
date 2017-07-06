@@ -79,7 +79,12 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
     }
-
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        refreshControl.beginRefreshing()
+        refresh(sender: self)
+    }
     
     @IBAction func segmentSwitched(_ sender: UISegmentedControl) {
         if(sender.selectedSegmentIndex == 0){
