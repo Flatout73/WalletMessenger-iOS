@@ -113,10 +113,11 @@ class MessageTableViewCell: UITableViewCell {
 //            print("Не могу получить ячейку")
 //            return
 //        }
-        
+        loadingIndicator?.startAnimating()
         ServiceAPI.declineTransaction(transactionID: transactionID, noncompletedHandler: errorHandler) {
             DispatchQueue.main.async {
                 //self.hideButtons()
+                self.loadingIndicator?.stopAnimating()
                 self.delegate.update(index: self.cellIndex)
             }
         }
