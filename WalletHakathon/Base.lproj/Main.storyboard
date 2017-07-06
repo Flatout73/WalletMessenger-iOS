@@ -894,7 +894,7 @@
                                                     </constraints>
                                                 </view>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2Qe-nv-he7">
-                                                    <rect key="frame" x="171" y="20" width="20" height="20"/>
+                                                    <rect key="frame" x="158" y="20" width="20" height="20"/>
                                                 </activityIndicatorView>
                                             </subviews>
                                             <constraints>
@@ -903,7 +903,7 @@
                                                 <constraint firstItem="35J-Q0-KMS" firstAttribute="leading" secondItem="YcV-5H-6cA" secondAttribute="trailing" constant="8" id="M4N-2l-gVi"/>
                                                 <constraint firstItem="YWf-vv-P5T" firstAttribute="top" relation="greaterThanOrEqual" secondItem="YcV-5H-6cA" secondAttribute="bottom" constant="4" id="MGC-k0-GG6"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="YWf-vv-P5T" secondAttribute="bottom" id="NY4-Vz-5Av"/>
-                                                <constraint firstItem="2Qe-nv-he7" firstAttribute="leading" secondItem="35J-Q0-KMS" secondAttribute="trailing" constant="21" id="OQV-2E-Jzo"/>
+                                                <constraint firstItem="2Qe-nv-he7" firstAttribute="leading" secondItem="35J-Q0-KMS" secondAttribute="trailing" constant="8" id="OQV-2E-Jzo"/>
                                                 <constraint firstItem="YcV-5H-6cA" firstAttribute="width" relation="lessThanOrEqual" secondItem="8bg-iW-9Zl" secondAttribute="width" multiplier="0.75" id="Pqt-yQ-Sfz"/>
                                                 <constraint firstItem="YWf-vv-P5T" firstAttribute="leading" secondItem="YcV-5H-6cA" secondAttribute="leading" constant="16" id="Uu2-YW-GpZ"/>
                                                 <constraint firstItem="YcV-5H-6cA" firstAttribute="leading" secondItem="8bg-iW-9Zl" secondAttribute="leading" constant="16" id="VrE-C5-hnQ"/>
@@ -1218,13 +1218,18 @@
                                                         <constraint firstAttribute="width" constant="8" id="kLp-oh-7ch"/>
                                                     </constraints>
                                                 </view>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mhI-Ye-qgF">
+                                                    <rect key="frame" x="158" y="20" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="lvU-sp-bSy" firstAttribute="centerY" secondItem="asf-TH-duM" secondAttribute="centerY" id="1JA-kk-Fj4"/>
+                                                <constraint firstItem="mhI-Ye-qgF" firstAttribute="centerY" secondItem="asf-TH-duM" secondAttribute="centerY" id="1z3-Gn-42b"/>
                                                 <constraint firstItem="eeX-LP-PUU" firstAttribute="leading" secondItem="TBw-7V-i8g" secondAttribute="trailing" constant="24" id="4jH-mL-SNo"/>
                                                 <constraint firstItem="asf-TH-duM" firstAttribute="leading" secondItem="s75-ob-udd" secondAttribute="leading" constant="16" id="5gk-st-9Qn"/>
                                                 <constraint firstItem="asf-TH-duM" firstAttribute="width" relation="lessThanOrEqual" secondItem="s75-ob-udd" secondAttribute="width" multiplier="0.75" id="FDl-12-ce1"/>
                                                 <constraint firstAttribute="bottom" secondItem="asf-TH-duM" secondAttribute="bottom" priority="250" constant="4" id="HWi-8p-bzr"/>
+                                                <constraint firstItem="mhI-Ye-qgF" firstAttribute="leading" secondItem="lvU-sp-bSy" secondAttribute="trailing" constant="8" id="M1h-iV-aQQ"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="TBw-7V-i8g" secondAttribute="bottom" id="VsL-Hd-dep"/>
                                                 <constraint firstItem="eeX-LP-PUU" firstAttribute="top" secondItem="TBw-7V-i8g" secondAttribute="top" id="cSn-wb-bbw"/>
                                                 <constraint firstItem="asf-TH-duM" firstAttribute="top" secondItem="s75-ob-udd" secondAttribute="top" constant="4" id="maD-x1-8CB"/>
@@ -1240,6 +1245,7 @@
                                             <outlet property="fromViewToImage" destination="sph-59-SNE" id="XxN-T3-cuZ"/>
                                             <outlet property="fromViewToSuperView" destination="sph-59-SNE" id="p2W-1O-Ymw"/>
                                             <outlet property="indicator" destination="lvU-sp-bSy" id="t6p-nj-Q1U"/>
+                                            <outlet property="loadingIndicator" destination="mhI-Ye-qgF" id="Dln-ZL-Kyq"/>
                                             <outlet property="messView" destination="asf-TH-duM" id="b7A-kX-9TJ"/>
                                             <outlet property="qiwiorNal" destination="nb2-1C-dRv" id="uf3-fi-7K3"/>
                                             <outlet property="sum" destination="NIF-An-uT3" id="a19-5j-9l2"/>

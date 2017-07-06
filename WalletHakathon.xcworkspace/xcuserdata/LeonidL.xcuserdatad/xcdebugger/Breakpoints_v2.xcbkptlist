@@ -426,13 +426,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/MessageTableViewCell.swift"
-            timestampString = "521050025.540778"
+            timestampString = "521050421.914995"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "117"
             endingLineNumber = "117"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "decline(_:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -474,13 +474,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/MessageTableViewCell.swift"
-            timestampString = "521050025.541964"
+            timestampString = "521050421.916618"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "97"
             endingLineNumber = "97"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "accept(_:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -522,13 +522,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/MessageTableViewCell.swift"
-            timestampString = "521050025.543384"
+            timestampString = "521050421.917192"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
             endingLineNumber = "101"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "accept(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
