@@ -27,15 +27,19 @@ class ViewController: UIViewController {
     @IBAction func login(_ sender: Any) {
         
         if let login = loginField.text, let psw = passwordField.text {
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            ServiceAPI.loginUser(phone: login, password: psw, noncompletedHandler: errorHandler) {
-                DispatchQueue.main.async { [weak self] in
-                    if let this = self {
-                        MBProgressHUD.hide(for: this.view, animated: true)
-                        this.performSegue(withIdentifier: "loginS", sender: this)
+            if(login.characters.count > 2 && psw.characters.count > 2){
+                MBProgressHUD.showAdded(to: self.view, animated: true)
+                ServiceAPI.loginUser(phone: login, password: psw, noncompletedHandler: errorHandler) {
+                    DispatchQueue.main.async { [weak self] in
+                        if let this = self {
+                            MBProgressHUD.hide(for: this.view, animated: true)
+                            this.performSegue(withIdentifier: "loginS", sender: this)
+                        }
                     }
+                    
                 }
-                
+            } else {
+                ServiceAPI.alert(viewController: self, desc: "Введите логин и пароль")
             }
         } else {
             ServiceAPI.alert(viewController: self, title: "Ошибка!", desc: "Введите логин и пароль")

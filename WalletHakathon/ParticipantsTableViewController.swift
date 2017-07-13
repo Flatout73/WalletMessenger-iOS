@@ -20,7 +20,9 @@ class ParticipantsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
 
         if(adminID == CoreDataService.sharedInstance.appUserID){
             amIAdmin = true
@@ -144,4 +146,30 @@ class ParticipantsTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension ParticipantsTableViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+        return #imageLiteral(resourceName: "chat_logo")
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        return NSMutableAttributedString(string: "Нет участников")
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        return NSMutableAttributedString(string: "В этой конференции нет участников, зарегистрированных в приложении")
+    }
+    
+    func backgroundColor(forEmptyDataSet scrollView: UIScrollView) -> UIColor? {
+        return UIColor.white
+    }
+    
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
+        return true
+    }
+    
+    func isReversed(_ scrollView: UIScrollView) -> Bool {
+        return false
+    }
 }

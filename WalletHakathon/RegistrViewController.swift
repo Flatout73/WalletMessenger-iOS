@@ -33,6 +33,11 @@ class RegistrViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func sendSMSForRegistration(_ sender: Any) {
+        guard numberTF.text?.characters.first == "7" else {
+            ServiceAPI.alert(viewController: self, desc: "Номер должен начинаться с 7")
+            
+            return
+        }
         
         let alert = UIAlertController(title: "Смс отправлено!", message: "Введите код из СМС", preferredStyle: .alert)
         

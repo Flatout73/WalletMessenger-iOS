@@ -33,6 +33,8 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
     
     var phoneOfReceiver: Int64?
     
+    var amIadmin = false
+    
     func didSelect(user: User) {
         nameReceiver.text = user.name
         let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0))
@@ -111,7 +113,7 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
             MBProgressHUD.showAdded(to: self.view, animated: true)
             ServiceAPI.sendMoneyQiwi(phoneToSend: phoneOfReceiver!, summa: Double(moneyField.text!)!, transactionID: transactionQiwiID, noncomplitedHandler: errorHandler) {
                 
-                ServiceAPI.groupSendTransaction(receiverID: self.reciverID, groupID: self.groupId, money: money, cash: self.Nal, text: self.textField.text == "" ? "hey" : self.textField.text, noncompletedHandler: self.errorHandler) {
+                ServiceAPI.groupSendTransaction(receiverID: self.reciverID, groupID: self.groupId, money: money, cash: self.Nal, proof: 1, text: self.textField.text == "" ? "Нет текста" : self.textField.text, noncompletedHandler: self.errorHandler) {
                     
                     DispatchQueue.main.async {
                        MBProgressHUD.hide(for: self.view, animated: true)
@@ -122,10 +124,16 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
                 }
             }
         } else {
+            var proof = 0
+            if(amIadmin && reciverID == 0) {
+                proof = 1
+            }
             
-            ServiceAPI.groupSendTransaction(receiverID: reciverID, groupID: groupId, money: money, cash: Nal, text: textField.text == "" ? "hey" : textField.text, noncompletedHandler: self.errorHandler) {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            
+            ServiceAPI.groupSendTransaction(receiverID: reciverID, groupID: groupId, money: money, cash: Nal, proof: proof, text: textField.text == "" ? "Нет текста" : textField.text, noncompletedHandler: self.errorHandler) {
                 DispatchQueue.main.async {
-                                    MBProgressHUD.hide(for: self.view, animated: true)
+                    MBProgressHUD.hide(for: self.view, animated: true)
                     self.navigationController?.popViewController(animated: true)
                     self.delegate.updateTableForTransactions()
                 }

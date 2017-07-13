@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WalletHakathon/RegistrViewController.swift"
-            timestampString = "520204909.118652"
+            timestampString = "521050025.54032"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "sendSMSForRegistration(_:)"
             landmarkType = "7">
          </BreakpointContent>

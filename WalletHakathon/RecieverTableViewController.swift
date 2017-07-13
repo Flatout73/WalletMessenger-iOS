@@ -24,11 +24,9 @@ class RecieverTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.tableView.delegate = self
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -115,4 +113,31 @@ class RecieverTableViewController: UITableViewController {
     }
     */
 
+}
+
+
+extension RecieverTableViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+        return #imageLiteral(resourceName: "chat_logo")
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        return NSMutableAttributedString(string: "Нет участников")
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+        return NSMutableAttributedString(string: "В этой конференции нет участников, зарегистрированных в приложении")
+    }
+    
+    func backgroundColor(forEmptyDataSet scrollView: UIScrollView) -> UIColor? {
+        return UIColor.white
+    }
+    
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
+        return true
+    }
+    
+    func isReversed(_ scrollView: UIScrollView) -> Bool {
+        return false
+    }
 }
