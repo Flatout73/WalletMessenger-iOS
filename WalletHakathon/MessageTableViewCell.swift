@@ -72,7 +72,7 @@ class MessageTableViewCell: UITableViewCell {
         
         indicator.layer.cornerRadius = indicator.frame.height/2
         
-        loadingIndicator?.hidesWhenStopped = true
+        //loadingIndicator?.hidesWhenStopped = true
     }
     
     func addButtons(){
@@ -112,11 +112,11 @@ class MessageTableViewCell: UITableViewCell {
 //            print("Не могу получить ячейку")
 //            return
 //        }
-        loadingIndicator?.startAnimating()
+//        loadingIndicator?.startAnimating()
         ServiceAPI.acceptTransaction(transactionID: transactionID, noncompletedHandler: errorHandler) {
             DispatchQueue.main.async {
                 //self.hideButtons()
-                self.loadingIndicator?.stopAnimating()
+//                self.loadingIndicator?.stopAnimating()
                 self.delegate.update(index: self.cellIndex)
             }
             
@@ -132,11 +132,11 @@ class MessageTableViewCell: UITableViewCell {
 //            print("Не могу получить ячейку")
 //            return
 //        }
-        loadingIndicator?.startAnimating()
+        //loadingIndicator?.startAnimating()
         ServiceAPI.declineTransaction(transactionID: transactionID, noncompletedHandler: errorHandler) {
             DispatchQueue.main.async {
                 //self.hideButtons()
-                self.loadingIndicator?.stopAnimating()
+                //self.loadingIndicator?.stopAnimating()
                 self.delegate.update(index: self.cellIndex)
             }
         }

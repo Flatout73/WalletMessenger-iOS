@@ -77,7 +77,7 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
         refreshControl.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-        
+        self.tabBarController?.tabBar.isHidden = true
         tableView.addSubview(refreshControl)
     }
     
