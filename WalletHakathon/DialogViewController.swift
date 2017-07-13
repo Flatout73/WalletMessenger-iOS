@@ -15,7 +15,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     var fetchedResultsController: NSFetchedResultsController<Transaction>!
     
     var coreDataService = CoreDataService.sharedInstance
-    
+    var userPhoto:UIImage?
     var dialogID: Int!
     var phone: Int64!
     
@@ -87,6 +87,8 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     func adjustForKeyboard(notification: Notification) {
@@ -277,7 +279,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         
-            transaction.managedObjectContext?.performAndWait {
+            transaction.managedObjectContext?.performAndWait {[weak self] in
                 if(transaction.isCash){
                     if(transaction.proof == 1) {
                         cell.hideButtons()
@@ -292,14 +294,22 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                         cell.messView.layer.opacity = 0.5
                     }
                     cell.qiwiorNal.image = #imageLiteral(resourceName: "icon_money")
+                    
+
                 } else{
                     cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
                     cell.hideButtons()
                     cell.indicator.backgroundColor = UIColor.clear
                     cell.messView.layer.opacity = 1
                 }
-                cell.sum.text = String(transaction.money) + " руб."
                 
+                if let avatar = self?.userPhoto {
+                    
+                }
+                
+                cell.userPhoto.image = #imageLiteral(resourceName: "no_photo")
+                cell.sum.text = String(transaction.money) + " руб."
+                cell.transText.text = transaction.text
             }
             
             if(!cell.isReversed){

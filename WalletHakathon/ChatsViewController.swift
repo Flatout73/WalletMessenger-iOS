@@ -345,6 +345,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 vc.dialogID = cell.dialogID
                 vc.title = cell.name.text
                 vc.phone = Int64(cell.mobilePhone.text!)
+                vc.userPhoto = cell.avatar.image
             } else if let info = sender as? DialogInfo {
                 vc.dialogID = info.dialogID
                 vc.title = info.user?.name

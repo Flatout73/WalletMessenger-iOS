@@ -18,11 +18,13 @@ class MessageTableViewCell: UITableViewCell {
     @IBOutlet weak var qiwiorNal: UIImageView!
     @IBOutlet weak var sum: UILabel!
     
+    @IBOutlet var transText: UILabel!
     @IBOutlet weak var acceptButton: UIButton?
     @IBOutlet weak var declineButton: UIButton?
     
     @IBOutlet weak var indicator: UIView!
     
+    @IBOutlet var userPhoto: UIImageView!
     
     @IBOutlet weak var fromViewToImage: NSLayoutConstraint!
     
@@ -44,8 +46,26 @@ class MessageTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         messView.layer.borderWidth = 2.0
-        messView.layer.cornerRadius = 25
+        messView.layer.cornerRadius = messView.frame.width/10
         messView.layer.borderColor = UIColor.white.cgColor
+        
+        if let acceptButton = acceptButton{
+            acceptButton.layer.borderWidth = 1.0
+            acceptButton.layer.cornerRadius = acceptButton.frame.width/10
+            acceptButton.layer.borderColor = UIColor.white.cgColor
+        }
+
+        if let declineButton = declineButton{
+            declineButton.layer.borderWidth = 1.0
+            declineButton.layer.cornerRadius = declineButton.frame.width/10
+            declineButton.layer.borderColor = UIColor.white.cgColor
+        }
+        
+        userPhoto.layer.borderWidth = 1
+        userPhoto.layer.masksToBounds = false
+        userPhoto.layer.borderColor = UIColor.white.cgColor
+        userPhoto.layer.cornerRadius = (userPhoto.frame.height)/2
+        userPhoto.clipsToBounds = true
         
         indicator.layer.cornerRadius = indicator.frame.height/2
     }
