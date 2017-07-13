@@ -10,8 +10,8 @@ import UIKit
 import SwiftyJSON
 import MBProgressHUD
 
-let serverAddress = "http://walletmsg.azurewebsites.net/api"
-//let serverAddress = "http://localhost:8080"
+//let serverAddress = "http://walletmsg.azurewebsites.net/api"
+let serverAddress = "http://localhost:8080"
 
 
 struct UserForSend {
@@ -273,7 +273,7 @@ class ServiceAPI: NSObject {
                     if let image = user["image"].string {
                         avatar = Data(base64Encoded: image)
                     }
-                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                     
                     
                     if let mobilePhone = Int64(phone) {
@@ -313,7 +313,7 @@ class ServiceAPI: NSObject {
                             noncompletedHandler("Неверный формат JSON")
                             return
                     }
-                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                     
                     CoreDataService.sharedInstance.insertGroup(groupID: groupID, name: name, date: date, summa: sum, myBalance: balance, adminID: admin) {
                         completionHandler()
@@ -360,7 +360,7 @@ class ServiceAPI: NSObject {
                     if let image = user["image"].string{
                         avatar = Data(base64Encoded: image)
                     }
-                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                 
                     
                     if let mobilePhone = Int64(phone) {
@@ -402,7 +402,7 @@ class ServiceAPI: NSObject {
                             noncompletedHandler("Неверный формат JSON")
                             return
                     }
-                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                     
                     CoreDataService.sharedInstance.insertGroup(groupID: groupID, name: name, date: date, summa: sum, myBalance: balance, adminID: admin) {
                         completionHandler()
@@ -485,7 +485,7 @@ class ServiceAPI: NSObject {
                     }
                     
                     let cashb = (cash > 0)
-                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                     
                     //let user = coreDataService.findUserBy(id: userID)
                     //let conversation = coreDataService.findConversaionBy(id: dialogID)
@@ -529,7 +529,7 @@ class ServiceAPI: NSObject {
                             noncompletedHandler("Неверный формат JSON")
                             return
                     }
-                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                     
                     let conversation = CoreDataService.sharedInstance.findConversaionBy(id: dialogID)
                     let user = conversation?.participant
@@ -579,7 +579,7 @@ class ServiceAPI: NSObject {
                             noncompletedHandler("Неверный формат JSON")
                             return
                         }
-                        let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                        let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                         coreDataService.insertConversation(userID: userID, conversationID: conversationID, date: date, name: name, mobilePhone: phone, balance: 0.0, avatar: avatar) {
                             completionHandler(conversationID)
                         }
@@ -612,7 +612,7 @@ class ServiceAPI: NSObject {
                             return
                     }
                     
-                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                     coreDataService.insertConversation(userID: user.userID, conversationID: conversationID, date: date, name: user.name, mobilePhone: user.mobilePhone, balance: user.balance, avatar: user.avatar) {
                         
                         completionHandler(conversationID)
@@ -654,7 +654,7 @@ class ServiceAPI: NSObject {
                     }
                     
                     let cash = cashInt > 0
-                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                     
                     
                     
@@ -709,7 +709,7 @@ class ServiceAPI: NSObject {
                     }
                     
                     let cash = cashInt > 0
-                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                     
                     let user = coreDataService.findUserBy(id: userID)
                     //let conversation = coreDataService.findConversaionBy(id: dialogID)
@@ -785,7 +785,7 @@ class ServiceAPI: NSObject {
                     }
                     
                     let cash = cashInt > 0
-                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                     
                     //let user = coreDataService.findUserBy(id: userID)
                     //let conversation = coreDataService.findConversaionBy(id: groupID)
@@ -824,7 +824,7 @@ class ServiceAPI: NSObject {
                         noncompletedHandler("Неверный формат JSON")
                         return
                 }
-                let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                 
                 //let conversation = CoreDataService.sharedInstance.findConversaionBy(id: groupID)
                 //let user = conversation?.participant
@@ -867,7 +867,7 @@ class ServiceAPI: NSObject {
                     }
                     
                     let cash = cashInt > 0
-                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                     
                     //userID не получено из JSON (его надо взять после создания группы или из списка
                     //let user = coreDataService.findUserBy(id: userID)
@@ -916,7 +916,7 @@ class ServiceAPI: NSObject {
                     }
                     
                     let cash = cashInt > 0
-                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                    let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                     
                     //userID не получено из JSON (его надо взять после создания группы или из списка
                     let user = coreDataService.findUserBy(id: userID)
@@ -947,7 +947,7 @@ class ServiceAPI: NSObject {
                         noncompletedHandler("Неверный формат JSON")
                         return
                 }
-                let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                 
                 //let conversation = CoreDataService.sharedInstance.findConversaionBy(id: groupID)
                 //let user = conversation?.participant
@@ -979,7 +979,7 @@ class ServiceAPI: NSObject {
                         noncompletedHandler("Неверный формат JSON")
                         return
                 }
-                let date = Date(timeIntervalSince1970: TimeInterval(dateLong))
+                let date = Date(timeIntervalSince1970: TimeInterval(dateLong/1000))
                 
                 let conversation = CoreDataService.sharedInstance.findConversaionBy(id: groupID)
                 let user = conversation?.participant

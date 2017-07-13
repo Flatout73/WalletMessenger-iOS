@@ -313,9 +313,11 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         cell.userPhoto.image = #imageLiteral(resourceName: "no_photo")
         cell.sum.text = String(transaction.money) + " руб."
         cell.transText.text = transaction.text
+        
         if let avatar = self.userPhoto {
-            
+            cell.userPhoto.image = avatar
         }
+        
         if(!cell.isReversed){
             cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
             cell.isReversed = true
