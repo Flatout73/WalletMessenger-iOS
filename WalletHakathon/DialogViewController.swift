@@ -9,15 +9,16 @@
 import UIKit
 import CoreData
 
-class DialogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, TableViewUpdateDelegate {
+class DialogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, TableViewUpdateDelegate, UpdateTable {
     
     
     var fetchedResultsController: NSFetchedResultsController<Transaction>!
     
     var coreDataService = CoreDataService.sharedInstance
-    
+    var userPhoto:UIImage?
     var dialogID: Int!
     var phone: Int64!
+    var name: String!
     
     var refreshControl: UIRefreshControl!
     
@@ -25,16 +26,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    @IBOutlet weak var moneyField: UITextField!
-    @IBOutlet weak var stepper: UIStepper!
-    @IBOutlet weak var goButton: UIButton!
-    
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
-    
     @IBOutlet weak var tableView: UITableView!
-    
-    
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     func update(index: IndexPath) {
         DispatchQueue.main.async {
@@ -43,7 +35,6 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             self.tableView.endUpdates()
             self.tableView.reloadRows(at: [index], with: .top)
         }
-        
     }
     
     override func viewDidLoad() {
@@ -54,8 +45,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         tableView.dataSource = self
         
-        moneyField.delegate = self
-        
+
         activityIndicator.hidesWhenStopped = true
         
         tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi))
@@ -65,7 +55,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         fetchedResultsController = coreDataService.getFRCForTransactions(dialogID: dialogID)
-
+        
         fetchedResultsController.delegate = self
         
         do{
@@ -86,36 +76,10 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
         
-        
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+        self.tabBarController?.tabBar.isHidden = true
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-    func adjustForKeyboard(notification: Notification) {
-        let userInfo = notification.userInfo!
-        
-        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        
-        if notification.name == Notification.Name.UIKeyboardWillHide {
-            tableView.contentInset = UIEdgeInsets.zero
-            
-            bottomConstraint.constant = 8
-            
-            moneyField.isHidden = true
-            stepper.isHidden = true
-            goButton.isHidden = true
-        } else {
-            tableView.contentInset = UIEdgeInsets(top: keyboardViewEndFrame.height + 32, left: 0, bottom: 0, right: 0)
-            bottomConstraint.constant = keyboardViewEndFrame.height
-            
-            cancelButton.isEnabled = true
-        }
-        
-        tableView.scrollIndicatorInsets = tableView.contentInset
-        tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         refreshControl.beginRefreshing()
@@ -225,12 +189,6 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -244,7 +202,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             return 0
         }
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if(!fetchedResultsController.sections!.isEmpty) {
@@ -258,7 +216,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         var cell: MessageTableViewCell
         guard let section = fetchedResultsController.sections?[0] else {
             print("Нет такой секции")
@@ -267,160 +225,166 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             return c
         }
         
-            //let newIndexPath = IndexPath(row: section.numberOfObjects - indexPath.row - 1, section: indexPath.section)
-            let transaction = fetchedResultsController.object(at: indexPath)
-            
-            if(transaction.sender!.userID == Int32(self.coreDataService.appUserID)) {
-                cell = tableView.dequeueReusableCell(withIdentifier: "fromMe", for: indexPath) as! MessageTableViewCell
-            } else{
-                if(transaction.proof == 0 && transaction.isCash){
-                    cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
-                } else {
-                    cell = tableView.dequeueReusableCell(withIdentifier: "toMeApproved", for: indexPath) as! MessageTableViewCell
-                }
-                
+        //let newIndexPath = IndexPath(row: section.numberOfObjects - indexPath.row - 1, section: indexPath.section)
+        let transaction = fetchedResultsController.object(at: indexPath)
+        
+        if(transaction.sender!.userID == Int32(self.coreDataService.appUserID)) {
+            cell = tableView.dequeueReusableCell(withIdentifier: "fromMe", for: indexPath) as! MessageTableViewCell
+        } else{
+            if(transaction.proof == 0 && transaction.isCash){
+                cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
+            } else {
+                cell = tableView.dequeueReusableCell(withIdentifier: "toMeApproved", for: indexPath) as! MessageTableViewCell
             }
+            
+        }
         
         
         
-            transaction.managedObjectContext?.performAndWait {
-                if(transaction.isCash){
-                    if(transaction.proof == 1) {
-                        //cell.hideButtons()
-                        cell.makeIndicator(green: true)
-                        cell.messView.layer.opacity = 1
-                    }else if (transaction.proof == -1){
-                        //cell.hideButtons()
-                        cell.makeIndicator(green: false)
-                        cell.messView.layer.opacity = 0.5
-                    } else{
-                        cell.indicator.backgroundColor = UIColor.yellow
-                        cell.messView.layer.opacity = 0.5
-                    }
-                    cell.qiwiorNal.image = #imageLiteral(resourceName: "icon_money")
-                } else{
-                    cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
+        transaction.managedObjectContext?.performAndWait {[weak self] in
+            if(transaction.isCash){
+                if(transaction.proof == 1) {
                     //cell.hideButtons()
                     cell.makeIndicator(green: true)
                     cell.messView.layer.opacity = 1
+                }else if (transaction.proof == -1){
+                    //cell.hideButtons()
+                    cell.makeIndicator(green: false)
+                    cell.messView.layer.opacity = 0.5
+                } else{
+                    cell.indicator.backgroundColor = UIColor.yellow
+                    cell.messView.layer.opacity = 0.5
+                    cell.cellIndex = indexPath
                 }
-                cell.sum.text = String(transaction.money) + " руб."
+                cell.qiwiorNal.image = #imageLiteral(resourceName: "icon_money")
                 
-                cell.cellIndex = indexPath
+                
+            } else{
+                cell.qiwiorNal.image = #imageLiteral(resourceName: "qiwi_logo")
+                //cell.hideButtons()
+                cell.makeIndicator(green: true)
+                cell.messView.layer.opacity = 1
             }
-            
-            if(!cell.isReversed){
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-                cell.isReversed = true
-            }
+        }
+
+        cell.cellIndex = indexPath
+        cell.sender = transaction.sender
+        cell.reciever = transaction.reciever
+        cell.date = transaction.date as Date?
+        cell.textInfo = transaction.text
+        
+        cell.userPhoto.image = #imageLiteral(resourceName: "no_photo")
+        cell.sum.text = String(transaction.money) + " руб."
+        cell.transText.text = transaction.text
+        
+        if let avatar = self.userPhoto {
+            cell.userPhoto.image = avatar
+        }
+        
+        if(!cell.isReversed){
+            cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+            cell.isReversed = true
+        }
         
         cell.delegate = self
         cell.transactionID = Int(transaction.transactionID)
         
         return cell
-
-        
     }
-
-
     
-    var isCash = true
-    @IBAction func sendMoney(_ sender: Any) {
-        
+    
+    
+//    var isCash = true
+//    @IBAction func sendMoney(_ sender: Any) {
+    
         //messeges.insert("678", at: 0)
         //tableView.reloadData()
         
         
         //ServiceAPI.sendTransaction(dialogID: <#T##Int#>, money: <#T##Double#>, cash: <#T##Bool#>, text: <#T##String?#>, noncompletedHandler: <#T##(String) -> Void#>, completionHandler: <#T##() -> Void#>)
         
-//        DispatchQueue.main.async {[weak self] in
-//            if let this = self {
-//                let indexPath = IndexPath(row: this.messeges.count - 1, section: 0)
-//                this.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-//            }
+        //        DispatchQueue.main.async {[weak self] in
+        //            if let this = self {
+        //                let indexPath = IndexPath(row: this.messeges.count - 1, section: 0)
+        //                this.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        //            }
+        //        }
+        
+        
+//        isCash = true
+//        showStepper()
+//    }
+//    
+//    var transactionQiwiID: Int64!
+//    @IBAction func sendQiwi(_ sender: Any) {
+//        isCash = false
+//        transactionQiwiID = Int64(round(Date().timeIntervalSince1970))
+//        showStepper()
+//    }
+    
+    
+//    func showStepper() {
+//        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
+//        tableView.scrollIndicatorInsets = tableView.contentInset
+//        
+//        if(tableView.numberOfRows(inSection: 0) > 0){
+//            tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: true)
 //        }
-        
-        
-        isCash = true
-        showStepper()
-    }
-    
-    var transactionQiwiID: Int64!
-    @IBAction func sendQiwi(_ sender: Any) {
-        isCash = false
-        transactionQiwiID = Int64(round(Date().timeIntervalSince1970))
-        showStepper()
-    }
-    
-    
-    func showStepper() {
-        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
-        tableView.scrollIndicatorInsets = tableView.contentInset
-        
-        if(tableView.numberOfRows(inSection: 0) > 0){
-            tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: true)
-        }
-        
-        moneyField.isHidden = false
-        stepper.isHidden = false
-        goButton.isHidden = false
-    }
-    
+//        
+//        moneyField.isHidden = false
+//        stepper.isHidden = false
+//        goButton.isHidden = false
+//    }
+//    
     var oldValue = 0.0
     
-    @IBAction func stepperChanged(_ sender: UIStepper) {
-        
-        if(moneyField.text == "") {
-            moneyField.text = "0.0"
-        }
-        
-        if(sender.value > oldValue){
-            moneyField.text = String(Double(moneyField.text!)! + 1)
-            
-        } else{
-            moneyField.text = String(Double(moneyField.text!)! - 1)
-        }
-        oldValue = sender.value
-        
-    }
-
-    @IBAction func sendMoneyOnServer(_ sender: Any) {
-        
-        
-        //conversation = coreDataService.findConversaionBy(id: dialogID)
-        
-        //print(coreDataService.appUser.userID)
-        //CoreDataService.sharedInstance.insertTransaction(id: 1234, money: Double(12 + i), text: "", date: Date(), isCash: true, proof: 0, conversation: conversation, group: nil, reciver: coreDataService.appUser, sender: coreDataService.appUser)
-        
-        if (moneyField.text! != "") {
-            
-            activityIndicator.startAnimating()
-            if(!isCash){
-                ServiceAPI.sendMoneyQiwi(phoneToSend: phone, summa: Double(moneyField.text!)!, transactionID: transactionQiwiID, noncomplitedHandler: errorHandler) {
-                    
-                    ServiceAPI.sendTransaction(dialogID: self.dialogID, money: Double(self.moneyField.text!)!, cash: self.isCash, text: "Нет текста", noncompletedHandler: self.errorHandler) {
-                        
-                        self.updateTableForTransactions()
-                    }
-                }
-            } else {
-                
-                ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: isCash, text: "Нет текста", noncompletedHandler: errorHandler) {
-                    
-                    self.updateTableForTransactions()
-                }
-            }
-        }
-        
-        tableView.contentInset = UIEdgeInsets.zero
-        tableView.scrollIndicatorInsets = tableView.contentInset
-        
-        moneyField.isHidden = true
-        stepper.isHidden = true
-        goButton.isHidden = true
-        
-        self.view.endEditing(true)
-    }
+//    @IBAction func stepperChanged(_ sender: UIStepper) {
+//        
+//        if(moneyField.text == "") {
+//            moneyField.text = "0.0"
+//        }
+//        
+//        if(sender.value > oldValue){
+//            moneyField.text = String(Double(moneyField.text!)! + 1)
+//            
+//        } else{
+//            moneyField.text = String(Double(moneyField.text!)! - 1)
+//        }
+//        oldValue = sender.value
+//        
+//    }
+    
+//    func sendMoneyOnServer(_ sender: Any) {
+//        
+//        if (moneyField.text! != "") {
+//            
+//            activityIndicator.startAnimating()
+//            if(!isCash){
+//                ServiceAPI.sendMoneyQiwi(phoneToSend: phone, summa: Double(moneyField.text!)!, transactionID: transactionQiwiID, noncomplitedHandler: errorHandler) {
+//                    
+//                    ServiceAPI.sendTransaction(dialogID: self.dialogID, money: Double(self.moneyField.text!)!, cash: self.isCash, text: "Нет текста", noncompletedHandler: self.errorHandler) {
+//                        
+//                        self.updateTableForTransactions()
+//                    }
+//                }
+//            } else {
+//                
+//                ServiceAPI.sendTransaction(dialogID: dialogID, money: Double(moneyField.text!)!, cash: isCash, text: "Нет текста", noncompletedHandler: errorHandler) {
+//                    
+//                    self.updateTableForTransactions()
+//                }
+//            }
+//        }
+//        
+//        tableView.contentInset = UIEdgeInsets.zero
+//        tableView.scrollIndicatorInsets = tableView.contentInset
+//        
+//        moneyField.isHidden = true
+//        stepper.isHidden = true
+//        goButton.isHidden = true
+//        
+//        self.view.endEditing(true)
+//    }
     
     func updateTableForTransactions(){
         DispatchQueue.main.async {
@@ -433,6 +397,29 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBAction func cancelEditing(_ sender: Any) {
         self.view.endEditing(true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? SendTransactionTableViewController{
+//            vc.groupId = groupID
+//            vc.delegate = self
+            vc.dialogID = dialogID
+            vc.delegate = self
+            vc.name = self.name
+            vc.phone = self.phone.description
+        } else if let vc = segue.destination as? TransactionTableViewController {
+            if let cell = sender as? MessageTableViewCell {
+                vc.transactionID = cell.transactionID
+                vc.sender = cell.sender
+                
+                vc.reciever = cell.reciever
+                
+                vc.dateNumber = cell.date 
+                vc.info = cell.textInfo
+                
+                vc.summa = cell.sum.text
+            }
+        }
     }
     
 }
@@ -475,10 +462,10 @@ extension DialogViewController: NSFetchedResultsControllerDelegate {
         switch type {
         case .delete:
             tableView.deleteSections(IndexSet(integer: sectionIndex),
-                                 with: .automatic)
+                                     with: .automatic)
         case .insert:
             tableView.insertSections(IndexSet(integer: sectionIndex),
-                                 with: .automatic)
+                                     with: .automatic)
         case .move, .update: break
         }
     }

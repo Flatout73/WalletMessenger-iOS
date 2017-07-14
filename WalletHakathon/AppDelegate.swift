@@ -46,6 +46,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let fourthPage = OnboardingContentViewController(title: "", body: "", image: #imageLiteral(resourceName: "4th"), buttonText: "Начать использование!") { () -> Void in
                 let viewController = storyboard.instantiateViewController(withIdentifier: "loginController")
+                let overlayView = UIScreen.main.snapshotView(afterScreenUpdates: false)
+                viewController.view.addSubview(overlayView)
+                self.window?.rootViewController = viewController
+                
+                UIView.animate(withDuration: 0.4, delay: 0, options: .transitionCrossDissolve, animations: {
+                    overlayView.alpha = 0
+                }, completion: { finished in
+                    overlayView.removeFromSuperview()
+                })
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
             }

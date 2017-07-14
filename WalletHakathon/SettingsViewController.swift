@@ -212,6 +212,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
                 
 
                 MBProgressHUD.showAdded(to: self.view, animated: true)
+                
                 ServiceAPI.changePhoto(photo: data, completedHandler: {
                     DispatchQueue.main.async {[weak self] in
                         if let this = self{

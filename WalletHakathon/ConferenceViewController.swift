@@ -77,7 +77,7 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
         refreshControl.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-        
+        self.tabBarController?.tabBar.isHidden = true
         tableView.addSubview(refreshControl)
     }
     
@@ -226,12 +226,20 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
         
         if(transaction.sender!.userID == Int32(self.coreDataService.appUserID)) {
             cell = tableView.dequeueReusableCell(withIdentifier: "fromMe", for: indexPath) as! MessageTableViewCell
+            
+           // if let myAv = coreDataService.photo
         } else{
             
             if(transaction.isCash && transaction.proof == 0 && (transaction.reciever?.userID == Int32(self.coreDataService.appUserID) || transaction.reciever?.userID == Int32(adminID))) {
                 cell = tableView.dequeueReusableCell(withIdentifier: "toMe", for: indexPath) as! MessageTableViewCell
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "toMeApproved", for: indexPath) as! MessageTableViewCell
+            }
+            
+            cell.userPhoto?.image = #imageLiteral(resourceName: "no_photo")
+            
+            if let avatar = transaction.sender?.avatar {
+                cell.userPhoto?.image = UIImage(data: avatar as Data)
             }
         }
         
@@ -269,6 +277,7 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
             cell.reciever = transaction.reciever
             cell.date = transaction.date as Date?
             cell.textInfo = transaction.text
+
         }
         
         if(!cell.isReversed){

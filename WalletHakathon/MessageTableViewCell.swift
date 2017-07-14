@@ -18,12 +18,15 @@ class MessageTableViewCell: UITableViewCell {
     @IBOutlet weak var qiwiorNal: UIImageView!
     @IBOutlet weak var sum: UILabel!
     
+    @IBOutlet var transText: UILabel!
     @IBOutlet weak var acceptButton: UIButton?
     @IBOutlet weak var declineButton: UIButton?
     
     @IBOutlet weak var indicator: UIView!
     
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView?
+    @IBOutlet var userPhoto: UIImageView!
+    
+    @IBOutlet var infoLabel: UILabel?
     
     @IBOutlet weak var fromViewToImage: NSLayoutConstraint!
     
@@ -48,12 +51,30 @@ class MessageTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         messView.layer.borderWidth = 2.0
-        messView.layer.cornerRadius = 25
+        messView.layer.cornerRadius = messView.frame.width/10
         messView.layer.borderColor = UIColor.white.cgColor
+        
+        if let acceptButton = acceptButton{
+            acceptButton.layer.borderWidth = 0.5
+            acceptButton.layer.cornerRadius = acceptButton.frame.width/10
+            acceptButton.layer.borderColor = UIColor.gray.cgColor
+        }
+
+        if let declineButton = declineButton{
+            declineButton.layer.borderWidth = 0.5
+            declineButton.layer.cornerRadius = declineButton.frame.width/10
+            declineButton.layer.borderColor = UIColor.gray.cgColor
+        }
+        
+        userPhoto.layer.borderWidth = 1
+        userPhoto.layer.masksToBounds = false
+        userPhoto.layer.borderColor = UIColor.white.cgColor
+        userPhoto.layer.cornerRadius = (userPhoto.frame.height)/2
+        userPhoto.clipsToBounds = true
         
         indicator.layer.cornerRadius = indicator.frame.height/2
         
-        loadingIndicator?.hidesWhenStopped = true
+        //loadingIndicator?.hidesWhenStopped = true
     }
     
     func addButtons(){
@@ -68,6 +89,7 @@ class MessageTableViewCell: UITableViewCell {
         if(acceptButton != nil && declineButton != nil){
             acceptButton!.removeFromSuperview()
             declineButton!.removeFromSuperview()
+            infoLabel?.removeFromSuperview()
         }
         
     }
@@ -93,14 +115,13 @@ class MessageTableViewCell: UITableViewCell {
 //            print("Не могу получить ячейку")
 //            return
 //        }
-        loadingIndicator?.startAnimating()
+//        loadingIndicator?.startAnimating()
         ServiceAPI.acceptTransaction(transactionID: transactionID, noncompletedHandler: errorHandler) {
             DispatchQueue.main.async {
-                //self.hideButtons()
-                self.loadingIndicator?.stopAnimating()
+                self.hideButtons()
+//                self.loadingIndicator?.stopAnimating()
                 self.delegate.update(index: self.cellIndex)
             }
-            
         }
     }
     
@@ -113,11 +134,11 @@ class MessageTableViewCell: UITableViewCell {
 //            print("Не могу получить ячейку")
 //            return
 //        }
-        loadingIndicator?.startAnimating()
+        //loadingIndicator?.startAnimating()
         ServiceAPI.declineTransaction(transactionID: transactionID, noncompletedHandler: errorHandler) {
             DispatchQueue.main.async {
-                //self.hideButtons()
-                self.loadingIndicator?.stopAnimating()
+                self.hideButtons()
+                //self.loadingIndicator?.stopAnimating()
                 self.delegate.update(index: self.cellIndex)
             }
         }

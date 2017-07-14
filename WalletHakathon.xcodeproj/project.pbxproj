@@ -19,6 +19,8 @@
 		55B4E4991F07BB680043A0E5 /* StringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E4981F07BB680043A0E5 /* StringService.swift */; };
 		55B4E49B1F07EBFF0043A0E5 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E49A1F07EBFF0043A0E5 /* ContactTableViewCell.swift */; };
 		55B4E49E1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E49C1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.m */; };
+		55E1E3521F17EF3900614E67 /* SendTransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E1E3511F17EF3900614E67 /* SendTransactionTableViewController.swift */; };
+		55E1E3541F18F65A00614E67 /* MainContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E1E3531F18F65A00614E67 /* MainContactsTableViewController.swift */; };
 		7117053F1F0877D300271947 /* ConferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7117053E1F0877D300271947 /* ConferenceViewController.swift */; };
 		711705411F09470900271947 /* SenderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711705401F09470900271947 /* SenderTableViewController.swift */; };
 		711705431F0947F800271947 /* RecieverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711705421F0947F800271947 /* RecieverTableViewController.swift */; };
@@ -68,6 +70,8 @@
 		55B4E49A1F07EBFF0043A0E5 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		55B4E49C1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		55B4E49D1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
+		55E1E3511F17EF3900614E67 /* SendTransactionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendTransactionTableViewController.swift; sourceTree = "<group>"; };
+		55E1E3531F18F65A00614E67 /* MainContactsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContactsTableViewController.swift; sourceTree = "<group>"; };
 		7117053E1F0877D300271947 /* ConferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceViewController.swift; sourceTree = "<group>"; };
 		711705401F09470900271947 /* SenderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SenderTableViewController.swift; sourceTree = "<group>"; };
 		711705421F0947F800271947 /* RecieverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecieverTableViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 				55B4E45C1F058BB90043A0E5 /* GroupCreateTableViewController.swift */,
 				55B4E45E1F058BCA0043A0E5 /* WriteSomeBodyTableViewController.swift */,
 				55B4E49A1F07EBFF0043A0E5 /* ContactTableViewCell.swift */,
+				55E1E3531F18F65A00614E67 /* MainContactsTableViewController.swift */,
 			);
 			name = Contacts;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 				715E45A01F097D7D0095D08C /* ParticipantsTableViewController.swift */,
 				715E45A21F0985B40095D08C /* ParticipantCell.swift */,
 				71918AF01F0E51F000E68BC1 /* TransactionTableViewController.swift */,
+				55E1E3511F17EF3900614E67 /* SendTransactionTableViewController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -402,6 +408,7 @@
 				55B4E45F1F058BCA0043A0E5 /* WriteSomeBodyTableViewController.swift in Sources */,
 				712DEED01F005532004D5CE9 /* MessageTableViewCell.swift in Sources */,
 				711BEB381EFEFF0300907B42 /* DialogViewController.swift in Sources */,
+				55E1E3541F18F65A00614E67 /* MainContactsTableViewController.swift in Sources */,
 				711BEB361EFEFBB000907B42 /* ChatTableViewCell.swift in Sources */,
 				5572CE931F003ACC00E0FC3E /* JSONParser.swift in Sources */,
 				55B4E45D1F058BB90043A0E5 /* GroupCreateTableViewController.swift in Sources */,
@@ -410,6 +417,7 @@
 				712DEEDC1F028934004D5CE9 /* GroupConversationExtension.swift in Sources */,
 				711BEB341EFEF99C00907B42 /* ChatsViewController.swift in Sources */,
 				712DEEE71F02BCCC004D5CE9 /* CoreDataService.swift in Sources */,
+				55E1E3521F17EF3900614E67 /* SendTransactionTableViewController.swift in Sources */,
 				712DEED41F01B5F0004D5CE9 /* InfoRegistViewController.swift in Sources */,
 				5572CE911F003A7A00E0FC3E /* ServiceAPI.swift in Sources */,
 				712DEEE51F02B6A1004D5CE9 /* MOCExtension.swift in Sources */,
