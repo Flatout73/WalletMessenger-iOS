@@ -1579,7 +1579,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5UD-0D-Sd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1520.8" y="440.32983508245883"/>
+            <point key="canvasLocation" x="1929" y="445"/>
         </scene>
         <!--Транзакция-->
         <scene sceneID="P0O-Nb-uGT">
@@ -1592,7 +1592,7 @@
                         <sections>
                             <tableViewSection headerTitle="Отправитель" id="5No-HH-xGq">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="7na-IA-Mav" detailTextLabel="IAz-13-20l" style="IBUITableViewCellStyleSubtitle" id="LK0-Ni-69e">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="7na-IA-Mav" detailTextLabel="IAz-13-20l" style="IBUITableViewCellStyleSubtitle" id="LK0-Ni-69e">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LK0-Ni-69e" id="vbS-r1-OIF">
@@ -1620,7 +1620,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Получатель" id="OWY-Gx-G5X">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="0Qt-Qt-RTB" detailTextLabel="5M0-3c-1mv" style="IBUITableViewCellStyleSubtitle" id="5Kk-3z-XoA">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="0Qt-Qt-RTB" detailTextLabel="5M0-3c-1mv" style="IBUITableViewCellStyleSubtitle" id="5Kk-3z-XoA">
                                         <rect key="frame" x="0.0" y="155.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Kk-3z-XoA" id="g0K-nd-ab7">
@@ -1646,7 +1646,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Инофрмация" id="Uwv-rs-ggf">
+                            <tableViewSection headerTitle="Сумма" id="Uwv-rs-ggf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="4rL-JS-yJK" style="IBUITableViewCellStyleDefault" id="51s-76-L0j">
                                         <rect key="frame" x="0.0" y="255.5" width="375" height="44"/>
@@ -1665,14 +1665,18 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="ETw-YY-y9E" style="IBUITableViewCellStyleDefault" id="q68-mr-kSp">
-                                        <rect key="frame" x="0.0" y="299.5" width="375" height="44"/>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Описание:" id="JcR-9o-NnK">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="DB5-4O-bjQ" style="IBUITableViewCellStyleDefault" id="UhB-bI-Qjb">
+                                        <rect key="frame" x="0.0" y="355.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q68-mr-kSp" id="FIw-Hz-cIV">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UhB-bI-Qjb" id="YXt-Cf-Ts3">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Текст" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ETw-YY-y9E">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Текст" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DB5-4O-bjQ">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1682,14 +1686,18 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="KOY-Ll-c1h" style="IBUITableViewCellStyleDefault" id="eS8-pr-oSg">
-                                        <rect key="frame" x="0.0" y="343.5" width="375" height="44"/>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Дата:" id="G96-O8-pVp">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="gMc-o3-jvv" style="IBUITableViewCellStyleDefault" id="fxr-z2-zde">
+                                        <rect key="frame" x="0.0" y="455.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eS8-pr-oSg" id="Pqo-tU-JQl">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fxr-z2-zde" id="wsg-rG-2xM">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Дата" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KOY-Ll-c1h">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Дата" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gMc-o3-jvv">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1708,13 +1716,11 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="date" destination="KOY-Ll-c1h" id="TPH-6W-qFp"/>
                         <outlet property="recieverName" destination="0Qt-Qt-RTB" id="meL-ky-6b0"/>
                         <outlet property="reciverPhone" destination="5M0-3c-1mv" id="jPP-Wp-hqX"/>
                         <outlet property="senderName" destination="7na-IA-Mav" id="jfh-y9-R1g"/>
                         <outlet property="senderPhone" destination="IAz-13-20l" id="9CT-3h-7ch"/>
                         <outlet property="sum" destination="4rL-JS-yJK" id="VwY-al-RP3"/>
-                        <outlet property="textInfo" destination="ETw-YY-y9E" id="snT-vQ-heO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x51-AB-ADQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2051,7 +2057,7 @@
         <!--Отправить деньги-->
         <scene sceneID="zFU-od-R5F">
             <objects>
-                <tableViewController id="w9V-3L-Tr8" customClass="SenderTableViewController" customModule="WalletHakathon" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="w9V-3L-Tr8" customClass="SendTransactionTableViewController" customModule="WalletHakathon" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="kKV-xG-G9x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2059,7 +2065,7 @@
                         <sections>
                             <tableViewSection headerTitle="Получатель" id="NcP-es-UXr">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="QTS-0k-hBW" style="IBUITableViewCellStyleDefault" id="dfP-sf-8ZS">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="QTS-0k-hBW" detailTextLabel="TRH-nj-rJh" style="IBUITableViewCellStyleSubtitle" id="dfP-sf-8ZS">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dfP-sf-8ZS" id="MsK-zJ-gLY">
@@ -2067,9 +2073,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Имя получателя" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QTS-0k-hBW">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="15" y="5" width="129.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TRH-nj-rJh">
+                                                    <rect key="frame" x="15" y="25.5" width="33" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -2080,7 +2093,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Сумма" id="btM-xD-MBX">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8GA-oI-uKg">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="8GA-oI-uKg">
                                         <rect key="frame" x="0.0" y="155.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8GA-oI-uKg" id="ztk-e6-6gB">
@@ -2102,7 +2115,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Jp6-7W-FUn">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Jp6-7W-FUn">
                                         <rect key="frame" x="0.0" y="199.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jp6-7W-FUn" id="YX1-0d-43h">
@@ -2206,7 +2219,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="moneyField" destination="QcW-7x-U34" id="vLN-N7-wuR"/>
+                        <outlet property="nameReceiver" destination="QTS-0k-hBW" id="Gjz-vt-kcI"/>
                         <outlet property="okButton" destination="b16-xZ-duR" id="Uta-Ny-k5Q"/>
+                        <outlet property="phoneReceiver" destination="TRH-nj-rJh" id="eXJ-Yb-agd"/>
                         <outlet property="textField" destination="bol-iY-5Ou" id="myn-BS-h2d"/>
                     </connections>
                 </tableViewController>

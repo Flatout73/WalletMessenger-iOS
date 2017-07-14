@@ -18,13 +18,17 @@ class SendTransactionTableViewController: UITableViewController, UITextFieldDele
     @IBOutlet weak var okButton: UIBarButtonItem!
     
     @IBOutlet weak var nameReceiver: UILabel!
+    @IBOutlet weak var phoneReceiver: UILabel!
+    
+    var name = ""
+    var phone = ""
     
     var reciverID = 0
     var Nal: Bool = true
     
-    var groupId: Int!
+    var dialogID: Int = 0
     
-    var delegate: UpdateTable!
+    var delegate: UpdateTable?
     
     var phoneOfReceiver: Int64?
     
@@ -65,14 +69,6 @@ class SendTransactionTableViewController: UITableViewController, UITextFieldDele
             if(moneyField.text != "") {
                 sendMoney(money: Double(moneyField.text!)!)
             }
-        } else if (indexPath == IndexPath(row: 0, section: 0)) {
-            let cell2 = tableView.cellForRow(at: IndexPath(row: 1, section: 0))
-            let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
-            
-            cell?.accessoryType = .checkmark
-            cell2?.accessoryType = .disclosureIndicator
-            
-            reciverID = 0
         }
     }
     
@@ -83,27 +79,28 @@ class SendTransactionTableViewController: UITableViewController, UITextFieldDele
             MBProgressHUD.showAdded(to: self.view, animated: true)
             ServiceAPI.sendMoneyQiwi(phoneToSend: phoneOfReceiver!, summa: Double(moneyField.text!)!, transactionID: transactionQiwiID, noncomplitedHandler: errorHandler) {
                 
-                ServiceAPI.groupSendTransaction(receiverID: self.reciverID, groupID: self.groupId, money: money, cash: self.Nal, proof: 1, text: self.textField.text == "" ? "Нет текста" : self.textField.text, noncompletedHandler: self.errorHandler) {
+                ServiceAPI.sendTransaction(dialogID: self.dialogID, money: money, cash: self.Nal, text: self.textField.text!, noncompletedHandler: self.errorHandler){
                     
                     DispatchQueue.main.async {
                         MBProgressHUD.hide(for: self.view, animated: true)
                         self.navigationController?.popViewController(animated: true)
-                        self.delegate.updateTableForTransactions()
+                        self.delegate?.updateTableForTransactions()
                     }
                     
                 }
             }
         } else {
-            var proof = 0
-            
             MBProgressHUD.showAdded(to: self.view, animated: true)
             
-            ServiceAPI.groupSendTransaction(receiverID: reciverID, groupID: groupId, money: money, cash: Nal, proof: proof, text: textField.text == "" ? "Нет текста" : textField.text, noncompletedHandler: self.errorHandler) {
+            
+            ServiceAPI.sendTransaction(dialogID: dialogID, money: money, cash: self.Nal, text: self.textField.text!, noncompletedHandler: self.errorHandler){
+                
                 DispatchQueue.main.async {
                     MBProgressHUD.hide(for: self.view, animated: true)
                     self.navigationController?.popViewController(animated: true)
-                    self.delegate.updateTableForTransactions()
+                    self.delegate?.updateTableForTransactions()
                 }
+                
             }
         }
     }

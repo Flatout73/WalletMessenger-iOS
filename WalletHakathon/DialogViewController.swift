@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class DialogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, TableViewUpdateDelegate {
+class DialogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, TableViewUpdateDelegate, UpdateTable {
     
     
     var fetchedResultsController: NSFetchedResultsController<Transaction>!
@@ -18,6 +18,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     var userPhoto:UIImage?
     var dialogID: Int!
     var phone: Int64!
+    var name: String!
     
     var refreshControl: UIRefreshControl!
     
@@ -327,8 +328,6 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         cell.transactionID = Int(transaction.transactionID)
         
         return cell
-        
-        
     }
     
     
@@ -442,6 +441,10 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         if let vc = segue.destination as? SendTransactionTableViewController{
 //            vc.groupId = groupID
 //            vc.delegate = self
+            vc.dialogID = dialogID
+            vc.delegate = self
+            vc.name = self.name
+            vc.phone = self.phone.description
         } else if let vc = segue.destination as? TransactionTableViewController {
             if let cell = sender as? MessageTableViewCell {
                 vc.transactionID = cell.transactionID
