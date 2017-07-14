@@ -27,12 +27,9 @@ class ChatTableViewCell: UITableViewCell {
         avatar.layer.borderColor = UIColor.white.cgColor
         avatar.layer.cornerRadius = avatar.frame.height/2
         avatar.clipsToBounds = true
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
-
 }

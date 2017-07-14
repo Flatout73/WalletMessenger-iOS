@@ -10,8 +10,8 @@ import UIKit
 import SwiftyJSON
 import MBProgressHUD
 
-//let serverAddress = "http://walletmsg.azurewebsites.net/api"
-let serverAddress = "http://localhost:8080"
+let serverAddress = "http://walletmsg.azurewebsites.net/api"
+//let serverAddress = "http://localhost:8080"
 
 
 struct UserForSend {

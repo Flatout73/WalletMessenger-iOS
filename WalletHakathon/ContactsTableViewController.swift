@@ -14,13 +14,13 @@ class ContactsTableViewController: UITableViewController {
 
     var dialogDelegate: ContactDialogDelegate?
     var groupDelegate: ContactGroupDelegate?
+    var root:UIViewController?
     
     var contacts = [CNContact]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.dism))
         self.navigationItem.title = "Новое сообщение"
         
         let status = CNContactStore.authorizationStatus(for: .contacts)
@@ -64,22 +64,14 @@ class ContactsTableViewController: UITableViewController {
         }
     }
     
-    func close(dialogInfo: DialogInfo){
+    func close(withInfo: DialogInfo){
         DispatchQueue.main.async {[weak self] in
-            if let this = self{
-               MBProgressHUD.hide(for: this.view, animated: true)
-            }
-            
             _ = self?.navigationController?.popToRootViewController(animated: false)
-            self?.dismiss(animated: true, completion: nil)
-            self?.dialogDelegate?.openDialog(withDialogInfo: dialogInfo )
+            self?.root?.dismiss(animated: true, completion: nil)
+            self?.dialogDelegate?.openDialog(withDialogInfo: withInfo)
         }
-    }
 
-    func dism(){
-        self.dismiss(animated: true, completion: nil)
     }
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -87,28 +79,14 @@ class ContactsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contacts.count + 2
+        return contacts.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(indexPath.row == 0){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
-            
-            cell.imageView?.image = #imageLiteral(resourceName: "group")
-            cell.textLabel?.text = "Создать беседу"
-            
-            return cell
-        } else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath)
-            
-            cell.imageView?.image = #imageLiteral(resourceName: "contact")
-            cell.textLabel?.text = "Создать диалог"
-            
-            return cell
-        } else {
+
             let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! ContactTableViewCell
 
-            let contact = contacts[indexPath.row - 2]
+            let contact = contacts[indexPath.row]
             cell.nameLabel.text = "\(contact.givenName) \(contact.familyName)"
             
             if let data = contact.imageData{
@@ -116,16 +94,10 @@ class ContactsTableViewController: UITableViewController {
             }
             
             return cell
-        }
-
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath.row == 0){
-            self.performSegue(withIdentifier: "makeGroup", sender: nil)
-        } else if(indexPath.row == 1){
-            self.performSegue(withIdentifier: "writeSMBD", sender: nil)
-        } else {
+
             let alert = UIAlertController(title: "", message: "Выберите нужный номер телефона", preferredStyle: .actionSheet)
             let contact = contacts[indexPath.row - 2]
             
@@ -144,7 +116,7 @@ class ContactsTableViewController: UITableViewController {
                             let dialogInfo = DialogInfo()
                             dialogInfo.dialogID = dialogID
                             dialogInfo.user = us
-                            self.close(dialogInfo: dialogInfo)
+                            self.close(withInfo: dialogInfo)
                         })
                      })
                     } else {
@@ -159,7 +131,7 @@ class ContactsTableViewController: UITableViewController {
             alert.addAction(cancelAction)
             self.present(alert, animated: true, completion: nil)
             tableView.deselectRow(at: indexPath, animated: true)
-        }
+
         
     }
     
@@ -172,25 +144,6 @@ class ContactsTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Отменить", style: .cancel))
         present(alert, animated: true)
     }
-
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? WriteSomeBodyTableViewController{
-            vc.dialogDelegate = self.dialogDelegate
-            vc.groupDelegate = self.groupDelegate
-            vc.root = self
-        } else if let vc = segue.destination as? GroupMembersTableViewController{
-            vc.contacts = contacts
-            vc.groupDelegate = groupDelegate
-            vc.root = self
-        }
-    }
- 
-
 }
 
 protocol ContactDialogDelegate {

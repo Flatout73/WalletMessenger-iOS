@@ -52,18 +52,15 @@ class SendTransactionTableViewController: UITableViewController, UITextFieldDele
             Nal = true
             
         } else if (indexPath == IndexPath(row: 1, section: 2)) {
-            
-            if(reciverID != 0) {
+
                 let cell2 = tableView.cellForRow(at: IndexPath(row: 0, section: 2))!
                 if(cell2.accessoryType == .checkmark){
-                    
                     cell2.accessoryType = .none
                 }
                 
                 let cell = tableView.cellForRow(at: indexPath)
                 cell?.accessoryType = .checkmark
                 Nal = false
-            }
             
         } else if (indexPath == IndexPath(row: 0, section: 3)) { //отправка денег
             if(moneyField.text != "") {

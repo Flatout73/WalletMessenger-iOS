@@ -20,6 +20,7 @@
 		55B4E49B1F07EBFF0043A0E5 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E49A1F07EBFF0043A0E5 /* ContactTableViewCell.swift */; };
 		55B4E49E1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4E49C1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.m */; };
 		55E1E3521F17EF3900614E67 /* SendTransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E1E3511F17EF3900614E67 /* SendTransactionTableViewController.swift */; };
+		55E1E3541F18F65A00614E67 /* MainContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E1E3531F18F65A00614E67 /* MainContactsTableViewController.swift */; };
 		7117053F1F0877D300271947 /* ConferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7117053E1F0877D300271947 /* ConferenceViewController.swift */; };
 		711705411F09470900271947 /* SenderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711705401F09470900271947 /* SenderTableViewController.swift */; };
 		711705431F0947F800271947 /* RecieverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711705421F0947F800271947 /* RecieverTableViewController.swift */; };
@@ -70,6 +71,7 @@
 		55B4E49C1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		55B4E49D1F08B8650043A0E5 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
 		55E1E3511F17EF3900614E67 /* SendTransactionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendTransactionTableViewController.swift; sourceTree = "<group>"; };
+		55E1E3531F18F65A00614E67 /* MainContactsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContactsTableViewController.swift; sourceTree = "<group>"; };
 		7117053E1F0877D300271947 /* ConferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceViewController.swift; sourceTree = "<group>"; };
 		711705401F09470900271947 /* SenderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SenderTableViewController.swift; sourceTree = "<group>"; };
 		711705421F0947F800271947 /* RecieverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecieverTableViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				55B4E45C1F058BB90043A0E5 /* GroupCreateTableViewController.swift */,
 				55B4E45E1F058BCA0043A0E5 /* WriteSomeBodyTableViewController.swift */,
 				55B4E49A1F07EBFF0043A0E5 /* ContactTableViewCell.swift */,
+				55E1E3531F18F65A00614E67 /* MainContactsTableViewController.swift */,
 			);
 			name = Contacts;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				55B4E45F1F058BCA0043A0E5 /* WriteSomeBodyTableViewController.swift in Sources */,
 				712DEED01F005532004D5CE9 /* MessageTableViewCell.swift in Sources */,
 				711BEB381EFEFF0300907B42 /* DialogViewController.swift in Sources */,
+				55E1E3541F18F65A00614E67 /* MainContactsTableViewController.swift in Sources */,
 				711BEB361EFEFBB000907B42 /* ChatTableViewCell.swift in Sources */,
 				5572CE931F003ACC00E0FC3E /* JSONParser.swift in Sources */,
 				55B4E45D1F058BB90043A0E5 /* GroupCreateTableViewController.swift in Sources */,

@@ -35,7 +35,6 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             self.tableView.endUpdates()
             self.tableView.reloadRows(at: [index], with: .top)
         }
-        
     }
     
     override func viewDidLoad() {
@@ -77,39 +76,10 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
         
-//        
-//        let notificationCenter = NotificationCenter.default
-//        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
-//        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
-        
         self.tabBarController?.tabBar.isHidden = true
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-//    func adjustForKeyboard(notification: Notification) {
-//        let userInfo = notification.userInfo!
-//        
-//        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-//        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-//        
-//        if notification.name == Notification.Name.UIKeyboardWillHide {
-//            tableView.contentInset = UIEdgeInsets.zero
-//            
-//
-//            
-//            moneyField.isHidden = true
-//            stepper.isHidden = true
-//            goButton.isHidden = true
-//        } else {
-//            tableView.contentInset = UIEdgeInsets(top: keyboardViewEndFrame.height + 32, left: 0, bottom: 0, right: 0)
-//            bottomConstraint.constant = keyboardViewEndFrame.height
-//            
-//            cancelButton.isEnabled = true
-//        }
-//        
-//        tableView.scrollIndicatorInsets = tableView.contentInset
-//        tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         refreshControl.beginRefreshing()
@@ -217,12 +187,6 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             ServiceAPI.alert(viewController: self, title: "Ошибка!", desc: error)
         }
         
-    }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     

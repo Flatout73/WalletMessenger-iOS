@@ -255,12 +255,6 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return 1
         
@@ -360,7 +354,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 print("Какой-то неправильный у вас сендер")
             }
         } else if let vc = segue.destination as? UINavigationController{
-            if let v = vc.viewControllers.first as? ContactsTableViewController{
+            if let v = vc.viewControllers.first as? MainContactsTableViewController{
                 v.dialogDelegate = self
                 v.groupDelegate = self
             }

@@ -26,6 +26,8 @@ class MessageTableViewCell: UITableViewCell {
     
     @IBOutlet var userPhoto: UIImageView!
     
+    @IBOutlet var infoLabel: UILabel?
+    
     @IBOutlet weak var fromViewToImage: NSLayoutConstraint!
     
     @IBOutlet weak var fromViewToSuperView: NSLayoutConstraint!
@@ -53,15 +55,15 @@ class MessageTableViewCell: UITableViewCell {
         messView.layer.borderColor = UIColor.white.cgColor
         
         if let acceptButton = acceptButton{
-            acceptButton.layer.borderWidth = 1.0
+            acceptButton.layer.borderWidth = 0.5
             acceptButton.layer.cornerRadius = acceptButton.frame.width/10
-            acceptButton.layer.borderColor = UIColor.white.cgColor
+            acceptButton.layer.borderColor = UIColor.gray.cgColor
         }
 
         if let declineButton = declineButton{
-            declineButton.layer.borderWidth = 1.0
+            declineButton.layer.borderWidth = 0.5
             declineButton.layer.cornerRadius = declineButton.frame.width/10
-            declineButton.layer.borderColor = UIColor.white.cgColor
+            declineButton.layer.borderColor = UIColor.gray.cgColor
         }
         
         userPhoto.layer.borderWidth = 1
@@ -87,6 +89,7 @@ class MessageTableViewCell: UITableViewCell {
         if(acceptButton != nil && declineButton != nil){
             acceptButton!.removeFromSuperview()
             declineButton!.removeFromSuperview()
+            infoLabel?.removeFromSuperview()
         }
         
     }
@@ -115,11 +118,10 @@ class MessageTableViewCell: UITableViewCell {
 //        loadingIndicator?.startAnimating()
         ServiceAPI.acceptTransaction(transactionID: transactionID, noncompletedHandler: errorHandler) {
             DispatchQueue.main.async {
-                //self.hideButtons()
+                self.hideButtons()
 //                self.loadingIndicator?.stopAnimating()
                 self.delegate.update(index: self.cellIndex)
             }
-            
         }
     }
     
@@ -135,7 +137,7 @@ class MessageTableViewCell: UITableViewCell {
         //loadingIndicator?.startAnimating()
         ServiceAPI.declineTransaction(transactionID: transactionID, noncompletedHandler: errorHandler) {
             DispatchQueue.main.async {
-                //self.hideButtons()
+                self.hideButtons()
                 //self.loadingIndicator?.stopAnimating()
                 self.delegate.update(index: self.cellIndex)
             }
