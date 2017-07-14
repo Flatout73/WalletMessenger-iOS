@@ -27,10 +27,10 @@ class GroupMembersTableViewController: UITableViewController {
     }
     
     func createGroupVC(){
-        if(phones.count > 1){
+        if(phones.count > 0){
             self.performSegue(withIdentifier: "createGroup", sender: nil)
         } else {
-            ServiceAPI.alert(viewController: self, desc: "Выберите больше 1 пользователя или создайте диалог!")
+            ServiceAPI.alert(viewController: self, desc: "Выберите хотя бы 1 пользователя")
         }
     }
 

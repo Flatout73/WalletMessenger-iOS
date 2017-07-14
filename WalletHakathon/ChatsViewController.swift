@@ -350,6 +350,7 @@ class ChatsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 vc.dialogID = info.dialogID
                 vc.title = info.user?.name
                 vc.phone = info.user?.mobilePhone
+                vc.name = info.user?.name
             } else {
                 print("Какой-то неправильный у вас сендер")
             }

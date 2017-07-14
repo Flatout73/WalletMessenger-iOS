@@ -35,7 +35,7 @@ class InfoRegistViewController: UIViewController {
 
     @IBAction func registrate(_ sender: Any) {
         
-        guard let name = nameField.text, let psw = passwordField.text, name.characters.count > 6, psw.characters.count > 6 else {
+        guard let name = nameField.text, let psw = passwordField.text, name.characters.count >= 6, psw.characters.count >= 6 else {
             
                 let alert = UIAlertController(title: "Ошибка!", message: "Введите имя и пароль, длиной больше 6 символов", preferredStyle: .alert)
             
