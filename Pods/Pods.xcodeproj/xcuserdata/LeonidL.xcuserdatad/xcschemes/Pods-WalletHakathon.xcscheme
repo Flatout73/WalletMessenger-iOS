@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6D279CDF2CFCD79E3F4AD00F1D16E9C4"
+               BlueprintIdentifier = "C4387E0D8DE312326E56F8B498B55D6B"
                BuildableName = "Pods_WalletHakathon.framework"
                BlueprintName = "Pods-WalletHakathon"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -26,6 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -36,6 +37,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -45,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6D279CDF2CFCD79E3F4AD00F1D16E9C4"
+            BlueprintIdentifier = "C4387E0D8DE312326E56F8B498B55D6B"
             BuildableName = "Pods_WalletHakathon.framework"
             BlueprintName = "Pods-WalletHakathon"
             ReferencedContainer = "container:Pods.xcodeproj">

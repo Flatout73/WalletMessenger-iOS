@@ -1,18 +1,15 @@
 PODS:
-  - Eureka (3.0.0)
   - MBProgressHUD (1.0.0)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - Eureka
   - MBProgressHUD (~> 1.0.0)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Eureka: f36fd440c3ebb7bfea0a4fbe6f16a05f1cb35906
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: a116851a677d0f907b5b5d8d33234d0f9a1f00ab
+PODFILE CHECKSUM: 3c19c25eba29194423e8fc18a748f196e8bbbd3c
 
 COCOAPODS: 1.2.1
