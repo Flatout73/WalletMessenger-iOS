@@ -26,8 +26,6 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
-    
     @IBOutlet weak var tableView: UITableView!
     
     func update(index: IndexPath) {
@@ -452,7 +450,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                 
                 vc.reciever = cell.reciever
                 
-                vc.dateNumber = cell.date
+                vc.dateNumber = cell.date 
                 vc.info = cell.textInfo
                 
                 vc.summa = cell.sum.text

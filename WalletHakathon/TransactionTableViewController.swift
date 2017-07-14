@@ -52,6 +52,7 @@ class TransactionTableViewController: UITableViewController {
         textInfo.text = info
         
         sum.text = summa
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     override func didReceiveMemoryWarning() {
