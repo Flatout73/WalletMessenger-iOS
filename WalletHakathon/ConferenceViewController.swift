@@ -85,6 +85,11 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
         refreshControl.beginRefreshing()
         refresh(sender: self)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        refreshControl.beginRefreshing()
+        refresh(sender: self)
+    }
 
     func refresh(sender: Any) {
         
@@ -93,6 +98,7 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
             
             refreshBegin { (x:Int) -> () in
                 try? self.fetchedResultsController.performFetch()
+                
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
                 self.activityIndicator.stopAnimating()
@@ -105,7 +111,7 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func refreshBegin(refreshEnd:@escaping (Int) -> ()) {
-        DispatchQueue.global(qos: .utility).async { [weak self] in
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             if let this = self {
                 
                 ServiceAPI.getGroupInfo(groupID: this.groupID, noncompletedHandler: this.errorHandler) {
@@ -235,8 +241,6 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "toMeApproved", for: indexPath) as! MessageTableViewCell
             }
-            
-            cell.userPhoto?.image = #imageLiteral(resourceName: "no_photo")
             
             if let avatar = transaction.sender?.avatar {
                 cell.userPhoto?.image = UIImage(data: avatar as Data)

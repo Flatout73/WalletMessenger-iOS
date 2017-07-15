@@ -113,7 +113,12 @@ class SenderTableViewController: UITableViewController, UITextFieldDelegate, Sel
             MBProgressHUD.showAdded(to: self.view, animated: true)
             ServiceAPI.sendMoneyQiwi(phoneToSend: phoneOfReceiver!, summa: Double(moneyField.text!)!, transactionID: transactionQiwiID, noncomplitedHandler: errorHandler) {
                 
-                ServiceAPI.groupSendTransaction(receiverID: self.reciverID, groupID: self.groupId, money: money, cash: self.Nal, proof: 1, text: self.textField.text == "" ? "Нет текста" : self.textField.text, noncompletedHandler: self.errorHandler) {
+                var text: String = ""
+                
+                DispatchQueue.main.async {
+                    text = self.textField.text! == "" ? "Нет текста" : self.textField.text!
+                }
+                ServiceAPI.groupSendTransaction(receiverID: self.reciverID, groupID: self.groupId, money: money, cash: self.Nal, proof: 1, text: text, noncompletedHandler: self.errorHandler) {
                     
                     DispatchQueue.main.async {
                        MBProgressHUD.hide(for: self.view, animated: true)

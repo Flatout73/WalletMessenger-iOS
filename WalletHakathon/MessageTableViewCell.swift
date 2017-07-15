@@ -11,6 +11,7 @@ import MBProgressHUD
 
 protocol TableViewUpdateDelegate {
     func update(index: IndexPath)
+    func errorHandler(error: String)
 }
 
 class MessageTableViewCell: UITableViewCell {
@@ -118,7 +119,7 @@ class MessageTableViewCell: UITableViewCell {
 //        loadingIndicator?.startAnimating()
         ServiceAPI.acceptTransaction(transactionID: transactionID, noncompletedHandler: errorHandler) {
             DispatchQueue.main.async {
-                self.hideButtons()
+                //self.hideButtons()
 //                self.loadingIndicator?.stopAnimating()
                 self.delegate.update(index: self.cellIndex)
             }
@@ -137,7 +138,7 @@ class MessageTableViewCell: UITableViewCell {
         //loadingIndicator?.startAnimating()
         ServiceAPI.declineTransaction(transactionID: transactionID, noncompletedHandler: errorHandler) {
             DispatchQueue.main.async {
-                self.hideButtons()
+                //self.hideButtons()
                 //self.loadingIndicator?.stopAnimating()
                 self.delegate.update(index: self.cellIndex)
             }
@@ -145,7 +146,7 @@ class MessageTableViewCell: UITableViewCell {
     }
     
     func errorHandler(error: String) {
-        print(error)
+        self.delegate.errorHandler(error: error)
     }
     
 }

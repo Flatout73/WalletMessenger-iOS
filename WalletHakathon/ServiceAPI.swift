@@ -130,7 +130,6 @@ class ServiceAPI: NSObject {
         }
     }
     
-    //фото тип string пока стоит
     static func changePhoto(photo: Data, completedHandler: @escaping() -> Void, noncompletedHandler: @escaping(String) -> Void) {
         if var dictionary = ServiceAPI.loadDictionary() {
             
@@ -741,6 +740,7 @@ class ServiceAPI: NSObject {
                 
                 let userprofiles = json["userProfiles"]
                 
+                let countUsers = userprofiles.count
                 //получаем юзеров в группе
                 for (index, subJSON): (String, JSON) in userprofiles {
                     
@@ -767,8 +767,12 @@ class ServiceAPI: NSObject {
                     
                 }
                 
+                
+                
                 sleep(1)
                 let transactions = json["transactions"]
+                
+                let countTransactoins = transactions.count
                 for (index, subJSON): (String, JSON) in transactions {
                     
                     guard
@@ -801,7 +805,9 @@ class ServiceAPI: NSObject {
                     }
                 }
                 
-                completionHandler()
+                if(countTransactoins == 0 || countUsers == 0) {
+                    completionHandler()
+                }
             }
         }
     }

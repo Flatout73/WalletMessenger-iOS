@@ -23,6 +23,8 @@ class CoreDataService: NSObject {
     var appUserID: Int!
     var mobilePhone: Int64!
     
+    var userAvatar: UIImage!
+    
     //var backgroundContext: NSManagedObjectContext!
     
     public static let sharedInstance = CoreDataService()
@@ -36,6 +38,13 @@ class CoreDataService: NSObject {
             mobilePhone = phone
         }
         
+       container.viewContext.performAndWait {
+        let user = self.getAppUser(in: self.container.viewContext)
+            
+            if let ava = user?.avatar {
+                self.userAvatar = UIImage(data: ava as Data)
+            }
+        }
         //container.viewContext.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
         
         //let request: NSFetchRequest<User> = container.managedObjectModel.fetchRequestFromTemplate(withName: "UserWithId", substitutionVariables: ["USERID": userID]) as! NSFetchRequest<User>
@@ -55,10 +64,10 @@ class CoreDataService: NSObject {
         
     }
     
-    func getAppUser(in context: NSManagedObjectContext) -> User {
+    func getAppUser(in context: NSManagedObjectContext) -> User? {
         let userID = UserDefaults.standard.integer(forKey: "appUserId")
         
-        let user = User.findUser(id: userID, inContext: context)!
+        let user = User.findUser(id: userID, inContext: context)
         return user
     }
     
@@ -66,6 +75,11 @@ class CoreDataService: NSObject {
         
         appUserID = id
         mobilePhone = phone
+        
+        if let ava = avatar {
+            userAvatar = UIImage(data: ava)
+        }
+        
         UserDefaults.standard.set(phone, forKey: "mobilePhone")
         
         container.performBackgroundTask { (context) in
@@ -289,7 +303,7 @@ class CoreDataService: NSObject {
                 }
                 
 
-                let appUser = self.getAppUser(in: context)
+                let appUser = self.getAppUser(in: context)!
                 
                 //print("ID пользователя приложения", appUser.userID)
                 
@@ -367,13 +381,15 @@ class CoreDataService: NSObject {
             
             completionHandler()
         }
+        
+        
     }
     
     func changeName(name: String) {
         container.performBackgroundTask { (context) in
             context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
             
-            let appUser = self.getAppUser(in: context)
+            let appUser = self.getAppUser(in: context)!
             appUser.name = name
             
             context.saveThrows()
@@ -386,7 +402,7 @@ class CoreDataService: NSObject {
             
             context.mergePolicy = NSMergePolicy(merge: NSMergePolicyType.mergeByPropertyObjectTrumpMergePolicyType)
             
-            let appUser = self.getAppUser(in: context)
+            let appUser = self.getAppUser(in: context)!
             appUser.avatar = photo as NSData
             
             context.saveThrows()

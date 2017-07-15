@@ -18,10 +18,8 @@ class SendTransactionTableViewController: UITableViewController, UITextFieldDele
     @IBOutlet weak var okButton: UIBarButtonItem!
     
     @IBOutlet weak var nameReceiver: UILabel!
-    @IBOutlet weak var phoneReceiver: UILabel!
     
     var name = ""
-    var phone = ""
     
     var reciverID = 0
     var Nal: Bool = true

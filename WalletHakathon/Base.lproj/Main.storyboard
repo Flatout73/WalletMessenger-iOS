@@ -129,7 +129,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Имя" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mna-QF-l4V">
-                                                    <rect key="frame" x="67" y="11" width="156.5" height="21"/>
+                                                    <rect key="frame" x="67" y="11" width="174.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -141,8 +141,8 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Баланс руб." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOp-2F-CkC">
-                                                    <rect key="frame" x="231.5" y="19" width="94.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="249.5" y="21" width="84.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -164,7 +164,7 @@
                                                 <constraint firstItem="Mna-QF-l4V" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GOp-2F-CkC" secondAttribute="leading" constant="-8" id="fhb-9K-fkE"/>
                                                 <constraint firstItem="Mna-QF-l4V" firstAttribute="leading" secondItem="bOT-lX-RgU" secondAttribute="trailing" constant="8" id="icA-wE-Hlx"/>
                                                 <constraint firstItem="pwU-3P-hwM" firstAttribute="leading" secondItem="Mna-QF-l4V" secondAttribute="leading" id="mMA-eB-4DZ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="GOp-2F-CkC" secondAttribute="trailing" constant="8" id="rxY-00-s3u"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="GOp-2F-CkC" secondAttribute="trailing" id="rxY-00-s3u"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -195,8 +195,8 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Баланс руб." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6T-M4-Dkg">
-                                                    <rect key="frame" x="231" y="19" width="95" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="249.5" y="21" width="84.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -207,7 +207,7 @@
                                                 <constraint firstItem="zhS-hn-p35" firstAttribute="leading" secondItem="t5b-17-mx4" secondAttribute="leadingMargin" constant="8" id="Rti-Vk-2um"/>
                                                 <constraint firstItem="zgB-4H-NH5" firstAttribute="centerY" secondItem="t5b-17-mx4" secondAttribute="centerY" id="WBy-ae-Me3"/>
                                                 <constraint firstItem="zgB-4H-NH5" firstAttribute="leading" secondItem="zhS-hn-p35" secondAttribute="trailing" constant="8" id="Y2o-hV-HaV"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="i6T-M4-Dkg" secondAttribute="trailing" constant="8" id="bdM-Rd-Cqt"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="i6T-M4-Dkg" secondAttribute="trailing" id="bdM-Rd-Cqt"/>
                                                 <constraint firstItem="i6T-M4-Dkg" firstAttribute="centerY" secondItem="t5b-17-mx4" secondAttribute="centerY" id="pJs-xl-Xgv"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="zhS-hn-p35" secondAttribute="bottom" id="xJT-Rt-hK0"/>
                                             </constraints>
@@ -773,7 +773,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8i-7M-uM0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1742" y="1557"/>
+            <point key="canvasLocation" x="1686" y="2083"/>
         </scene>
         <!--Чаты-->
         <scene sceneID="FaJ-YK-Mht">
@@ -847,7 +847,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K8c-2j-TMX">
                                                     <rect key="frame" x="59" y="4" width="127" height="75"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTY-G6-2kZ">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTY-G6-2kZ">
                                                             <rect key="frame" x="60" y="49" width="59" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
@@ -1007,7 +1007,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5rR-XL-eaI">
                                                     <rect key="frame" x="59" y="4" width="127" height="67"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f71-81-KmR">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f71-81-KmR">
                                                             <rect key="frame" x="60" y="40.5" width="59" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
@@ -1088,7 +1088,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6u7-zR-kKl">
                                                     <rect key="frame" x="190" y="4" width="127" height="67"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDG-km-MDs">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDG-km-MDs">
                                                             <rect key="frame" x="60" y="41" width="59" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
@@ -1296,6 +1296,7 @@
                                             <outlet property="sum" destination="VpQ-Zs-XUO" id="dJP-61-abh"/>
                                             <outlet property="transText" destination="EcG-ij-f7i" id="gDK-B5-2Lr"/>
                                             <outlet property="userPhoto" destination="r3J-CY-SuZ" id="ihA-o4-hsD"/>
+                                            <segue destination="lq7-Mh-fGP" kind="show" id="XRc-p3-p1B"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="fromMe" rowHeight="75" id="Bj0-7Z-i3r" customClass="MessageTableViewCell" customModule="WalletHakathon" customModuleProvider="target">
@@ -1376,6 +1377,7 @@
                                             <outlet property="sum" destination="K3m-mB-hgY" id="aTO-Mi-dvp"/>
                                             <outlet property="transText" destination="jQ0-m1-050" id="8d6-Kx-JbY"/>
                                             <outlet property="userPhoto" destination="877-m4-HR6" id="0hL-P7-phN"/>
+                                            <segue destination="lq7-Mh-fGP" kind="show" id="ah2-Pk-VOY"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="toMe" rowHeight="160" id="N7Z-iX-iEJ" customClass="MessageTableViewCell" customModule="WalletHakathon" customModuleProvider="target">
@@ -1535,6 +1537,7 @@
                                             <outlet property="sum" destination="LYG-ye-vPt" id="e99-6W-C5r"/>
                                             <outlet property="transText" destination="T8u-zx-vKe" id="b6I-z4-vhA"/>
                                             <outlet property="userPhoto" destination="kug-gG-D60" id="IV0-rl-eKL"/>
+                                            <segue destination="lq7-Mh-fGP" kind="show" id="FKY-n3-vf6"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1582,153 +1585,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5UD-0D-Sd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1929" y="445"/>
-        </scene>
-        <!--Транзакция-->
-        <scene sceneID="P0O-Nb-uGT">
-            <objects>
-                <tableViewController title="Транзакция" id="E4L-va-dY5" customClass="TransactionTableViewController" customModule="WalletHakathon" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="bln-r7-NgO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <sections>
-                            <tableViewSection headerTitle="Отправитель" id="5No-HH-xGq">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="7na-IA-Mav" detailTextLabel="IAz-13-20l" style="IBUITableViewCellStyleSubtitle" id="LK0-Ni-69e">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LK0-Ni-69e" id="vbS-r1-OIF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7na-IA-Mav">
-                                                    <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IAz-13-20l">
-                                                    <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Получатель" id="OWY-Gx-G5X">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="0Qt-Qt-RTB" detailTextLabel="5M0-3c-1mv" style="IBUITableViewCellStyleSubtitle" id="5Kk-3z-XoA">
-                                        <rect key="frame" x="0.0" y="155.5" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Kk-3z-XoA" id="g0K-nd-ab7">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Qt-Qt-RTB">
-                                                    <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5M0-3c-1mv">
-                                                    <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Сумма" id="Uwv-rs-ggf">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="4rL-JS-yJK" style="IBUITableViewCellStyleDefault" id="51s-76-L0j">
-                                        <rect key="frame" x="0.0" y="255.5" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="51s-76-L0j" id="vpa-El-5N6">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Сумма" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4rL-JS-yJK">
-                                                    <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Описание:" id="JcR-9o-NnK">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="DB5-4O-bjQ" style="IBUITableViewCellStyleDefault" id="UhB-bI-Qjb">
-                                        <rect key="frame" x="0.0" y="355.5" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UhB-bI-Qjb" id="YXt-Cf-Ts3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Текст" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DB5-4O-bjQ">
-                                                    <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Дата:" id="G96-O8-pVp">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="gMc-o3-jvv" style="IBUITableViewCellStyleDefault" id="fxr-z2-zde">
-                                        <rect key="frame" x="0.0" y="455.5" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fxr-z2-zde" id="wsg-rG-2xM">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Дата" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gMc-o3-jvv">
-                                                    <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="E4L-va-dY5" id="Llq-fP-uNX"/>
-                            <outlet property="delegate" destination="E4L-va-dY5" id="7eb-vz-agg"/>
-                        </connections>
-                    </tableView>
-                    <connections>
-                        <outlet property="recieverName" destination="0Qt-Qt-RTB" id="meL-ky-6b0"/>
-                        <outlet property="reciverPhone" destination="5M0-3c-1mv" id="jPP-Wp-hqX"/>
-                        <outlet property="senderName" destination="7na-IA-Mav" id="jfh-y9-R1g"/>
-                        <outlet property="senderPhone" destination="IAz-13-20l" id="9CT-3h-7ch"/>
-                        <outlet property="sum" destination="4rL-JS-yJK" id="VwY-al-RP3"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x51-AB-ADQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2980" y="743"/>
+            <point key="canvasLocation" x="1687" y="575"/>
         </scene>
         <!--Отправить деньги-->
         <scene sceneID="LMe-CJ-29q">
@@ -1915,7 +1772,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QEd-Lp-we7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2668" y="1464"/>
+            <point key="canvasLocation" x="2657" y="1732"/>
         </scene>
         <!--Отправить деньги-->
         <scene sceneID="zFU-od-R5F">
@@ -1989,15 +1846,15 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Способ оплаты" id="X3x-KE-O4e">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Gga-0c-UVO" style="IBUITableViewCellStyleDefault" id="yRb-qB-Nof">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" textLabel="Gga-0c-UVO" style="IBUITableViewCellStyleDefault" id="yRb-qB-Nof">
                                         <rect key="frame" x="0.0" y="235" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yRb-qB-Nof" id="7yg-Zr-XXF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="336" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Наличные" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gga-0c-UVO">
-                                                    <rect key="frame" x="16" y="0.0" width="344" height="43.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="320" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -2063,7 +1920,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ld3-k4-h6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2980" y="20"/>
+            <point key="canvasLocation" x="3193" y="-425"/>
         </scene>
         <!--Участники-->
         <scene sceneID="6CE-SA-6a2">
@@ -2073,6 +1930,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="da4-t8-cNj">
+                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" textLabel="esK-4m-hqA" detailTextLabel="NeB-EV-hSa" style="IBUITableViewCellStyleSubtitle" id="AUP-YZ-Hmg">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -2107,7 +1969,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lh0-dN-VSG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3718" y="1382"/>
+            <point key="canvasLocation" x="3889" y="1818"/>
         </scene>
         <!--Participants Table View Controller-->
         <scene sceneID="1s1-4L-B8k">
@@ -2190,7 +2052,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAl-Nx-yls" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3886" y="303"/>
+            <point key="canvasLocation" x="3361" y="1153"/>
         </scene>
         <!--Транзакция-->
         <scene sceneID="iDq-Ug-ykI">
@@ -2338,7 +2200,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EFd-be-RAD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2980" y="-707"/>
+            <point key="canvasLocation" x="3313" y="313"/>
         </scene>
     </scenes>
     <resources>

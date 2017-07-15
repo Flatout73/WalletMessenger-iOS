@@ -33,6 +33,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             try? self.fetchedResultsController.performFetch()
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
+            
             self.tableView.reloadRows(at: [index], with: .top)
         }
     }
@@ -45,6 +46,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         tableView.dataSource = self
         
+        userPhoto = CoreDataService.sharedInstance.userAvatar
 
         activityIndicator.hidesWhenStopped = true
         
@@ -273,7 +275,6 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         cell.date = transaction.date as Date?
         cell.textInfo = transaction.text
         
-        cell.userPhoto.image = #imageLiteral(resourceName: "no_photo")
         cell.sum.text = String(transaction.money) + " руб."
         cell.transText.text = transaction.text
         
@@ -406,7 +407,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             vc.dialogID = dialogID
             vc.delegate = self
             vc.name = self.name
-            vc.phone = self.phone.description
+            vc.phoneOfReceiver = phone
         } else if let vc = segue.destination as? TransactionTableViewController {
             if let cell = sender as? MessageTableViewCell {
                 vc.transactionID = cell.transactionID

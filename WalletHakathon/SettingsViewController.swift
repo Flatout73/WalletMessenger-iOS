@@ -47,7 +47,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
         let coreDataService = CoreDataService.sharedInstance
         
         coreDataService.container.viewContext.performAndWait {
-            let appUser = coreDataService.getAppUser(in: coreDataService.container.viewContext)
+            let appUser = coreDataService.getAppUser(in: coreDataService.container.viewContext)!
             
             self.nameTextField.text = appUser.name
             if let image = appUser.avatar as Data? {
@@ -221,9 +221,10 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate, UIImag
                     DispatchQueue.main.async {[weak self] in
                         if let this = self{
                             MBProgressHUD.hide(for: this.view, animated: true)
-                            self?.avatar.image = selectedImage
+                            self?.avatar.image = newImage
+                            CoreDataService.sharedInstance.userAvatar = newImage
                         }
-                        //self?.viewWillAppear(true)
+                        
                     }
                 }, noncompletedHandler: {str in
                     DispatchQueue.main.async {
