@@ -85,11 +85,6 @@ class ConferenceViewController: UIViewController, UITableViewDataSource, UITable
         refreshControl.beginRefreshing()
         refresh(sender: self)
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        refreshControl.beginRefreshing()
-        refresh(sender: self)
-    }
 
     func refresh(sender: Any) {
         
